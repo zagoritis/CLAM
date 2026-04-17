@@ -7,9 +7,9 @@ from typing import Union
 
 @dataclass
 class DataConfig:
-    DATA_ROOT_PATH = "~/Documents/datasets"  # path where all datasets are saved
+    DATA_ROOT_PATH = "/home/s4076893/Desktop"  # path where all datasets are saved
     DATASET_CLASS: str = "EpicKitchens"
-    FEAT_DIR = "epickitchens100/features/rgb"
+    FEAT_DIR = "epickitchens100/features/rgb_kinetics_bninception"
     DROP_LAST: bool = False
 
     # Short-term specific

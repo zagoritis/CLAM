@@ -1,4 +1,4 @@
-USE_WANDB: True
+USE_WANDB: False
 DTYPE:
   bfloat16
 TRAIN:
@@ -13,7 +13,7 @@ VAL:
   NUM_WORKERS: 4
   BATCH_SIZE: 128
 DATA:
-  DATA_ROOT_PATH: /mnt/ssd/datasets
+  DATA_ROOT_PATH: /home/s4076893/Desktop
   FEAT_DIR: epickitchens100/features/rgb_kinetics_bninception
   FUTURE_STEP_IN_SEC: 1.
   TAU_O: 32.
