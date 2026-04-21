@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 #SBATCH --job-name=clam_ek100
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err
@@ -10,8 +10,11 @@
 #SBATCH --mem=64GB
 #SBATCH --time=24:00:00
 
-source ~/anaconda3/etc/profile.d/conda.sh
-conda activate scalant
+module load Miniconda3/24.7.1-0
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate clam
+
+cd /home/s4076893/Desktop/CLAM
 
 YOUR_ROOT_PATH=/home/s4076893/Desktop
 YOUR_FEATURE_DIR=epickitchens100/features/rgb_kinetics_bninception
