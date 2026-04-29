@@ -162,3 +162,6 @@ cython_debug/
 output/
 # Ignore all PDF files in all subdirectories
 **/*.pdf
+
+# Saved Checkpoint Best Model
+checkpoints
