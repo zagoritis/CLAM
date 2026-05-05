@@ -31,11 +31,7 @@ logger = utils.get_logger(__name__)
 
 
 def get_dtype(str_type):
-    dtype_dict = {
-        "float32": torch.float32,
-        "float16": torch.float16,
-        "bfloat16": torch.bfloat16,
-    }
+    dtype_dict = {"float32": torch.float32, "float16": torch.float16, "bfloat16": torch.bfloat16}
     return dtype_dict[str_type]
 
 
@@ -59,20 +55,7 @@ def get_grad_norm(model: nn.Module) -> torch.Tensor:
     return mean_gradient_norm
 
 
-def train_one_epoch(
-        cfg: Config,
-        model,
-        data_loader,
-        optimizer,
-        scheduler,
-        metric_tracker,
-        device,
-        criterion: Criterion_LSTR,
-        loss_scaler=None,
-        mixup: utils.MixUp = None,
-        disable_pregress=False,
-        **kwargs,
-):
+def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metric_tracker, device, criterion: Criterion_LSTR, loss_scaler=None, mixup: utils.MixUp = None, disable_pregress=False, **kwargs):
     model.train()
     # Conditionally use autocast or the dummy context manager
     dtype = get_dtype(cfg.DTYPE)
@@ -80,12 +63,7 @@ def train_one_epoch(
 
     grad_clip = cfg.TRAIN.GRADIENT_CLIPPING
     for data in tqdm(data_loader, desc="Training", disable=disable_pregress):
-        data = {
-            key: val.to(device=device)
-            if val is not None and not isinstance(val, list)
-            else val
-            for key, val in data.items()
-        }
+        data = {key: val.to(device=device) if val is not None and not isinstance(val, list) else val for key, val in data.items()}
 
         batch_size = get_batch_size(data)
         past_feats = data.get("past_feats", None)
@@ -147,10 +125,7 @@ def train_one_epoch(
 
             optimizer.step()
 
-        loss_dict.update({
-            "Gradnorm_prev": grad_prev,
-            "Gradnorm_after": grad_after,
-        })
+        loss_dict.update({"Gradnorm_prev": grad_prev, "Gradnorm_after": grad_after})
         metric_tracker.update(loss_dict, batch_size, is_training=True)
 
     # gather the stats from all processes
@@ -161,17 +136,7 @@ def train_one_epoch(
 
 
 @torch.inference_mode()
-def evaluate(
-        cfg: Config,
-        model,
-        data_loader,
-        metric_tracker: Optional,
-        device,
-        criterion: Optional[Criterion_LSTR],
-        disable_pregress=False,
-        test_enable=False,
-        **kwargs,
-):
+def evaluate(cfg: Config, model, data_loader, metric_tracker: Optional, device, criterion: Optional[Criterion_LSTR], disable_pregress=False, test_enable=False, **kwargs):
     model.eval()
     # Conditionally use autocast or the dummy context manager
     dtype = get_dtype(cfg.DTYPE)
@@ -181,13 +146,7 @@ def evaluate(
     dataset_name = cfg.DATA.DATASET_CLASS
     max_len = cfg.VAL.MAX_LEN
     for data in tqdm(data_loader, desc="Evaluation", disable=disable_pregress):
-        data = {
-            key: val.to(device=device)
-            if val is not None and not isinstance(val, list)
-            else val
-            for key, val in data.items()
-        }
-
+        data = {key: val.to(device=device) if val is not None and not isinstance(val, list) else val for key, val in data.items()}
         batch_size = get_batch_size(data)
         past_feats = data.get("past_feats", None)
         future_feats = data.get("future_feats", None)
@@ -269,24 +228,13 @@ def build_lrscheduler(optimizer, cfg: Config):
     if scheduler_name is None or scheduler_name in ["NONE", "none", "None"]:
         scheduler = None
     elif scheduler_name == 'cosine':
-        scheduler = utils.WarmUpCosineAnnealingLR(
-            optimizer,
-            T_max=cfg.TRAIN.EPOCHS,
-            warmup_epochs=cfg.TRAIN.WARMUP_STEPS,
-            eta_min=cfg.TRAIN.MIN_LR,
-        )
+        scheduler = utils.WarmUpCosineAnnealingLR(optimizer, T_max=cfg.TRAIN.EPOCHS, warmup_epochs=cfg.TRAIN.WARMUP_STEPS, eta_min=cfg.TRAIN.MIN_LR)
     else:
-        raise NotImplementedError(
-            f'LRScheduler {scheduler_name} not supported!')
+        raise NotImplementedError(f'LRScheduler {scheduler_name} not supported!')
     return scheduler
 
 
-def save_model(
-        model, optimizer, scheduler,
-        metric_cur: float, metric_best: float, epoch: int,
-        metric_descending=False, fpath: Optional[str] = None,
-        save_each_after_epoch=100,
-) -> Tuple[bool, float]:
+def save_model(model, optimizer, scheduler, metric_cur: float, metric_best: float, epoch: int, metric_descending=False, fpath: Optional[str] = None, save_each_after_epoch=100) -> Tuple[bool, float]:
     save = False
 
     if metric_descending:
@@ -311,21 +259,12 @@ def save_model(
     return save, metric_best
 
 
-def store_checkpoint(model, optimizer, scheduler,
-                     epoch: int, fpath: Optional[str] = None) -> None:
+def store_checkpoint(model, optimizer, scheduler, epoch: int, fpath: Optional[str] = None) -> None:
     model_without_ddp = model
-    if isinstance(model, nn.parallel.DistributedDataParallel) or isinstance(
-            model, nn.parallel.DataParallel):
+    if isinstance(model, nn.parallel.DistributedDataParallel) or isinstance(model, nn.parallel.DataParallel):
         model_without_ddp = model.module
-    checkpoint = {
-        'model': model_without_ddp.state_dict(),
-        'optimizer': optimizer.state_dict(),
-        'lr_scheduler':
-            scheduler.state_dict()
-            if scheduler is not None
-            else None,
-        'epoch': epoch,
-    }
+
+    checkpoint = {'model': model_without_ddp.state_dict(), 'optimizer': optimizer.state_dict(), 'lr_scheduler': scheduler.state_dict() if scheduler is not None else None, 'epoch': epoch}
 
     ckpt_path = "/".join(fpath.split("/")[:-1])
     os.makedirs(ckpt_path, exist_ok=True)
@@ -341,11 +280,9 @@ def load_model(model, ckpt_path: str) -> None:
 
     # FIXME
     # Filter and modify keys that start with 'base_encoder'
-    new_dict = {k.replace('base_encoder.', '') if k.startswith('base_encoder') else k: v for k, v in
-                pretrained_dict.items()}
+    new_dict = {k.replace('base_encoder.', '') if k.startswith('base_encoder') else k: v for k, v in pretrained_dict.items()}
 
-    missing_keys, unexp_keys = model.load_state_dict(
-        new_dict, strict=False)
+    missing_keys, unexp_keys = model.load_state_dict(new_dict, strict=False)
 
     if not missing_keys and not unexp_keys:
         logger.info(f'Loaded model from {ckpt_path}')

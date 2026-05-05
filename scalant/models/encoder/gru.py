@@ -11,10 +11,7 @@ class GRU(nn.Module):
         super().__init__()
         self.num_layers = cfg.MODEL.N_LAYER
         self.hidden_dim = cfg.MODEL.D_MODEL
-        self.encoder = nn.GRU(
-            cfg.MODEL.D_MODEL, cfg.MODEL.D_MODEL, cfg.MODEL.N_LAYER,
-            batch_first=True, dropout=cfg.MODEL.DROPOUT
-        )
+        self.encoder = nn.GRU(cfg.MODEL.D_MODEL, cfg.MODEL.D_MODEL, cfg.MODEL.N_LAYER, batch_first=True, dropout=cfg.MODEL.DROPOUT)
 
     def forward(self, past):
         B, _, _ = past.shape

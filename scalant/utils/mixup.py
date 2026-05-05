@@ -37,9 +37,7 @@ def convert_to_one_hot(targets, num_classes, on_value=1.0, off_value=0.0):
             label smoothing.
     """
     targets = targets.long().view(-1, 1)
-    return torch.full(
-        (targets.size()[0], num_classes), off_value, device=targets.device
-    ).scatter_(1, targets, on_value)
+    return torch.full((targets.size()[0], num_classes), off_value, device=targets.device).scatter_(1, targets, on_value)
 
 
 def mixup_target(target, num_classes, lam=1.0, smoothing=0.0):
@@ -69,14 +67,7 @@ class MixUp:
     Apply mixup for videos at batch level.
     mixup: Beyond Empirical Risk Minimization (https://arxiv.org/abs/1710.09412)
     """
-
-    def __init__(
-        self,
-        mixup_alpha=0.8,
-        mix_prob=1.0,
-        label_smoothing=0.1,
-        num_classes: dict = {},
-    ):
+    def __init__(self, mixup_alpha=0.8, mix_prob=1.0, label_smoothing=0.1, num_classes: dict = {}):
         """
         Args:
             mixup_alpha (float): Mixup alpha value.
@@ -124,30 +115,16 @@ class MixUp:
 
         self._mix_batch(past, lam)
 
-        target.past_actions = mixup_target(
-            target.past_actions, self.num_classes['action'], lam,
-            self.label_smoothing
-        )
+        target.past_actions = mixup_target(target.past_actions, self.num_classes['action'], lam, self.label_smoothing)
 
         if future is not None:
             self._mix_batch(future, lam)
-            target.future_actions = mixup_target(
-                target.future_actions, self.num_classes['action'], lam,
-                self.label_smoothing
-            )
+            target.future_actions = mixup_target(target.future_actions, self.num_classes['action'], lam, self.label_smoothing)
 
         if target.past_verbs is not None:
-            target.past_verbs = mixup_target(
-                target.past_verbs, self.num_classes['verb'], lam, self.label_smoothing
-            )
-            target.past_nouns = mixup_target(
-                target.past_nouns, self.num_classes['noun'], lam, self.label_smoothing
-            )
+            target.past_verbs = mixup_target(target.past_verbs, self.num_classes['verb'], lam, self.label_smoothing)
+            target.past_nouns = mixup_target(target.past_nouns, self.num_classes['noun'], lam, self.label_smoothing)
 
             if target.future_verbs is not None:
-                target.future_verbs = mixup_target(
-                    target.future_verbs, self.num_classes['verb'], lam, self.label_smoothing
-                )
-                target.future_nouns = mixup_target(
-                    target.future_nouns, self.num_classes['noun'], lam, self.label_smoothing
-                )
+                target.future_verbs = mixup_target(target.future_verbs, self.num_classes['verb'], lam, self.label_smoothing)
+                target.future_nouns = mixup_target(target.future_nouns, self.num_classes['noun'], lam, self.label_smoothing)

@@ -121,9 +121,7 @@ def bwd_sequential_scan(
 def contiguous(fn):
     @functools.wraps(fn)
     def wrapper(ctx, *args, **kwargs):
-        return fn(ctx,
-                  *(i if not isinstance(i, torch.Tensor) else i.contiguous() for i in args),
-                  **{k: (v if not isinstance(v, torch.Tensor) else v.contiguous()) for k, v in kwargs.items()})
+        return fn(ctx, *(i if not isinstance(i, torch.Tensor) else i.contiguous() for i in args), **{k: (v if not isinstance(v, torch.Tensor) else v.contiguous()) for k, v in kwargs.items()})
     return wrapper
 
 
@@ -144,10 +142,7 @@ class SequentialScan(Function):
         states = kv.new_empty(B, H, T, K, V, dtype=torch.float32)
 
         grid = (B * H, NK, NV)
-        fwd_sequential_scan[grid](
-            gk, kv, states, B, H, T, K, V, BK, BV, has_v_dim,
-            num_warps=num_warps
-        )
+        fwd_sequential_scan[grid](gk, kv, states, B, H, T, K, V, BK, BV, has_v_dim, num_warps=num_warps)
 
         ctx.save_for_backward(gk, states)
         ctx.has_v_dim = has_v_dim
@@ -172,11 +167,7 @@ class SequentialScan(Function):
         grad_kv = gk.new_empty(B, H, T, K, V, dtype=torch.float32)
 
         grid = (B * H, NK, NV)
-        bwd_sequential_scan[grid](
-            grad_output, gk, states, grad_gk, grad_kv, B, H, T, K, V, BK, BV,
-            has_v_dim,
-            num_warps=num_warps
-        )
+        bwd_sequential_scan[grid](grad_output, gk, states, grad_gk, grad_kv, B, H, T, K, V, BK, BV, has_v_dim, num_warps=num_warps)
         return grad_gk.to(gk.dtype), grad_kv.to(gk.dtype)
 
 

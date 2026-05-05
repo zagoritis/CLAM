@@ -153,11 +153,7 @@ class AverageMeter:
 
 class MetricTracker:
     """Interface of all metrics, tracks multiple metrics"""
-    def __init__(
-            self,
-            device="cuda",
-            **kwargs,
-    ):
+    def __init__(self, device="cuda", **kwargs):
         self.training_metrics = {}
         self.validation_metrics = {}
         self.training_prefix = 'train/'

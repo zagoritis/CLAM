@@ -22,10 +22,7 @@ class MultipCrossEntropyLoss(nn.Module):
         if self.ignore_index >= 0:
             notice_index = [
                 i for i in range(target.shape[-1]) if i != self.ignore_index]
-            output = torch.sum(
-                -target[:, notice_index] * logsoftmax(input[:, notice_index]),
-                dim=1
-            )
+            output = torch.sum(-target[:, notice_index] * logsoftmax(input[:, notice_index]), dim=1)
 
             if self.reduction == 'mean':
                 return torch.mean(output[target[:, self.ignore_index] != 1])
@@ -46,18 +43,12 @@ class MultipCrossEntropyLoss(nn.Module):
 
 class MultipCrossEntropyEqualizedLoss(nn.Module):
 
-    def __init__(self, gamma=0.95, lambda_=1.76e-3, reduction='mean',
-                 ignore_index=-100,
-                 anno_path='annotations/ek100_rulstm/',
-                 freq_info=None):
+    def __init__(self, gamma=0.95, lambda_=1.76e-3, reduction='mean', ignore_index=-100, anno_path='annotations/ek100_rulstm/', freq_info=None):
         super(MultipCrossEntropyEqualizedLoss, self).__init__()
 
         if freq_info is None:
             # get label distribution
-            segment_list = pd.read_csv(
-                osp.join(anno_path, 'training.csv'),
-                names=['id', 'video', 'start_f', 'end_f', 'verb', 'noun', 'action'],
-                skipinitialspace=True)
+            segment_list = pd.read_csv(osp.join(anno_path, 'training.csv'), names=['id', 'video', 'start_f', 'end_f', 'verb', 'noun', 'action'], skipinitialspace=True)
             freq_info = np.zeros((max(segment_list['action']) + 1,))
             assert ignore_index == 0
             for segment in segment_list.iterrows():

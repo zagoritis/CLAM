@@ -21,23 +21,11 @@ BACKGROUND = "__background__"
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="Print qualitative top-k action anticipation predictions."
-    )
+    parser = argparse.ArgumentParser(description="Print qualitative top-k action anticipation predictions.")
     parser.add_argument("--cfg", default="configs/ek100/default.yaml")
-    parser.add_argument(
-        "--checkpoint",
-        required=True,
-        help=(
-            "Checkpoint directory name under checkpoints/, checkpoint directory path, "
-            "or full checkpoint_best.pth path."
-        ),
-    )
+    parser.add_argument("--checkpoint", required=True, help=("Checkpoint directory name under checkpoints/, checkpoint directory path, " "or full checkpoint_best.pth path."))
     parser.add_argument("--data-root", required=True)
-    parser.add_argument(
-        "--feat-dir",
-        default="epickitchens100/features/rgb_kinetics_bninception",
-    )
+    parser.add_argument("--feat-dir", default="epickitchens100/features/rgb_kinetics_bninception")
     parser.add_argument("--split", default="val", choices=["train", "val", "test"])
     parser.add_argument("--topk", type=int, default=5)
     parser.add_argument("--num-samples", type=int, default=5)
@@ -49,12 +37,7 @@ def parse_args():
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--include-background", action="store_true")
     parser.add_argument("--output", default=None, help="Optional JSON output path.")
-    parser.add_argument(
-        "--opts",
-        nargs=argparse.REMAINDER,
-        default=None,
-        help="Additional config overrides, using the same KEY VALUE format as main.py.",
-    )
+    parser.add_argument("--opts", nargs=argparse.REMAINDER, default=None, help="Additional config overrides, using the same KEY VALUE format as main.py.")
     return parser.parse_args()
 
 
@@ -103,13 +86,7 @@ def positive_label_ids(target_tensor):
 
 
 def label_list(target_tensor, names):
-    return [
-        {
-            "id": class_idx,
-            "name": class_name(names, class_idx),
-        }
-        for class_idx in positive_label_ids(target_tensor)
-    ]
+    return [{"id": class_idx, "name": class_name(names, class_idx)} for class_idx in positive_label_ids(target_tensor)]
 
 
 def label_names(target_tensor, names):
@@ -127,25 +104,12 @@ def topk_predictions(logits, names, k, include_background, label_key):
 
     probs = torch.softmax(scores, dim=-1)
     values, indices = probs.topk(min(k, probs.numel()))
-    return [
-        {
-            "rank": rank,
-            "id": int(class_idx),
-            label_key: class_name(names, class_idx),
-            "probability": float(prob),
-        }
-        for rank, (prob, class_idx) in enumerate(
-            zip(values.cpu(), indices.cpu()), start=1
-        )
-    ]
+    return [{"rank": rank, "id": int(class_idx), label_key: class_name(names, class_idx), "probability": float(prob)} for rank, (prob, class_idx) in enumerate(zip(values.cpu(), indices.cpu()), start=1)]
 
 
 def get_sample_summary(dataset, index, item_cpu, action_names):
     if not hasattr(dataset, "df"):
-        return {
-            "sample_index": index,
-            "ground_truth_action": label_names(item_cpu.get("future_act"), action_names),
-        }
+        return {"sample_index": index, "ground_truth_action": label_names(item_cpu.get("future_act"), action_names)}
 
     row = dataset.df.loc[index]
     video_id = row["video_id"] if "video_id" in row else None
@@ -198,12 +162,7 @@ def sample_indices(dataset_size, args):
 
 
 def move_item_to_device(item, device):
-    return {
-        key: value.unsqueeze(0).to(device=device, non_blocking=True)
-        if hasattr(value, "unsqueeze")
-        else value
-        for key, value in item.items()
-    }
+    return {key: value.unsqueeze(0).to(device=device, non_blocking=True) if hasattr(value, "unsqueeze") else value for key, value in item.items()}
 
 
 @torch.inference_mode()

@@ -30,14 +30,8 @@ def build_dataloader(cfg: Config, mode):
     bs = cfg.TRAIN.BATCH_SIZE if is_training else cfg.VAL.BATCH_SIZE
     workers = cfg.TRAIN.NUM_WORKERS if is_training else cfg.VAL.NUM_WORKERS
 
-    sampler = torch.utils.data.distributed.DistributedSampler(
-        dataset, shuffle=is_training,
-    )
+    sampler = torch.utils.data.distributed.DistributedSampler(dataset, shuffle=is_training)
 
-    dataloader = torch.utils.data.DataLoader(
-        dataset, batch_size=bs, shuffle=False, num_workers=workers,
-        sampler=sampler, pin_memory=True, persistent_workers=True,
-        drop_last=cfg.DATA.DROP_LAST,
-    )
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=bs, shuffle=False, num_workers=workers, sampler=sampler, pin_memory=True, persistent_workers=True, drop_last=cfg.DATA.DROP_LAST)
 
     return dataset, dataloader

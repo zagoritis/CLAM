@@ -29,14 +29,8 @@ EPIC100_VERSION = 0.2
 RULSTM_TSN_FPS = 30.0  # the frame rate the feats were stored by RULSTM
 
 
-def convert_to_anticipation(
-        df: pd.DataFrame,
-        tau_a: float = 1,
-        tau_o: float = 10,
-) -> Tuple[pd.DataFrame, pd.DataFrame]:
-    logger.debug(
-        'Converting data to anticipation with tau_a=%s and '
-        'tau_o=%s.', tau_a, tau_o)
+def convert_to_anticipation(df: pd.DataFrame, tau_a: float = 1, tau_o: float = 10) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    logger.debug('Converting data to anticipation with tau_a=%s and ' 'tau_o=%s.', tau_a, tau_o)
     # Copy over the current start and end times
     df.loc[:, 'orig_start'] = df.start
     df.loc[:, 'orig_end'] = df.end
@@ -84,8 +78,7 @@ class EpicKitchens(torch.utils.data.Dataset):
     def __init__(self, cfg: Config, mode: str):
         assert mode in ["train", "test", "val"]
         self.cfg = cfg
-        suffix = ("validation" if mode == "val"
-                  else "test_timestamps" if mode == "test" else "train")
+        suffix = ("validation" if mode == "val" else "test_timestamps" if mode == "test" else "train")
         annotation_path = f"annotations/ek100_ori/EPIC_100_{suffix}.pkl"
 
         action_labels_fpath = "annotations/ek100_rulstm/actions.csv"
@@ -131,20 +124,13 @@ class EpicKitchens(torch.utils.data.Dataset):
 
         # QUICK FIX for background class 0
         self.verb_noun_to_action = {(0, 0): 0}
-        self.verb_noun_to_action.update({
-            (k1 + 1, k2 + 1): val + 1 for (k1, k2), val in verb_noun_to_action.items()
-        })
+        self.verb_noun_to_action.update({(k1 + 1, k2 + 1): val + 1 for (k1, k2), val in verb_noun_to_action.items()})
 
         self.action_classes = action_classes
         self.verb_classes = verb_classes
         self.noun_classes = noun_classes
         # Include background as in Testra (ECCV22) and MAT (ICCV23)
-        self.num_classes = {
-            "action": len(self.action_classes) + 1,
-            "verb": len(self.verb_classes) + 1,
-            "noun": len(self.noun_classes) + 1,
-        }
-
+        self.num_classes = {"action": len(self.action_classes) + 1, "verb": len(self.verb_classes) + 1, "noun": len(self.noun_classes) + 1}
         self.class_mappings = self._get_class_mappings()
 
         # Add the action classes to the data frame
@@ -262,10 +248,7 @@ class EpicKitchens(torch.utils.data.Dataset):
         for (verb, noun), action in self.verb_noun_to_action.items():
             verb_in_action[action, verb] = 1.0
             noun_in_action[action, noun] = 1.0
-        return {
-            ('verb', 'action'): verb_in_action,
-            ('noun', 'action'): noun_in_action
-        }
+        return {('verb', 'action'): verb_in_action, ('noun', 'action'): noun_in_action}
 
     def __len__(self):
         return len(self.df)

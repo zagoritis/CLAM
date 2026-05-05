@@ -29,11 +29,7 @@ def exists(val):
 
 def tonumpy(*tensor):
     """Convert a list of torch Tensors to a list of numpy arrays."""
-    return [
-        ts.detach().cpu().numpy()
-        if isinstance(ts, torch.Tensor)
-        else ts for ts in tensor
-    ]
+    return [ts.detach().cpu().numpy() if isinstance(ts, torch.Tensor) else ts for ts in tensor]
 
 
 def cfg2dict(cfg):
@@ -86,10 +82,7 @@ def human_format(num):
     while abs(num) >= 1000:
         magnitude += 1
         num /= 1000.0
-    return '{}{}'.format(
-        '{:f}'.format(num).rstrip('0').rstrip('.'),
-        ['', 'K', 'M', 'B', 'T'][magnitude]
-    )
+    return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
 
 def params_count(*models):

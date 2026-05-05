@@ -9,10 +9,7 @@ from scalant.models.encoder.build import ENCODER_REGISTRY
 class LSTM(nn.Module):
     def __init__(self, cfg: Config):
         super().__init__()
-        self.encoder = nn.LSTM(
-            cfg.MODEL.D_MODEL, cfg.MODEL.D_MODEL, cfg.MODEL.N_LAYER,
-            batch_first=True, dropout=cfg.MODEL.DROPOUT,
-        )
+        self.encoder = nn.LSTM(cfg.MODEL.D_MODEL, cfg.MODEL.D_MODEL, cfg.MODEL.N_LAYER, batch_first=True, dropout=cfg.MODEL.DROPOUT)
 
     def forward(self, past):
         B, T, _ = past.size()

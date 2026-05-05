@@ -46,9 +46,7 @@ def launch_job(rank, world_size, cfg: Config):
 
         model.to(device=device)
 
-        model = torch.nn.parallel.DistributedDataParallel(
-            model, device_ids=[device], broadcast_buffers=False
-        )
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device], broadcast_buffers=False)
 
         criterion = build_criterion(cfg, dataset_train)
 
@@ -58,11 +56,7 @@ def launch_job(rank, world_size, cfg: Config):
 
         # Metric tracker
         num_action_classes = dataset_train.num_classes["action"]
-        metric_tracker = utils.MetricTracker(
-            num_classes=(num_action_classes if cfg.MODEL.IGNORE_INDEX < 0
-                         else num_action_classes - 1),
-            cfg=cfg,
-        )
+        metric_tracker = utils.MetricTracker(num_classes=(num_action_classes if cfg.MODEL.IGNORE_INDEX < 0 else num_action_classes - 1), cfg=cfg)
 
         scaler = GradScaler() if cfg.DTYPE == "float16" else None
         mixup = None
@@ -75,54 +69,31 @@ def launch_job(rank, world_size, cfg: Config):
         for epoch in range(cfg.TRAIN.EPOCHS):
             lr = optimizer.param_groups[-1]['lr']
             for i, param_group in enumerate(optimizer.param_groups):
-                logger.info(
-                    f"Epoch {epoch + 1} of {cfg.TRAIN.EPOCHS}: "
-                    f"param group {i}, learning rate {param_group['lr']}")
+                logger.info(f"Epoch {epoch + 1} of {cfg.TRAIN.EPOCHS}: "f"param group {i}, learning rate {param_group['lr']}")
 
             # Initializes all meters
             metric_tracker.reset()
             log_dict = {"lr": lr}
             dataloader_train.sampler.set_epoch(epoch)
 
-            train_one_epoch(
-                cfg, model, dataloader_train, optimizer, lr_scheduler,
-                metric_tracker, device, criterion=criterion, epoch=epoch,
-                loss_scaler=scaler, mixup=mixup,
-                disable_pregress=not utils.is_master_proc(),
-            )
+            train_one_epoch(cfg, model, dataloader_train, optimizer, lr_scheduler, metric_tracker, device, criterion=criterion, epoch=epoch, loss_scaler=scaler, mixup=mixup, disable_pregress=not utils.is_master_proc())
             log_dict.update({**metric_tracker.get_all_data(is_training=True)})
             logger.info(metric_tracker.to_string(is_training=True))
 
             if (epoch + 1) % cfg.VAL.EVALUATE_EVERY == 0:
-                evaluate(
-                    cfg, model, dataloader_val, metric_tracker, device,
-                    criterion=criterion,
-                    disable_pregress=not utils.is_master_proc(),
-                )
+                evaluate(cfg, model, dataloader_val, metric_tracker, device, criterion=criterion, disable_pregress=not utils.is_master_proc())
                 log_dict.update({**metric_tracker.get_all_data(is_training=False)})
                 logger.info(metric_tracker.to_string(is_training=False, idx="all"))
 
                 # Store checkpoint
                 metric_cur = metric_tracker.get_data(cfg.PRIMARY_METRIC, False)
 
-                is_best, best_metric_value = save_model(
-                    model, optimizer, lr_scheduler,
-                    metric_cur, best_metric_value, epoch,
-                    cfg.METRIC_DESCENDING,
-                    fpath=save_path if cfg.TRAIN.SAVE_MODEL else None,
-                )
+                is_best, best_metric_value = save_model(model, optimizer, lr_scheduler, metric_cur, best_metric_value, epoch, cfg.METRIC_DESCENDING, fpath=save_path if cfg.TRAIN.SAVE_MODEL else None)
                 logger.info(f"Current metric value: {metric_cur}; best metric value: {best_metric_value}")
 
             if utils.is_master_proc():
                 if epoch == 0:
-                    wandb.init(
-                        project=(f"Scalant-{cfg.DATA.DATASET_CLASS}"
-                                 if cfg.WANDB_PROJECT is None
-                                 else cfg.WANDB_PROJECT),
-                        name=experiment_name,
-                        mode=None if cfg.USE_WANDB else "disabled",
-                    )
-
+                    wandb.init(project=(f"Scalant-{cfg.DATA.DATASET_CLASS}" if cfg.WANDB_PROJECT is None else cfg.WANDB_PROJECT), name=experiment_name, mode=None if cfg.USE_WANDB else "disabled")
                 wandb.log(log_dict)
                 wandb.summary["val/primary_metric"] = best_metric_value
 
@@ -144,31 +115,19 @@ def launch_job(rank, world_size, cfg: Config):
             load_model(model, ckpt_path)
 
         model.to(device=device)
-
-        model = torch.nn.parallel.DistributedDataParallel(
-            model, device_ids=[device], broadcast_buffers=False
-        )
+        model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device], broadcast_buffers=False)
 
         criterion = build_criterion(cfg, dataset_test)
 
         # Metric tracker
         num_action_classes = dataset_test.num_classes["action"]
-        metric_tracker = utils.MetricTracker(
-            num_classes=(num_action_classes if cfg.MODEL.IGNORE_INDEX < 0
-                         else num_action_classes - 1),
-            cfg=cfg,
-        )
+        metric_tracker = utils.MetricTracker(num_classes=(num_action_classes if cfg.MODEL.IGNORE_INDEX < 0 else num_action_classes - 1), cfg=cfg)
 
         if metric_tracker is not None:
             metric_tracker.reset()
         log_dict = {}
 
-        evaluate(
-            cfg, model, dataloader_test, metric_tracker, device,
-            criterion=criterion,
-            disable_pregress=not utils.is_master_proc(),
-            test_enable=True,
-        )
+        evaluate(cfg, model, dataloader_test, metric_tracker, device, criterion=criterion, disable_pregress=not utils.is_master_proc(), test_enable=True)
 
         if metric_tracker is not None:
             log_dict.update({**metric_tracker.get_all_data(is_training=False)})

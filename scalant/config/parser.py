@@ -11,26 +11,10 @@ def parse_args():
     """
     Parse the following arguments for a default parser for PySlowFast users.
     """
-    parser = argparse.ArgumentParser(
-        description="Scalant training and testing pipeline."
-    )
-    parser.add_argument(
-        "--port",
-        default="12355",
-        help="Master port for DDP",
-    )
-    parser.add_argument(
-        "--cfg",
-        dest="cfg_file",
-        help="Path to the config file",
-        default="configs/ek100/default.yaml",
-    )
-    parser.add_argument(
-        "--opts",
-        help="See config/default_config.py for all options",
-        default=None,
-        nargs=argparse.REMAINDER,
-    )
+    parser = argparse.ArgumentParser(description="Scalant training and testing pipeline.")
+    parser.add_argument("--port", default="12355", help="Master port for DDP")
+    parser.add_argument("--cfg", dest="cfg_file", help="Path to the config file", default="configs/ek100/default.yaml")
+    parser.add_argument("--opts", help="See config/default_config.py for all options", default=None, nargs=argparse.REMAINDER)
     return parser.parse_args()
 
 

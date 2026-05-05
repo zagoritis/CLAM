@@ -4,8 +4,7 @@ from typing import Optional
 import scalant.utils.distributed as du
 
 
-def setup_logging(output_dir: Optional[str] = None, level: Optional[str] = 'info',
-                  ) -> None:
+def setup_logging(output_dir: Optional[str] = None, level: Optional[str] = 'info') -> None:
     """
     Configure logging based on the rank.
     Only the master process logs info. Other processes will only log errors.
@@ -16,23 +15,13 @@ def setup_logging(output_dir: Optional[str] = None, level: Optional[str] = 'info
     handlers = [logging.StreamHandler()]
 
     if not du.is_master_proc():
-        logging.basicConfig(
-            format=_FORMAT,
-            datefmt="%m/%d %H:%M:%S",
-            level=logging.ERROR,
-            handlers=handlers,
-        )
+        logging.basicConfig(format=_FORMAT, datefmt="%m/%d %H:%M:%S", level=logging.ERROR, handlers=handlers)
         return
 
     if output_dir is not None:
         handlers.append(logging.FileHandler(f'{output_dir}/logs.log'))
 
-    logging.basicConfig(
-        format=_FORMAT,
-        datefmt="%m/%d %H:%M:%S",
-        level=level,
-        handlers=handlers,
-    )
+    logging.basicConfig(format=_FORMAT, datefmt="%m/%d %H:%M:%S", level=level, handlers=handlers)
 
 
 def get_logger(name):
