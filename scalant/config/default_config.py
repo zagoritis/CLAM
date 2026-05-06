@@ -30,6 +30,16 @@ class DataConfig:
 
 
 @dataclass
+class DiverseSetConfig:
+    ENABLE: bool = False
+    SET_SIZE: int = 5
+    DIVERSITY_WEIGHT: float = 0.
+    HIT_WEIGHT: float = 0.
+    OBJECT_WEIGHT: float = 0.
+    TEMPORAL_WEIGHT: float = 0.
+
+
+@dataclass
 class ModelConfig:
     ENCODER_CLASS: str = "MAMBA"
     MAMBA_VERSION: int = 1
@@ -68,6 +78,9 @@ class ModelConfig:
     # For querydecoder
     PRENORM: bool = False
     N_QUERIES: int = 1
+
+    # Diverse next-action set prediction scaffolding
+    DIVERSE_SET: DiverseSetConfig = field(default_factory=DiverseSetConfig)
 
     # activation
     ACTIVATION: str = 'relu'

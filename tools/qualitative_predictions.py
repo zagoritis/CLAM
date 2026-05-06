@@ -13,7 +13,7 @@ import torch
 
 from helper import CKPT_BEST_FNAME, CKPT_PATH, load_model
 from scalant.config import load_config
-from scalant.datasets import build_dataset
+from scalant.datasets import build_action_id_to_verb_noun_maps, build_action_similarity_matrix, build_dataset, diverse_action_rerank, topk_action_ids
 from scalant.models import QueryPredictor
 
 
@@ -36,6 +36,7 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--include-background", action="store_true")
+    parser.add_argument("--diverse-rerank", action="store_true", help="Output a diverse predicted action set using MODEL.DIVERSE_SET settings.")
     parser.add_argument("--output", default=None, help="Optional JSON output path.")
     parser.add_argument("--opts", nargs=argparse.REMAINDER, default=None, help="Additional config overrides, using the same KEY VALUE format as main.py.")
     return parser.parse_args()
@@ -89,31 +90,88 @@ def label_list(target_tensor, names):
     return [{"id": class_idx, "name": class_name(names, class_idx)} for class_idx in positive_label_ids(target_tensor)]
 
 
-def label_names(target_tensor, names):
-    labels = label_list(target_tensor, names)
-    if len(labels) == 1:
-        return labels[0]["name"]
-    return [label["name"] for label in labels]
+def action_predictions_from_ids(logits, action_ids, names, include_background, label_key):
+    if action_ids.numel() == 0:
+        return []
 
-
-def topk_predictions(logits, names, k, include_background, label_key):
     scores = logits.detach().float()
     if not include_background and scores.numel() > 0:
         scores = scores.clone()
         scores[0] = float("-inf")
 
     probs = torch.softmax(scores, dim=-1)
-    values, indices = probs.topk(min(k, probs.numel()))
-    return [{"rank": rank, "id": int(class_idx), label_key: class_name(names, class_idx), "probability": float(prob)} for rank, (prob, class_idx) in enumerate(zip(values.cpu(), indices.cpu()), start=1)]
+    return [{"rank": rank, "id": int(class_idx), label_key: class_name(names, class_idx), "probability": float(probs[int(class_idx)].cpu())} for rank, class_idx in enumerate(action_ids.detach().cpu().tolist(), start=1)]
+
+
+def topk_predictions(logits, names, k, include_background, label_key):
+    action_ids = topk_action_ids(logits, k, include_background=include_background)
+    return action_predictions_from_ids(logits, action_ids, names, include_background, label_key)
+
+
+def lookup_id(lookup, class_idx, unknown_id=-1):
+    if lookup is None:
+        return None
+    class_idx = int(class_idx)
+    if class_idx < 0 or class_idx >= lookup.numel():
+        return None
+    value = int(lookup[class_idx].item())
+    return None if value == unknown_id else value
+
+
+def action_set_predictions(logits, action_ids, action_names, verb_names, noun_names, action_to_verb_id, action_to_noun_id, include_background):
+    rows = action_predictions_from_ids(logits, action_ids, action_names, include_background, "action")
+    for row in rows:
+        verb_id = lookup_id(action_to_verb_id, row["id"])
+        noun_id = lookup_id(action_to_noun_id, row["id"])
+        row["verb"] = {"id": verb_id, "name": class_name(verb_names, verb_id)} if verb_id is not None else None
+        row["noun"] = {"id": noun_id, "name": class_name(noun_names, noun_id)} if noun_id is not None else None
+    return rows
+
+
+def observed_label_ids(target_tensor, ignore_id=0):
+    if target_tensor is None:
+        return set()
+
+    labels = target_tensor.detach().cpu()
+    if labels.ndim >= 2 and labels.shape[-1] > 1:
+        ids = torch.nonzero((labels > 0).flatten(0, -2).any(dim=0), as_tuple=False).flatten().tolist()
+    else:
+        ids = labels.long().flatten().unique().tolist()
+    return {int(class_idx) for class_idx in ids if int(class_idx) != ignore_id}
+
+
+def count_matching_pairs(values):
+    count = 0
+    for left_idx in range(len(values)):
+        if values[left_idx] is None:
+            continue
+        for right_idx in range(left_idx + 1, len(values)):
+            if values[left_idx] == values[right_idx]:
+                count += 1
+    return count
+
+
+def action_set_sample_metrics(action_ids, action_to_verb_id, action_to_noun_id, past_nouns, ignore_id=0):
+    ids = [int(class_idx) for class_idx in action_ids.detach().cpu().tolist()]
+    verb_ids = [lookup_id(action_to_verb_id, class_idx) for class_idx in ids]
+    noun_ids = [lookup_id(action_to_noun_id, class_idx) for class_idx in ids]
+    observed_nouns = observed_label_ids(past_nouns, ignore_id=ignore_id)
+    plausible_nouns = [noun_id for noun_id in noun_ids if noun_id is not None and noun_id != ignore_id]
+
+    return {
+        "exact_duplicate": len(ids) - len(set(ids)),
+        "verb_duplicate": count_matching_pairs(verb_ids),
+        "noun_duplicate": count_matching_pairs(noun_ids),
+        "object_match": (100.0 * sum(noun_id in observed_nouns for noun_id in plausible_nouns) / len(plausible_nouns) if plausible_nouns else None),
+    }
 
 
 def get_sample_summary(dataset, index, item_cpu, action_names):
     if not hasattr(dataset, "df"):
-        return {"sample_index": index, "ground_truth_action": label_names(item_cpu.get("future_act"), action_names)}
+        return {"sample": {"index": index}, "target": {"actions": label_list(item_cpu.get("future_act"), action_names)}}
 
     row = dataset.df.loc[index]
     video_id = row["video_id"] if "video_id" in row else None
-    participant_id = row["participant_id"] if "participant_id" in row else None
 
     observed_start = max(float(row["start"]), 0.0)
     observed_end = max(float(row["end"]), 0.0)
@@ -121,30 +179,29 @@ def get_sample_summary(dataset, index, item_cpu, action_names):
     action_end = float(row["orig_end"])
 
     return {
-        "sample_index": index,
-        "uid": int(row["uid"]) if "uid" in row else None,
-        "video_id": video_id,
-        "raw_video_hint": (
-            f"{participant_id}/{video_id}.MP4"
-            if participant_id is not None and video_id is not None
-            else None
-        ),
-        "observed_timestamp": {
+        "sample": {
+            "index": index,
+            "uid": int(row["uid"]) if "uid" in row else None,
+            "video_id": video_id,
+        },
+        "observed": {
             "start": seconds_to_timestamp(observed_start),
             "end": seconds_to_timestamp(observed_end),
             "duration_sec": round(observed_end - observed_start, 2),
             "padded_at_start": bool(float(row["start"]) < 0),
         },
-        "ground_truth_next_action_timestamp": {
-            "start": row["start_timestamp"]
-            if "start_timestamp" in row
-            else seconds_to_timestamp(action_start),
-            "end": row["stop_timestamp"]
-            if "stop_timestamp" in row
-            else seconds_to_timestamp(action_end),
+        "target": {
+            "timestamp": {
+                "start": row["start_timestamp"]
+                if "start_timestamp" in row
+                else seconds_to_timestamp(action_start),
+                "end": row["stop_timestamp"]
+                if "stop_timestamp" in row
+                else seconds_to_timestamp(action_end),
+            },
+            "actions": label_list(item_cpu.get("future_act"), action_names),
+            "narration": row["narration"] if "narration" in row else None,
         },
-        "ground_truth_action": label_names(item_cpu.get("future_act"), action_names),
-        "annotation_narration": row["narration"] if "narration" in row else None,
     }
 
 
@@ -192,6 +249,14 @@ def main():
     action_names = invert_indexed_names(dataset.action_classes)
     verb_names = invert_indexed_names(dataset.verb_classes)
     noun_names = invert_indexed_names(dataset.noun_classes)
+    diverse_cfg = cfg.MODEL.DIVERSE_SET
+    diverse_enabled = bool(args.diverse_rerank or diverse_cfg.ENABLE)
+    diverse_set_size = int(diverse_cfg.SET_SIZE)
+    diversity_weight = float(diverse_cfg.DIVERSITY_WEIGHT)
+    action_to_verb_id, action_to_noun_id, action_similarity = None, None, None
+    if diverse_enabled:
+        action_to_verb_id, action_to_noun_id = build_action_id_to_verb_noun_maps(dataset=dataset, device=device)
+        action_similarity = build_action_similarity_matrix(dataset=dataset, device=device, dtype=torch.float) if diversity_weight != 0 else None
 
     rows = []
     indices = sample_indices(len(dataset), args)
@@ -202,35 +267,18 @@ def main():
         item_cpu = dataset[index]
         item = move_item_to_device(item_cpu, device)
         pred = model(item["past_feats"])
+        action_logits = pred.future_actions[0, -1]
 
-        result = {
-            **get_sample_summary(dataset, index, item_cpu, action_names),
-            "top5_actions": topk_predictions(
-                pred.future_actions[0, -1],
-                action_names,
-                args.topk,
-                args.include_background,
-                "action",
-            ),
-            "top5_verbs": topk_predictions(
-                pred.future_verbs[0, -1],
-                verb_names,
-                args.topk,
-                args.include_background,
-                "verb",
-            )
-            if pred.future_verbs is not None
-            else [],
-            "top5_nouns": topk_predictions(
-                pred.future_nouns[0, -1],
-                noun_names,
-                args.topk,
-                args.include_background,
-                "noun",
-            )
-            if pred.future_nouns is not None
-            else [],
-        }
+        result = get_sample_summary(dataset, index, item_cpu, action_names)
+        result["predictions"] = {"top_actions": topk_predictions(action_logits, action_names, args.topk, args.include_background, "action")}
+        if pred.future_verbs is not None:
+            result["predictions"]["top_verbs"] = topk_predictions(pred.future_verbs[0, -1], verb_names, args.topk, args.include_background,  "verb")
+        if pred.future_nouns is not None:
+            result["predictions"]["top_nouns"] = topk_predictions(pred.future_nouns[0, -1], noun_names, args.topk, args.include_background, "noun")
+        if diverse_enabled:
+            diverse_action_ids = diverse_action_rerank(action_logits, diverse_set_size, action_similarity=action_similarity, diversity_weight=diversity_weight, include_background=args.include_background,)
+            result["predictions"]["action_set"] = action_set_predictions(action_logits, diverse_action_ids, action_names, verb_names, noun_names, action_to_verb_id, action_to_noun_id, args.include_background)
+            result["set_metrics"] = action_set_sample_metrics(diverse_action_ids, action_to_verb_id, action_to_noun_id, item_cpu.get("past_noun"))
         rows.append(result)
 
     print(json.dumps(rows, indent=2))
