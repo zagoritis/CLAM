@@ -14,13 +14,16 @@ module load Miniconda3/24.7.1-0
 source "$(conda info --base)/etc/profile.d/conda.sh"
 conda activate clam
 
-cd /home/s4076893/Desktop/CLAM
+cd /home/s4076893/Desktop/CLAM || exit 1
 
 YOUR_ROOT_PATH=/home/s4076893/Desktop
 YOUR_FEATURE_DIR=epickitchens100/features/rgb_kinetics_bninception
 
-python main.py \
+PYTHON=/home/s4076893/.conda/envs/clam/bin/python
+
+$PYTHON main.py \
   --cfg configs/ek100/default.yaml \
   --opts \
   DATA.DATA_ROOT_PATH ${YOUR_ROOT_PATH} \
   DATA.FEAT_DIR ${YOUR_FEATURE_DIR}
+  
