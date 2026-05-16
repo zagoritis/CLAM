@@ -43,6 +43,11 @@ class DiverseSetConfig:
     SET_SIZE: int = 5
     DIVERSITY_WEIGHT: float = 0.
     HIT_WEIGHT: float = 0.
+    # Epsilon-relaxed WTA for MultipSetHitLoss:
+    #   loss = (1 - eps) * min_k CE_k + eps * mean_k CE_k
+    # eps = 0.0 = pure "hit-anywhere" (only the winning slot is supervised).
+    # Raise to 0.05-0.2 if you observe slot starvation during training.
+    HIT_EPSILON: float = 0.0
     OBJECT_WEIGHT: float = 0.
     TEMPORAL_WEIGHT: float = 0.
 

@@ -42,10 +42,11 @@ MODEL:
   CLS_LAST: False
   CLS_ALL: True
   DIVERSE_SET:
-    ENABLE: False
-    MULTI_QUERY: False
+    ENABLE: True
+    MULTI_QUERY: True
     SET_SIZE: 5
     DIVERSITY_WEIGHT: 0.
-    HIT_WEIGHT: 0.
+    HIT_WEIGHT: 1.
+    HIT_EPSILON: 0.
     OBJECT_WEIGHT: 0.
     TEMPORAL_WEIGHT: 0.

@@ -31,8 +31,21 @@ class Criterion_LSTR:
         self.multi_query = bool(cfg.MODEL.DIVERSE_SET.MULTI_QUERY)
         self.set_metrics_enabled = False
 
-        if self.multi_query and float(cfg.MODEL.DIVERSE_SET.HIT_WEIGHT) == 0.0:
-            logger.warning("MULTI_QUERY=True but HIT_WEIGHT=0: only slot 0 receives action-CE gradient; slots 1..K-1 stay unsupervised. Enable the set ('hit-anywhere') loss before training a multi-query checkpoint.")
+        # Gate for the set-based ('hit-anywhere') future-action loss. Requires
+        # both the diverse-set training regime (ENABLE) and the K-slot
+        # architecture (MULTI_QUERY); the loss is meaningless with K=1.
+        self.set_loss_enabled = bool(cfg.MODEL.DIVERSE_SET.ENABLE) and self.multi_query
+        self.hit_weight = float(cfg.MODEL.DIVERSE_SET.HIT_WEIGHT)
+        if self.set_loss_enabled and self.hit_weight == 0.0:
+            logger.warning("DIVERSE_SET.ENABLE=True with HIT_WEIGHT=0 would leave the future-action head unsupervised; defaulting effective weight to 1.0. Set HIT_WEIGHT explicitly to scale the set loss.")
+            self.hit_weight = 1.0
+        if self.multi_query and not self.set_loss_enabled:
+            logger.warning("MULTI_QUERY=True but DIVERSE_SET.ENABLE=False: only slot 0 receives action-CE gradient; slots 1..K-1 stay unsupervised. Set DIVERSE_SET.ENABLE=True to activate the hit-anywhere set loss before training a multi-query checkpoint.")
+
+        # Wrap the SAME per-row CE used in single-query mode so the
+        # multi-query ablation changes only the aggregation, not the
+        # per-class weighting (EPIC equalization is preserved).
+        self.set_hit_loss = MultipSetHitLoss(base_loss=self.action_cls, epsilon=float(cfg.MODEL.DIVERSE_SET.HIT_EPSILON))
 
         try:
             self.action_to_verb_id, self.action_to_noun_id = build_action_id_to_verb_noun_maps(dataset=dataset, background_id=self.set_metric_background_id)
@@ -42,12 +55,27 @@ class Criterion_LSTR:
             self.action_to_verb_id, self.action_to_noun_id, self.action_similarity = None, None, None
 
     def __call__(self, pred: Prediction, target: Target, is_training=True) -> (Tensor, dict):
+        # Always materialize the slot-0 view so accuracy/top-1 stay defined the
+        # same way whether or not the set loss is active.
         future_action_pred, future_action_target = self._future_loss_pair(pred.future_actions, target.future_actions)
         notice_index = [i for i in range(target.past_actions.shape[-1]) if i != self.ignore_index]
         past_cls = self.action_cls(pred.past_actions, target.past_actions)
-        future_cls = self.action_cls(future_action_pred, future_action_target)
 
-        loss = past_cls + future_cls
+        # Step 7: replace future-action CE with the 'hit-anywhere' set loss when
+        # the diverse-set training regime is active and we have K>1 slots.
+        use_set_loss = self.set_loss_enabled and pred.future_actions.size(1) > 1
+        action_winners, valid_mask = None, None
+        if use_set_loss:
+            future_set_hit, action_winners, valid_mask = self.set_hit_loss.aggregate(pred.future_actions, target.future_actions)
+            future_action_loss = self.hit_weight * future_set_hit
+            future_loss_key = "future_set_hit_loss"
+            future_loss_value = future_set_hit.item()
+        else:
+            future_action_loss = self.action_cls(future_action_pred, future_action_target)
+            future_loss_key = "future_cls_loss"
+            future_loss_value = future_action_loss.item()
+
+        loss = past_cls + future_action_loss
 
         # Compute metrics
         (past_top1,), past_counts = accuracy(pred.past_actions[..., notice_index], target.past_actions[..., notice_index])
@@ -55,15 +83,22 @@ class Criterion_LSTR:
 
         # Mean top 5
         mt5r_dict = {"logits": self._primary_future_logits(pred.future_actions)[:, notice_index], "labels": target.future_actions[:, -1, notice_index].argmax(dim=-1)}
-        loss_dict = {"past_cls_loss": past_cls.item(), "future_cls_loss": future_cls.item(), "past_top1": [None, past_top1, past_counts], "future_top1": [None, future_top1, future_counts], "mt5r": ["MeanTopKRecallMeter", mt5r_dict, None]}
+        loss_dict = {"past_cls_loss": past_cls.item(), future_loss_key: future_loss_value, "past_top1": [None, past_top1, past_counts], "future_top1": [None, future_top1, future_counts], "mt5r": ["MeanTopKRecallMeter", mt5r_dict, None]}
 
         if pred.past_verbs is not None:
             past_verb = self.verb_noun_cls(pred.past_verbs, target.past_verbs)
             past_noun = self.verb_noun_cls(pred.past_nouns, target.past_nouns)
-            future_verb_pred, future_verb_target = self._future_loss_pair(pred.future_verbs, target.future_verbs)
-            future_noun_pred, future_noun_target = self._future_loss_pair(pred.future_nouns, target.future_nouns)
-            future_verb = self.verb_noun_cls(future_verb_pred, future_verb_target)
-            future_noun = self.verb_noun_cls(future_noun_pred, future_noun_target)
+            if use_set_loss:
+                # Tied WTA: supervise verb/noun on the slot the action head
+                # picked as the winner, so each slot stays a coherent action
+                # hypothesis instead of slot 0 being anchored as the default.
+                future_verb = self._winner_aux_loss(pred.future_verbs, target.future_verbs, action_winners, valid_mask)
+                future_noun = self._winner_aux_loss(pred.future_nouns, target.future_nouns, action_winners, valid_mask)
+            else:
+                future_verb_pred, future_verb_target = self._future_loss_pair(pred.future_verbs, target.future_verbs)
+                future_noun_pred, future_noun_target = self._future_loss_pair(pred.future_nouns, target.future_nouns)
+                future_verb = self.verb_noun_cls(future_verb_pred, future_verb_target)
+                future_noun = self.verb_noun_cls(future_noun_pred, future_noun_target)
 
             loss += past_verb + past_noun + future_verb + future_noun
 
@@ -127,6 +162,23 @@ class Criterion_LSTR:
                 raise ValueError(f"Batch size mismatch between pred {tuple(pred_tensor.shape)} and target {tuple(target_tensor.shape)}.")
             return pred_tensor[:, :1], target_tensor[:, -1:]
         return pred_tensor, target_tensor
+
+    def _winner_aux_loss(self, pred_full: Tensor, target_full: Tensor, winners: Tensor, valid_mask: Tensor) -> Tensor:
+        """Compute a verb/noun future CE on the slot the action head won.
+
+        pred_full:   [B, K, C]
+        target_full: [B, T, C]
+        winners:     [num_valid] long, slot index per valid sample.
+        valid_mask:  [B] bool.
+        """
+        if pred_full is None or target_full is None or winners.numel() == 0:
+            return pred_full.sum() * 0.0
+        valid_pred = pred_full[valid_mask]  # [num_valid, K, C]
+        C = valid_pred.size(-1)
+        winner_idx = winners.view(-1, 1, 1).expand(-1, 1, C)
+        winner_pred = valid_pred.gather(1, winner_idx).squeeze(1)  # [num_valid, C]
+        winner_target = target_full[valid_mask, -1]  # [num_valid, C]
+        return self.verb_noun_cls(winner_pred, winner_target)
 
     def _primary_future_logits(self, future_logits: Tensor) -> Tensor:
         if self.multi_query and future_logits.size(1) > 1:
