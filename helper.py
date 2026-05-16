@@ -281,12 +281,22 @@ def load_model(model, ckpt_path: str) -> None:
     # FIXME
     # Filter and modify keys that start with 'base_encoder'
     new_dict = {k.replace('base_encoder.', '') if k.startswith('base_encoder') else k: v for k, v in pretrained_dict.items()}
+    model_dict = model.state_dict()
+    skipped_shape_keys = []
+    filtered_dict = {}
+    for key, value in new_dict.items():
+        if key in model_dict and value.shape != model_dict[key].shape:
+            skipped_shape_keys.append((key, tuple(value.shape), tuple(model_dict[key].shape)))
+            continue
+        filtered_dict[key] = value
 
-    missing_keys, unexp_keys = model.load_state_dict(new_dict, strict=False)
+    missing_keys, unexp_keys = model.load_state_dict(filtered_dict, strict=False)
 
-    if not missing_keys and not unexp_keys:
+    if not missing_keys and not unexp_keys and not skipped_shape_keys:
         logger.info(f'Loaded model from {ckpt_path}')
         return
 
     logger.warning('Could not init from %s: %s', ckpt_path, missing_keys)
     logger.warning('Unused keys in %s: %s', ckpt_path, unexp_keys)
+    if skipped_shape_keys:
+        logger.warning('Skipped shape-mismatched keys in %s: %s', ckpt_path, skipped_shape_keys)

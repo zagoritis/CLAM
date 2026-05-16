@@ -33,9 +33,11 @@ class QueryDecoder(nn.Module):
     def __init__(self, cfg: Config):
         super().__init__()
 
+        self.num_queries = int(cfg.MODEL.DIVERSE_SET.SET_SIZE) if cfg.MODEL.DIVERSE_SET.MULTI_QUERY else int(cfg.MODEL.N_QUERIES)
+
         # If tgt or memory has only 1 seq, we then use
         # simplified attention (MLPs only)
-        tgt_one_seq = cfg.MODEL.N_QUERIES == 1
+        tgt_one_seq = self.num_queries == 1
         memory_one_seq = False if cfg.CLUSTERING.ENABLE else (cfg.DATA.TAU_O - cfg.DATA.LONG_MEMORY_LENGTH) // cfg.DATA.PAST_STEP_IN_SEC == 1
 
         decoder_layer = TransformerDecoderLayer(d_model=cfg.MODEL.D_MODEL, nhead=cfg.MODEL.N_HEADS, dim_feedforward=cfg.MODEL.D_FFN, dropout=cfg.MODEL.DROP_DEC, tgt_one_seq=tgt_one_seq, memory_one_seq=memory_one_seq, normalize_before=cfg.MODEL.PRENORM)
@@ -45,7 +47,7 @@ class QueryDecoder(nn.Module):
 
         self.pos_embed = PositionalEncoding(cfg.MODEL.D_MODEL, dropout=cfg.MODEL.DROPOUT)
 
-        self.query_embed = nn.Embedding(cfg.MODEL.N_QUERIES, cfg.MODEL.D_MODEL)
+        self.query_embed = nn.Embedding(self.num_queries, cfg.MODEL.D_MODEL)
 
         # Future and past embedding
         self.past_embed = None
@@ -100,7 +102,7 @@ class AttentionForSingleSequence(nn.Module):
         self.linear2 = nn.Linear(d_model, d_model)
 
     def forward(self, query, key, value, *args, **kwargs):
-        input = value if self.cross_attn else query
+        input = value if self.cross_attn and query.size(1) == value.size(1) else query
         out = self.linear2(self.dropout(self.activation(self.linear1(input))))
         return out, None  # mimic torch attention output format
 

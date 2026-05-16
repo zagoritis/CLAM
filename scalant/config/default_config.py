@@ -31,7 +31,15 @@ class DataConfig:
 
 @dataclass
 class DiverseSetConfig:
+    # ENABLE turns on diverse-set evaluation: inference-time greedy rerank,
+    # set-recall / duplicate / object-match metrics. It does NOT change the
+    # decoder architecture and works with a single-query checkpoint.
     ENABLE: bool = False
+    # MULTI_QUERY swaps the decoder to SET_SIZE parallel future queries so
+    # pred.future_actions has shape [B, SET_SIZE, num_actions]. It changes
+    # weight shapes -- training a checkpoint at MULTI_QUERY=False and loading
+    # it at MULTI_QUERY=True relies on helper.load_model's shape filter.
+    MULTI_QUERY: bool = False
     SET_SIZE: int = 5
     DIVERSITY_WEIGHT: float = 0.
     HIT_WEIGHT: float = 0.
@@ -140,7 +148,7 @@ class Config(NestConfig):
     SEED = 42
     PRIMARY_METRIC = "val/mt5r"
     NOTE = None   # some notes of the experiment
-    USE_WANDB = False  # whether to use wandb to visualize logs
+    USE_WANDB = True  # whether to use wandb to visualize logs
     LOG_LEVEL = 'info'  # info or debug
     WANDB_PROJECT = None
     METRIC_DESCENDING: bool = False

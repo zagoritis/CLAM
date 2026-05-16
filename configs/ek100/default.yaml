@@ -1,4 +1,4 @@
-USE_WANDB: False
+USE_WANDB: True
 DTYPE:
   bfloat16
 TRAIN:
@@ -43,6 +43,7 @@ MODEL:
   CLS_ALL: True
   DIVERSE_SET:
     ENABLE: False
+    MULTI_QUERY: False
     SET_SIZE: 5
     DIVERSITY_WEIGHT: 0.
     HIT_WEIGHT: 0.

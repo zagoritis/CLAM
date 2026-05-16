@@ -108,6 +108,20 @@ def topk_predictions(logits, names, k, include_background, label_key):
     return action_predictions_from_ids(logits, action_ids, names, include_background, label_key)
 
 
+def primary_future_logits(future_logits, diverse_set_enabled):
+    if diverse_set_enabled and future_logits.size(1) > 1:
+        return future_logits[0, 0]
+    return future_logits[0, -1]
+
+
+def query_slot_action_ids(future_logits, include_background):
+    scores = future_logits.detach().float()
+    if not include_background and scores.size(-1) > 0:
+        scores = scores.clone()
+        scores[..., 0] = float("-inf")
+    return scores.argmax(dim=-1)
+
+
 def lookup_id(lookup, class_idx, unknown_id=-1):
     if lookup is None:
         return None
@@ -119,7 +133,15 @@ def lookup_id(lookup, class_idx, unknown_id=-1):
 
 
 def action_set_predictions(logits, action_ids, action_names, verb_names, noun_names, action_to_verb_id, action_to_noun_id, include_background):
-    rows = action_predictions_from_ids(logits, action_ids, action_names, include_background, "action")
+    if logits.ndim == 2:
+        rows = []
+        for rank, (slot_logits, action_id) in enumerate(zip(logits, action_ids), start=1):
+            row = action_predictions_from_ids(slot_logits, action_id.view(1), action_names, include_background, "action")[0]
+            row["rank"] = rank
+            rows.append(row)
+    else:
+        rows = action_predictions_from_ids(logits, action_ids, action_names, include_background, "action")
+
     for row in rows:
         verb_id = lookup_id(action_to_verb_id, row["id"])
         noun_id = lookup_id(action_to_noun_id, row["id"])
@@ -158,12 +180,7 @@ def action_set_sample_metrics(action_ids, action_to_verb_id, action_to_noun_id, 
     observed_nouns = observed_label_ids(past_nouns, ignore_id=ignore_id)
     plausible_nouns = [noun_id for noun_id in noun_ids if noun_id is not None and noun_id != ignore_id]
 
-    return {
-        "exact_duplicate": len(ids) - len(set(ids)),
-        "verb_duplicate": count_matching_pairs(verb_ids),
-        "noun_duplicate": count_matching_pairs(noun_ids),
-        "object_match": (100.0 * sum(noun_id in observed_nouns for noun_id in plausible_nouns) / len(plausible_nouns) if plausible_nouns else None),
-    }
+    return {"exact_duplicate": len(ids) - len(set(ids)), "verb_duplicate": count_matching_pairs(verb_ids), "noun_duplicate": count_matching_pairs(noun_ids), "object_match": (100.0 * sum(noun_id in observed_nouns for noun_id in plausible_nouns) / len(plausible_nouns) if plausible_nouns else None)}
 
 
 def get_sample_summary(dataset, index, item_cpu, action_names):
@@ -250,13 +267,14 @@ def main():
     verb_names = invert_indexed_names(dataset.verb_classes)
     noun_names = invert_indexed_names(dataset.noun_classes)
     diverse_cfg = cfg.MODEL.DIVERSE_SET
-    diverse_enabled = bool(args.diverse_rerank or diverse_cfg.ENABLE)
+    diverse_set_model = bool(diverse_cfg.MULTI_QUERY)
+    diverse_enabled = bool(args.diverse_rerank or diverse_cfg.ENABLE or diverse_set_model)
     diverse_set_size = int(diverse_cfg.SET_SIZE)
     diversity_weight = float(diverse_cfg.DIVERSITY_WEIGHT)
     action_to_verb_id, action_to_noun_id, action_similarity = None, None, None
     if diverse_enabled:
         action_to_verb_id, action_to_noun_id = build_action_id_to_verb_noun_maps(dataset=dataset, device=device)
-        action_similarity = build_action_similarity_matrix(dataset=dataset, device=device, dtype=torch.float) if diversity_weight != 0 else None
+        action_similarity = build_action_similarity_matrix(dataset=dataset, device=device, dtype=torch.float) if not diverse_set_model and diversity_weight != 0 else None
 
     rows = []
     indices = sample_indices(len(dataset), args)
@@ -267,17 +285,22 @@ def main():
         item_cpu = dataset[index]
         item = move_item_to_device(item_cpu, device)
         pred = model(item["past_feats"])
-        action_logits = pred.future_actions[0, -1]
+        action_logits = primary_future_logits(pred.future_actions, diverse_set_model)
 
         result = get_sample_summary(dataset, index, item_cpu, action_names)
         result["predictions"] = {"top_actions": topk_predictions(action_logits, action_names, args.topk, args.include_background, "action")}
         if pred.future_verbs is not None:
-            result["predictions"]["top_verbs"] = topk_predictions(pred.future_verbs[0, -1], verb_names, args.topk, args.include_background,  "verb")
+            result["predictions"]["top_verbs"] = topk_predictions(primary_future_logits(pred.future_verbs, diverse_set_model), verb_names, args.topk, args.include_background,  "verb")
         if pred.future_nouns is not None:
-            result["predictions"]["top_nouns"] = topk_predictions(pred.future_nouns[0, -1], noun_names, args.topk, args.include_background, "noun")
+            result["predictions"]["top_nouns"] = topk_predictions(primary_future_logits(pred.future_nouns, diverse_set_model), noun_names, args.topk, args.include_background, "noun")
         if diverse_enabled:
-            diverse_action_ids = diverse_action_rerank(action_logits, diverse_set_size, action_similarity=action_similarity, diversity_weight=diversity_weight, include_background=args.include_background,)
-            result["predictions"]["action_set"] = action_set_predictions(action_logits, diverse_action_ids, action_names, verb_names, noun_names, action_to_verb_id, action_to_noun_id, args.include_background)
+            if diverse_set_model and pred.future_actions.size(1) > 1:
+                diverse_action_ids = query_slot_action_ids(pred.future_actions[0], args.include_background)
+                action_set_logits = pred.future_actions[0]
+            else:
+                diverse_action_ids = diverse_action_rerank(action_logits, diverse_set_size, action_similarity=action_similarity, diversity_weight=diversity_weight, include_background=args.include_background,)
+                action_set_logits = action_logits
+            result["predictions"]["action_set"] = action_set_predictions(action_set_logits, diverse_action_ids, action_names, verb_names, noun_names, action_to_verb_id, action_to_noun_id, args.include_background)
             result["set_metrics"] = action_set_sample_metrics(diverse_action_ids, action_to_verb_id, action_to_noun_id, item_cpu.get("past_noun"))
         rows.append(result)
 
