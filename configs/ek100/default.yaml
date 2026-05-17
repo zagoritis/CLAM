@@ -1,6 +1,7 @@
 USE_WANDB: True
 DTYPE:
   bfloat16
+PRIMARY_METRIC: val/diverse_set_recall@5
 TRAIN:
   USE_MIXUP: True
   NUM_WORKERS: 2
