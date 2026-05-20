@@ -47,6 +47,12 @@ class Criterion_LSTR:
         # per-class weighting (EPIC equalization is preserved).
         self.set_hit_loss = MultipSetHitLoss(base_loss=self.action_cls, epsilon=float(cfg.MODEL.DIVERSE_SET.HIT_EPSILON))
 
+        # diversity regularizer active only when the set loss is
+        # active AND DIVERSITY_WEIGHT > 0. The sliced action-similarity matrix
+        # (ignore col dropped) is cached lazily on first use.
+        self.diversity_weight = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT)
+        self._diversity_sim_cache = None
+
         try:
             self.action_to_verb_id, self.action_to_noun_id = build_action_id_to_verb_noun_maps(dataset=dataset, background_id=self.set_metric_background_id)
             self.action_similarity = build_action_similarity_matrix(dataset=dataset, background_id=self.set_metric_background_id)
@@ -77,6 +83,14 @@ class Criterion_LSTR:
 
         loss = past_cls + future_action_loss
 
+        # Step 8: diversity regularizer over slot distributions (only when the
+        # set loss is active and the weight is set).
+        future_diversity_value = None
+        if use_set_loss and self.diversity_weight > 0.0:
+            future_diversity = self._future_diversity_loss(pred.future_actions)
+            loss = loss + self.diversity_weight * future_diversity
+            future_diversity_value = float(future_diversity.item())
+
         # Compute metrics
         (past_top1,), past_counts = accuracy(pred.past_actions[..., notice_index], target.past_actions[..., notice_index])
         (future_top1,), future_counts = accuracy(future_action_pred[..., notice_index], future_action_target[..., notice_index])
@@ -84,6 +98,8 @@ class Criterion_LSTR:
         # Mean top 5
         mt5r_dict = {"logits": self._primary_future_logits(pred.future_actions)[:, notice_index], "labels": target.future_actions[:, -1, notice_index].argmax(dim=-1)}
         loss_dict = {"past_cls_loss": past_cls.item(), future_loss_key: future_loss_value, "past_top1": [None, past_top1, past_counts], "future_top1": [None, future_top1, future_counts], "mt5r": ["MeanTopKRecallMeter", mt5r_dict, None]}
+        if future_diversity_value is not None:
+            loss_dict["future_diversity_loss"] = future_diversity_value
 
         if pred.past_verbs is not None:
             past_verb = self.verb_noun_cls(pred.past_verbs, target.past_verbs)
@@ -162,6 +178,45 @@ class Criterion_LSTR:
                 raise ValueError(f"Batch size mismatch between pred {tuple(pred_tensor.shape)} and target {tuple(target_tensor.shape)}.")
             return pred_tensor[:, :1], target_tensor[:, -1:]
         return pred_tensor, target_tensor
+
+    def _future_diversity_loss(self, future_logits: Tensor) -> Tensor:
+        """Mean pairwise expected action-similarity across K slot distributions.
+
+        For each sample b, p_{b,k} = softmax(future_logits[b, k]) over the
+        ignore-masked action vocabulary. The pairwise expected similarity
+        between slots i and j is  p_{b,i}^T S p_{b,j}, where S is the action
+        similarity matrix (1.0 same action, 0.5 same verb-or-noun, 0.0 else,
+        ignore row/col dropped). Averaging over i<j and over the batch yields
+        a scalar in [0, 1]: collapsed slots -> ~1.0, diverse slots -> ~0.0.
+
+        Returns a zero scalar (graph-preserving) if K < 2 or the similarity
+        matrix is unavailable.
+        """
+        K = future_logits.size(1)
+        if K < 2 or self.action_similarity is None:
+            return future_logits.sum() * 0.0
+
+        A = future_logits.size(-1)
+        if 0 <= self.ignore_index < A:
+            notice = [i for i in range(A) if i != self.ignore_index]
+            logits = future_logits[..., notice]
+            cache_size = len(notice)
+        else:
+            notice = None
+            logits = future_logits
+            cache_size = A
+
+        if self._diversity_sim_cache is None or self._diversity_sim_cache.size(0) != cache_size:
+            sim = self.action_similarity if notice is None else self.action_similarity[notice][:, notice]
+            self._diversity_sim_cache = sim
+
+        sim = self._diversity_sim_cache.to(device=logits.device, dtype=logits.dtype)
+        probs = torch.softmax(logits, dim=-1)  # [B, K, A']
+        # [B, K, K] expected pairwise similarity per sample.
+        pair_sim = torch.matmul(torch.matmul(probs, sim), probs.transpose(-1, -2))
+
+        triu_i, triu_j = torch.triu_indices(K, K, offset=1, device=pair_sim.device)
+        return pair_sim[:, triu_i, triu_j].mean()
 
     def _winner_aux_loss(self, pred_full: Tensor, target_full: Tensor, winners: Tensor, valid_mask: Tensor) -> Tensor:
         """Compute a verb/noun future CE on the slot the action head won.
