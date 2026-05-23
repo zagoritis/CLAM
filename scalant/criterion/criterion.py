@@ -51,6 +51,9 @@ class Criterion_LSTR:
         # active AND DIVERSITY_WEIGHT > 0. The sliced action-similarity matrix
         # (ignore col dropped) is cached lazily on first use.
         self.diversity_weight = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT)
+        self.diversity_temp = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_TEMP)
+        if self.diversity_temp <= 0:
+            raise ValueError(f"DIVERSE_SET.DIVERSITY_TEMP must be > 0; got {self.diversity_temp}.")
         self._diversity_sim_cache = None
 
         try:
@@ -182,12 +185,17 @@ class Criterion_LSTR:
     def _future_diversity_loss(self, future_logits: Tensor) -> Tensor:
         """Mean pairwise expected action-similarity across K slot distributions.
 
-        For each sample b, p_{b,k} = softmax(future_logits[b, k]) over the
+        For each sample b, p_{b,k} = softmax(future_logits[b, k] / tau) over the
         ignore-masked action vocabulary. The pairwise expected similarity
         between slots i and j is  p_{b,i}^T S p_{b,j}, where S is the action
         similarity matrix (1.0 same action, 0.5 same verb-or-noun, 0.0 else,
         ignore row/col dropped). Averaging over i<j and over the batch yields
         a scalar in [0, 1]: collapsed slots -> ~1.0, diverse slots -> ~0.0.
+
+        The temperature tau < 1 sharpens p so the loss reflects argmax-level
+        collapse rather than distribution tails (preventing the model from
+        satisfying the regularizer by spreading tails while keeping argmaxes
+        identical). tau = 1.0 recovers the un-sharpened behavior.
 
         Returns a zero scalar (graph-preserving) if K < 2 or the similarity
         matrix is unavailable.
@@ -211,7 +219,7 @@ class Criterion_LSTR:
             self._diversity_sim_cache = sim
 
         sim = self._diversity_sim_cache.to(device=logits.device, dtype=logits.dtype)
-        probs = torch.softmax(logits, dim=-1)  # [B, K, A']
+        probs = torch.softmax(logits / self.diversity_temp, dim=-1)  # [B, K, A']
         # [B, K, K] expected pairwise similarity per sample.
         pair_sim = torch.matmul(torch.matmul(probs, sim), probs.transpose(-1, -2))
 

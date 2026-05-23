@@ -42,6 +42,11 @@ class DiverseSetConfig:
     MULTI_QUERY: bool = False
     SET_SIZE: int = 5
     DIVERSITY_WEIGHT: float = 0.
+    # Temperature for the diversity regularizer's softmax. tau < 1 sharpens the
+    # slot distributions so the pairwise similarity tracks argmax-level collapse
+    # instead of distribution tails (closes the "spread the tails" loophole).
+    # tau = 1.0 reproduces the un-sharpened behavior.
+    DIVERSITY_TEMP: float = 1.0
     HIT_WEIGHT: float = 0.
     # Epsilon-relaxed WTA for MultipSetHitLoss:
     #   loss = (1 - eps) * min_k CE_k + eps * mean_k CE_k
