@@ -41,11 +41,17 @@ class DiverseSetConfig:
     # it at MULTI_QUERY=True relies on helper.load_model's shape filter.
     MULTI_QUERY: bool = False
     SET_SIZE: int = 5
+    # Weight of the Step-8 diverse target-assignment ("coverage") loss. The
+    # winning slot is anchored on the GT by the hit loss; this term matches the
+    # K-1 non-winner slots to distinct plausible runner-up modes so the slots
+    # cover a diverse set instead of collapsing. 0 disables it. Suggested
+    # starting range 0.5-1.0 (it is a per-slot CE, comparable in scale to the
+    # hit loss).
     DIVERSITY_WEIGHT: float = 0.
-    # Temperature for the diversity regularizer's softmax. tau < 1 sharpens the
-    # slot distributions so the pairwise similarity tracks argmax-level collapse
-    # instead of distribution tails (closes the "spread the tails" loophole).
-    # tau = 1.0 reproduces the un-sharpened behavior.
+    # Temperature of the detached ensemble q = mean_k softmax(z_k / tau) used to
+    # RANK the runner-up modes for assignment. Lower tau weights confident slots
+    # more when voting on which modes are plausible; tau = 1.0 is a plain
+    # probability average. It does not sharpen the trained slot distributions.
     DIVERSITY_TEMP: float = 1.0
     HIT_WEIGHT: float = 0.
     # Epsilon-relaxed WTA for MultipSetHitLoss:
