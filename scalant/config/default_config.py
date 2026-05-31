@@ -41,18 +41,22 @@ class DiverseSetConfig:
     # it at MULTI_QUERY=True relies on helper.load_model's shape filter.
     MULTI_QUERY: bool = False
     SET_SIZE: int = 5
-    # Weight of the Step-8 diverse target-assignment ("coverage") loss. The
-    # winning slot is anchored on the GT by the hit loss; this term matches the
-    # K-1 non-winner slots to distinct plausible runner-up modes so the slots
-    # cover a diverse set instead of collapsing. 0 disables it. Suggested
-    # starting range 0.5-1.0 (it is a per-slot CE, comparable in scale to the
-    # hit loss).
+    # Weight of the Step-8 fixed-role coverage loss (> 0 switches the future head
+    # from hit-anywhere WTA to fixed-role: slot 0 is anchored to the GT with
+    # equalized CE, slots 1..K-1 are matched to slot 0's detached top-(K-1)
+    # non-GT modes). 0 disables it and reverts to the Step-7 WTA ablation.
+    # Suggested starting range 0.5-1.0 (it is a per-slot CE, comparable in scale
+    # to the anchor CE).
     DIVERSITY_WEIGHT: float = 0.
-    # Temperature of the detached ensemble q = mean_k softmax(z_k / tau) used to
-    # RANK the runner-up modes for assignment. Lower tau weights confident slots
-    # more when voting on which modes are plausible; tau = 1.0 is a plain
-    # probability average. It does not sharpen the trained slot distributions.
+    # Temperature of slot 0's detached distribution softmax(z_0 / tau) used to
+    # RANK its runner-up modes for assignment. tau < 1 sharpens the ranking
+    # toward slot 0's most confident modes; tau = 1.0 uses the raw distribution.
+    # It does not sharpen the trained (slots 1..K-1) distributions.
     DIVERSITY_TEMP: float = 1.0
+    # Linear warmup (in epochs) for the coverage weight: it ramps 0 -> 1 over the
+    # first N epochs so slot 0 becomes a meaningful ranker before slots 1..K-1
+    # are asked to mirror its modes. 0 disables warmup (full weight from epoch 0).
+    DIVERSITY_WARMUP_EPOCHS: int = 5
     HIT_WEIGHT: float = 0.
     # Epsilon-relaxed WTA for MultipSetHitLoss:
     #   loss = (1 - eps) * min_k CE_k + eps * mean_k CE_k

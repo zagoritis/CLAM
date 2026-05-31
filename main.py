@@ -75,6 +75,9 @@ def launch_job(rank, world_size, cfg: Config):
             metric_tracker.reset()
             log_dict = {"lr": lr}
             dataloader_train.sampler.set_epoch(epoch)
+            # Expose the epoch to the criterion (used by the Step-8 coverage-loss
+            # warmup). Harmless for criteria that ignore it.
+            criterion.current_epoch = epoch
 
             train_one_epoch(cfg, model, dataloader_train, optimizer, lr_scheduler, metric_tracker, device, criterion=criterion, epoch=epoch, loss_scaler=scaler, mixup=mixup, disable_pregress=not utils.is_master_proc())
             log_dict.update({**metric_tracker.get_all_data(is_training=True)})

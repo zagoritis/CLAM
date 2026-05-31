@@ -47,15 +47,19 @@ class Criterion_LSTR:
         # per-class weighting (EPIC equalization is preserved).
         self.set_hit_loss = MultipSetHitLoss(base_loss=self.action_cls, epsilon=float(cfg.MODEL.DIVERSE_SET.HIT_EPSILON))
 
-        # Step 8: diverse target-assignment ("coverage") loss. Active only when
-        # the set loss is active AND DIVERSITY_WEIGHT > 0. DIVERSITY_WEIGHT now
-        # scales the coverage CE; DIVERSITY_TEMP is the temperature of the
-        # detached ensemble used to rank runner-up modes. The slot-permutation
+        # Step 8: fixed-role coverage loss. Active only when the set loss is
+        # active AND DIVERSITY_WEIGHT > 0. DIVERSITY_WEIGHT scales the coverage
+        # CE; DIVERSITY_TEMP is the temperature of slot 0's detached distribution
+        # used to rank its runner-up modes; DIVERSITY_WARMUP_EPOCHS linearly
+        # ramps the coverage weight from 0. `current_epoch` is set by the train
+        # loop each epoch (defaults to past-warmup for eval). The slot-permutation
         # table for the assignment is cached lazily on first use.
         self.diversity_weight = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT)
         self.diversity_temp = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_TEMP)
         if self.diversity_temp <= 0:
             raise ValueError(f"DIVERSE_SET.DIVERSITY_TEMP must be > 0; got {self.diversity_temp}.")
+        self.diversity_warmup_epochs = int(cfg.MODEL.DIVERSE_SET.DIVERSITY_WARMUP_EPOCHS)
+        self.current_epoch = 0
         self._perm_cache = None
 
         try:
@@ -72,11 +76,26 @@ class Criterion_LSTR:
         notice_index = [i for i in range(target.past_actions.shape[-1]) if i != self.ignore_index]
         past_cls = self.action_cls(pred.past_actions, target.past_actions)
 
-        # Step 7: replace future-action CE with the 'hit-anywhere' set loss when
-        # the diverse-set training regime is active and we have K>1 slots.
+        # Future-action supervision has three regimes:
+        #   * fixed-role (Step 8): slot 0 is anchored to the GT with plain
+        #     equalized CE and slots 1..K-1 are pushed onto slot 0's own
+        #     runner-up modes by the coverage loss. Active when the set loss is
+        #     on AND DIVERSITY_WEIGHT > 0.
+        #   * hit-anywhere (Step 7): epsilon-relaxed WTA over all K slots. Active
+        #     when the set loss is on AND DIVERSITY_WEIGHT == 0 (the ablation).
+        #   * single-query: plain CE on the lone slot.
         use_set_loss = self.set_loss_enabled and pred.future_actions.size(1) > 1
+        fixed_role = use_set_loss and self.diversity_weight > 0.0
         action_winners, valid_mask = None, None
-        if use_set_loss:
+        if fixed_role:
+            # Slot 0 is the plausibility anchor: the SAME equalized CE used in
+            # single-query mode, applied to slot 0 vs the GT next action. This
+            # keeps slot 0 a strong, input-dependent predictor (mt5r/top1) and
+            # gives the coverage loss a grounded ranking to expand from.
+            future_action_loss = self.action_cls(future_action_pred, future_action_target)
+            future_loss_key = "future_cls_loss"
+            future_loss_value = future_action_loss.item()
+        elif use_set_loss:
             future_set_hit, action_winners, valid_mask = self.set_hit_loss.aggregate(pred.future_actions, target.future_actions)
             future_action_loss = self.hit_weight * future_set_hit
             future_loss_key = "future_set_hit_loss"
@@ -88,14 +107,15 @@ class Criterion_LSTR:
 
         loss = past_cls + future_action_loss
 
-        # Step 8: diverse target-assignment loss. The hit loss above anchors the
-        # winning slot on the GT; this term matches the K-1 non-winner slots to
-        # distinct plausible runner-up modes so the slots cover a diverse set
-        # instead of collapsing onto the winner.
+        # Step 8: coverage loss. Matches slots 1..K-1 to slot 0's detached
+        # top-(K-1) non-GT modes so the K slots span a diverse, plausible set.
+        # The weight is linearly warmed up so slot 0 first becomes a meaningful
+        # ranker before the other slots are asked to mirror its modes.
         future_coverage_value = None
-        if use_set_loss and self.diversity_weight > 0.0:
-            future_coverage = self._diverse_assignment_loss(pred.future_actions, target.future_actions, action_winners, valid_mask)
-            loss = loss + self.diversity_weight * future_coverage
+        if fixed_role:
+            future_coverage = self._diverse_coverage_loss(pred.future_actions, target.future_actions)
+            cov_weight = self.diversity_weight * (self._diversity_warmup() if is_training else 1.0)
+            loss = loss + cov_weight * future_coverage
             future_coverage_value = float(future_coverage.item())
 
         # Compute metrics
@@ -111,13 +131,15 @@ class Criterion_LSTR:
         if pred.past_verbs is not None:
             past_verb = self.verb_noun_cls(pred.past_verbs, target.past_verbs)
             past_noun = self.verb_noun_cls(pred.past_nouns, target.past_nouns)
-            if use_set_loss:
+            if use_set_loss and not fixed_role:
                 # Tied WTA: supervise verb/noun on the slot the action head
                 # picked as the winner, so each slot stays a coherent action
                 # hypothesis instead of slot 0 being anchored as the default.
                 future_verb = self._winner_aux_loss(pred.future_verbs, target.future_verbs, action_winners, valid_mask)
                 future_noun = self._winner_aux_loss(pred.future_nouns, target.future_nouns, action_winners, valid_mask)
             else:
+                # Single-query and fixed-role: verb/noun follow slot 0, the GT
+                # anchor.
                 future_verb_pred, future_verb_target = self._future_loss_pair(pred.future_verbs, target.future_verbs)
                 future_noun_pred, future_noun_target = self._future_loss_pair(pred.future_nouns, target.future_nouns)
                 future_verb = self.verb_noun_cls(future_verb_pred, future_verb_target)
@@ -186,6 +208,17 @@ class Criterion_LSTR:
             return pred_tensor[:, :1], target_tensor[:, -1:]
         return pred_tensor, target_tensor
 
+    def _diversity_warmup(self) -> float:
+        """Linear 0->1 ramp of the coverage weight over the first
+        DIVERSITY_WARMUP_EPOCHS epochs, so slot 0 (the anchor) becomes a
+        meaningful ranker before slots 1..K-1 are asked to mirror its modes.
+        Returns 1.0 when warmup is disabled or already complete."""
+        w = int(getattr(self, "diversity_warmup_epochs", 0))
+        if w <= 0:
+            return 1.0
+        e = int(getattr(self, "current_epoch", w))
+        return min(1.0, max(0.0, e / w))
+
     def _assignment_perms(self, n: int, device) -> Tensor:
         """Cached [n!, n] table of all slot->target permutations (n is small, K-1)."""
         if self._perm_cache is None or self._perm_cache[0] != n:
@@ -194,85 +227,73 @@ class Criterion_LSTR:
             self._perm_cache = (n, perms)
         return self._perm_cache[1].to(device=device)
 
-    def _diverse_assignment_loss(self, future_logits: Tensor, target_future: Tensor, winners: Tensor, valid_mask: Tensor) -> Tensor:
-        """Coverage loss: push the K-1 non-winner slots onto distinct plausible
-        runner-up modes via one-to-one assignment.
+    def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor) -> Tensor:
+        """Coverage loss for the fixed-role scheme.
 
-        The winning slot (closest to the GT, supervised by the hit loss) anchors
-        the set on the ground truth. For the remaining slots we:
-          1. rank candidate modes by the *detached* ensemble distribution
-             q = mean_k softmax(z_k / tau), excluding background and the GT
-             action, and take its top (K-1) distinct actions as runner targets;
-          2. match the K-1 non-winner slots to those K-1 targets one-to-one,
-             minimizing total assignment cost (each slot gets the runner it
-             already prefers);
-          3. apply a plain cross-entropy pushing each non-winner slot toward its
-             assigned action.
+        Slot 0 is the GT anchor (supervised separately by the equalized CE). This
+        term spreads slots 1..K-1 across slot 0's OWN detached top-(K-1) non-GT
+        modes:
+          1. rank candidate modes by slot 0's detached distribution
+             softmax(z_0 / tau), excluding background and the GT action, and take
+             its top (K-1) distinct actions;
+          2. match slots 1..K-1 to those K-1 modes one-to-one, minimizing total
+             assignment cost (each slot covers the mode it already prefers);
+          3. cross-entropy pushing each slot toward its assigned mode.
 
-        Because the supervision is a CE toward concrete target actions, the
-        gradient does NOT vanish when the slots are collapsed (unlike the
-        pairwise-similarity regularizer): a collapsed slot assigns low
-        probability to its runner target and therefore receives a large pull
-        toward it. Diversity and plausibility cooperate -- every slot is trained
-        toward a real, plausible action rather than merely repelled.
+        Why this is grounded (unlike the earlier ensemble-based variant): the
+        targets come from slot 0, and slot 0 is pinned to the real GT, so the
+        runner modes track a real, input-dependent, improving predictor. There
+        is no GT-excluding self-referential feedback loop, so the slots cannot
+        drift to an input-independent fixed set. As slot 0's top-K improves
+        toward its ~23% set-recall ceiling, the covered set tracks it.
 
-        Returns a graph-preserving zero scalar when K < 2 or there are no valid
-        (foreground) samples in the batch.
+        The CE toward concrete target actions also keeps a non-vanishing gradient
+        at collapse: a slot sitting on slot 0's mode assigns low probability to
+        its assigned runner mode and is pulled toward it.
+
+        Returns a graph-preserving zero scalar when K < 2.
         """
         B, K, A = future_logits.shape
-        if K < 2 or winners is None or valid_mask is None or winners.numel() == 0:
+        if K < 2:
             return future_logits.sum() * 0.0
 
         device = future_logits.device
-        z = future_logits[valid_mask]                       # [V, K, A]
-        t = target_future[:, -1][valid_mask]                # [V, A] (soft under mixup)
-        V = z.size(0)
-        if V == 0:
-            return future_logits.sum() * 0.0
-
         bg = self.ignore_index
         has_bg = 0 <= bg < A
 
         # GT action = dominant foreground class of the (possibly mixed) target.
-        t_fg = t.float()
+        t = target_future[:, -1].float()
         if has_bg:
-            t_fg = t_fg.clone()
-            t_fg[:, bg] = float("-inf")
-        gt = t_fg.argmax(dim=-1)                            # [V]
+            t = t.clone()
+            t[:, bg] = float("-inf")
+        gt = t.argmax(dim=-1)                                # [B]
 
-        # Detached ensemble used only to rank runner-up modes; exclude bg + GT
-        # so the runner targets are distinct foreground actions, disjoint from
-        # the winner's GT target.
-        ref = torch.softmax(z.detach().float() / self.diversity_temp, dim=-1).mean(dim=1)  # [V, A]
+        # Slot 0's detached distribution -> top-(K-1) non-GT, non-bg modes.
+        ref0 = future_logits[:, 0].detach().float() / self.diversity_temp  # [B, A]
         if has_bg:
-            ref[:, bg] = -1.0
-        ref[torch.arange(V, device=device), gt] = -1.0
-        runner = ref.topk(K - 1, dim=-1).indices            # [V, K-1] distinct action ids
+            ref0[:, bg] = float("-inf")
+        ref0[torch.arange(B, device=device), gt] = float("-inf")
+        modes = ref0.topk(K - 1, dim=-1).indices            # [B, K-1] distinct ids
 
-        # Non-winner slot indices per sample (one winner removed from 0..K-1).
-        slot_ids = torch.arange(K, device=device).expand(V, K)
-        non_winner = slot_ids[slot_ids != winners.to(device).view(V, 1)].view(V, K - 1)  # [V, K-1]
-
-        # Foreground log-probs per slot (background removed from the softmax).
-        z_masked = z
+        # Trained slots 1..K-1, foreground log-probs (background removed).
+        nw = future_logits[:, 1:].float()                   # [B, K-1, A]
         if has_bg:
-            z_masked = z.clone()
-            z_masked[:, :, bg] = float("-inf")
-        logp = torch.log_softmax(z_masked, dim=-1)          # [V, K, A]
-        nw_logp = logp.gather(1, non_winner.unsqueeze(-1).expand(-1, -1, A))  # [V, K-1, A]
+            nw = nw.clone()
+            nw[:, :, bg] = float("-inf")
+        logp = torch.log_softmax(nw, dim=-1)                # [B, K-1, A]
 
-        # Assignment cost C[v, i, m] = -logp(slot_i -> runner_m). Match to
-        # minimize total cost over all (K-1)! permutations (K-1 is small).
-        runner_exp = runner.unsqueeze(1).expand(-1, K - 1, -1)               # [V, K-1, K-1]
-        cost = -nw_logp.gather(2, runner_exp)                               # [V, K-1(slot), K-1(target)]
+        # Cost C[b, i, m] = -logp(slot_{i+1} -> mode_m). Match to minimize total
+        # cost over all (K-1)! permutations (K-1 is small).
+        modes_exp = modes.unsqueeze(1).expand(-1, K - 1, -1)                 # [B, K-1, K-1]
+        cost = -logp.gather(2, modes_exp)                                    # [B, K-1(slot), K-1(mode)]
 
         perms = self._assignment_perms(K - 1, device)                       # [P, K-1]
         slot_index = torch.arange(K - 1, device=device).unsqueeze(0).expand(perms.size(0), -1)  # [P, K-1]
-        perm_cost = cost.detach()[:, slot_index, perms].sum(dim=-1)         # [V, P]
-        best = perm_cost.argmin(dim=-1)                                     # [V]
-        assigned_action = runner.gather(1, perms[best])                     # [V, K-1] action per slot
+        perm_cost = cost.detach()[:, slot_index, perms].sum(dim=-1)         # [B, P]
+        best = perm_cost.argmin(dim=-1)                                     # [B]
+        assigned = modes.gather(1, perms[best])                            # [B, K-1] mode per slot
 
-        chosen_logp = nw_logp.gather(2, assigned_action.unsqueeze(-1)).squeeze(-1)  # [V, K-1]
+        chosen_logp = logp.gather(2, assigned.unsqueeze(-1)).squeeze(-1)    # [B, K-1]
         return (-chosen_logp).mean()
 
     def _winner_aux_loss(self, pred_full: Tensor, target_full: Tensor, winners: Tensor, valid_mask: Tensor) -> Tensor:
