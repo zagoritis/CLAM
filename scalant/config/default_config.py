@@ -66,6 +66,28 @@ class DiverseSetConfig:
     OBJECT_WEIGHT: float = 0.
     TEMPORAL_WEIGHT: float = 0.
 
+    # --- First-order action-transition prior P(next action | previous action),
+    # built once from EK100 training sequences. Because it is external/data-driven
+    # (not slot-0 self-distillation), it lets the diverse set cover true conditional
+    # modes the single head ranks below its top-K: transition recall@5 ~34.9 vs the
+    # head's topk_set_recall@5 ~22.4 on validation.
+    #
+    # Step A (inference probe): fuse into eval logits, score = head_logit +
+    # TRANSITION_WEIGHT * log P(next|prev). 0 disables (eval unchanged).
+    TRANSITION_WEIGHT: float = 0.
+    # Which previous action indexes the prior at eval: "gt_prev" = last observed GT
+    # action (legitimate in anticipation; upper bound on realizable gain);
+    # "past_head" = the model's own past-head distribution (end-to-end, soft mixture).
+    TRANSITION_FUSE_SOURCE: str = "gt_prev"
+    # Step B (training): source of the fixed-role coverage modes. "self" = slot 0's
+    # detached top-(K-1) modes (Step 8(5), capped at the single-head top-K);
+    # "transition" = top-(K-1) transition successors of the observed action (external
+    # targets that can push the diverse set above the single-head ceiling).
+    COVERAGE_SOURCE: str = "self"
+    # Directory holding training.csv for the transition prior (mirrors the equalized
+    # loss default). Built lazily only when TRANSITION_WEIGHT>0 or COVERAGE_SOURCE=="transition".
+    TRANSITION_ANNO: str = "annotations/ek100_rulstm/"
+
 
 @dataclass
 class ModelConfig:

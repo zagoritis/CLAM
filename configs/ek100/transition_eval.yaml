@@ -1,0 +1,73 @@
+USE_WANDB: False
+DTYPE:
+  bfloat16
+PRIMARY_METRIC: val/diverse_set_recall@5
+# Step A probe: eval-only (no training). Loads a trained checkpoint and reruns
+# validation with the transition prior fused into the action logits. Set
+# TEST.CKPT_PATH to your committed 8(5) run directory (under checkpoints/), then
+# sweep MODEL.DIVERSE_SET.TRANSITION_WEIGHT via --opts (see expts/eval_transition.sh).
+# Headline number: does topk_set_recall@5 clear its ~22.4 single-head ceiling?
+TRAIN:
+  ENABLE: False
+  USE_MIXUP: True
+  NUM_WORKERS: 2
+  EPOCHS: 50
+  OPTIMIZER: adamw
+  BATCH_SIZE: 128
+  LR: 0.0005
+  WEIGHT_DECAY: 0.
+  GRADIENT_CLIPPING: 1.0
+VAL:
+  NUM_WORKERS: 2
+  BATCH_SIZE: 128
+TEST:
+  ENABLE: True
+  CKPT_PATH: REPLACE_WITH_YOUR_8_5_RUN_DIR
+DATA:
+  DATA_ROOT_PATH: /home/s4076893/Desktop
+  FEAT_DIR: epickitchens100/features/rgb_kinetics_bninception
+  FUTURE_STEP_IN_SEC: 1.
+  TAU_O: 32.
+  LONG_MEMORY_LENGTH: 31.
+CLUSTERING:
+  ENABLE: True
+MODEL:
+  ENCODER_CLASS: MAMBA
+  CRITERION_CLASS: Criterion_LSTR
+  IGNORE_INDEX: 0
+  ACTION_CLS: True
+  VERB_CLS: True
+  NOUN_CLS: True
+  N_LAYER: 4
+  N_DEC_LAYER: 4
+  D_MODEL: 1024
+  D_FFN: 4096
+  SHARE_CLASSIFIER: True
+  N_QUERIES: 1
+  DROPOUT: 0.1
+  DROP_CLS: 0.2
+  PRENORM: False
+  MAMBA_VERSION: 1
+  D_STATE: 16
+  CLS_WORK: False
+  CLS_LAST: False
+  CLS_ALL: True
+  DIVERSE_SET:
+    ENABLE: True
+    MULTI_QUERY: True
+    SET_SIZE: 5
+    DIVERSITY_WEIGHT: 1.0
+    DIVERSITY_TEMP: 1.0
+    DIVERSITY_WARMUP_EPOCHS: 10
+    HIT_WEIGHT: 1.
+    HIT_EPSILON: 0.
+    OBJECT_WEIGHT: 0.
+    TEMPORAL_WEIGHT: 0.
+    # Inference-time fusion: score = head_logit + TRANSITION_WEIGHT * log P(next|prev).
+    # 0 reproduces the un-fused 8(5) baseline (sanity check); sweep > 0 via --opts.
+    TRANSITION_WEIGHT: 1.0
+    # gt_prev = index the prior by the last observed GT action (legit in anticipation,
+    # upper bound). past_head = soft mixture over the model's own past-head dist.
+    TRANSITION_FUSE_SOURCE: gt_prev
+    COVERAGE_SOURCE: self
+    TRANSITION_ANNO: annotations/ek100_rulstm/
