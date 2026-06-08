@@ -10,7 +10,6 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 import torch
-
 from helper import CKPT_BEST_FNAME, CKPT_PATH, load_model
 from scalant.config import load_config
 from scalant.datasets import build_action_id_to_verb_noun_maps, build_action_similarity_matrix, build_dataset, diverse_action_rerank, topk_action_ids

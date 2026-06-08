@@ -5,17 +5,14 @@ import copy
 from typing import Optional, List
 import math
 from einops import rearrange
-
 from scalant.config import Config
 
 
 class PositionalEncoding(nn.Module):
     # From LSTR
-
     def __init__(self, d_model, dropout=0.1, max_len=64):
         super(PositionalEncoding, self).__init__()
         self.dropout = nn.Dropout(p=dropout)
-
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(10000.0) / d_model))
@@ -32,27 +29,19 @@ class PositionalEncoding(nn.Module):
 class QueryDecoder(nn.Module):
     def __init__(self, cfg: Config):
         super().__init__()
-
         self.num_queries = int(cfg.MODEL.DIVERSE_SET.SET_SIZE) if cfg.MODEL.DIVERSE_SET.MULTI_QUERY else int(cfg.MODEL.N_QUERIES)
-
-        # If tgt or memory has only 1 seq, we then use
-        # simplified attention (MLPs only)
+        # If tgt or memory has only 1 seq, we then use simplified attention (MLPs only)
         tgt_one_seq = self.num_queries == 1
         memory_one_seq = False if cfg.CLUSTERING.ENABLE else (cfg.DATA.TAU_O - cfg.DATA.LONG_MEMORY_LENGTH) // cfg.DATA.PAST_STEP_IN_SEC == 1
-
         decoder_layer = TransformerDecoderLayer(d_model=cfg.MODEL.D_MODEL, nhead=cfg.MODEL.N_HEADS, dim_feedforward=cfg.MODEL.D_FFN, dropout=cfg.MODEL.DROP_DEC, tgt_one_seq=tgt_one_seq, memory_one_seq=memory_one_seq, normalize_before=cfg.MODEL.PRENORM)
         self.layers = _get_clones(decoder_layer, cfg.MODEL.N_DEC_LAYER)
         self.norm = nn.LayerNorm(cfg.MODEL.D_MODEL) if cfg.MODEL.PRENORM else nn.Identity()
         self.return_intermediate = False
-
         self.pos_embed = PositionalEncoding(cfg.MODEL.D_MODEL, dropout=cfg.MODEL.DROPOUT)
-
         self.query_embed = nn.Embedding(self.num_queries, cfg.MODEL.D_MODEL)
-
         # Future and past embedding
         self.past_embed = None
         self.future_embed = None
-
         self._reset_parameters()
 
     def _reset_parameters(self):
@@ -120,7 +109,6 @@ class TransformerDecoderLayer(nn.Module):
         self.dropout1 = nn.Dropout(dropout)
         self.dropout2 = nn.Dropout(dropout)
         self.dropout3 = nn.Dropout(dropout)
-
         self.activation = _get_activation_fn(activation)
         self.normalize_before = normalize_before
 

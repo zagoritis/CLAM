@@ -85,14 +85,15 @@ def build_action_id_to_verb_noun_maps(dataset=None, class_mappings: Mapping[tupl
     Build action_id -> verb_id and action_id -> noun_id lookup tensors.
 
     The helper accepts a dataset with EPIC-style metadata, or the raw mappings
-    directly. `class_mappings` is preferred when available because it already
+    directly. 'class_mappings' is preferred when available because it already
     stores action-to-component relationships.
 
-    `background_id=0` matches the current EPIC dataset path, where labels are
+    'background_id=0' matches the current EPIC dataset path, where labels are
     shifted and class 0 is background. For datasets without a background class,
-    pass `background_id=None`. If a raw mapping explicitly assigns action 0 to a
+    pass 'background_id=None'. If a raw mapping explicitly assigns action 0 to a
     real verb/noun pair, that explicit mapping is preserved.
     """
+
     if class_mappings is None:
         class_mappings = _get_dataset_mapping(dataset, "class_mappings")
     if verb_noun_to_action is None:
@@ -160,12 +161,13 @@ def build_action_similarity_matrix(dataset=None, class_mappings: Mapping[tuple[s
     """
     Build a dense action similarity matrix from action/verb/noun metadata.
 
-    Diagonal entries receive `same_action_similarity`, action pairs sharing the
-    same verb or noun receive `same_component_similarity`, and all other pairs
-    receive `unrelated_similarity`. `background_id` is passed through to
-    `build_action_id_to_verb_noun_maps`; use `background_id=None` for datasets
+    Diagonal entries receive 'same_action_similarity`, action pairs sharing the
+    same verb or noun receive 'same_component_similarity', and all other pairs
+    receive 'unrelated_similarity'. 'background_id' is passed through to
+    'build_action_id_to_verb_noun_maps'. Use 'background_id=None' for datasets
     that do not reserve an action background class.
     """
+
     action_to_verb, action_to_noun = build_action_id_to_verb_noun_maps(dataset=dataset, class_mappings=class_mappings, verb_noun_to_action=verb_noun_to_action, num_actions=num_actions, background_id=background_id, unknown_id=unknown_id, device=device)
 
     num_actions = action_to_verb.numel()
@@ -193,6 +195,7 @@ def topk_action_ids(action_logits: Tensor, k: int, include_background: bool = Fa
     """
     Return normal top-k action ids from a single action-logit vector.
     """
+
     if action_logits.ndim != 1:
         raise ValueError("topk_action_ids expects a single action-logit vector with shape (num_actions,).")
 
@@ -211,11 +214,12 @@ def diverse_action_rerank(action_logits: Tensor, k: int, action_similarity: Tens
     Greedily select diverse action ids from a single action-logit vector.
 
     At each step, candidates are scored as:
-        model_score - diversity_weight * max_similarity_to_selected
+    model_score - diversity_weight * max_similarity_to_selected
 
-    When `action_similarity` is not supplied, it is built from the metadata
+    When 'action_similarity' is not supplied, it is built from the metadata
     helper using the provided dataset or mappings.
     """
+    
     if action_logits.ndim != 1:
         raise ValueError("diverse_action_rerank expects a single action-logit vector with shape (num_actions,).")
 
@@ -299,9 +303,10 @@ def action_set_metrics(predicted_action_sets: Tensor, target_actions: Tensor, ac
     """
     Compute set metrics for predicted next-action sets.
 
-    Returns metric values as percentages except `set_similarity`.
+    Returns metric values as percentages except 'set_similarity'.
     Each value is paired with the number of valid ground-truth samples.
     """
+
     if predicted_action_sets.ndim != 2:
         raise ValueError("predicted_action_sets must have shape (batch, set_size).")
     if predicted_action_sets.shape[0] == 0:
@@ -321,14 +326,13 @@ def action_set_metrics(predicted_action_sets: Tensor, target_actions: Tensor, ac
     predicted_action_sets = predicted_action_sets[valid_samples]
     target_ids = target_ids[valid_samples]
     batch_size, set_size = predicted_action_sets.shape
-
     set_recall = (predicted_action_sets == target_ids[:, None]).any(dim=-1).float().mean() * 100.0
 
     exact_duplicate_rates = []
     for action_set in predicted_action_sets:
         exact_duplicate_rates.append(0.0 if set_size == 0 else 1.0 - (action_set.unique().numel() / set_size))
+    
     exact_duplicate_rate = torch.tensor(exact_duplicate_rates, device=predicted_action_sets.device).mean() * 100.0
-
     metrics = {"set_recall": (float(set_recall.item()), batch_size), "exact_duplicate": (float(exact_duplicate_rate.item()), batch_size)}
 
     if set_size < 2:
@@ -367,6 +371,7 @@ def action_set_metrics(predicted_action_sets: Tensor, target_actions: Tensor, ac
         plausible = torch.zeros_like(valid_nouns, dtype=torch.bool)
         if valid_nouns.any():
             plausible[valid_nouns] = observed_nouns.gather(1, set_nouns.clamp(min=0, max=num_noun_classes - 1))[valid_nouns]
+        
         per_sample_valid = valid_nouns.sum(dim=-1).clamp(min=1)
         object_match = (plausible.float().sum(dim=-1) / per_sample_valid).mean() * 100.0
         metrics["object_match"] = (float(object_match.item()), batch_size)
@@ -376,16 +381,12 @@ def action_set_metrics(predicted_action_sets: Tensor, target_actions: Tensor, ac
 
 def verbnoun2action(res_verb: Tensor, res_noun: Tensor, verb_noun_to_action: dict[tuple[int, int], int]) -> Tensor:
     verb_ids, noun_ids = zip(*verb_noun_to_action.keys())
-
     # Convert to tensors
     verb_ids = torch.tensor(verb_ids, device=res_verb.device)
     noun_ids = torch.tensor(noun_ids, device=res_noun.device)
-
     # Index into the verb and noun probabilities
     verb_action_probs = res_verb[..., verb_ids]
     noun_action_probs = res_noun[..., noun_ids]
-
     # Calculate action probabilities
     res_action = verb_action_probs * noun_action_probs  # element-wise multiplication
-
     return res_action

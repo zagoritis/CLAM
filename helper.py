@@ -13,18 +13,7 @@ from scalant.config import Config
 from scalant.criterion import Criterion_LSTR
 from scalant.datasets.utils import dump_json
 
-__all__ = [
-    "train_one_epoch",
-    "evaluate",
-    "build_optimizer",
-    "build_lrscheduler",
-    "create_ckpt_path",
-    "save_model",
-    "load_model",
-    "CKPT_PATH",
-    "CKPT_BEST_FNAME",
-]
-
+__all__ = ["train_one_epoch", "evaluate", "build_optimizer", "build_lrscheduler", "create_ckpt_path", "save_model", "load_model", "CKPT_PATH", "CKPT_BEST_FNAME"]
 CKPT_PATH = 'checkpoints'
 CKPT_BEST_FNAME = 'checkpoint_best.pth'
 logger = utils.get_logger(__name__)
@@ -60,11 +49,10 @@ def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metri
     # Conditionally use autocast or the dummy context manager
     dtype = get_dtype(cfg.DTYPE)
     context = autocast(dtype=dtype) if dtype != torch.float32 else nullcontext()
-
     grad_clip = cfg.TRAIN.GRADIENT_CLIPPING
+
     for data in tqdm(data_loader, desc="Training", disable=disable_pregress):
         data = {key: val.to(device=device) if val is not None and not isinstance(val, list) else val for key, val in data.items()}
-
         batch_size = get_batch_size(data)
         past_feats = data.get("past_feats", None)
         future_feats = data.get("future_feats", None)
@@ -72,7 +60,6 @@ def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metri
         future_noun = data.get("future_noun", None)
         past_verbs = data.get("past_verb", None)
         past_nouns = data.get("past_noun", None)
-
         target = Target(
             past_feats=past_feats,
             future_feats=future_feats,
@@ -100,7 +87,6 @@ def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metri
 
         if loss_scaler is not None:
             loss_scaler.scale(loss).backward()
-
             grad_prev = get_grad_norm(model)
 
             if grad_clip is not None:
@@ -108,13 +94,11 @@ def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metri
                 torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
 
             grad_after = get_grad_norm(model)
-
             # Step optimizer and update scaler
             loss_scaler.step(optimizer)
             loss_scaler.update()
         else:
             loss.backward()
-
             grad_prev = get_grad_norm(model)
 
             # Clip the gradients if required
@@ -122,7 +106,6 @@ def train_one_epoch(cfg: Config, model, data_loader, optimizer, scheduler, metri
                 torch.nn.utils.clip_grad_norm_(model.parameters(), grad_clip)
 
             grad_after = get_grad_norm(model)
-
             optimizer.step()
 
         loss_dict.update({"Gradnorm_prev": grad_prev, "Gradnorm_after": grad_after})
@@ -194,11 +177,11 @@ def evaluate(cfg: Config, model, data_loader, metric_tracker: Optional, device, 
 
 def create_ckpt_path(cfg: Config):
     time_cur = time.strftime('%Y%m%d-%H:%M:%S')
-
     experiment_name = f'{cfg.MODEL.ENCODER_CLASS}-{cfg.MODEL.N_LAYER}-{cfg.MODEL.N_DEC_LAYER}-{cfg.MODEL.D_MODEL}_' \
                       f'bs{cfg.TRAIN.BATCH_SIZE}_lr{cfg.TRAIN.LR}_' \
                       f'wd{cfg.TRAIN.WEIGHT_DECAY}_' \
                       f'{time_cur}'
+    
     if cfg.NOTE is not None:
         experiment_name = f'{cfg.NOTE}_{experiment_name}'
 
@@ -265,11 +248,10 @@ def store_checkpoint(model, optimizer, scheduler, epoch: int, fpath: Optional[st
         model_without_ddp = model.module
 
     checkpoint = {'model': model_without_ddp.state_dict(), 'optimizer': optimizer.state_dict(), 'lr_scheduler': scheduler.state_dict() if scheduler is not None else None, 'epoch': epoch}
-
     ckpt_path = "/".join(fpath.split("/")[:-1])
     os.makedirs(ckpt_path, exist_ok=True)
-
     logger.info(f'Storing ckpt at epoch {epoch} to {fpath}')
+    
     if utils.is_master_proc():
         torch.save(checkpoint, fpath)
 

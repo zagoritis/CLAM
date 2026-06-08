@@ -53,7 +53,7 @@ class Criterion_LSTR:
         # active AND DIVERSITY_WEIGHT > 0. DIVERSITY_WEIGHT scales the coverage
         # CE; DIVERSITY_TEMP is the temperature of slot 0's detached distribution
         # used to rank its runner-up modes; DIVERSITY_WARMUP_EPOCHS linearly
-        # ramps the coverage weight from 0. `current_epoch` is set by the train
+        # ramps the coverage weight from 0. 'current_epoch' is set by the train
         # loop each epoch (defaults to past-warmup for eval). The slot-permutation
         # table for the assignment is cached lazily on first use.
         self.diversity_weight = float(cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT)
@@ -84,14 +84,8 @@ class Criterion_LSTR:
             try:
                 num_actions = dataset.num_classes
                 num_actions = int(num_actions["action"] if isinstance(num_actions, Mapping) else num_actions)
-                self.transition_prior = ActionTransitionPrior.from_annotations(
-                    num_actions,
-                    background_id=self.set_metric_background_id if self.set_metric_background_id is not None else 0,
-                    anno_path=str(cfg.MODEL.DIVERSE_SET.TRANSITION_ANNO),
-                    label_offset=1,
-                )
-                logger.info(f"Built action-transition prior [{num_actions}x{num_actions}] "
-                            f"(transition_weight={self.transition_weight}, fuse_source={self.transition_fuse_source}, coverage_source={self.coverage_source}).")
+                self.transition_prior = ActionTransitionPrior.from_annotations(num_actions, background_id=self.set_metric_background_id if self.set_metric_background_id is not None else 0, anno_path=str(cfg.MODEL.DIVERSE_SET.TRANSITION_ANNO), label_offset=1)
+                logger.info(f"Built action-transition prior [{num_actions}x{num_actions}] "f"(transition_weight={self.transition_weight}, fuse_source={self.transition_fuse_source}, coverage_source={self.coverage_source}).")
             except (FileNotFoundError, AttributeError, KeyError, ValueError) as e:
                 logger.warning(f"Could not build action-transition prior ({e!r}); transition fusion/coverage stays OFF.")
                 self.transition_prior = None
@@ -106,13 +100,13 @@ class Criterion_LSTR:
         past_cls = self.action_cls(pred.past_actions, target.past_actions)
 
         # Future-action supervision has three regimes:
-        #   * fixed-role (Step 8): slot 0 is anchored to the GT with plain
+        #   - fixed-role (Step 8): slot 0 is anchored to the GT with plain
         #     equalized CE and slots 1..K-1 are pushed onto slot 0's own
         #     runner-up modes by the coverage loss. Active when the set loss is
         #     on AND DIVERSITY_WEIGHT > 0.
-        #   * hit-anywhere (Step 7): epsilon-relaxed WTA over all K slots. Active
+        #   - hit-anywhere (Step 7): epsilon-relaxed WTA over all K slots. Active
         #     when the set loss is on AND DIVERSITY_WEIGHT == 0 (the ablation).
-        #   * single-query: plain CE on the lone slot.
+        #   - single-query: plain CE on the lone slot.
         use_set_loss = self.set_loss_enabled and pred.future_actions.size(1) > 1
         fixed_role = use_set_loss and self.diversity_weight > 0.0
         action_winners, valid_mask = None, None
@@ -168,17 +162,14 @@ class Criterion_LSTR:
                 future_verb = self._winner_aux_loss(pred.future_verbs, target.future_verbs, action_winners, valid_mask)
                 future_noun = self._winner_aux_loss(pred.future_nouns, target.future_nouns, action_winners, valid_mask)
             else:
-                # Single-query and fixed-role: verb/noun follow slot 0, the GT
-                # anchor.
+                # Single-query and fixed-role: verb/noun follow slot 0, the GT anchor.
                 future_verb_pred, future_verb_target = self._future_loss_pair(pred.future_verbs, target.future_verbs)
                 future_noun_pred, future_noun_target = self._future_loss_pair(pred.future_nouns, target.future_nouns)
                 future_verb = self.verb_noun_cls(future_verb_pred, future_verb_target)
                 future_noun = self.verb_noun_cls(future_noun_pred, future_noun_target)
 
             loss += past_verb + past_noun + future_verb + future_noun
-
             loss_dict.update({"past_verb_loss": past_verb.item(), "past_noun_loss": past_noun.item(), "future_verb_loss": future_verb.item(), "future_noun_loss": future_noun.item()})
-
             verb_notice_index = [i for i in range(target.future_verbs.shape[-1]) if i != self.ignore_index]
             noun_notice_index = [i for i in range(target.future_nouns.shape[-1]) if i != self.ignore_index]
             # Mean top 5
@@ -208,7 +199,7 @@ class Criterion_LSTR:
         # Step A (probe): fuse the transition prior into the action logits feeding
         # BOTH the single-head top-K set and the per-slot diverse set. Adding the
         # same prior to every slot biases them toward the shared top successors, so
-        # the multi-query diversity drops here -- that is expected, and is exactly
+        # the multi-query diversity drops here, that is expected, and is exactly
         # why Step B instead grounds each slot in a DISTINCT transition successor at
         # train time. The headline number for this probe is topk_set_recall@5: does
         # the single head, reranked by transitions, clear its own ~22.4 ceiling?
@@ -231,8 +222,7 @@ class Criterion_LSTR:
             if self.multi_query and slot_logits.size(1) > 1:
                 diverse_sets = self._query_slot_action_ids(slot_logits)
             else:
-                diverse_sets = torch.stack([
-                    diverse_action_rerank(logits, self.set_metric_k, action_similarity=action_similarity, diversity_weight=float(self.cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT), include_background=False, background_id=self.set_metric_background_id) for logits in future_logits])
+                diverse_sets = torch.stack([diverse_action_rerank(logits, self.set_metric_k, action_similarity=action_similarity, diversity_weight=float(self.cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT), include_background=False, background_id=self.set_metric_background_id) for logits in future_logits])
             diverse_metrics = action_set_metrics(diverse_sets, target.future_actions[:, -1], action_to_verb_id, action_to_noun_id, action_similarity=action_similarity, past_nouns=target.past_nouns, ignore_index=self.ignore_index if self.ignore_index >= 0 else None)
             metric_dict.update(self._format_set_metrics("diverse", diverse_metrics))
 
@@ -254,10 +244,13 @@ class Criterion_LSTR:
         return pred_tensor, target_tensor
 
     def _diversity_warmup(self) -> float:
-        """Linear 0->1 ramp of the coverage weight over the first
+        """
+        Linear 0->1 ramp of the coverage weight over the first
         DIVERSITY_WARMUP_EPOCHS epochs, so slot 0 (the anchor) becomes a
         meaningful ranker before slots 1..K-1 are asked to mirror its modes.
-        Returns 1.0 when warmup is disabled or already complete."""
+        Returns 1.0 when warmup is disabled or already complete.
+        """
+
         w = int(getattr(self, "diversity_warmup_epochs", 0))
         if w <= 0:
             return 1.0
@@ -273,7 +266,8 @@ class Criterion_LSTR:
         return self._perm_cache[1].to(device=device)
 
     def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor, prev_ids: Tensor | None = None) -> Tensor:
-        """Coverage loss for the fixed-role scheme.
+        """
+        Coverage loss for the fixed-role scheme.
 
         Slot 0 is the GT anchor (supervised separately by the equalized CE). This
         term spreads slots 1..K-1 across K-1 target modes, then:
@@ -283,18 +277,16 @@ class Criterion_LSTR:
           3. cross-entropy pushing each slot toward its assigned mode.
 
         The coverage modes come from one of two sources (COVERAGE_SOURCE):
-
-        * 'self' (Step 8(5)): slot 0's OWN detached top-(K-1) non-GT modes, ranked
-          by softmax(z_0 / tau). Grounded -- slot 0 is pinned to the real GT, so the
+        - 'self' (Step 8(5)): slot 0's OWN detached top-(K-1) non-GT modes, ranked
+          by softmax(z_0 / tau). Grounded slot 0 is pinned to the real GT, so the
           runner modes track a real, input-dependent predictor and cannot drift to
           an input-independent fixed set. BUT the diverse set is then by construction
           an approximation of slot 0's top-K, so it cannot exceed the single-head
           ~23% set-recall ceiling.
-
-        * 'transition' (Step B): the top-(K-1) transition successors of the observed
+        - 'transition' (Step B): the top-(K-1) transition successors of the observed
           previous action, P(next | prev), excluding the GT and background. These are
-          EXTERNAL, data-driven conditional modes -- often actions the single head
-          ranks below its top-K (transition recall@5 ~34.9 vs head ~22.4) -- so the
+          EXTERNAL, data-driven conditional modes, often actions the single head
+          ranks below its top-K (transition recall@5 ~34.9 vs head ~22.4), so the
           slots can cover ground the single head's top-K misses and the diverse set
           can exceed the ceiling. Still collapse-safe: targets are fixed dataset
           statistics, not a GT-excluding self-referential signal.
@@ -303,6 +295,7 @@ class Criterion_LSTR:
         collapse: a slot sitting elsewhere assigns low probability to its assigned
         mode and is pulled toward it. Returns a graph-preserving zero scalar when K < 2.
         """
+
         B, K, A = future_logits.shape
         if K < 2:
             return future_logits.sum() * 0.0
@@ -336,30 +329,30 @@ class Criterion_LSTR:
         if has_bg:
             nw = nw.clone()
             nw[:, :, bg] = float("-inf")
+        
         logp = torch.log_softmax(nw, dim=-1)                # [B, K-1, A]
-
         # Cost C[b, i, m] = -logp(slot_{i+1} -> mode_m). Match to minimize total
         # cost over all (K-1)! permutations (K-1 is small).
         modes_exp = modes.unsqueeze(1).expand(-1, K - 1, -1)                 # [B, K-1, K-1]
         cost = -logp.gather(2, modes_exp)                                    # [B, K-1(slot), K-1(mode)]
-
         perms = self._assignment_perms(K - 1, device)                       # [P, K-1]
         slot_index = torch.arange(K - 1, device=device).unsqueeze(0).expand(perms.size(0), -1)  # [P, K-1]
         perm_cost = cost.detach()[:, slot_index, perms].sum(dim=-1)         # [B, P]
         best = perm_cost.argmin(dim=-1)                                     # [B]
         assigned = modes.gather(1, perms[best])                            # [B, K-1] mode per slot
-
         chosen_logp = logp.gather(2, assigned.unsqueeze(-1)).squeeze(-1)    # [B, K-1]
         return (-chosen_logp).mean()
 
     def _winner_aux_loss(self, pred_full: Tensor, target_full: Tensor, winners: Tensor, valid_mask: Tensor) -> Tensor:
-        """Compute a verb/noun future CE on the slot the action head won.
+        """
+        Compute a verb/noun future CE on the slot the action head won.
 
         pred_full:   [B, K, C]
         target_full: [B, T, C]
         winners:     [num_valid] long, slot index per valid sample.
         valid_mask:  [B] bool.
         """
+
         if pred_full is None or target_full is None or winners.numel() == 0:
             return pred_full.sum() * 0.0
         valid_pred = pred_full[valid_mask]  # [num_valid, K, C]
@@ -382,21 +375,25 @@ class Criterion_LSTR:
         return scores.argmax(dim=-1)
 
     def _prev_action_ids(self, target: Target) -> Tensor:
-        """GT last-observed action id per sample (model index space), [B] long.
+        """
+        GT last-observed action id per sample (model index space), [B] long.
 
         target.past_actions is [B, T, A] (one-hot / mixup-mixed over the observed
         window); the last step is the most recent observed action, i.e. the
         'previous action' that conditions the transition prior.
         """
+
         pa = target.past_actions
         last = pa[:, -1] if pa.ndim == 3 else pa
         return last.argmax(dim=-1)
 
     def _past_action_dist(self, pred: Prediction) -> Tensor:
-        """Softmax of the model's own past-action head over the last observed step,
+        """
+        Softmax of the model's own past-action head over the last observed step,
         [B, A], background-masked and renormalized. Used for the soft, end-to-end
         ('past_head') transition-fusion path when the previous action is uncertain.
         """
+
         pa = pred.past_actions
         last = pa[:, -1] if pa.ndim == 3 else pa
         dist = torch.softmax(last.detach().float(), dim=-1)
@@ -408,8 +405,11 @@ class Criterion_LSTR:
         return dist
 
     def _transition_fuse_kwargs(self, pred: Prediction, target: Target, device) -> dict:
-        """Pick the previous-action signal for fusion: hard GT-prev row, or the
-        soft past-head mixture, per TRANSITION_FUSE_SOURCE."""
+        """
+        Pick the previous-action signal for fusion: hard GT-prev row, or the
+        soft past-head mixture, per TRANSITION_FUSE_SOURCE.
+        """
+
         if self.transition_fuse_source == "past_head":
             return {"past_dist": self._past_action_dist(pred).to(device)}
         return {"prev_ids": self._prev_action_ids(target).to(device)}

@@ -66,7 +66,7 @@ class DiverseSetConfig:
     OBJECT_WEIGHT: float = 0.
     TEMPORAL_WEIGHT: float = 0.
 
-    # --- First-order action-transition prior P(next action | previous action),
+    # First-order action-transition prior P(next action | previous action),
     # built once from EK100 training sequences. Because it is external/data-driven
     # (not slot-0 self-distillation), it lets the diverse set cover true conditional
     # modes the single head ranks below its top-K: transition recall@5 ~34.9 vs the

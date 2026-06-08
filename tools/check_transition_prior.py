@@ -1,18 +1,12 @@
-"""Standalone correctness check for scalant/datasets/transition_prior.py.
-
-Loads the module by file path so it does not trigger scalant.datasets.__init__
-(which imports the full dataset stack and won't import on the dev box). Verifies:
-  1. raw-space build reproduces the diagnostic recall@5 (~34.9% on EK100 val);
-  2. model-space build (label_offset=1, background_id=0) has the right shape,
-     a zeroed background column, normalized rows, and top_modes that excludes
-     background and the GT.
-Run:  python tools/check_transition_prior.py
 """
+Regression check for scalant/datasets/transition_prior.py (run: python tools/check_transition_prior.py).
+Loaded by file path to skip scalant.datasets.__init__ (heavy deps absent on the dev box).
+"""
+
 import csv
 import importlib.util
 import os.path as osp
 from collections import defaultdict
-
 import torch
 
 HERE = osp.dirname(osp.abspath(__file__))
@@ -31,6 +25,7 @@ def val_pairs():
             if not r or r[0] == "id":
                 continue
             by_vid[r[1]].append((int(r[2]), int(r[6])))
+    
     pairs = []
     for segs in by_vid.values():
         segs.sort()
@@ -56,9 +51,7 @@ def main():
     print(f"raw action id max = {raw_max}  (A_raw={A_raw})")
 
     # 1. raw-space recall@5 should reproduce ~34.9
-    logp_raw = tp.build_action_transition_logprior(
-        A_raw, anno_path=ANNO + osp.sep, label_offset=0, background_id=None, pop_smoothing=0.01
-    )
+    logp_raw = tp.build_action_transition_logprior(A_raw, anno_path=ANNO + osp.sep, label_offset=0, background_id=None, pop_smoothing=0.01)
     pairs = val_pairs()
     prev = torch.tensor([p for p, _ in pairs])
     nxt = torch.tensor([n for _, n in pairs])
@@ -71,9 +64,7 @@ def main():
 
     # 2. model-space invariants (label_offset=1, background_id=0)
     A = raw_max + 2  # shifted space includes background at 0
-    prior = tp.ActionTransitionPrior.from_annotations(
-        A, anno_path=ANNO + osp.sep, label_offset=1, background_id=0, pop_smoothing=0.1
-    )
+    prior = tp.ActionTransitionPrior.from_annotations(A, anno_path=ANNO + osp.sep, label_offset=1, background_id=0, pop_smoothing=0.1)
     assert prior.log_prob.shape == (A, A), prior.log_prob.shape
     assert (prior.log_prob[:, 0] < -20).all(), "background column must be strongly suppressed (~log eps)"
     row_mass = prior.prob.sum(dim=-1)

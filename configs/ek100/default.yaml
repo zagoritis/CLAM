@@ -1,8 +1,9 @@
-USE_WANDB: True
+USE_WANDB: True                   # wandb logging (training only)
 DTYPE:
   bfloat16
 PRIMARY_METRIC: val/diverse_set_recall@5
 TRAIN:
+  ENABLE: True                    # True = train. For eval-only: set False and TEST.ENABLE True.
   USE_MIXUP: True
   NUM_WORKERS: 2
   EPOCHS: 50
@@ -14,6 +15,9 @@ TRAIN:
 VAL:
   NUM_WORKERS: 2
   BATCH_SIZE: 128
+TEST:                             # eval-only: load a trained checkpoint and run validation once
+  ENABLE: False                   # set True (and TRAIN.ENABLE False) to evaluate a checkpoint
+  CKPT_PATH:                      # run dir under checkpoints/, e.g. MAMBA-4-4-1024_..._20260607-21_35_06
 DATA:
   DATA_ROOT_PATH: /home/s4076893/Desktop
   FEAT_DIR: epickitchens100/features/rgb_kinetics_bninception
@@ -44,13 +48,19 @@ MODEL:
   CLS_LAST: False
   CLS_ALL: True
   DIVERSE_SET:
-    ENABLE: True
-    MULTI_QUERY: True
-    SET_SIZE: 5
-    DIVERSITY_WEIGHT: 1.0
+    ENABLE: True                  # diverse-set metrics + losses (False = plain single-action baseline)
+    MULTI_QUERY: True             # True = K decoder slots [B,K,A]; False = single head (+ inference rerank)
+    SET_SIZE: 5                   # K = number of predictions in the set
+    # --- Step 8: diversity regulariser (fixed-role coverage) ---
+    DIVERSITY_WEIGHT: 1.0         # 0 = Step-7 WTA ablation; >0 = fixed-role coverage (8(5) used 1.0)
     DIVERSITY_TEMP: 1.0
     DIVERSITY_WARMUP_EPOCHS: 10
+    COVERAGE_SOURCE: self         # 'self' = Step 8(5) self-distillation; 'transition' = Step 9B
     HIT_WEIGHT: 1.
     HIT_EPSILON: 0.
-    OBJECT_WEIGHT: 0.
-    TEMPORAL_WEIGHT: 0.
+    # --- Step 9A: inference-time transition fusion (eval-only; needs TEST.ENABLE True) ---
+    TRANSITION_WEIGHT: 0.         # 0 = off; >0 fuses logP(next|prev) into eval logits (λ≈2 best)
+    TRANSITION_FUSE_SOURCE: past_head   # 'past_head' (realistic) or 'gt_prev' (oracle upper bound)
+    TRANSITION_ANNO: annotations/ek100_rulstm/
+    OBJECT_WEIGHT: 0.             # reserved/unused
+    TEMPORAL_WEIGHT: 0.           # reserved/unused

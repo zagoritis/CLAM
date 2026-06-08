@@ -6,10 +6,8 @@ import os.path as osp
 
 
 class MultipCrossEntropyLoss(nn.Module):
-
     def __init__(self, reduction='mean', ignore_index=-100):
         super(MultipCrossEntropyLoss, self).__init__()
-
         self.reduction = reduction
         self.ignore_index = ignore_index
 
@@ -64,22 +62,18 @@ class MultipCrossEntropyEqualizedLoss(nn.Module):
     def forward(self, input, target):
         input = input.reshape(-1, input.size(-1))
         target = target.reshape(-1, target.size(-1))
-
         logsoftmax = nn.LogSoftmax(dim=1).to(input.device)
-
         bg_target = target[:, self.ignore_index]
         notice_index = [i for i in range(target.shape[-1]) if i != self.ignore_index]
         input = input[:, notice_index]
         target = target[:, notice_index]
-
         weight = input.new_zeros(len(notice_index))
         weight[self.freq_info < self.lambda_] = 1.
         weight = weight.view(1, -1).repeat(input.shape[0], 1)
-
         eql_w = 1 - (torch.rand_like(target) < self.gamma) * weight * (1 - target)
         input = torch.log(eql_w + 1e-8) + input
-
         output = torch.sum(-target * logsoftmax(input), dim=1)
+
         if (bg_target != 1).sum().item() == 0:
             return torch.mean(torch.zeros_like(output))
         if self.reduction == 'mean':
@@ -91,20 +85,19 @@ class MultipCrossEntropyEqualizedLoss(nn.Module):
 
 
 class MultipSetHitLoss(nn.Module):
-    """Set-based 'hit-anywhere' loss for multi-query future action prediction.
+    """
+    Set-based 'hit-anywhere' loss for multi-query future action prediction.
 
-    Wraps a per-row CE loss (the same one used in single-query mode) and
-    aggregates its K per-slot scores with epsilon-relaxed Winner-Takes-All
-    (Multiple-Choice Learning, Lee et al. 2016):
-
-        loss_b = (1 - epsilon) * min_k CE(slot_k, y_b) + epsilon * mean_k CE(...)
+    Wraps a per-row CE loss and aggregates its K per-slot scores with epsilon-relaxed 
+    Winner-Takes-All (Multiple-Choice Learning, Lee et al. 2016):
+    loss_b = (1 - epsilon) * min_k CE(slot_k, y_b) + epsilon * mean_k CE(...)
 
     The min term sends gradient mainly to the slot that best matches the GT,
     so different slots can specialize on different samples. The mean term is
     optional: epsilon > 0 protects against slot starvation but contaminates
     the "hit anywhere" interpretation. Default epsilon=0 = pure WTA.
 
-    By delegating per-row scoring to the supplied `base_loss`, any class
+    By delegating per-row scoring to the supplied 'base_loss', any class
     weighting in the base loss (e.g. EPIC class-frequency equalization in
     MultipCrossEntropyEqualizedLoss) carries through unchanged. The
     single-query -> set-loss ablation therefore changes ONLY the aggregation,
@@ -124,7 +117,8 @@ class MultipSetHitLoss(nn.Module):
         return loss
 
     def aggregate(self, input, target):
-        """Returns (loss, winners, valid_mask).
+        """
+        Returns (loss, winners, valid_mask).
 
         - loss: scalar, the WTA-aggregated set loss.
         - winners: long tensor of shape [num_valid]. winners[i] = slot index
@@ -137,6 +131,7 @@ class MultipSetHitLoss(nn.Module):
         same slot the action head picked, so per-slot supervision stays
         coherent and slot-0 is not anchored as a "default winner".
         """
+
         if input.ndim != 3:
             raise ValueError(f"MultipSetHitLoss expects input shape [B, K, A]; got {tuple(input.shape)}.")
         if target.ndim != 3:
@@ -159,7 +154,7 @@ class MultipSetHitLoss(nn.Module):
             empty_winners = torch.zeros(0, dtype=torch.long, device=input.device)
             return zero_loss, empty_winners, valid_mask
 
-        # Score every (sample, slot) with the SAME per-row CE used in the
+        # Score every (sample, slot) with the same per-row CE used in the
         # single-query baseline. The base loss handles ignore-index masking
         # and any class equalization internally.
         saved_reduction = self.base_loss.reduction

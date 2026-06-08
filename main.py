@@ -20,21 +20,16 @@ from helper import *
 
 def launch_job(rank, world_size, cfg: Config):
     utils.set_seed(cfg.SEED)
-
     utils.setup_logging(level=cfg.LOG_LEVEL)
     logger = utils.get_logger(__name__)
     logger.info(f"| distributed init (world size {world_size})")
-
     device = rank  # gpu_ids[rank]
 
     if cfg.TRAIN.ENABLE:
         experiment_name, ckpt_path, save_path = create_ckpt_path(cfg)
-
         dataset_train, dataloader_train = build_dataloader(cfg, mode="train")
         dataset_val, dataloader_val = build_dataloader(cfg, mode="val")
-
         model = QueryPredictor(cfg, num_classes=dataset_train.num_classes, dataset=dataset_train)
-
         # Print model architecture and trainable params
         utils.print_model(model)
         utils.params_count(model)
@@ -45,27 +40,23 @@ def launch_job(rank, world_size, cfg: Config):
             load_model(model, ckpt_path)
 
         model.to(device=device)
-
         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device], broadcast_buffers=False)
-
         criterion = build_criterion(cfg, dataset_train)
-
         # Optimizer and learning rate scheduler
         optimizer = build_optimizer(model, cfg)
         lr_scheduler = build_lrscheduler(optimizer, cfg)
-
         # Metric tracker
         num_action_classes = dataset_train.num_classes["action"]
         metric_tracker = utils.MetricTracker(num_classes=(num_action_classes if cfg.MODEL.IGNORE_INDEX < 0 else num_action_classes - 1), cfg=cfg)
-
         scaler = GradScaler() if cfg.DTYPE == "float16" else None
         mixup = None
+
         if cfg.TRAIN.USE_MIXUP:
             mixup = utils.MixUp(num_classes=dataset_train.num_classes)
 
         logger.info("Training starts ...")
-
         best_metric_value = float("inf") if cfg.METRIC_DESCENDING else 0
+
         for epoch in range(cfg.TRAIN.EPOCHS):
             lr = optimizer.param_groups[-1]['lr']
             for i, param_group in enumerate(optimizer.param_groups):
@@ -87,10 +78,8 @@ def launch_job(rank, world_size, cfg: Config):
                 evaluate(cfg, model, dataloader_val, metric_tracker, device, criterion=criterion, disable_pregress=not utils.is_master_proc())
                 log_dict.update({**metric_tracker.get_all_data(is_training=False)})
                 logger.info(metric_tracker.to_string(is_training=False, idx="all"))
-
                 # Store checkpoint
                 metric_cur = metric_tracker.get_data(cfg.PRIMARY_METRIC, False)
-
                 is_best, best_metric_value = save_model(model, optimizer, lr_scheduler, metric_cur, best_metric_value, epoch, cfg.METRIC_DESCENDING, fpath=save_path if cfg.TRAIN.SAVE_MODEL else None)
                 logger.info(f"Current metric value: {metric_cur}; best metric value: {best_metric_value}")
 
@@ -105,10 +94,7 @@ def launch_job(rank, world_size, cfg: Config):
             logger.warning("No checkpoint path provided.")
 
         dataset_test, dataloader_test = build_dataloader(cfg, mode="val")
-
-        model = QueryPredictor(
-            cfg, num_classes=dataset_test.num_classes, dataset=dataset_test)
-
+        model = QueryPredictor(cfg, num_classes=dataset_test.num_classes, dataset=dataset_test)
         # Print model architecture and trainable params
         utils.params_count(model)
 
@@ -119,7 +105,6 @@ def launch_job(rank, world_size, cfg: Config):
 
         model.to(device=device)
         model = torch.nn.parallel.DistributedDataParallel(model, device_ids=[device], broadcast_buffers=False)
-
         criterion = build_criterion(cfg, dataset_test)
 
         # Metric tracker

@@ -26,4 +26,3 @@ $PYTHON main.py \
   --opts \
   DATA.DATA_ROOT_PATH ${YOUR_ROOT_PATH} \
   DATA.FEAT_DIR ${YOUR_FEATURE_DIR}
-  
