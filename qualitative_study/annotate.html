@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diverse Anticipation  Qualitative Annotation</title>
+<style>
+  :root {
+    --bg: #0f1115; --panel: #171a21; --panel2: #1e222b; --border: #2a2f3a;
+    --text: #e6e9ef; --muted: #9aa3b2; --accent: #5b8def;
+    --green: #2ea043; --green-bg: #133a1c; --red: #d9434e; --red-bg: #3a1316;
+    --grey: #3a4150; --gold: #e3b341;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  header {
+    position: sticky; top: 0; z-index: 10; background: var(--panel);
+    border-bottom: 1px solid var(--border); padding: 10px 16px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; letter-spacing: .2px; }
+  header .spacer { flex: 1; }
+  .btn {
+    background: var(--panel2); color: var(--text); border: 1px solid var(--border);
+    border-radius: 7px; padding: 7px 12px; cursor: pointer; font-size: 13px;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  .progress-label { font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px; }
+
+  main { padding: 16px; max-width: 1180px; margin: 0 auto; }
+
+  /* dot grid */
+  .dots { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 0 18px; }
+  .dot {
+    width: 22px; height: 22px; border-radius: 6px; background: var(--grey);
+    border: 1px solid var(--border); cursor: pointer; font-size: 10px; color: #cdd3dd;
+    display: flex; align-items: center; justify-content: center; user-select: none;
+    font-variant-numeric: tabular-nums;
+  }
+  .dot.done { background: var(--green); border-color: var(--green); color: #fff; }
+  .dot.partial { background: #5a4a16; border-color: var(--gold); color: #fff; }
+  .dot.current { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+  .clipbar { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .clipbar h2 { font-size: 16px; margin: 0; }
+  .clipbar .meta { color: var(--muted); font-size: 13px; }
+
+  .top { display: grid; grid-template-columns: minmax(380px, 1.1fr) 1fr; gap: 16px; align-items: start; }
+  @media (max-width: 860px) { .top { grid-template-columns: 1fr; } }
+  video { width: 100%; max-height: 420px; background: #000; border-radius: 10px; border: 1px solid var(--border); }
+  .ref {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px;
+  }
+  .ref .row { margin-bottom: 10px; }
+  .ref .k { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+  .ref .v { font-size: 16px; font-weight: 600; }
+  .ref .gt { color: var(--gold); }
+  .videowrap .hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+  .missing {
+    width: 100%; height: 240px; border: 1px dashed var(--border); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; color: var(--muted); text-align: center;
+  }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+  @media (max-width: 720px) { .cols { grid-template-columns: 1fr; } }
+  .col { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  .col h3 { margin: 0 0 4px; font-size: 14px; }
+  .col .sub { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+  .chip {
+    display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+    background: var(--panel2); border: 1px solid var(--border); border-left: 4px solid var(--grey);
+    border-radius: 8px; padding: 9px 12px; margin-bottom: 8px; cursor: pointer; color: var(--text);
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.plausible { background: var(--green-bg); border-left-color: var(--green); }
+  .chip.notplausible { background: var(--red-bg); border-left-color: var(--red); }
+  .chip .rank { color: var(--muted); font-size: 11px; width: 16px; flex: none; }
+  .chip .label { flex: 1; font-weight: 600; }
+  .chip .score { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 12px; }
+  .chip .state {
+    font-size: 11px; padding: 2px 7px; border-radius: 999px; flex: none;
+    background: var(--grey); color: #cdd3dd; min-width: 64px; text-align: center;
+  }
+  .chip.plausible .state { background: var(--green); color: #fff; }
+  .chip.notplausible .state { background: var(--red); color: #fff; }
+
+  .divrate { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); }
+  .divrate .lab { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .divrate .lab b { color: var(--text); }
+  .scale { display: flex; gap: 6px; }
+  .scale button {
+    flex: 1; padding: 8px 0; border-radius: 7px; border: 1px solid var(--border);
+    background: var(--panel2); color: var(--text); cursor: pointer; font-variant-numeric: tabular-nums;
+  }
+  .scale button:hover { border-color: var(--accent); }
+  .scale button.sel { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .scale-ends { display: flex; justify-content: space-between; color: var(--muted); font-size: 11px; margin-top: 4px; }
+
+  .navrow { display: flex; gap: 10px; align-items: center; margin-top: 20px; }
+
+  /* results */
+  #results { display: none; }
+  #results.show { display: block; }
+  #annotateView.hide { display: none; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 12px 0 20px; }
+  @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .card h3 { margin: 0 0 12px; font-size: 14px; }
+  .stat { display: flex; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed var(--border); }
+  .stat:last-child { border-bottom: none; }
+  .stat .big { font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .stat .big.green { color: var(--green); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { color: var(--muted); font-weight: 600; position: sticky; top: 56px; background: var(--bg); }
+  tr.cur td { background: rgba(91,141,239,.08); }
+  .tablewrap { max-height: 60vh; overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
+  .yes { color: var(--green); } .no { color: var(--muted); }
+  .err { background: var(--red-bg); border: 1px solid var(--red); border-radius: 10px; padding: 16px; margin: 16px 0; }
+  .err code { background: #0008; padding: 1px 5px; border-radius: 4px; }
+  .filewrap { margin-top: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Qualitative Annotation</h1>
+  <span class="progress-label" id="progressLabel">- / -</span>
+  <div class="spacer"></div>
+  <button class="btn" id="prevBtn">◀ Prev</button>
+  <button class="btn" id="nextBtn">Next ▶</button>
+  <button class="btn" id="toggleResults">Results ▦</button>
+  <button class="btn" id="exportJson">Export JSON</button>
+  <button class="btn" id="exportCsv">Export CSV</button>
+</header>
+
+<main>
+  <div id="loadError" class="err" style="display:none">
+    <b>Could not load <code>data.json</code> automatically.</b>
+    This usually means the page was opened via <code>file://</code> (browsers block <code>fetch()</code> there).
+    Either run the range-capable server in this folder - <code>python serve.py</code> then open
+    <code>http://localhost:8000/annotate.html</code> - or load the file manually below.
+    <div class="filewrap"><input type="file" id="fileInput" accept="application/json,.json" /></div>
+  </div>
+
+  <div id="rangeWarn" class="err" style="display:none; background:#3a2e13; border-color:var(--gold)">
+    <b>⚠ Video seeking is disabled by the current server.</b>
+    The server answered a byte-range request with the whole file, so the timeline can't jump to a
+    specific second. You're most likely running <code>python -m http.server</code>, which ignores
+    range requests. Stop it (Ctrl+C) and run the range-capable server in this folder instead:
+    <code>python serve.py</code>, then reload this page.
+  </div>
+
+  <!-- ANNOTATE VIEW -->
+  <section id="annotateView">
+    <div class="dots" id="dots"></div>
+
+    <div class="clipbar">
+      <h2 id="clipTitle">Clip</h2>
+      <span class="meta" id="clipMeta"></span>
+    </div>
+
+    <div class="top">
+      <div class="videowrap">
+        <div id="videoSlot"></div>
+        <div class="hint">Space = play/pause · ←/→ = prev/next clip</div>
+      </div>
+      <div class="ref">
+        <div class="row"><div class="k">Narration</div><div class="v" id="narration">-</div></div>
+        <div class="row"><div class="k">Ground-truth next action (reference)</div><div class="v gt" id="gt">-</div></div>
+        <div class="row"><div class="k">Status</div><div class="v" id="clipStatus" style="font-size:14px;font-weight:500;color:var(--muted)">-</div></div>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="col" id="col-baseline">
+        <h3>Baseline</h3>
+        <div class="sub">Click a prediction to cycle: Unrated → Plausible → Not&nbsp;plausible</div>
+        <div class="preds" data-model="baseline"></div>
+        <div class="divrate">
+          <div class="lab">Semantic diversity - <b>1</b> = all 5 mean ~the same · <b>5</b> = span very different actions</div>
+          <div class="scale" data-model="baseline"></div>
+          <div class="scale-ends"><span>1 · same</span><span>5 · diverse</span></div>
+        </div>
+      </div>
+      <div class="col" id="col-modified">
+        <h3>Modified</h3>
+        <div class="sub">Click a prediction to cycle: Unrated → Plausible → Not&nbsp;plausible</div>
+        <div class="preds" data-model="modified"></div>
+        <div class="divrate">
+          <div class="lab">Semantic diversity - <b>1</b> = all 5 mean ~the same · <b>5</b> = span very different actions</div>
+          <div class="scale" data-model="modified"></div>
+          <div class="scale-ends"><span>1 · same</span><span>5 · diverse</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="navrow">
+      <button class="btn" id="prevBtn2">◀ Prev</button>
+      <button class="btn primary" id="nextBtn2">Next ▶</button>
+      <span class="progress-label" id="progressLabel2"></span>
+    </div>
+  </section>
+
+  <!-- RESULTS VIEW -->
+  <section id="results">
+    <div class="cards">
+      <div class="card">
+        <h3>Baseline</h3>
+        <div class="stat"><span>Plausibility (plausible / rated)</span><span class="big green" id="b-plaus">-</span></div>
+        <div class="stat"><span>Raw counts</span><span id="b-plaus-raw">-</span></div>
+        <div class="stat"><span>Mean diversity (1–5)</span><span class="big" id="b-div">-</span></div>
+        <div class="stat"><span>Clips with diversity rated</span><span id="b-div-n">-</span></div>
+      </div>
+      <div class="card">
+        <h3>Modified</h3>
+        <div class="stat"><span>Plausibility (plausible / rated)</span><span class="big green" id="m-plaus">-</span></div>
+        <div class="stat"><span>Raw counts</span><span id="m-plaus-raw">-</span></div>
+        <div class="stat"><span>Mean diversity (1–5)</span><span class="big" id="m-div">-</span></div>
+        <div class="stat"><span>Clips with diversity rated</span><span id="m-div-n">-</span></div>
+      </div>
+    </div>
+    <div class="tablewrap">
+      <table id="breakdown">
+        <thead>
+          <tr>
+            <th>Clip</th>
+            <th>Base plaus.</th><th>Base div.</th>
+            <th>Mod plaus.</th><th>Mod div.</th>
+            <th>Done?</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+"use strict";
+
+// ---- constants ----
+const STORE_KEY = "qualStudyAnnotations.v1";
+const UNRATED = 0, PLAUSIBLE = 1, NOTPLAUSIBLE = 2;
+const STATE_TXT = { 0: "Unrated", 1: "Plausible", 2: "Not plausible" };
+const STATE_CLS = { 0: "", 1: "plausible", 2: "notplausible" };
+
+// ---- state ----
+let DATA = [];            // list of clip objects from data.json
+let annotations = {};     // clip_id -> { baseline:{preds:[],diversity}, modified:{preds:[],diversity} }
+let idx = 0;              // current clip index
+
+// ---- persistence ----
+function loadStore() {
+  try { annotations = JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+  catch (e) { annotations = {}; }
+}
+function saveStore() {
+  localStorage.setItem(STORE_KEY, JSON.stringify(annotations));
+}
+function ensureClip(clip) {
+  const id = clip.clip_id;
+  if (!annotations[id]) {
+    annotations[id] = {
+      baseline: { preds: (clip.baseline || []).map(() => UNRATED), diversity: null },
+      modified: { preds: (clip.modified || []).map(() => UNRATED), diversity: null },
+    };
+  }
+  // keep preds array length in sync with predictions count
+  for (const model of ["baseline", "modified"]) {
+    const n = (clip[model] || []).length;
+    const a = annotations[id][model];
+    while (a.preds.length < n) a.preds.push(UNRATED);
+    if (a.preds.length > n) a.preds.length = n;
+  }
+  return annotations[id];
+}
+
+// ---- completion logic ----
+function clipDoneState(clip) {
+  // returns "done" (all preds rated + both diversities set), "partial" (some input), or "" (untouched)
+  const a = annotations[clip.clip_id];
+  if (!a) return "";
+  let touched = false, allRated = true, bothDiv = true;
+  for (const model of ["baseline", "modified"]) {
+    const m = a[model];
+    if (m.diversity != null) touched = true; else bothDiv = false;
+    for (const s of m.preds) {
+      if (s !== UNRATED) touched = true; else allRated = false;
+    }
+    if ((clip[model] || []).length === 0) { /* nothing to rate */ }
+  }
+  if (allRated && bothDiv) return "done";
+  return touched ? "partial" : "";
+}
+
+// ---- rendering ----
+function renderDots() {
+  const wrap = document.getElementById("dots");
+  wrap.innerHTML = "";
+  DATA.forEach((clip, i) => {
+    const d = document.createElement("div");
+    d.className = "dot " + clipDoneState(clip) + (i === idx ? " current" : "");
+    d.textContent = i + 1;
+    d.title = clip.clip_id;
+    d.onclick = () => { idx = i; render(); };
+    wrap.appendChild(d);
+  });
+}
+
+function predChip(clip, model, i) {
+  const p = (clip[model] || [])[i];
+  const a = annotations[clip.clip_id][model];
+  const state = a.preds[i];
+  const btn = document.createElement("button");
+  btn.className = "chip " + STATE_CLS[state];
+  btn.innerHTML =
+    `<span class="rank">${i + 1}</span>` +
+    `<span class="label"></span>` +
+    `<span class="score"></span>` +
+    `<span class="state"></span>`;
+  btn.querySelector(".label").textContent = p.label;
+  btn.querySelector(".score").textContent = (p.score != null && !isNaN(p.score)) ? Number(p.score).toFixed(3) : "";
+  btn.querySelector(".state").textContent = STATE_TXT[state];
+  btn.onclick = () => {
+    a.preds[i] = (a.preds[i] + 1) % 3;
+    saveStore();
+    render(); // cheap; keeps dots + status in sync
+  };
+  return btn;
+}
+
+function renderModel(clip, model) {
+  const predWrap = document.querySelector(`.preds[data-model="${model}"]`);
+  predWrap.innerHTML = "";
+  (clip[model] || []).forEach((_, i) => predWrap.appendChild(predChip(clip, model, i)));
+
+  const scale = document.querySelector(`.scale[data-model="${model}"]`);
+  scale.innerHTML = "";
+  const cur = annotations[clip.clip_id][model].diversity;
+  for (let v = 1; v <= 5; v++) {
+    const b = document.createElement("button");
+    b.textContent = v;
+    if (cur === v) b.classList.add("sel");
+    b.onclick = () => {
+      annotations[clip.clip_id][model].diversity = (cur === v ? null : v);
+      saveStore();
+      render();
+    };
+    scale.appendChild(b);
+  }
+}
+
+function renderVideo(clip) {
+  const slot = document.getElementById("videoSlot");
+  // Only (re)build the <video> when the clip changes. render() runs on every chip
+  // click; without this guard the player would be recreated/reloaded each time,
+  // causing a flash and resetting playback.
+  if (slot.dataset.clipId === clip.clip_id) return;
+  slot.dataset.clipId = clip.clip_id;
+  slot.innerHTML = "";
+  if (!clip.video_file) {
+    const m = document.createElement("div");
+    m.className = "missing";
+    m.textContent = "No video file for this clip";
+    slot.appendChild(m);
+    return;
+  }
+  const v = document.createElement("video");
+  v.src = clip.video_file;
+  v.controls = true;
+  v.preload = "metadata";
+  v.onerror = () => {
+    slot.innerHTML = "";
+    const m = document.createElement("div");
+    m.className = "missing";
+    m.innerHTML = `Could not load video:<br><code>${clip.video_file}</code>`;
+    slot.appendChild(m);
+  };
+  slot.appendChild(v);
+}
+
+function render() {
+  if (!DATA.length) return;
+  idx = Math.max(0, Math.min(idx, DATA.length - 1));
+  const clip = DATA[idx];
+  ensureClip(clip);
+
+  document.getElementById("clipTitle").textContent = clip.clip_id || `Clip ${idx + 1}`;
+  document.getElementById("clipMeta").textContent =
+    (clip.video_id ? clip.video_id + " · " : "") + (clip.observed_window || "");
+  document.getElementById("narration").textContent = clip.narration || "-";
+  document.getElementById("gt").textContent = clip.ground_truth_action || "-";
+
+  const ds = clipDoneState(clip);
+  const statusEl = document.getElementById("clipStatus");
+  statusEl.textContent = ds === "done" ? "✓ Completed" : ds === "partial" ? "In progress" : "Not started";
+  statusEl.style.color = ds === "done" ? "var(--green)" : ds === "partial" ? "var(--gold)" : "var(--muted)";
+
+  renderVideo(clip);
+  renderModel(clip, "baseline");
+  renderModel(clip, "modified");
+  renderDots();
+
+  const label = `Clip ${idx + 1} / ${DATA.length}`;
+  document.getElementById("progressLabel").textContent =
+    label + "  ·  " + DATA.filter(c => clipDoneState(c) === "done").length + " done";
+  document.getElementById("progressLabel2").textContent = label;
+  document.getElementById("prevBtn").disabled = idx === 0;
+  document.getElementById("prevBtn2").disabled = idx === 0;
+  document.getElementById("nextBtn").disabled = idx === DATA.length - 1;
+  document.getElementById("nextBtn2").disabled = idx === DATA.length - 1;
+}
+
+// ---- metrics ----
+function computeMetrics() {
+  const res = {
+    baseline: { plausible: 0, rated: 0, divSum: 0, divN: 0 },
+    modified: { plausible: 0, rated: 0, divSum: 0, divN: 0 },
+  };
+  for (const clip of DATA) {
+    const a = annotations[clip.clip_id];
+    if (!a) continue;
+    for (const model of ["baseline", "modified"]) {
+      for (const s of a[model].preds) {
+        if (s === PLAUSIBLE) { res[model].plausible++; res[model].rated++; }
+        else if (s === NOTPLAUSIBLE) { res[model].rated++; }
+      }
+      if (a[model].diversity != null) { res[model].divSum += a[model].diversity; res[model].divN++; }
+    }
+  }
+  for (const model of ["baseline", "modified"]) {
+    const r = res[model];
+    r.plausibility = r.rated ? r.plausible / r.rated : null;
+    r.diversityMean = r.divN ? r.divSum / r.divN : null;
+  }
+  return res;
+}
+
+function pct(x) { return x == null ? "-" : (x * 100).toFixed(1) + "%"; }
+function f2(x) { return x == null ? "-" : x.toFixed(2); }
+
+function renderResults() {
+  const r = computeMetrics();
+  const set = (id, v) => document.getElementById(id).textContent = v;
+  set("b-plaus", pct(r.baseline.plausibility));
+  set("b-plaus-raw", `${r.baseline.plausible} / ${r.baseline.rated}`);
+  set("b-div", f2(r.baseline.diversityMean));
+  set("b-div-n", `${r.baseline.divN} / ${DATA.length}`);
+  set("m-plaus", pct(r.modified.plausibility));
+  set("m-plaus-raw", `${r.modified.plausible} / ${r.modified.rated}`);
+  set("m-div", f2(r.modified.diversityMean));
+  set("m-div-n", `${r.modified.divN} / ${DATA.length}`);
+
+  const tbody = document.querySelector("#breakdown tbody");
+  tbody.innerHTML = "";
+  DATA.forEach((clip, i) => {
+    const a = annotations[clip.clip_id] || ensureClip(clip);
+    const tr = document.createElement("tr");
+    if (i === idx) tr.className = "cur";
+    const cellPlaus = (model) => {
+      let pl = 0, ra = 0;
+      for (const s of a[model].preds) { if (s === PLAUSIBLE) { pl++; ra++; } else if (s === NOTPLAUSIBLE) ra++; }
+      return ra ? `${pl}/${ra}` : "-";
+    };
+    const div = (model) => a[model].diversity != null ? a[model].diversity : "-";
+    const done = clipDoneState(clip) === "done";
+    tr.innerHTML =
+      `<td>${clip.clip_id}</td>` +
+      `<td>${cellPlaus("baseline")}</td><td>${div("baseline")}</td>` +
+      `<td>${cellPlaus("modified")}</td><td>${div("modified")}</td>` +
+      `<td class="${done ? "yes" : "no"}">${done ? "✓" : "-"}</td>`;
+    tr.onclick = () => { idx = i; showAnnotate(); render(); };
+    tbody.appendChild(tr);
+  });
+}
+
+// ---- view toggling ----
+function showResults() {
+  document.getElementById("results").classList.add("show");
+  document.getElementById("annotateView").classList.add("hide");
+  renderResults();
+}
+function showAnnotate() {
+  document.getElementById("results").classList.remove("show");
+  document.getElementById("annotateView").classList.remove("hide");
+}
+function toggleResults() {
+  const showing = document.getElementById("results").classList.contains("show");
+  if (showing) showAnnotate(); else showResults();
+}
+
+// ---- export ----
+function download(filename, text, mime) {
+  const blob = new Blob([text], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+}
+function exportJson() {
+  const r = computeMetrics();
+  const out = {
+    generated_at: new Date().toISOString(),
+    num_clips: DATA.length,
+    metrics: {
+      baseline: { plausibility: r.baseline.plausibility, plausible: r.baseline.plausible, rated: r.baseline.rated, diversity_mean: r.baseline.diversityMean, diversity_n: r.baseline.divN },
+      modified: { plausibility: r.modified.plausibility, plausible: r.modified.plausible, rated: r.modified.rated, diversity_mean: r.modified.diversityMean, diversity_n: r.modified.divN },
+    },
+    annotations: DATA.map(clip => ({
+      clip_id: clip.clip_id,
+      video_id: clip.video_id || null,
+      narration: clip.narration || null,
+      ground_truth_action: clip.ground_truth_action || null,
+      baseline: {
+        predictions: (clip.baseline || []).map((p, i) => ({ label: p.label, score: p.score, rating: STATE_TXT[annotations[clip.clip_id].baseline.preds[i]] })),
+        diversity: annotations[clip.clip_id].baseline.diversity,
+      },
+      modified: {
+        predictions: (clip.modified || []).map((p, i) => ({ label: p.label, score: p.score, rating: STATE_TXT[annotations[clip.clip_id].modified.preds[i]] })),
+        diversity: annotations[clip.clip_id].modified.diversity,
+      },
+      completed: clipDoneState(clip) === "done",
+    })),
+  };
+  download("qualitative_annotations.json", JSON.stringify(out, null, 2), "application/json");
+}
+function exportCsv() {
+  const rows = [["clip_id","baseline_plausible","baseline_rated","baseline_plausibility","baseline_diversity","modified_plausible","modified_rated","modified_plausibility","modified_diversity","completed"]];
+  for (const clip of DATA) {
+    const a = annotations[clip.clip_id] || ensureClip(clip);
+    const counts = (model) => { let pl=0, ra=0; for (const s of a[model].preds){ if(s===PLAUSIBLE){pl++;ra++;} else if(s===NOTPLAUSIBLE) ra++; } return [pl, ra, ra?(pl/ra).toFixed(4):""]; };
+    const [bpl,bra,bp] = counts("baseline");
+    const [mpl,mra,mp] = counts("modified");
+    rows.push([clip.clip_id, bpl, bra, bp, a.baseline.diversity ?? "", mpl, mra, mp, a.modified.diversity ?? "", clipDoneState(clip)==="done"?"yes":"no"]);
+  }
+  download("qualitative_breakdown.csv", rows.map(r => r.join(",")).join("\n"), "text/csv");
+}
+
+// ---- init / data loading ----
+function initData(data) {
+  // normalize: ensure clip_id exists
+  DATA = (data || []).map((c, i) => ({ clip_id: c.clip_id || `clip_${String(i + 1).padStart(3, "0")}`, ...c }));
+  loadStore();
+  DATA.forEach(ensureClip);
+  saveStore();
+  document.getElementById("loadError").style.display = "none";
+  showAnnotate();
+  render();
+  checkRangeSupport();
+}
+
+// Detect a server that ignores Range requests (e.g. python -m http.server), which
+// silently disables video seeking. Only meaningful when served over http(s); on
+// file:// the <video> reads the local file directly and seeks fine.
+async function checkRangeSupport() {
+  const warn = document.getElementById("rangeWarn");
+  warn.style.display = "none";
+  if (!location.protocol.startsWith("http")) return;
+  const clip = DATA.find(c => c.video_file);
+  if (!clip) return;
+  try {
+    const r = await fetch(clip.video_file, { headers: { Range: "bytes=0-1" }, cache: "no-store" });
+    if (r.status !== 206) warn.style.display = "block";  // 200 = Range ignored
+  } catch (e) { /* fetch blocked; ignore */ }
+}
+
+function wireEvents() {
+  const next = () => { idx = Math.min(DATA.length - 1, idx + 1); render(); };
+  const prev = () => { idx = Math.max(0, idx - 1); render(); };
+  document.getElementById("nextBtn").onclick = next;
+  document.getElementById("nextBtn2").onclick = next;
+  document.getElementById("prevBtn").onclick = prev;
+  document.getElementById("prevBtn2").onclick = prev;
+  document.getElementById("toggleResults").onclick = toggleResults;
+  document.getElementById("exportJson").onclick = exportJson;
+  document.getElementById("exportCsv").onclick = exportCsv;
+  document.getElementById("fileInput").onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { try { initData(JSON.parse(reader.result)); } catch (err) { alert("Invalid JSON: " + err.message); } };
+    reader.readAsText(file);
+  };
+  document.addEventListener("keydown", (e) => {
+    if (document.getElementById("results").classList.contains("show")) return;
+    if (e.target.tagName === "INPUT") return;
+    if (e.key === "ArrowRight") { next(); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+    else if (e.code === "Space") {
+      const v = document.querySelector("video");
+      if (v) { v.paused ? v.play() : v.pause(); e.preventDefault(); }
+    }
+  });
+}
+
+wireEvents();
+// Try fetch first (works when served over http). Fall back to manual file input.
+fetch("data.json", { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(initData)
+  .catch(() => { document.getElementById("loadError").style.display = "block"; });
+</script>
+</body>
+</html>
