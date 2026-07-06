@@ -277,10 +277,18 @@ def _target_action_ids(target_actions: Tensor) -> Tensor:
     return target_actions.long().flatten()
 
 
-def _observed_class_mask(labels: Tensor, num_classes: int, ignore_index: int | None = 0) -> Tensor:
+def _observed_class_mask(labels: Tensor, num_classes: int, ignore_index: int | None = 0, threshold: float = 0.0) -> Tensor:
+    """
+    [B, num_classes] bool: classes observed anywhere in the (possibly temporal)
+    label tensor. 'threshold' matters for TRAINING targets: mixup applies label
+    smoothing (off-value = smoothing/num_classes > 0), so '> 0' would mark EVERY
+    class observed; pass a threshold above the smoothing floor to keep only
+    classes with real label mass. Eval targets are clean one-hots, where the
+    default 0.0 is exact.
+    """
     labels = labels.detach()
     if labels.ndim >= 2 and labels.shape[-1] == num_classes:
-        observed = labels > 0
+        observed = labels > threshold
         if observed.ndim > 2:
             observed = observed.flatten(1, -2).any(dim=1)
     else:

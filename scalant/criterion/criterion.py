@@ -404,7 +404,12 @@ class Criterion_LSTR:
             return None
         noun_ids = self.action_to_noun_id.to(device=device)
         past_nouns = target.past_nouns.to(device=device)
-        observed = _observed_class_mask(past_nouns, past_nouns.shape[-1], ignore_index=self.ignore_index if self.ignore_index >= 0 else None)  # [B, C_noun]
+        # threshold=0.05: training targets are mixup-mixed AND label-smoothed
+        # (off-value = 0.1/num_nouns ~ 3e-4 > 0 everywhere), so '> 0' would mark
+        # every noun observed and silently disable the grounding. 0.05 sits far
+        # above the smoothing floor and counts a mixed-in clip's nouns as
+        # observed once its mix weight exceeds ~6%. Exact for clean eval one-hots.
+        observed = _observed_class_mask(past_nouns, past_nouns.shape[-1], ignore_index=self.ignore_index if self.ignore_index >= 0 else None, threshold=0.05)  # [B, C_noun]
         allowed = torch.zeros(past_nouns.size(0), noun_ids.numel(), dtype=torch.bool, device=device)
         valid = (noun_ids >= 0) & (noun_ids < observed.size(1))
         allowed[:, valid] = observed[:, noun_ids[valid]]
@@ -431,16 +436,30 @@ class Criterion_LSTR:
 
     def _prev_action_ids(self, target: Target) -> Tensor:
         """
-        GT last-observed action id per sample (model index space), [B] long.
+        GT previous-action id per sample (model index space), [B] long: the most
+        recent FOREGROUND action in the observed window.
 
         target.past_actions is [B, T, A] (one-hot / mixup-mixed over the observed
-        window); the last step is the most recent observed action, i.e. the
-        'previous action' that conditions the transition prior.
+        window). The literal last step is background for ~31% of training samples
+        (the pause before the next action starts); background's prior row carries
+        no transition counts and falls back to pure popularity, which fed the
+        popularity-marginal collapse. So scan back to the last step whose argmax
+        is a real action; only windows containing no action at all keep the
+        background id (popularity fallback is then the honest choice).
         """
 
         pa = target.past_actions
-        last = pa[:, -1] if pa.ndim == 3 else pa
-        return last.argmax(dim=-1)
+        ids = pa.argmax(dim=-1)  # [B, T] (or [B] if a single step was given)
+        if ids.ndim == 1:
+            return ids
+        bg = self.ignore_index
+        if not 0 <= bg < pa.size(-1):
+            return ids[:, -1]
+        # Index of the last foreground step per row. Rows with no foreground get
+        # flip().argmax()==0 -> index T-1 -> the (background) last step.
+        offset = (ids != bg).flip(1).int().argmax(dim=1)  # steps back from the end
+        idx = ids.size(1) - 1 - offset  # [B]
+        return ids.gather(1, idx.unsqueeze(1)).squeeze(1)
 
     def _past_action_dist(self, pred: Prediction) -> Tensor:
         """
