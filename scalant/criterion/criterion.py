@@ -9,6 +9,7 @@ from scalant.utils import accuracy
 from scalant.utils.ouput_target_structure import Prediction, Target
 from scalant.criterion.build import Criterion_REGISTRY
 from scalant.datasets import (EpicKitchens, action2verbnoun, action_set_metrics, build_action_id_to_verb_noun_maps, build_action_similarity_matrix, diverse_action_rerank, topk_action_ids, verbnoun2action)
+from scalant.datasets.utils import _observed_class_mask
 from scalant.datasets.transition_prior import ActionTransitionPrior
 from scalant.criterion.loss import *
 
@@ -79,6 +80,11 @@ class Criterion_LSTR:
         self.transition_weight = float(cfg.MODEL.DIVERSE_SET.TRANSITION_WEIGHT)
         self.transition_fuse_source = str(cfg.MODEL.DIVERSE_SET.TRANSITION_FUSE_SOURCE)
         self.coverage_source = str(cfg.MODEL.DIVERSE_SET.COVERAGE_SOURCE)
+        # Object grounding of the transition coverage targets: successors whose
+        # noun was observed in the past window are preferred as slot targets
+        # (log-space bonus in top_modes). Fixes the marginal collapse where the
+        # slots reuse the dataset's most popular successors for every input.
+        self.object_weight = float(cfg.MODEL.DIVERSE_SET.OBJECT_WEIGHT)
         self.transition_prior = None
         if self.transition_weight > 0.0 or self.coverage_source == "transition":
             try:
@@ -137,7 +143,8 @@ class Criterion_LSTR:
         future_coverage_value = None
         if fixed_role:
             cov_prev_ids = self._prev_action_ids(target) if (self.coverage_source == "transition" and self.transition_prior is not None) else None
-            future_coverage = self._diverse_coverage_loss(pred.future_actions, target.future_actions, prev_ids=cov_prev_ids)
+            cov_allowed = self._observed_action_mask(target, pred.future_actions.device) if (cov_prev_ids is not None and self.object_weight > 0.0) else None
+            future_coverage = self._diverse_coverage_loss(pred.future_actions, target.future_actions, prev_ids=cov_prev_ids, allowed_mask=cov_allowed)
             cov_weight = self.diversity_weight * (self._diversity_warmup() if is_training else 1.0)
             loss = loss + cov_weight * future_coverage
             future_coverage_value = float(future_coverage.item())
@@ -217,6 +224,7 @@ class Criterion_LSTR:
         metric_dict = {}
         topk_metrics = action_set_metrics(topk_sets, target.future_actions[:, -1], action_to_verb_id, action_to_noun_id, action_similarity=action_similarity, past_nouns=target.past_nouns, ignore_index=self.ignore_index if self.ignore_index >= 0 else None)
         metric_dict.update(self._format_set_metrics("topk", topk_metrics))
+        metric_dict[f"topk_crossclip_overlap@{self.set_metric_k}"] = [None, self._crossclip_overlap(topk_sets), topk_sets.size(0)]
 
         if self.cfg.MODEL.DIVERSE_SET.ENABLE or self.multi_query:
             if self.multi_query and slot_logits.size(1) > 1:
@@ -225,6 +233,9 @@ class Criterion_LSTR:
                 diverse_sets = torch.stack([diverse_action_rerank(logits, self.set_metric_k, action_similarity=action_similarity, diversity_weight=float(self.cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT), include_background=False, background_id=self.set_metric_background_id) for logits in future_logits])
             diverse_metrics = action_set_metrics(diverse_sets, target.future_actions[:, -1], action_to_verb_id, action_to_noun_id, action_similarity=action_similarity, past_nouns=target.past_nouns, ignore_index=self.ignore_index if self.ignore_index >= 0 else None)
             metric_dict.update(self._format_set_metrics("diverse", diverse_metrics))
+            # Guard against the marginal/popularity collapse: how much do the
+            # non-anchor predictions repeat ACROSS different clips in the batch?
+            metric_dict[f"diverse_crossclip_overlap@{self.set_metric_k}"] = [None, self._crossclip_overlap(diverse_sets), diverse_sets.size(0)]
 
         return metric_dict
 
@@ -265,7 +276,7 @@ class Criterion_LSTR:
             self._perm_cache = (n, perms)
         return self._perm_cache[1].to(device=device)
 
-    def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor, prev_ids: Tensor | None = None) -> Tensor:
+    def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor, prev_ids: Tensor | None = None, allowed_mask: Tensor | None = None) -> Tensor:
         """
         Coverage loss for the fixed-role scheme.
 
@@ -290,6 +301,13 @@ class Criterion_LSTR:
           slots can cover ground the single head's top-K misses and the diverse set
           can exceed the ceiling. Still collapse-safe: targets are fixed dataset
           statistics, not a GT-excluding self-referential signal.
+          With OBJECT_WEIGHT > 0 ('allowed_mask'), successors whose noun was
+          observed in the past window are preferred as targets. Without it the
+          targets condition only on the previous action, which the model cannot
+          reliably recognize (past_top1 ~18), so training collapses the slots onto
+          the targets' popularity marginal (the same turn-on-tap/open-drawer set
+          for most inputs); grounding conditions the targets on the visible
+          objects, a signal the decoder demonstrably has (object_match ~31).
 
         The CE toward concrete target actions keeps a non-vanishing gradient at
         collapse: a slot sitting elsewhere assigns low probability to its assigned
@@ -316,7 +334,7 @@ class Criterion_LSTR:
         # single-head ceiling), else slot 0's own detached top-(K-1) modes.
         use_transition = (self.coverage_source == "transition" and self.transition_prior is not None and prev_ids is not None)
         if use_transition:
-            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg)  # [B, K-1]
+            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg, allowed_mask=allowed_mask, allowed_bonus=self.object_weight)  # [B, K-1]
         else:
             ref0 = future_logits[:, 0].detach().float() / self.diversity_temp  # [B, A]
             if has_bg:
@@ -373,6 +391,43 @@ class Criterion_LSTR:
             scores = scores.clone()
             scores[..., self.set_metric_background_id] = float("-inf")
         return scores.argmax(dim=-1)
+
+    def _observed_action_mask(self, target: Target, device) -> Tensor | None:
+        """
+        [B, A] bool: True for actions whose noun was observed in the past window,
+        using the SAME 'observed' definition as the object_match metric, so the
+        grounding mechanism and its measurement agree. None when noun metadata or
+        past-noun targets are unavailable (grounding then silently stays off).
+        """
+
+        if self.action_to_noun_id is None or target.past_nouns is None:
+            return None
+        noun_ids = self.action_to_noun_id.to(device=device)
+        past_nouns = target.past_nouns.to(device=device)
+        observed = _observed_class_mask(past_nouns, past_nouns.shape[-1], ignore_index=self.ignore_index if self.ignore_index >= 0 else None)  # [B, C_noun]
+        allowed = torch.zeros(past_nouns.size(0), noun_ids.numel(), dtype=torch.bool, device=device)
+        valid = (noun_ids >= 0) & (noun_ids < observed.size(1))
+        allowed[:, valid] = observed[:, noun_ids[valid]]
+        return allowed
+
+    @staticmethod
+    def _crossclip_overlap(action_sets: Tensor) -> float:
+        """
+        Mean fraction of one sample's non-anchor predictions that also appear in
+        ANOTHER sample's set (off-diagonal average over the batch). ~0 = sets vary
+        with the input; ~1 = the same actions are reused for every clip (the
+        marginal/popularity collapse this metric guards against). Batch-size
+        independent in expectation; compare runs at the same VAL.BATCH_SIZE anyway.
+        """
+
+        sets = action_sets[:, 1:] if action_sets.size(1) > 1 else action_sets
+        B = sets.size(0)
+        if B < 2:
+            return 0.0
+        # present[i, j, k] = sets[i, k] appears anywhere in sets[j]
+        present = (sets.unsqueeze(1).unsqueeze(-1) == sets.unsqueeze(0).unsqueeze(-2)).any(dim=-1)  # [B, B, K']
+        frac = present.float().mean(dim=-1)  # [B, B]
+        return float((frac.sum() - frac.diagonal().sum()) / (B * (B - 1)))
 
     def _prev_action_ids(self, target: Target) -> Tensor:
         """

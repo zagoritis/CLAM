@@ -124,15 +124,33 @@ class ActionTransitionPrior:
             logrow = logrow.unsqueeze(1)
         return logits + float(weight) * logrow
 
-    def top_modes(self, prev_ids: Tensor, k: int, exclude_ids: Tensor | None = None, exclude_background: bool = True) -> Tensor:
+    def top_modes(self, prev_ids: Tensor, k: int, exclude_ids: Tensor | None = None, exclude_background: bool = True, allowed_mask: Tensor | None = None, allowed_bonus: float = 0.0) -> Tensor:
         """
         Top-k successor action ids of each prev action (excluding GT/background).
         Returns [B, k] long. Used to build external coverage targets for the
         non-anchor slots in the fixed-role scheme.
+
+        Object grounding: 'allowed_mask' [B, A] bool with 'allowed_bonus' > 0 adds
+        the bonus (log-space) to allowed actions. The order WITHIN the
+        allowed/disallowed groups stays the prior's own, and when fewer than k
+        allowed successors exist the remaining slots fall back to the unrestricted
+        ranking automatically. The bonus is a log-odds boost: a few nats = soft
+        preference (allowed successors win unless a disallowed one has a much
+        higher prior); >= ~30 nats exceeds the prior's full log range (probability
+        floor 1e-12 -> ~28 nats) and is a guaranteed hard preference. Without grounding, the targets condition
+        only on the previous action, which the model cannot reliably recognize
+        (past_top1 ~18), and the slots collapse onto the targets' popularity
+        marginal (the reusable turn-on-tap / open-drawer sets); grounding makes the
+        targets a function of the observed objects, which the decoder does perceive.
         """
 
         rows = self.log_prob[prev_ids.clamp(min=0).long()].clone()  # [B, A]
         B, A = rows.shape
+        if allowed_mask is not None and allowed_bonus:
+            if tuple(allowed_mask.shape) != (B, A):
+                raise ValueError(f"allowed_mask must have shape {(B, A)}; got {tuple(allowed_mask.shape)}.")
+            rows = rows + float(allowed_bonus) * allowed_mask.to(device=rows.device, dtype=rows.dtype)
+        # Exclusions come AFTER the bonus so they always win.
         if exclude_background and self.background_id is not None and 0 <= self.background_id < A:
             rows[:, self.background_id] = float("-inf")
         if exclude_ids is not None:

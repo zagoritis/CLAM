@@ -63,8 +63,21 @@ class DiverseSetConfig:
     # eps = 0.0 = pure "hit-anywhere" (only the winning slot is supervised).
     # Raise to 0.05-0.2 if you observe slot starvation during training.
     HIT_EPSILON: float = 0.0
+    # Object grounding of the transition coverage targets (active when
+    # COVERAGE_SOURCE == 'transition' and DIVERSITY_WEIGHT > 0): log-space bonus
+    # added, inside top_modes, to successor actions whose noun was observed in the
+    # past window (same 'observed' definition as the object_match metric).
+    # Successors compatible with the visible objects are then preferred as slot
+    # targets, falling back to the unrestricted transition ranking when fewer than
+    # K-1 compatible successors exist. Without it the targets condition only on
+    # the previous action, which the model recognizes poorly (past_top1 ~18), so
+    # training collapses slots 1..K-1 onto the targets' popularity marginal (the
+    # same turn-on-tap/open-drawer set for most clips). The value is a log-odds
+    # boost: a few nats = soft preference; >= ~30 nats exceeds the prior's full
+    # log range (prob floor 1e-12 -> ~28 nats) = guaranteed hard preference.
+    # 0 = off (plain 9B).
     OBJECT_WEIGHT: float = 0.
-    TEMPORAL_WEIGHT: float = 0.
+    TEMPORAL_WEIGHT: float = 0.  # reserved/unused
 
     # First-order action-transition prior P(next action | previous action),
     # built once from EK100 training sequences. Because it is external/data-driven
