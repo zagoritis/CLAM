@@ -1,2602 +1,2617 @@
-[
-  {
-    "clip_id": "clip_001",
-    "video_file": "clips/clip_001.mp4",
-    "video_id": "P04_29",
-    "observed_window": "00:00:03.97 → 00:00:35.97",
-    "narration": "close drawer",
-    "ground_truth_action": "close drawer",
-    "baseline": [
-      {
-        "label": "put oil",
-        "score": 0.076754
-      },
-      {
-        "label": "open drawer",
-        "score": 0.041109
-      },
-      {
-        "label": "put spice",
-        "score": 0.036409
-      },
-      {
-        "label": "open oil",
-        "score": 0.022639
-      },
-      {
-        "label": "take spice",
-        "score": 0.016888
-      }
-    ],
-    "modified": [
-      {
-        "label": "take spice",
-        "score": 0.044197
-      },
-      {
-        "label": "open drawer",
-        "score": 0.037332
-      },
-      {
-        "label": "take lighter",
-        "score": 0.022942
-      },
-      {
-        "label": "put oil",
-        "score": 0.017193
-      },
-      {
-        "label": "put spice",
-        "score": 0.014688
-      }
-    ]
+{
+  "meta": {
+    "generated_at": "2026-07-06T02:49:36+00:00",
+    "baseline": {
+      "preds_file": "baseline_preds.json",
+      "source": "top_actions",
+      "note": "single-head top-5 from the 1xA100-trained baseline checkpoint"
+    },
+    "modified": {
+      "preds_file": "modified_preds.json",
+      "source": "action_set",
+      "note": "diverse 5-slot set (slot argmaxes) from the Step 9B transition-coverage checkpoint"
+    }
   },
-  {
-    "clip_id": "clip_002",
-    "video_file": "clips/clip_002.mp4",
-    "video_id": "P01_14",
-    "observed_window": "00:14:34.85 → 00:15:06.85",
-    "narration": "turn on tap",
-    "ground_truth_action": "turn-on tap",
-    "baseline": [
-      {
-        "label": "put tomato",
-        "score": 0.039224
-      },
-      {
-        "label": "take tomato",
-        "score": 0.032401
-      },
-      {
-        "label": "wash tomato",
-        "score": 0.029399
-      },
-      {
-        "label": "wash container",
-        "score": 0.015273
-      },
-      {
-        "label": "insert tomato",
-        "score": 0.013404
-      }
-    ],
-    "modified": [
-      {
-        "label": "close container",
-        "score": 0.038466
-      },
-      {
-        "label": "wash container",
-        "score": 0.038069
-      },
-      {
-        "label": "wash tomato",
-        "score": 0.03614
-      },
-      {
-        "label": "turn-on tap",
-        "score": 0.027762
-      },
-      {
-        "label": "insert tomato",
-        "score": 0.025638
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_003",
-    "video_file": "clips/clip_003.mp4",
-    "video_id": "P17_02",
-    "observed_window": "00:00:56.94 → 00:01:28.94",
-    "narration": "clean the sink",
-    "ground_truth_action": "wash sink",
-    "baseline": [
-      {
-        "label": "add water",
-        "score": 0.161804
-      },
-      {
-        "label": "mix water",
-        "score": 0.049839
-      },
-      {
-        "label": "wash pot",
-        "score": 0.01951
-      },
-      {
-        "label": "throw water",
-        "score": 0.01945
-      },
-      {
-        "label": "insert water",
-        "score": 0.014415
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash pot",
-        "score": 0.032341
-      },
-      {
-        "label": "throw water",
-        "score": 0.030985
-      },
-      {
-        "label": "add water",
-        "score": 0.025572
-      },
-      {
-        "label": "move pot",
-        "score": 0.014235
-      },
-      {
-        "label": "take brush",
-        "score": 0.009791
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_004",
-    "video_file": "clips/clip_004.mp4",
-    "video_id": "P11_24",
-    "observed_window": "00:00:23.72 → 00:00:55.72",
-    "narration": "open bag",
-    "ground_truth_action": "open bag",
-    "baseline": [
-      {
-        "label": "insert clothes",
-        "score": 0.050579
-      },
-      {
-        "label": "hang clothes",
-        "score": 0.04659
-      },
-      {
-        "label": "take clothes",
-        "score": 0.046154
-      },
-      {
-        "label": "hang towel",
-        "score": 0.021567
-      },
-      {
-        "label": "close cupboard",
-        "score": 0.020128
-      }
-    ],
-    "modified": [
-      {
-        "label": "insert clothes",
-        "score": 0.061007
-      },
-      {
-        "label": "take clothes",
-        "score": 0.045962
-      },
-      {
-        "label": "put clothes",
-        "score": 0.022419
-      },
-      {
-        "label": "hang clothes",
-        "score": 0.022332
-      },
-      {
-        "label": "take water",
-        "score": 0.020605
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_005",
-    "video_file": "clips/clip_005.mp4",
-    "video_id": "P11_18",
-    "observed_window": "00:00:01.06 → 00:00:33.06",
-    "narration": "put down bowl",
-    "ground_truth_action": "put bowl",
-    "baseline": [
-      {
-        "label": "put cereal",
-        "score": 0.29318
-      },
-      {
-        "label": "put bowl",
-        "score": 0.081595
-      },
-      {
-        "label": "open cereal",
-        "score": 0.025541
-      },
-      {
-        "label": "pour cereal",
-        "score": 0.02493
-      },
-      {
-        "label": "pour milk",
-        "score": 0.015462
-      }
-    ],
-    "modified": [
-      {
-        "label": "put bowl",
-        "score": 0.387348
-      },
-      {
-        "label": "sort bowl",
-        "score": 0.009054
-      },
-      {
-        "label": "insert bowl",
-        "score": 0.006441
-      },
-      {
-        "label": "put cereal",
-        "score": 0.004585
-      },
-      {
-        "label": "remove clip",
-        "score": 0.003691
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_006",
-    "video_file": "clips/clip_006.mp4",
-    "video_id": "P06_11",
-    "observed_window": "00:00:00.00 → 00:00:15.03",
-    "narration": "scrape carrots into pan",
-    "ground_truth_action": "scrape carrot",
-    "baseline": [
-      {
-        "label": "open dishwasher",
-        "score": 0.102905
-      },
-      {
-        "label": "scrape pepper",
-        "score": 0.029227
-      },
-      {
-        "label": "cut pepper",
-        "score": 0.022767
-      },
-      {
-        "label": "cut potato",
-        "score": 0.019042
-      },
-      {
-        "label": "insert pepper",
-        "score": 0.016789
-      }
-    ],
-    "modified": [
-      {
-        "label": "cut carrot",
-        "score": 0.119138
-      },
-      {
-        "label": "insert carrot",
-        "score": 0.063689
-      },
-      {
-        "label": "scrape pepper",
-        "score": 0.057411
-      },
-      {
-        "label": "take carrot",
-        "score": 0.03647
-      },
-      {
-        "label": "cut pepper",
-        "score": 0.025587
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_007",
-    "video_file": "clips/clip_007.mp4",
-    "video_id": "P04_24",
-    "observed_window": "00:03:04.14 → 00:03:36.14",
-    "narration": "open cupboard",
-    "ground_truth_action": "open cupboard",
-    "baseline": [
-      {
-        "label": "put rice",
-        "score": 0.023442
-      },
-      {
-        "label": "open box",
-        "score": 0.013854
-      },
-      {
-        "label": "open cupboard",
-        "score": 0.012689
-      },
-      {
-        "label": "put chopstick",
-        "score": 0.01265
-      },
-      {
-        "label": "put flour",
-        "score": 0.010984
-      }
-    ],
-    "modified": [
-      {
-        "label": "open sauce",
-        "score": 0.025139
-      },
-      {
-        "label": "take juicer",
-        "score": 0.018896
-      },
-      {
-        "label": "open paste",
-        "score": 0.009867
-      },
-      {
-        "label": "put jug",
-        "score": 0.009254
-      },
-      {
-        "label": "take kettle",
-        "score": 0.009185
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_008",
-    "video_file": "clips/clip_008.mp4",
-    "video_id": "P30_08",
-    "observed_window": "00:15:17.30 → 00:15:49.30",
-    "narration": "pour pasta from colander into saucepan",
-    "ground_truth_action": "pour pasta",
-    "baseline": [
-      {
-        "label": "filter pasta",
-        "score": 0.152442
-      },
-      {
-        "label": "pour pasta",
-        "score": 0.121898
-      },
-      {
-        "label": "insert pasta",
-        "score": 0.031249
-      },
-      {
-        "label": "shake pasta",
-        "score": 0.023686
-      },
-      {
-        "label": "insert food",
-        "score": 0.011763
-      }
-    ],
-    "modified": [
-      {
-        "label": "filter pasta",
-        "score": 0.080318
-      },
-      {
-        "label": "pour pasta",
-        "score": 0.026995
-      },
-      {
-        "label": "put colander",
-        "score": 0.022361
-      },
-      {
-        "label": "break rice",
-        "score": 0.014215
-      },
-      {
-        "label": "cut lime",
-        "score": 0.014172
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_009",
-    "video_file": "clips/clip_009.mp4",
-    "video_id": "P03_23",
-    "observed_window": "00:01:18.25 → 00:01:50.25",
-    "narration": "wash hands",
-    "ground_truth_action": "wash hand",
-    "baseline": [
-      {
-        "label": "take jug",
-        "score": 0.022921
-      },
-      {
-        "label": "insert bag",
-        "score": 0.014282
-      },
-      {
-        "label": "take can",
-        "score": 0.014203
-      },
-      {
-        "label": "take bag",
-        "score": 0.013033
-      },
-      {
-        "label": "take water",
-        "score": 0.008205
-      }
-    ],
-    "modified": [
-      {
-        "label": "take chicken",
-        "score": 0.013981
-      },
-      {
-        "label": "open box",
-        "score": 0.008833
-      },
-      {
-        "label": "shake bag",
-        "score": 0.007219
-      },
-      {
-        "label": "move plate",
-        "score": 0.006805
-      },
-      {
-        "label": "squeeze air",
-        "score": 0.005075
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_010",
-    "video_file": "clips/clip_010.mp4",
-    "video_id": "P24_09",
-    "observed_window": "00:13:01.85 → 00:13:33.85",
-    "narration": "close tap",
-    "ground_truth_action": "turn-off tap",
-    "baseline": [
-      {
-        "label": "take salad",
-        "score": 0.062704
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.022956
-      },
-      {
-        "label": "take napkin",
-        "score": 0.017683
-      },
-      {
-        "label": "put salad",
-        "score": 0.015815
-      },
-      {
-        "label": "put maker:coffee",
-        "score": 0.013383
-      }
-    ],
-    "modified": [
-      {
-        "label": "mix salad",
-        "score": 0.012624
-      },
-      {
-        "label": "mix meat",
-        "score": 0.012256
-      },
-      {
-        "label": "take lettuce",
-        "score": 0.012126
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.010956
-      },
-      {
-        "label": "take jar",
-        "score": 0.009659
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_011",
-    "video_file": "clips/clip_011.mp4",
-    "video_id": "P01_14",
-    "observed_window": "00:21:53.72 → 00:22:25.72",
-    "narration": "put down plates",
-    "ground_truth_action": "put plate",
-    "baseline": [
-      {
-        "label": "put plate",
-        "score": 0.056693
-      },
-      {
-        "label": "pour mushroom",
-        "score": 0.0331
-      },
-      {
-        "label": "move plate",
-        "score": 0.011883
-      },
-      {
-        "label": "eat mushroom",
-        "score": 0.009246
-      },
-      {
-        "label": "put mushroom",
-        "score": 0.008676
-      }
-    ],
-    "modified": [
-      {
-        "label": "put plate",
-        "score": 0.038439
-      },
-      {
-        "label": "move plate",
-        "score": 0.011802
-      },
-      {
-        "label": "cut carrot",
-        "score": 0.009846
-      },
-      {
-        "label": "insert carrot",
-        "score": 0.005546
-      },
-      {
-        "label": "cut potato",
-        "score": 0.005339
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_012",
-    "video_file": "clips/clip_012.mp4",
-    "video_id": "P01_14",
-    "observed_window": "00:20:10.09 → 00:20:42.09",
-    "narration": "put down plate",
-    "ground_truth_action": "put plate",
-    "baseline": [
-      {
-        "label": "take mat",
-        "score": 0.024388
-      },
-      {
-        "label": "open bottle",
-        "score": 0.013958
-      },
-      {
-        "label": "put cutlery",
-        "score": 0.012676
-      },
-      {
-        "label": "put mat",
-        "score": 0.012523
-      },
-      {
-        "label": "take bottle",
-        "score": 0.0123
-      }
-    ],
-    "modified": [
-      {
-        "label": "fold bag",
-        "score": 0.017374
-      },
-      {
-        "label": "take mat",
-        "score": 0.016057
-      },
-      {
-        "label": "take bottle",
-        "score": 0.015884
-      },
-      {
-        "label": "take glass",
-        "score": 0.013479
-      },
-      {
-        "label": "take carrot",
-        "score": 0.011545
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_013",
-    "video_file": "clips/clip_013.mp4",
-    "video_id": "P03_24",
-    "observed_window": "00:13:00.59 → 00:13:32.59",
-    "narration": "open drawer",
-    "ground_truth_action": "open drawer",
-    "baseline": [
-      {
-        "label": "open cupboard",
-        "score": 0.01733
-      },
-      {
-        "label": "take pan",
-        "score": 0.013099
-      },
-      {
-        "label": "put glove",
-        "score": 0.010205
-      },
-      {
-        "label": "turn-off light",
-        "score": 0.009724
-      },
-      {
-        "label": "wear apron",
-        "score": 0.008221
-      }
-    ],
-    "modified": [
-      {
-        "label": "put glove",
-        "score": 0.012963
-      },
-      {
-        "label": "open oven",
-        "score": 0.010649
-      },
-      {
-        "label": "take glove",
-        "score": 0.009901
-      },
-      {
-        "label": "squeeze liquid:washing",
-        "score": 0.00701
-      },
-      {
-        "label": "turn-on oven",
-        "score": 0.006108
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_014",
-    "video_file": "clips/clip_014.mp4",
-    "video_id": "P11_17",
-    "observed_window": "00:01:23.37 → 00:01:55.37",
-    "narration": "wash hands",
-    "ground_truth_action": "take liquid:washing",
-    "baseline": [
-      {
-        "label": "dry hand",
-        "score": 0.07706
-      },
-      {
-        "label": "dry stand",
-        "score": 0.058727
-      },
-      {
-        "label": "wash hand",
-        "score": 0.052266
-      },
-      {
-        "label": "wash guard:hand",
-        "score": 0.019882
-      },
-      {
-        "label": "turn-off tap",
-        "score": 0.018757
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash leek",
-        "score": 0.028139
-      },
-      {
-        "label": "wash tap",
-        "score": 0.019425
-      },
-      {
-        "label": "dry stand",
-        "score": 0.018474
-      },
-      {
-        "label": "shake leek",
-        "score": 0.016796
-      },
-      {
-        "label": "turn-off tap",
-        "score": 0.013993
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_015",
-    "video_file": "clips/clip_015.mp4",
-    "video_id": "P11_20",
-    "observed_window": "00:00:31.99 → 00:01:03.99",
-    "narration": "put kitchen foil on hob",
-    "ground_truth_action": "put foil",
-    "baseline": [
-      {
-        "label": "close box",
-        "score": 0.03009
-      },
-      {
-        "label": "remove bag",
-        "score": 0.022313
-      },
-      {
-        "label": "insert box",
-        "score": 0.02215
-      },
-      {
-        "label": "insert bowl",
-        "score": 0.02138
-      },
-      {
-        "label": "insert bin",
-        "score": 0.017454
-      }
-    ],
-    "modified": [
-      {
-        "label": "close box",
-        "score": 0.236617
-      },
-      {
-        "label": "insert box",
-        "score": 0.037303
-      },
-      {
-        "label": "open box",
-        "score": 0.031442
-      },
-      {
-        "label": "put cereal",
-        "score": 0.011919
-      },
-      {
-        "label": "insert fridge",
-        "score": 0.01169
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_016",
-    "video_file": "clips/clip_016.mp4",
-    "video_id": "P29_05",
-    "observed_window": "00:16:22.68 → 00:16:54.68",
-    "narration": "put salt into pan",
-    "ground_truth_action": "insert salt",
-    "baseline": [
-      {
-        "label": "insert knife",
-        "score": 0.019977
-      },
-      {
-        "label": "take knife",
-        "score": 0.018911
-      },
-      {
-        "label": "move knife",
-        "score": 0.01051
-      },
-      {
-        "label": "adjust tray",
-        "score": 0.009826
-      },
-      {
-        "label": "soak lid",
-        "score": 0.007782
-      }
-    ],
-    "modified": [
-      {
-        "label": "take spoon",
-        "score": 0.052367
-      },
-      {
-        "label": "insert lid",
-        "score": 0.008336
-      },
-      {
-        "label": "increase heat",
-        "score": 0.008182
-      },
-      {
-        "label": "mix onion",
-        "score": 0.007961
-      },
-      {
-        "label": "mix sauce",
-        "score": 0.006762
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_017",
-    "video_file": "clips/clip_017.mp4",
-    "video_id": "P01_14",
-    "observed_window": "00:15:50.23 → 00:16:22.23",
-    "narration": "put down bottle",
-    "ground_truth_action": "put bottle",
-    "baseline": [
-      {
-        "label": "open bottle",
-        "score": 0.047138
-      },
-      {
-        "label": "drink water",
-        "score": 0.033678
-      },
-      {
-        "label": "move bottle",
-        "score": 0.021704
-      },
-      {
-        "label": "close bottle",
-        "score": 0.0197
-      },
-      {
-        "label": "shake bottle",
-        "score": 0.014838
-      }
-    ],
-    "modified": [
-      {
-        "label": "close bottle",
-        "score": 0.03031
-      },
-      {
-        "label": "open bottle",
-        "score": 0.021021
-      },
-      {
-        "label": "drink water",
-        "score": 0.019844
-      },
-      {
-        "label": "put bottle",
-        "score": 0.019795
-      },
-      {
-        "label": "shake bottle",
-        "score": 0.016568
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_018",
-    "video_file": "clips/clip_018.mp4",
-    "video_id": "P30_09",
-    "observed_window": "00:02:34.14 → 00:03:06.14",
-    "narration": "dry cafetiere jug",
-    "ground_truth_action": "dry jug",
-    "baseline": [
-      {
-        "label": "take maker:coffee",
-        "score": 0.047017
-      },
-      {
-        "label": "put maker:coffee",
-        "score": 0.029223
-      },
-      {
-        "label": "empty bottle",
-        "score": 0.017656
-      },
-      {
-        "label": "close maker:coffee",
-        "score": 0.012714
-      },
-      {
-        "label": "dry maker:coffee",
-        "score": 0.011251
-      }
-    ],
-    "modified": [
-      {
-        "label": "dry cup",
-        "score": 0.055576
-      },
-      {
-        "label": "put maker:coffee",
-        "score": 0.053711
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.03935
-      },
-      {
-        "label": "dry maker:coffee",
-        "score": 0.025234
-      },
-      {
-        "label": "insert cup",
-        "score": 0.014312
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_019",
-    "video_file": "clips/clip_019.mp4",
-    "video_id": "P09_08",
-    "observed_window": "00:01:16.94 → 00:01:48.94",
-    "narration": "put honey in cabinet",
-    "ground_truth_action": "insert spreads",
-    "baseline": [
-      {
-        "label": "insert spreads",
-        "score": 0.144942
-      },
-      {
-        "label": "take spreads",
-        "score": 0.052443
-      },
-      {
-        "label": "insert oatmeal",
-        "score": 0.025493
-      },
-      {
-        "label": "take cereal",
-        "score": 0.013827
-      },
-      {
-        "label": "take oatmeal",
-        "score": 0.013013
-      }
-    ],
-    "modified": [
-      {
-        "label": "close cupboard",
-        "score": 0.114706
-      },
-      {
-        "label": "take oatmeal",
-        "score": 0.018446
-      },
-      {
-        "label": "insert oatmeal",
-        "score": 0.016584
-      },
-      {
-        "label": "insert cereal",
-        "score": 0.016158
-      },
-      {
-        "label": "insert plate",
-        "score": 0.01572
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_020",
-    "video_file": "clips/clip_020.mp4",
-    "video_id": "P30_08",
-    "observed_window": "00:14:41.98 → 00:15:13.98",
-    "narration": "put plate into microwave",
-    "ground_truth_action": "insert plate",
-    "baseline": [
-      {
-        "label": "turn-on tap",
-        "score": 0.038334
-      },
-      {
-        "label": "turn-on kettle",
-        "score": 0.020798
-      },
-      {
-        "label": "open microwave",
-        "score": 0.01689
-      },
-      {
-        "label": "turn-on microwave",
-        "score": 0.016506
-      },
-      {
-        "label": "add water",
-        "score": 0.014332
-      }
-    ],
-    "modified": [
-      {
-        "label": "close microwave",
-        "score": 0.03135
-      },
-      {
-        "label": "empty sink",
-        "score": 0.019137
-      },
-      {
-        "label": "wash tap",
-        "score": 0.014803
-      },
-      {
-        "label": "lift lid",
-        "score": 0.010978
-      },
-      {
-        "label": "insert lid",
-        "score": 0.010156
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_021",
-    "video_file": "clips/clip_021.mp4",
-    "video_id": "P23_05",
-    "observed_window": "00:15:40.10 → 00:16:12.10",
-    "narration": "open the tap",
-    "ground_truth_action": "turn-on tap",
-    "baseline": [
-      {
-        "label": "wash bowl",
-        "score": 0.123128
-      },
-      {
-        "label": "wash colander",
-        "score": 0.087492
-      },
-      {
-        "label": "empty bowl",
-        "score": 0.038644
-      },
-      {
-        "label": "insert bowl",
-        "score": 0.024819
-      },
-      {
-        "label": "scrub bowl",
-        "score": 0.019689
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash colander",
-        "score": 0.186124
-      },
-      {
-        "label": "wash bowl",
-        "score": 0.138841
-      },
-      {
-        "label": "insert bowl",
-        "score": 0.036914
-      },
-      {
-        "label": "wash hand",
-        "score": 0.015154
-      },
-      {
-        "label": "wash rice",
-        "score": 0.012897
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_022",
-    "video_file": "clips/clip_022.mp4",
-    "video_id": "P11_17",
-    "observed_window": "00:03:09.71 → 00:03:41.71",
-    "narration": "turn on tap",
-    "ground_truth_action": "scrub colander",
-    "baseline": [
-      {
-        "label": "wash colander",
-        "score": 0.303421
-      },
-      {
-        "label": "wash pan",
-        "score": 0.013296
-      },
-      {
-        "label": "wash pot",
-        "score": 0.012789
-      },
-      {
-        "label": "scrub pan",
-        "score": 0.00923
-      },
-      {
-        "label": "wash lid",
-        "score": 0.006603
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash colander",
-        "score": 0.279889
-      },
-      {
-        "label": "wash pan",
-        "score": 0.160098
-      },
-      {
-        "label": "scrub pan",
-        "score": 0.069791
-      },
-      {
-        "label": "wash pot",
-        "score": 0.010701
-      },
-      {
-        "label": "scrub colander",
-        "score": 0.010483
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_023",
-    "video_file": "clips/clip_023.mp4",
-    "video_id": "P26_31",
-    "observed_window": "00:00:32.99 → 00:01:04.99",
-    "narration": "turn on the stove",
-    "ground_truth_action": "turn-on hob",
-    "baseline": [
-      {
-        "label": "adjust hob",
-        "score": 0.038602
-      },
-      {
-        "label": "put lighter",
-        "score": 0.038077
-      },
-      {
-        "label": "turn-off hob",
-        "score": 0.034239
-      },
-      {
-        "label": "turn-on hob",
-        "score": 0.031743
-      },
-      {
-        "label": "open box",
-        "score": 0.020247
-      }
-    ],
-    "modified": [
-      {
-        "label": "turn-on hob",
-        "score": 0.043324
-      },
-      {
-        "label": "turn-off hob",
-        "score": 0.040579
-      },
-      {
-        "label": "put lighter",
-        "score": 0.026174
-      },
-      {
-        "label": "move pot",
-        "score": 0.024885
-      },
-      {
-        "label": "take lighter",
-        "score": 0.0222
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_024",
-    "video_file": "clips/clip_024.mp4",
-    "video_id": "P18_02",
-    "observed_window": "00:01:01.72 → 00:01:33.72",
-    "narration": "still washing coffee pot",
-    "ground_truth_action": "wash maker:coffee",
-    "baseline": [
-      {
-        "label": "put jug",
-        "score": 0.184074
-      },
-      {
-        "label": "empty jug",
-        "score": 0.030928
-      },
-      {
-        "label": "put kettle",
-        "score": 0.022732
-      },
-      {
-        "label": "take jug",
-        "score": 0.017374
-      },
-      {
-        "label": "insert jug",
-        "score": 0.01707
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash maker:coffee",
-        "score": 0.039944
-      },
-      {
-        "label": "put kettle",
-        "score": 0.0304
-      },
-      {
-        "label": "open maker:coffee",
-        "score": 0.024797
-      },
-      {
-        "label": "put jug",
-        "score": 0.022791
-      },
-      {
-        "label": "put maker:coffee",
-        "score": 0.019894
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_025",
-    "video_file": "clips/clip_025.mp4",
-    "video_id": "P01_11",
-    "observed_window": "00:02:29.65 → 00:03:01.65",
-    "narration": "wash tray",
-    "ground_truth_action": "take tray",
-    "baseline": [
-      {
-        "label": "insert plate",
-        "score": 0.059127
-      },
-      {
-        "label": "wash plate",
-        "score": 0.037377
-      },
-      {
-        "label": "put plate",
-        "score": 0.031924
-      },
-      {
-        "label": "wash spatula",
-        "score": 0.029141
-      },
-      {
-        "label": "move plate",
-        "score": 0.023418
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash ladle",
-        "score": 0.089475
-      },
-      {
-        "label": "wash spatula",
-        "score": 0.059007
-      },
-      {
-        "label": "take ladle",
-        "score": 0.025214
-      },
-      {
-        "label": "put ladle",
-        "score": 0.019734
-      },
-      {
-        "label": "empty cup",
-        "score": 0.011222
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_026",
-    "video_file": "clips/clip_026.mp4",
-    "video_id": "P08_09",
-    "observed_window": "00:06:53.45 → 00:07:25.45",
-    "narration": "clean knife",
-    "ground_truth_action": "wash knife",
-    "baseline": [
-      {
-        "label": "put tomato",
-        "score": 0.02483
-      },
-      {
-        "label": "put sauce",
-        "score": 0.024483
-      },
-      {
-        "label": "mix meat",
-        "score": 0.022197
-      },
-      {
-        "label": "pour tomato",
-        "score": 0.020765
-      },
-      {
-        "label": "take tomato",
-        "score": 0.017233
-      }
-    ],
-    "modified": [
-      {
-        "label": "put tomato",
-        "score": 0.10825
-      },
-      {
-        "label": "pour tomato",
-        "score": 0.071487
-      },
-      {
-        "label": "take tomato",
-        "score": 0.070264
-      },
-      {
-        "label": "throw tomato",
-        "score": 0.036659
-      },
-      {
-        "label": "remove tomato",
-        "score": 0.022908
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_027",
-    "video_file": "clips/clip_027.mp4",
-    "video_id": "P24_09",
-    "observed_window": "00:13:34.67 → 00:14:06.67",
-    "narration": "take cheese",
-    "ground_truth_action": "take cheese",
-    "baseline": [
-      {
-        "label": "take salad",
-        "score": 0.041694
-      },
-      {
-        "label": "take tomato",
-        "score": 0.035193
-      },
-      {
-        "label": "put salad",
-        "score": 0.026777
-      },
-      {
-        "label": "take sauce",
-        "score": 0.023777
-      },
-      {
-        "label": "take fork",
-        "score": 0.022597
-      }
-    ],
-    "modified": [
-      {
-        "label": "take salad",
-        "score": 0.050016
-      },
-      {
-        "label": "put salad",
-        "score": 0.021122
-      },
-      {
-        "label": "mix salad",
-        "score": 0.019486
-      },
-      {
-        "label": "take plate",
-        "score": 0.01786
-      },
-      {
-        "label": "insert meat",
-        "score": 0.016461
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_028",
-    "video_file": "clips/clip_028.mp4",
-    "video_id": "P22_01",
-    "observed_window": "00:04:06.74 → 00:04:38.74",
-    "narration": "close tap",
-    "ground_truth_action": "wash peach",
-    "baseline": [
-      {
-        "label": "turn-off tap",
-        "score": 0.091163
-      },
-      {
-        "label": "wash peach",
-        "score": 0.083679
-      },
-      {
-        "label": "shake peach",
-        "score": 0.041975
-      },
-      {
-        "label": "put peach",
-        "score": 0.030141
-      },
-      {
-        "label": "remove skin",
-        "score": 0.029525
-      }
-    ],
-    "modified": [
-      {
-        "label": "turn-off tap",
-        "score": 0.186482
-      },
-      {
-        "label": "wash peach",
-        "score": 0.099859
-      },
-      {
-        "label": "shake peach",
-        "score": 0.039871
-      },
-      {
-        "label": "shake hand",
-        "score": 0.01448
-      },
-      {
-        "label": "wash tomato",
-        "score": 0.014316
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_029",
-    "video_file": "clips/clip_029.mp4",
-    "video_id": "P18_02",
-    "observed_window": "00:00:00.00 → 00:00:04.44",
-    "narration": "take off coffee",
-    "ground_truth_action": "remove coffee",
-    "baseline": [
-      {
-        "label": "take cup",
-        "score": 0.062729
-      },
-      {
-        "label": "take plate",
-        "score": 0.019271
-      },
-      {
-        "label": "take mat",
-        "score": 0.015965
-      },
-      {
-        "label": "put package",
-        "score": 0.015874
-      },
-      {
-        "label": "put cup",
-        "score": 0.010853
-      }
-    ],
-    "modified": [
-      {
-        "label": "take kettle",
-        "score": 0.027457
-      },
-      {
-        "label": "take plate",
-        "score": 0.027146
-      },
-      {
-        "label": "put plate",
-        "score": 0.026415
-      },
-      {
-        "label": "insert plate",
-        "score": 0.022273
-      },
-      {
-        "label": "dry plate",
-        "score": 0.01254
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_030",
-    "video_file": "clips/clip_030.mp4",
-    "video_id": "P07_16",
-    "observed_window": "00:01:36.84 → 00:02:08.84",
-    "narration": "pick up cup",
-    "ground_truth_action": "take cup",
-    "baseline": [
-      {
-        "label": "throw coffee",
-        "score": 0.027639
-      },
-      {
-        "label": "turn-on button",
-        "score": 0.018174
-      },
-      {
-        "label": "open pot",
-        "score": 0.017637
-      },
-      {
-        "label": "take coffee",
-        "score": 0.015013
-      },
-      {
-        "label": "pour blueberry",
-        "score": 0.01309
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash container",
-        "score": 0.037329
-      },
-      {
-        "label": "open lid",
-        "score": 0.0204
-      },
-      {
-        "label": "remove coffee",
-        "score": 0.018946
-      },
-      {
-        "label": "throw coffee",
-        "score": 0.01718
-      },
-      {
-        "label": "take container",
-        "score": 0.016499
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_031",
-    "video_file": "clips/clip_031.mp4",
-    "video_id": "P11_17",
-    "observed_window": "00:06:07.54 → 00:06:39.54",
-    "narration": "peel salmon",
-    "ground_truth_action": "peel salmon",
-    "baseline": [
-      {
-        "label": "insert salmon",
-        "score": 0.102473
-      },
-      {
-        "label": "put leaf",
-        "score": 0.013811
-      },
-      {
-        "label": "take salmon",
-        "score": 0.012458
-      },
-      {
-        "label": "cut lettuce",
-        "score": 0.012272
-      },
-      {
-        "label": "take leaf",
-        "score": 0.011561
-      }
-    ],
-    "modified": [
-      {
-        "label": "remove skin",
-        "score": 0.095963
-      },
-      {
-        "label": "put bread",
-        "score": 0.011906
-      },
-      {
-        "label": "insert oatmeal",
-        "score": 0.008885
-      },
-      {
-        "label": "insert skin",
-        "score": 0.008545
-      },
-      {
-        "label": "insert bread",
-        "score": 0.008495
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_032",
-    "video_file": "clips/clip_032.mp4",
-    "video_id": "P21_02",
-    "observed_window": "00:00:57.79 → 00:01:29.79",
-    "narration": "bringing the olive oil",
-    "ground_truth_action": "carry oil",
-    "baseline": [
-      {
-        "label": "check microwave",
-        "score": 0.012667
-      },
-      {
-        "label": "press dough",
-        "score": 0.008341
-      },
-      {
-        "label": "take spoon",
-        "score": 0.008052
-      },
-      {
-        "label": "open oil",
-        "score": 0.007255
-      },
-      {
-        "label": "sprinkle salt",
-        "score": 0.007069
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash spatula",
-        "score": 0.021572
-      },
-      {
-        "label": "wash tomato",
-        "score": 0.016823
-      },
-      {
-        "label": "wash container",
-        "score": 0.011054
-      },
-      {
-        "label": "insert tomato",
-        "score": 0.011011
-      },
-      {
-        "label": "wash peeler:potato",
-        "score": 0.010144
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_033",
-    "video_file": "clips/clip_033.mp4",
-    "video_id": "P04_24",
-    "observed_window": "00:02:42.17 → 00:03:14.17",
-    "narration": "open cupboard",
-    "ground_truth_action": "open cupboard",
-    "baseline": [
-      {
-        "label": "open microwave",
-        "score": 0.044013
-      },
-      {
-        "label": "open dishwasher",
-        "score": 0.043123
-      },
-      {
-        "label": "open cupboard",
-        "score": 0.03207
-      },
-      {
-        "label": "open drawer",
-        "score": 0.026829
-      },
-      {
-        "label": "take cutlery",
-        "score": 0.013883
-      }
-    ],
-    "modified": [
-      {
-        "label": "take tofu",
-        "score": 0.010557
-      },
-      {
-        "label": "take spice",
-        "score": 0.010508
-      },
-      {
-        "label": "crush spice",
-        "score": 0.010039
-      },
-      {
-        "label": "insert bin",
-        "score": 0.007818
-      },
-      {
-        "label": "move tofu",
-        "score": 0.005667
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_034",
-    "video_file": "clips/clip_034.mp4",
-    "video_id": "P03_24",
-    "observed_window": "00:11:51.61 → 00:12:23.61",
-    "narration": "put tray on side",
-    "ground_truth_action": "put tray",
-    "baseline": [
-      {
-        "label": "close oven",
-        "score": 0.164302
-      },
-      {
-        "label": "remove tray",
-        "score": 0.107698
-      },
-      {
-        "label": "put tray",
-        "score": 0.070503
-      },
-      {
-        "label": "insert tray",
-        "score": 0.056316
-      },
-      {
-        "label": "move tray",
-        "score": 0.015811
-      }
-    ],
-    "modified": [
-      {
-        "label": "close oven",
-        "score": 0.06016
-      },
-      {
-        "label": "move bag",
-        "score": 0.012077
-      },
-      {
-        "label": "put wrap:plastic",
-        "score": 0.011896
-      },
-      {
-        "label": "move bread",
-        "score": 0.010351
-      },
-      {
-        "label": "put glove",
-        "score": 0.009554
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_035",
-    "video_file": "clips/clip_035.mp4",
-    "video_id": "P22_03",
-    "observed_window": "00:07:05.87 → 00:07:37.87",
-    "narration": "put down coffee cup",
-    "ground_truth_action": "put cup",
-    "baseline": [
-      {
-        "label": "throw paper",
-        "score": 0.031509
-      },
-      {
-        "label": "wash filter",
-        "score": 0.030289
-      },
-      {
-        "label": "close basket",
-        "score": 0.019761
-      },
-      {
-        "label": "wash maker:coffee",
-        "score": 0.018927
-      },
-      {
-        "label": "open maker:coffee",
-        "score": 0.018436
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash maker:coffee",
-        "score": 0.018459
-      },
-      {
-        "label": "wash filter",
-        "score": 0.016201
-      },
-      {
-        "label": "take jug",
-        "score": 0.014775
-      },
-      {
-        "label": "close container",
-        "score": 0.013402
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.011855
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_036",
-    "video_file": "clips/clip_036.mp4",
-    "video_id": "P03_24",
-    "observed_window": "00:06:45.12 → 00:07:17.12",
-    "narration": "stir potatoes",
-    "ground_truth_action": "mix potato",
-    "baseline": [
-      {
-        "label": "turn-down hob",
-        "score": 0.14213
-      },
-      {
-        "label": "turn-off hob",
-        "score": 0.141905
-      },
-      {
-        "label": "turn-down heat",
-        "score": 0.031168
-      },
-      {
-        "label": "turn meat",
-        "score": 0.015561
-      },
-      {
-        "label": "mix meat",
-        "score": 0.008222
-      }
-    ],
-    "modified": [
-      {
-        "label": "turn-down hob",
-        "score": 0.334511
-      },
-      {
-        "label": "turn-off hob",
-        "score": 0.06181
-      },
-      {
-        "label": "turn-down heat",
-        "score": 0.013367
-      },
-      {
-        "label": "mix onion",
-        "score": 0.012677
-      },
-      {
-        "label": "turn pan",
-        "score": 0.012416
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_037",
-    "video_file": "clips/clip_037.mp4",
-    "video_id": "P22_01",
-    "observed_window": "00:02:34.46 → 00:03:06.46",
-    "narration": "put soap on sponge",
-    "ground_truth_action": "take sponge",
-    "baseline": [
-      {
-        "label": "wash hand",
-        "score": 0.041028
-      },
-      {
-        "label": "wash filter",
-        "score": 0.04102
-      },
-      {
-        "label": "dry hand",
-        "score": 0.029628
-      },
-      {
-        "label": "wash sponge",
-        "score": 0.018853
-      },
-      {
-        "label": "take cloth",
-        "score": 0.018357
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash hand",
-        "score": 0.049845
-      },
-      {
-        "label": "wash filter",
-        "score": 0.041322
-      },
-      {
-        "label": "put filter",
-        "score": 0.018747
-      },
-      {
-        "label": "take cutlery",
-        "score": 0.01764
-      },
-      {
-        "label": "wash sponge",
-        "score": 0.014009
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_038",
-    "video_file": "clips/clip_038.mp4",
-    "video_id": "P22_01",
-    "observed_window": "00:07:59.93 → 00:08:31.93",
-    "narration": "shake hands",
-    "ground_truth_action": "shake hand",
-    "baseline": [
-      {
-        "label": "turn-off tap",
-        "score": 0.180975
-      },
-      {
-        "label": "shake peach",
-        "score": 0.040997
-      },
-      {
-        "label": "wash peach",
-        "score": 0.038075
-      },
-      {
-        "label": "remove skin",
-        "score": 0.022464
-      },
-      {
-        "label": "put peach",
-        "score": 0.015729
-      }
-    ],
-    "modified": [
-      {
-        "label": "turn-off tap",
-        "score": 0.231956
-      },
-      {
-        "label": "squeeze cloth",
-        "score": 0.069014
-      },
-      {
-        "label": "wash peach",
-        "score": 0.045136
-      },
-      {
-        "label": "shake peach",
-        "score": 0.034164
-      },
-      {
-        "label": "shake hand",
-        "score": 0.033913
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_039",
-    "video_file": "clips/clip_039.mp4",
-    "video_id": "P15_04",
-    "observed_window": "00:06:21.60 → 00:06:53.60",
-    "narration": "pick up asparagus",
-    "ground_truth_action": "take asparagus",
-    "baseline": [
-      {
-        "label": "mix egg",
-        "score": 0.024374
-      },
-      {
-        "label": "put wrap",
-        "score": 0.015434
-      },
-      {
-        "label": "mix onion",
-        "score": 0.014547
-      },
-      {
-        "label": "put board:chopping",
-        "score": 0.013608
-      },
-      {
-        "label": "mix mixture",
-        "score": 0.011507
-      }
-    ],
-    "modified": [
-      {
-        "label": "close dishwasher",
-        "score": 0.038368
-      },
-      {
-        "label": "close bag",
-        "score": 0.03836
-      },
-      {
-        "label": "wash hand",
-        "score": 0.030575
-      },
-      {
-        "label": "put board:chopping",
-        "score": 0.01613
-      },
-      {
-        "label": "turn-off light",
-        "score": 0.008099
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_040",
-    "video_file": "clips/clip_040.mp4",
-    "video_id": "P01_15",
-    "observed_window": "00:08:43.38 → 00:09:15.38",
-    "narration": "wash colander",
-    "ground_truth_action": "wash colander",
-    "baseline": [
-      {
-        "label": "wash colander",
-        "score": 0.089128
-      },
-      {
-        "label": "wash pot",
-        "score": 0.041595
-      },
-      {
-        "label": "wash pan",
-        "score": 0.040918
-      },
-      {
-        "label": "wash spoon",
-        "score": 0.023143
-      },
-      {
-        "label": "put sponge",
-        "score": 0.02161
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash colander",
-        "score": 0.379371
-      },
-      {
-        "label": "wash pan",
-        "score": 0.058933
-      },
-      {
-        "label": "wash spatula",
-        "score": 0.030766
-      },
-      {
-        "label": "wash tongs",
-        "score": 0.021823
-      },
-      {
-        "label": "wash spoon",
-        "score": 0.021046
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_041",
-    "video_file": "clips/clip_041.mp4",
-    "video_id": "P26_41",
-    "observed_window": "00:01:16.81 → 00:01:48.81",
-    "narration": "put lid",
-    "ground_truth_action": "put lid",
-    "baseline": [
-      {
-        "label": "mix sauce",
-        "score": 0.078589
-      },
-      {
-        "label": "put pasta",
-        "score": 0.053126
-      },
-      {
-        "label": "take pasta",
-        "score": 0.052014
-      },
-      {
-        "label": "take ladle",
-        "score": 0.040764
-      },
-      {
-        "label": "close lid",
-        "score": 0.038085
-      }
-    ],
-    "modified": [
-      {
-        "label": "mix sauce",
-        "score": 0.306239
-      },
-      {
-        "label": "close lid",
-        "score": 0.115999
-      },
-      {
-        "label": "put sauce",
-        "score": 0.037958
-      },
-      {
-        "label": "mix pasta",
-        "score": 0.034743
-      },
-      {
-        "label": "put ladle",
-        "score": 0.031595
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_042",
-    "video_file": "clips/clip_042.mp4",
-    "video_id": "P30_08",
-    "observed_window": "00:00:00.00 → 00:00:29.36",
-    "narration": "empty cafetiere",
-    "ground_truth_action": "empty maker:coffee",
-    "baseline": [
-      {
-        "label": "fill pan",
-        "score": 0.132703
-      },
-      {
-        "label": "put kettle",
-        "score": 0.12082
-      },
-      {
-        "label": "fill kettle",
-        "score": 0.057766
-      },
-      {
-        "label": "wash pan",
-        "score": 0.039886
-      },
-      {
-        "label": "close kettle",
-        "score": 0.032655
-      }
-    ],
-    "modified": [
-      {
-        "label": "fill kettle",
-        "score": 0.065752
-      },
-      {
-        "label": "fill pan",
-        "score": 0.061101
-      },
-      {
-        "label": "wash pan",
-        "score": 0.03061
-      },
-      {
-        "label": "wash jug",
-        "score": 0.028303
-      },
-      {
-        "label": "put kettle",
-        "score": 0.020307
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_043",
-    "video_file": "clips/clip_043.mp4",
-    "video_id": "P05_07",
-    "observed_window": "00:12:44.44 → 00:13:16.44",
-    "narration": "place bowl on table",
-    "ground_truth_action": "put bowl",
-    "baseline": [
-      {
-        "label": "wash pot",
-        "score": 0.031822
-      },
-      {
-        "label": "pour pasta",
-        "score": 0.025118
-      },
-      {
-        "label": "filter pasta",
-        "score": 0.022338
-      },
-      {
-        "label": "close container",
-        "score": 0.018207
-      },
-      {
-        "label": "put jar",
-        "score": 0.016996
-      }
-    ],
-    "modified": [
-      {
-        "label": "close container",
-        "score": 0.039702
-      },
-      {
-        "label": "pour pasta",
-        "score": 0.035766
-      },
-      {
-        "label": "wash pot",
-        "score": 0.012119
-      },
-      {
-        "label": "filter pasta",
-        "score": 0.010514
-      },
-      {
-        "label": "pour salt",
-        "score": 0.010337
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_044",
-    "video_file": "clips/clip_044.mp4",
-    "video_id": "P22_03",
-    "observed_window": "00:06:22.61 → 00:06:54.61",
-    "narration": "open bin",
-    "ground_truth_action": "open bin",
-    "baseline": [
-      {
-        "label": "take plate",
-        "score": 0.116092
-      },
-      {
-        "label": "put plate",
-        "score": 0.089986
-      },
-      {
-        "label": "take fork",
-        "score": 0.054845
-      },
-      {
-        "label": "wash plate",
-        "score": 0.016382
-      },
-      {
-        "label": "wash liquid:washing",
-        "score": 0.013871
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash plate",
-        "score": 0.160659
-      },
-      {
-        "label": "take plate",
-        "score": 0.058881
-      },
-      {
-        "label": "put plate",
-        "score": 0.037403
-      },
-      {
-        "label": "wash liquid:washing",
-        "score": 0.022641
-      },
-      {
-        "label": "move plate",
-        "score": 0.010963
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_045",
-    "video_file": "clips/clip_045.mp4",
-    "video_id": "P02_15",
-    "observed_window": "00:00:00.00 → 00:00:21.27",
-    "narration": "close tupperware",
-    "ground_truth_action": "take lid",
-    "baseline": [
-      {
-        "label": "take lid",
-        "score": 0.032993
-      },
-      {
-        "label": "close lid",
-        "score": 0.031634
-      },
-      {
-        "label": "take pie",
-        "score": 0.025993
-      },
-      {
-        "label": "close box",
-        "score": 0.01413
-      },
-      {
-        "label": "put onion",
-        "score": 0.013159
-      }
-    ],
-    "modified": [
-      {
-        "label": "close container",
-        "score": 0.125619
-      },
-      {
-        "label": "take lid",
-        "score": 0.043958
-      },
-      {
-        "label": "insert container",
-        "score": 0.024231
-      },
-      {
-        "label": "take pie",
-        "score": 0.018426
-      },
-      {
-        "label": "close lid",
-        "score": 0.015893
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_046",
-    "video_file": "clips/clip_046.mp4",
-    "video_id": "P30_08",
-    "observed_window": "00:03:52.41 → 00:04:24.41",
-    "narration": "wash jug",
-    "ground_truth_action": "wash jug",
-    "baseline": [
-      {
-        "label": "adjust heat",
-        "score": 0.097189
-      },
-      {
-        "label": "mix rice",
-        "score": 0.052804
-      },
-      {
-        "label": "put rice",
-        "score": 0.026787
-      },
-      {
-        "label": "take rice",
-        "score": 0.015375
-      },
-      {
-        "label": "mix water",
-        "score": 0.011068
-      }
-    ],
-    "modified": [
-      {
-        "label": "adjust heat",
-        "score": 0.105648
-      },
-      {
-        "label": "mix rice",
-        "score": 0.045375
-      },
-      {
-        "label": "mix oatmeal",
-        "score": 0.020294
-      },
-      {
-        "label": "pour rice",
-        "score": 0.019415
-      },
-      {
-        "label": "take rice",
-        "score": 0.018966
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_047",
-    "video_file": "clips/clip_047.mp4",
-    "video_id": "P18_05",
-    "observed_window": "00:02:53.71 → 00:03:25.71",
-    "narration": "open cupboard",
-    "ground_truth_action": "open cupboard",
-    "baseline": [
-      {
-        "label": "put cloth",
-        "score": 0.034042
-      },
-      {
-        "label": "put towel",
-        "score": 0.02316
-      },
-      {
-        "label": "put bread",
-        "score": 0.021039
-      },
-      {
-        "label": "take mat",
-        "score": 0.019766
-      },
-      {
-        "label": "open microwave",
-        "score": 0.019122
-      }
-    ],
-    "modified": [
-      {
-        "label": "put towel",
-        "score": 0.069584
-      },
-      {
-        "label": "open freezer",
-        "score": 0.024087
-      },
-      {
-        "label": "put cloth",
-        "score": 0.01956
-      },
-      {
-        "label": "open drawer",
-        "score": 0.015073
-      },
-      {
-        "label": "open fridge",
-        "score": 0.009045
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_048",
-    "video_file": "clips/clip_048.mp4",
-    "video_id": "P22_02",
-    "observed_window": "00:03:09.65 → 00:03:41.65",
-    "narration": "wash peeler",
-    "ground_truth_action": "wash peeler:potato",
-    "baseline": [
-      {
-        "label": "wash fork",
-        "score": 0.161803
-      },
-      {
-        "label": "take fork",
-        "score": 0.052317
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.047377
-      },
-      {
-        "label": "wash maker:coffee",
-        "score": 0.018082
-      },
-      {
-        "label": "take filter",
-        "score": 0.014945
-      }
-    ],
-    "modified": [
-      {
-        "label": "wash fork",
-        "score": 0.167407
-      },
-      {
-        "label": "take fork",
-        "score": 0.043238
-      },
-      {
-        "label": "wash knife",
-        "score": 0.042015
-      },
-      {
-        "label": "wash maker:coffee",
-        "score": 0.028455
-      },
-      {
-        "label": "take maker:coffee",
-        "score": 0.026908
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_049",
-    "video_file": "clips/clip_049.mp4",
-    "video_id": "P32_05",
-    "observed_window": "00:01:54.37 → 00:02:26.37",
-    "narration": "pick up mushrooms",
-    "ground_truth_action": "take mushroom",
-    "baseline": [
-      {
-        "label": "open cupboard",
-        "score": 0.021317
-      },
-      {
-        "label": "take scissors",
-        "score": 0.01747
-      },
-      {
-        "label": "close pasta",
-        "score": 0.013823
-      },
-      {
-        "label": "take clip",
-        "score": 0.013792
-      },
-      {
-        "label": "put clip",
-        "score": 0.011324
-      }
-    ],
-    "modified": [
-      {
-        "label": "take scissors",
-        "score": 0.040009
-      },
-      {
-        "label": "put scissors",
-        "score": 0.012127
-      },
-      {
-        "label": "take cup",
-        "score": 0.011479
-      },
-      {
-        "label": "throw paper",
-        "score": 0.011387
-      },
-      {
-        "label": "throw package",
-        "score": 0.009972
-      }
-    ]
-  },
-  {
-    "clip_id": "clip_050",
-    "video_file": "clips/clip_050.mp4",
-    "video_id": "P08_17",
-    "observed_window": "00:02:05.11 → 00:02:37.11",
-    "narration": "get spoon",
-    "ground_truth_action": "take spoon",
-    "baseline": [
-      {
-        "label": "take spoon",
-        "score": 0.125239
-      },
-      {
-        "label": "put vinegar",
-        "score": 0.027358
-      },
-      {
-        "label": "take vinegar",
-        "score": 0.022359
-      },
-      {
-        "label": "put oil",
-        "score": 0.019113
-      },
-      {
-        "label": "insert oil",
-        "score": 0.016757
-      }
-    ],
-    "modified": [
-      {
-        "label": "take brush",
-        "score": 0.03824
-      },
-      {
-        "label": "take chopstick",
-        "score": 0.036659
-      },
-      {
-        "label": "insert oil",
-        "score": 0.022418
-      },
-      {
-        "label": "put chopstick",
-        "score": 0.020039
-      },
-      {
-        "label": "wash brush",
-        "score": 0.017665
-      }
-    ]
-  }
-]
+  "clips": [
+    {
+      "clip_id": "clip_001",
+      "video_file": "clips/clip_001.mp4",
+      "video_id": "P04_29",
+      "observed_window": "00:00:03.97 → 00:00:35.97",
+      "narration": "close drawer",
+      "ground_truth_action": "close drawer",
+      "baseline": [
+        {
+          "label": "take spice",
+          "score": 0.083924
+        },
+        {
+          "label": "put spice",
+          "score": 0.033461
+        },
+        {
+          "label": "pour spice",
+          "score": 0.026805
+        },
+        {
+          "label": "take chilli",
+          "score": 0.026398
+        },
+        {
+          "label": "search spice",
+          "score": 0.019678
+        }
+      ],
+      "modified": [
+        {
+          "label": "take spice",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_002",
+      "video_file": "clips/clip_002.mp4",
+      "video_id": "P01_14",
+      "observed_window": "00:14:34.85 → 00:15:06.85",
+      "narration": "turn on tap",
+      "ground_truth_action": "turn-on tap",
+      "baseline": [
+        {
+          "label": "wash tomato",
+          "score": 0.135115
+        },
+        {
+          "label": "turn-on tap",
+          "score": 0.039283
+        },
+        {
+          "label": "take tomato",
+          "score": 0.039012
+        },
+        {
+          "label": "wash box",
+          "score": 0.022993
+        },
+        {
+          "label": "wash colander",
+          "score": 0.021243
+        }
+      ],
+      "modified": [
+        {
+          "label": "close container",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_003",
+      "video_file": "clips/clip_003.mp4",
+      "video_id": "P17_02",
+      "observed_window": "00:00:56.94 → 00:01:28.94",
+      "narration": "clean the sink",
+      "ground_truth_action": "wash sink",
+      "baseline": [
+        {
+          "label": "wash pot",
+          "score": 0.051354
+        },
+        {
+          "label": "turn-off tap",
+          "score": 0.035308
+        },
+        {
+          "label": "unfreeze corn",
+          "score": 0.026811
+        },
+        {
+          "label": "flip corn",
+          "score": 0.016361
+        },
+        {
+          "label": "add water",
+          "score": 0.015851
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash pot",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_004",
+      "video_file": "clips/clip_004.mp4",
+      "video_id": "P11_24",
+      "observed_window": "00:00:23.72 → 00:00:55.72",
+      "narration": "open bag",
+      "ground_truth_action": "open bag",
+      "baseline": [
+        {
+          "label": "hang clothes",
+          "score": 0.071985
+        },
+        {
+          "label": "take clothes",
+          "score": 0.051682
+        },
+        {
+          "label": "insert clothes",
+          "score": 0.039472
+        },
+        {
+          "label": "remove clothes",
+          "score": 0.026223
+        },
+        {
+          "label": "check alarm",
+          "score": 0.020525
+        }
+      ],
+      "modified": [
+        {
+          "label": "insert clothes",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_005",
+      "video_file": "clips/clip_005.mp4",
+      "video_id": "P11_18",
+      "observed_window": "00:00:01.06 → 00:00:33.06",
+      "narration": "put down bowl",
+      "ground_truth_action": "put bowl",
+      "baseline": [
+        {
+          "label": "put bowl",
+          "score": 0.507499
+        },
+        {
+          "label": "sort bowl",
+          "score": 0.015637
+        },
+        {
+          "label": "pour cereal",
+          "score": 0.015224
+        },
+        {
+          "label": "move bowl",
+          "score": 0.012532
+        },
+        {
+          "label": "put cereal",
+          "score": 0.008771
+        }
+      ],
+      "modified": [
+        {
+          "label": "put bowl",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "take bowl",
+          "score": null
+        },
+        {
+          "label": "wash bowl",
+          "score": null
+        },
+        {
+          "label": "close cupboard",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_006",
+      "video_file": "clips/clip_006.mp4",
+      "video_id": "P06_11",
+      "observed_window": "00:00:00.00 → 00:00:15.03",
+      "narration": "scrape carrots into pan",
+      "ground_truth_action": "scrape carrot",
+      "baseline": [
+        {
+          "label": "scrape pepper",
+          "score": 0.063266
+        },
+        {
+          "label": "insert carrot",
+          "score": 0.040659
+        },
+        {
+          "label": "take carrot",
+          "score": 0.032824
+        },
+        {
+          "label": "cut carrot",
+          "score": 0.028871
+        },
+        {
+          "label": "insert pepper",
+          "score": 0.027168
+        }
+      ],
+      "modified": [
+        {
+          "label": "cut carrot",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_007",
+      "video_file": "clips/clip_007.mp4",
+      "video_id": "P04_24",
+      "observed_window": "00:03:04.14 → 00:03:36.14",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": [
+        {
+          "label": "insert rice",
+          "score": 0.019707
+        },
+        {
+          "label": "insert flour",
+          "score": 0.017492
+        },
+        {
+          "label": "insert knife",
+          "score": 0.013048
+        },
+        {
+          "label": "put yeast",
+          "score": 0.011172
+        },
+        {
+          "label": "put rice",
+          "score": 0.010561
+        }
+      ],
+      "modified": [
+        {
+          "label": "open sauce",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_008",
+      "video_file": "clips/clip_008.mp4",
+      "video_id": "P30_08",
+      "observed_window": "00:15:17.30 → 00:15:49.30",
+      "narration": "pour pasta from colander into saucepan",
+      "ground_truth_action": "pour pasta",
+      "baseline": [
+        {
+          "label": "filter pasta",
+          "score": 0.121847
+        },
+        {
+          "label": "pour pasta",
+          "score": 0.02104
+        },
+        {
+          "label": "insert pasta",
+          "score": 0.020986
+        },
+        {
+          "label": "move curry",
+          "score": 0.015772
+        },
+        {
+          "label": "peel potato",
+          "score": 0.011954
+        }
+      ],
+      "modified": [
+        {
+          "label": "filter pasta",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "put pot",
+          "score": null
+        },
+        {
+          "label": "take container",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_009",
+      "video_file": "clips/clip_009.mp4",
+      "video_id": "P03_23",
+      "observed_window": "00:01:18.25 → 00:01:50.25",
+      "narration": "wash hands",
+      "ground_truth_action": "wash hand",
+      "baseline": [
+        {
+          "label": "insert bag",
+          "score": 0.056029
+        },
+        {
+          "label": "take whetstone",
+          "score": 0.013391
+        },
+        {
+          "label": "take chicken",
+          "score": 0.012198
+        },
+        {
+          "label": "take towel:kitchen",
+          "score": 0.010151
+        },
+        {
+          "label": "put bag",
+          "score": 0.008845
+        }
+      ],
+      "modified": [
+        {
+          "label": "take chicken",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_010",
+      "video_file": "clips/clip_010.mp4",
+      "video_id": "P24_09",
+      "observed_window": "00:13:01.85 → 00:13:33.85",
+      "narration": "close tap",
+      "ground_truth_action": "turn-off tap",
+      "baseline": [
+        {
+          "label": "insert cup",
+          "score": 0.029326
+        },
+        {
+          "label": "take tomato",
+          "score": 0.017717
+        },
+        {
+          "label": "pour salt",
+          "score": 0.016747
+        },
+        {
+          "label": "turn-off hob",
+          "score": 0.016487
+        },
+        {
+          "label": "insert salt",
+          "score": 0.016253
+        }
+      ],
+      "modified": [
+        {
+          "label": "mix salad",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_011",
+      "video_file": "clips/clip_011.mp4",
+      "video_id": "P01_14",
+      "observed_window": "00:21:53.72 → 00:22:25.72",
+      "narration": "put down plates",
+      "ground_truth_action": "put plate",
+      "baseline": [
+        {
+          "label": "put plate",
+          "score": 0.016409
+        },
+        {
+          "label": "pour plate",
+          "score": 0.010013
+        },
+        {
+          "label": "scoop rice",
+          "score": 0.007573
+        },
+        {
+          "label": "squeeze lemon",
+          "score": 0.006391
+        },
+        {
+          "label": "close microwave",
+          "score": 0.005232
+        }
+      ],
+      "modified": [
+        {
+          "label": "put plate",
+          "score": null
+        },
+        {
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_012",
+      "video_file": "clips/clip_012.mp4",
+      "video_id": "P01_14",
+      "observed_window": "00:20:10.09 → 00:20:42.09",
+      "narration": "put down plate",
+      "ground_truth_action": "put plate",
+      "baseline": [
+        {
+          "label": "take bottle",
+          "score": 0.027301
+        },
+        {
+          "label": "move cutlery",
+          "score": 0.026569
+        },
+        {
+          "label": "move glass",
+          "score": 0.02455
+        },
+        {
+          "label": "take mat",
+          "score": 0.022976
+        },
+        {
+          "label": "take cutlery",
+          "score": 0.018267
+        }
+      ],
+      "modified": [
+        {
+          "label": "fold bag",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_013",
+      "video_file": "clips/clip_013.mp4",
+      "video_id": "P03_24",
+      "observed_window": "00:13:00.59 → 00:13:32.59",
+      "narration": "open drawer",
+      "ground_truth_action": "open drawer",
+      "baseline": [
+        {
+          "label": "remove tray",
+          "score": 0.023684
+        },
+        {
+          "label": "insert bag",
+          "score": 0.016142
+        },
+        {
+          "label": "close oven",
+          "score": 0.014086
+        },
+        {
+          "label": "take wrap",
+          "score": 0.012681
+        },
+        {
+          "label": "close dishwasher",
+          "score": 0.012215
+        }
+      ],
+      "modified": [
+        {
+          "label": "put glove",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_014",
+      "video_file": "clips/clip_014.mp4",
+      "video_id": "P11_17",
+      "observed_window": "00:01:23.37 → 00:01:55.37",
+      "narration": "wash hands",
+      "ground_truth_action": "take liquid:washing",
+      "baseline": [
+        {
+          "label": "dry hand",
+          "score": 0.042062
+        },
+        {
+          "label": "dry stand",
+          "score": 0.025782
+        },
+        {
+          "label": "wash slicer",
+          "score": 0.018474
+        },
+        {
+          "label": "wash guard:hand",
+          "score": 0.015993
+        },
+        {
+          "label": "apply liquid:washing",
+          "score": 0.011784
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash leek",
+          "score": null
+        },
+        {
+          "label": "dry hand",
+          "score": null
+        },
+        {
+          "label": "take sponge",
+          "score": null
+        },
+        {
+          "label": "wash hand",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_015",
+      "video_file": "clips/clip_015.mp4",
+      "video_id": "P11_20",
+      "observed_window": "00:00:31.99 → 00:01:03.99",
+      "narration": "put kitchen foil on hob",
+      "ground_truth_action": "put foil",
+      "baseline": [
+        {
+          "label": "close box",
+          "score": 0.03762
+        },
+        {
+          "label": "remove bag",
+          "score": 0.01423
+        },
+        {
+          "label": "insert box",
+          "score": 0.012661
+        },
+        {
+          "label": "open box",
+          "score": 0.012171
+        },
+        {
+          "label": "insert wrap",
+          "score": 0.010229
+        }
+      ],
+      "modified": [
+        {
+          "label": "close box",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_016",
+      "video_file": "clips/clip_016.mp4",
+      "video_id": "P29_05",
+      "observed_window": "00:16:22.68 → 00:16:54.68",
+      "narration": "put salt into pan",
+      "ground_truth_action": "insert salt",
+      "baseline": [
+        {
+          "label": "insert lid",
+          "score": 0.117575
+        },
+        {
+          "label": "insert knife",
+          "score": 0.063786
+        },
+        {
+          "label": "soak lid",
+          "score": 0.026091
+        },
+        {
+          "label": "insert sponge",
+          "score": 0.009683
+        },
+        {
+          "label": "soak board:chopping",
+          "score": 0.0074
+        }
+      ],
+      "modified": [
+        {
+          "label": "take spoon",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_017",
+      "video_file": "clips/clip_017.mp4",
+      "video_id": "P01_14",
+      "observed_window": "00:15:50.23 → 00:16:22.23",
+      "narration": "put down bottle",
+      "ground_truth_action": "put bottle",
+      "baseline": [
+        {
+          "label": "close oil",
+          "score": 0.017777
+        },
+        {
+          "label": "wash rubbish",
+          "score": 0.01548
+        },
+        {
+          "label": "close bottle",
+          "score": 0.013755
+        },
+        {
+          "label": "move paper",
+          "score": 0.01362
+        },
+        {
+          "label": "move control:remote",
+          "score": 0.010828
+        }
+      ],
+      "modified": [
+        {
+          "label": "close bottle",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_018",
+      "video_file": "clips/clip_018.mp4",
+      "video_id": "P30_09",
+      "observed_window": "00:02:34.14 → 00:03:06.14",
+      "narration": "dry cafetiere jug",
+      "ground_truth_action": "dry jug",
+      "baseline": [
+        {
+          "label": "put maker:coffee",
+          "score": 0.08013
+        },
+        {
+          "label": "take maker:coffee",
+          "score": 0.03935
+        },
+        {
+          "label": "put jug",
+          "score": 0.019498
+        },
+        {
+          "label": "insert cup",
+          "score": 0.018189
+        },
+        {
+          "label": "dry maker:coffee",
+          "score": 0.01757
+        }
+      ],
+      "modified": [
+        {
+          "label": "dry cup",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_019",
+      "video_file": "clips/clip_019.mp4",
+      "video_id": "P09_08",
+      "observed_window": "00:01:16.94 → 00:01:48.94",
+      "narration": "put honey in cabinet",
+      "ground_truth_action": "insert spreads",
+      "baseline": [
+        {
+          "label": "close cupboard",
+          "score": 0.159297
+        },
+        {
+          "label": "insert oatmeal",
+          "score": 0.063199
+        },
+        {
+          "label": "take oatmeal",
+          "score": 0.037449
+        },
+        {
+          "label": "insert spreads",
+          "score": 0.020664
+        },
+        {
+          "label": "insert glass",
+          "score": 0.018685
+        }
+      ],
+      "modified": [
+        {
+          "label": "close cupboard",
+          "score": null
+        },
+        {
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "take knife",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_020",
+      "video_file": "clips/clip_020.mp4",
+      "video_id": "P30_08",
+      "observed_window": "00:14:41.98 → 00:15:13.98",
+      "narration": "put plate into microwave",
+      "ground_truth_action": "insert plate",
+      "baseline": [
+        {
+          "label": "open microwave",
+          "score": 0.094245
+        },
+        {
+          "label": "wash tap",
+          "score": 0.03427
+        },
+        {
+          "label": "insert lid",
+          "score": 0.02168
+        },
+        {
+          "label": "wash microwave",
+          "score": 0.020046
+        },
+        {
+          "label": "close microwave",
+          "score": 0.019916
+        }
+      ],
+      "modified": [
+        {
+          "label": "close microwave",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_021",
+      "video_file": "clips/clip_021.mp4",
+      "video_id": "P23_05",
+      "observed_window": "00:15:40.10 → 00:16:12.10",
+      "narration": "open the tap",
+      "ground_truth_action": "turn-on tap",
+      "baseline": [
+        {
+          "label": "wash hand",
+          "score": 0.090147
+        },
+        {
+          "label": "turn-on tap",
+          "score": 0.045627
+        },
+        {
+          "label": "wash bowl",
+          "score": 0.030379
+        },
+        {
+          "label": "wash colander",
+          "score": 0.021591
+        },
+        {
+          "label": "wash rice",
+          "score": 0.014655
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash colander",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "wash sponge",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_022",
+      "video_file": "clips/clip_022.mp4",
+      "video_id": "P11_17",
+      "observed_window": "00:03:09.71 → 00:03:41.71",
+      "narration": "turn on tap",
+      "ground_truth_action": "scrub colander",
+      "baseline": [
+        {
+          "label": "wash colander",
+          "score": 0.216088
+        },
+        {
+          "label": "wash pan",
+          "score": 0.045363
+        },
+        {
+          "label": "scrub pan",
+          "score": 0.038627
+        },
+        {
+          "label": "scrub colander",
+          "score": 0.028414
+        },
+        {
+          "label": "wash pot",
+          "score": 0.014848
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash colander",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "put colander",
+          "score": null
+        },
+        {
+          "label": "put sponge",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_023",
+      "video_file": "clips/clip_023.mp4",
+      "video_id": "P26_31",
+      "observed_window": "00:00:32.99 → 00:01:04.99",
+      "narration": "turn on the stove",
+      "ground_truth_action": "turn-on hob",
+      "baseline": [
+        {
+          "label": "turn-on hob",
+          "score": 0.153001
+        },
+        {
+          "label": "turn-on oven",
+          "score": 0.096147
+        },
+        {
+          "label": "turn-off hob",
+          "score": 0.046067
+        },
+        {
+          "label": "adjust heat",
+          "score": 0.014767
+        },
+        {
+          "label": "adjust hob",
+          "score": 0.013951
+        }
+      ],
+      "modified": [
+        {
+          "label": "turn-on hob",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "turn-on hob",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "move pan",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_024",
+      "video_file": "clips/clip_024.mp4",
+      "video_id": "P18_02",
+      "observed_window": "00:01:01.72 → 00:01:33.72",
+      "narration": "still washing coffee pot",
+      "ground_truth_action": "wash maker:coffee",
+      "baseline": [
+        {
+          "label": "put jug",
+          "score": 0.052611
+        },
+        {
+          "label": "wash maker:coffee",
+          "score": 0.035884
+        },
+        {
+          "label": "wash tray",
+          "score": 0.032807
+        },
+        {
+          "label": "wash jug",
+          "score": 0.023536
+        },
+        {
+          "label": "open cupboard",
+          "score": 0.023454
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash maker:coffee",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_025",
+      "video_file": "clips/clip_025.mp4",
+      "video_id": "P01_11",
+      "observed_window": "00:02:29.65 → 00:03:01.65",
+      "narration": "wash tray",
+      "ground_truth_action": "take tray",
+      "baseline": [
+        {
+          "label": "wash ladle",
+          "score": 0.047458
+        },
+        {
+          "label": "wash spatula",
+          "score": 0.046269
+        },
+        {
+          "label": "turn-on tap",
+          "score": 0.022592
+        },
+        {
+          "label": "wash tongs",
+          "score": 0.017942
+        },
+        {
+          "label": "take pizza",
+          "score": 0.015901
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash ladle",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_026",
+      "video_file": "clips/clip_026.mp4",
+      "video_id": "P08_09",
+      "observed_window": "00:06:53.45 → 00:07:25.45",
+      "narration": "clean knife",
+      "ground_truth_action": "wash knife",
+      "baseline": [
+        {
+          "label": "put tomato",
+          "score": 0.179132
+        },
+        {
+          "label": "pour tomato",
+          "score": 0.078813
+        },
+        {
+          "label": "take tomato",
+          "score": 0.040654
+        },
+        {
+          "label": "take skin",
+          "score": 0.037164
+        },
+        {
+          "label": "remove tomato",
+          "score": 0.034365
+        }
+      ],
+      "modified": [
+        {
+          "label": "put tomato",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "put tomato",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_027",
+      "video_file": "clips/clip_027.mp4",
+      "video_id": "P24_09",
+      "observed_window": "00:13:34.67 → 00:14:06.67",
+      "narration": "take cheese",
+      "ground_truth_action": "take cheese",
+      "baseline": [
+        {
+          "label": "turn meat",
+          "score": 0.040122
+        },
+        {
+          "label": "take salad",
+          "score": 0.029001
+        },
+        {
+          "label": "mix meat",
+          "score": 0.021043
+        },
+        {
+          "label": "insert meat",
+          "score": 0.019005
+        },
+        {
+          "label": "turn-off hob",
+          "score": 0.018989
+        }
+      ],
+      "modified": [
+        {
+          "label": "take salad",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_028",
+      "video_file": "clips/clip_028.mp4",
+      "video_id": "P22_01",
+      "observed_window": "00:04:06.74 → 00:04:38.74",
+      "narration": "close tap",
+      "ground_truth_action": "wash peach",
+      "baseline": [
+        {
+          "label": "turn-off tap",
+          "score": 0.219201
+        },
+        {
+          "label": "wash peach",
+          "score": 0.08468
+        },
+        {
+          "label": "shake peach",
+          "score": 0.045411
+        },
+        {
+          "label": "remove skin",
+          "score": 0.012009
+        },
+        {
+          "label": "put peach",
+          "score": 0.009654
+        }
+      ],
+      "modified": [
+        {
+          "label": "turn-off tap",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "close cupboard",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_029",
+      "video_file": "clips/clip_029.mp4",
+      "video_id": "P18_02",
+      "observed_window": "00:00:00.00 → 00:00:04.44",
+      "narration": "take off coffee",
+      "ground_truth_action": "remove coffee",
+      "baseline": [
+        {
+          "label": "take plate",
+          "score": 0.053021
+        },
+        {
+          "label": "put plate",
+          "score": 0.047226
+        },
+        {
+          "label": "hang cup",
+          "score": 0.01009
+        },
+        {
+          "label": "put package",
+          "score": 0.006474
+        },
+        {
+          "label": "put cup",
+          "score": 0.005904
+        }
+      ],
+      "modified": [
+        {
+          "label": "take kettle",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_030",
+      "video_file": "clips/clip_030.mp4",
+      "video_id": "P07_16",
+      "observed_window": "00:01:36.84 → 00:02:08.84",
+      "narration": "pick up cup",
+      "ground_truth_action": "take cup",
+      "baseline": [
+        {
+          "label": "take milk",
+          "score": 0.028718
+        },
+        {
+          "label": "take maker:coffee",
+          "score": 0.025361
+        },
+        {
+          "label": "mix oatmeal",
+          "score": 0.017957
+        },
+        {
+          "label": "wash maker:coffee",
+          "score": 0.016955
+        },
+        {
+          "label": "wash container",
+          "score": 0.016489
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash container",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_031",
+      "video_file": "clips/clip_031.mp4",
+      "video_id": "P11_17",
+      "observed_window": "00:06:07.54 → 00:06:39.54",
+      "narration": "peel salmon",
+      "ground_truth_action": "peel salmon",
+      "baseline": [
+        {
+          "label": "insert salmon",
+          "score": 0.049058
+        },
+        {
+          "label": "take salmon",
+          "score": 0.038772
+        },
+        {
+          "label": "throw package",
+          "score": 0.027894
+        },
+        {
+          "label": "remove package",
+          "score": 0.026177
+        },
+        {
+          "label": "adjust salmon",
+          "score": 0.020855
+        }
+      ],
+      "modified": [
+        {
+          "label": "remove skin",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_032",
+      "video_file": "clips/clip_032.mp4",
+      "video_id": "P21_02",
+      "observed_window": "00:00:57.79 → 00:01:29.79",
+      "narration": "bringing the olive oil",
+      "ground_truth_action": "carry oil",
+      "baseline": [
+        {
+          "label": "open oil",
+          "score": 0.121586
+        },
+        {
+          "label": "check microwave",
+          "score": 0.020758
+        },
+        {
+          "label": "open jar",
+          "score": 0.020187
+        },
+        {
+          "label": "take napkin",
+          "score": 0.012767
+        },
+        {
+          "label": "open salt",
+          "score": 0.011847
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash spatula",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_033",
+      "video_file": "clips/clip_033.mp4",
+      "video_id": "P04_24",
+      "observed_window": "00:02:42.17 → 00:03:14.17",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": [
+        {
+          "label": "open drawer",
+          "score": 0.081243
+        },
+        {
+          "label": "take food",
+          "score": 0.036979
+        },
+        {
+          "label": "open dishwasher",
+          "score": 0.027206
+        },
+        {
+          "label": "take spice",
+          "score": 0.023861
+        },
+        {
+          "label": "insert food",
+          "score": 0.01819
+        }
+      ],
+      "modified": [
+        {
+          "label": "take tofu",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_034",
+      "video_file": "clips/clip_034.mp4",
+      "video_id": "P03_24",
+      "observed_window": "00:11:51.61 → 00:12:23.61",
+      "narration": "put tray on side",
+      "ground_truth_action": "put tray",
+      "baseline": [
+        {
+          "label": "take sandwich",
+          "score": 0.018819
+        },
+        {
+          "label": "take tomato",
+          "score": 0.015433
+        },
+        {
+          "label": "close oven",
+          "score": 0.012976
+        },
+        {
+          "label": "remove tray",
+          "score": 0.011888
+        },
+        {
+          "label": "insert food",
+          "score": 0.010436
+        }
+      ],
+      "modified": [
+        {
+          "label": "close oven",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_035",
+      "video_file": "clips/clip_035.mp4",
+      "video_id": "P22_03",
+      "observed_window": "00:07:05.87 → 00:07:37.87",
+      "narration": "put down coffee cup",
+      "ground_truth_action": "put cup",
+      "baseline": [
+        {
+          "label": "remove coffee",
+          "score": 0.032497
+        },
+        {
+          "label": "move container",
+          "score": 0.024671
+        },
+        {
+          "label": "wash filter",
+          "score": 0.021768
+        },
+        {
+          "label": "empty filter",
+          "score": 0.020191
+        },
+        {
+          "label": "open basket",
+          "score": 0.018238
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash maker:coffee",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_036",
+      "video_file": "clips/clip_036.mp4",
+      "video_id": "P03_24",
+      "observed_window": "00:06:45.12 → 00:07:17.12",
+      "narration": "stir potatoes",
+      "ground_truth_action": "mix potato",
+      "baseline": [
+        {
+          "label": "turn-down hob",
+          "score": 0.279574
+        },
+        {
+          "label": "turn-off hob",
+          "score": 0.156228
+        },
+        {
+          "label": "turn-down heat",
+          "score": 0.05662
+        },
+        {
+          "label": "take spice",
+          "score": 0.010781
+        },
+        {
+          "label": "lift pan",
+          "score": 0.007712
+        }
+      ],
+      "modified": [
+        {
+          "label": "turn-down hob",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_037",
+      "video_file": "clips/clip_037.mp4",
+      "video_id": "P22_01",
+      "observed_window": "00:02:34.46 → 00:03:06.46",
+      "narration": "put soap on sponge",
+      "ground_truth_action": "take sponge",
+      "baseline": [
+        {
+          "label": "wash filter",
+          "score": 0.099408
+        },
+        {
+          "label": "take rubbish",
+          "score": 0.081023
+        },
+        {
+          "label": "take filter",
+          "score": 0.069794
+        },
+        {
+          "label": "take cloth",
+          "score": 0.04119
+        },
+        {
+          "label": "dry hand",
+          "score": 0.019577
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash hand",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "take sponge",
+          "score": null
+        },
+        {
+          "label": "wash hand",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_038",
+      "video_file": "clips/clip_038.mp4",
+      "video_id": "P22_01",
+      "observed_window": "00:07:59.93 → 00:08:31.93",
+      "narration": "shake hands",
+      "ground_truth_action": "shake hand",
+      "baseline": [
+        {
+          "label": "turn-off tap",
+          "score": 0.17563
+        },
+        {
+          "label": "squeeze cloth",
+          "score": 0.088615
+        },
+        {
+          "label": "shake hand",
+          "score": 0.045018
+        },
+        {
+          "label": "shake peach",
+          "score": 0.037029
+        },
+        {
+          "label": "wash peach",
+          "score": 0.033778
+        }
+      ],
+      "modified": [
+        {
+          "label": "turn-off tap",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "close cupboard",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_039",
+      "video_file": "clips/clip_039.mp4",
+      "video_id": "P15_04",
+      "observed_window": "00:06:21.60 → 00:06:53.60",
+      "narration": "pick up asparagus",
+      "ground_truth_action": "take asparagus",
+      "baseline": [
+        {
+          "label": "open dishwasher",
+          "score": 0.022389
+        },
+        {
+          "label": "turn-off light",
+          "score": 0.020663
+        },
+        {
+          "label": "wash hand",
+          "score": 0.015972
+        },
+        {
+          "label": "open tomato",
+          "score": 0.010304
+        },
+        {
+          "label": "take yoghurt",
+          "score": 0.009152
+        }
+      ],
+      "modified": [
+        {
+          "label": "close dishwasher",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_040",
+      "video_file": "clips/clip_040.mp4",
+      "video_id": "P01_15",
+      "observed_window": "00:08:43.38 → 00:09:15.38",
+      "narration": "wash colander",
+      "ground_truth_action": "wash colander",
+      "baseline": [
+        {
+          "label": "empty pan",
+          "score": 0.229619
+        },
+        {
+          "label": "wash colander",
+          "score": 0.19685
+        },
+        {
+          "label": "wash pan",
+          "score": 0.034714
+        },
+        {
+          "label": "squeeze sponge",
+          "score": 0.021671
+        },
+        {
+          "label": "wash pot",
+          "score": 0.021618
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash colander",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "put sponge",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_041",
+      "video_file": "clips/clip_041.mp4",
+      "video_id": "P26_41",
+      "observed_window": "00:01:16.81 → 00:01:48.81",
+      "narration": "put lid",
+      "ground_truth_action": "put lid",
+      "baseline": [
+        {
+          "label": "put pasta",
+          "score": 0.210455
+        },
+        {
+          "label": "take pasta",
+          "score": 0.14142
+        },
+        {
+          "label": "close lid",
+          "score": 0.065844
+        },
+        {
+          "label": "mix sauce",
+          "score": 0.061185
+        },
+        {
+          "label": "mix pasta",
+          "score": 0.048619
+        }
+      ],
+      "modified": [
+        {
+          "label": "mix sauce",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "close lid",
+          "score": null
+        },
+        {
+          "label": "put lid",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_042",
+      "video_file": "clips/clip_042.mp4",
+      "video_id": "P30_08",
+      "observed_window": "00:00:00.00 → 00:00:29.36",
+      "narration": "empty cafetiere",
+      "ground_truth_action": "empty maker:coffee",
+      "baseline": [
+        {
+          "label": "close kettle",
+          "score": 0.241062
+        },
+        {
+          "label": "put kettle",
+          "score": 0.094766
+        },
+        {
+          "label": "fill kettle",
+          "score": 0.086006
+        },
+        {
+          "label": "fill pan",
+          "score": 0.079779
+        },
+        {
+          "label": "turn-on kettle",
+          "score": 0.054699
+        }
+      ],
+      "modified": [
+        {
+          "label": "fill kettle",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_043",
+      "video_file": "clips/clip_043.mp4",
+      "video_id": "P05_07",
+      "observed_window": "00:12:44.44 → 00:13:16.44",
+      "narration": "place bowl on table",
+      "ground_truth_action": "put bowl",
+      "baseline": [
+        {
+          "label": "pour pasta",
+          "score": 0.073189
+        },
+        {
+          "label": "put pasta",
+          "score": 0.02102
+        },
+        {
+          "label": "put container",
+          "score": 0.016078
+        },
+        {
+          "label": "close pasta",
+          "score": 0.01355
+        },
+        {
+          "label": "take pasta",
+          "score": 0.013191
+        }
+      ],
+      "modified": [
+        {
+          "label": "close container",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_044",
+      "video_file": "clips/clip_044.mp4",
+      "video_id": "P22_03",
+      "observed_window": "00:06:22.61 → 00:06:54.61",
+      "narration": "open bin",
+      "ground_truth_action": "open bin",
+      "baseline": [
+        {
+          "label": "put plate",
+          "score": 0.084138
+        },
+        {
+          "label": "wash plate",
+          "score": 0.040888
+        },
+        {
+          "label": "wash liquid:washing",
+          "score": 0.033897
+        },
+        {
+          "label": "take plate",
+          "score": 0.032214
+        },
+        {
+          "label": "insert plate",
+          "score": 0.013808
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash plate",
+          "score": null
+        },
+        {
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "put plate",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "close cupboard",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_045",
+      "video_file": "clips/clip_045.mp4",
+      "video_id": "P02_15",
+      "observed_window": "00:00:00.00 → 00:00:21.27",
+      "narration": "close tupperware",
+      "ground_truth_action": "take lid",
+      "baseline": [
+        {
+          "label": "take lid",
+          "score": 0.038097
+        },
+        {
+          "label": "take pie",
+          "score": 0.028894
+        },
+        {
+          "label": "put pie",
+          "score": 0.022442
+        },
+        {
+          "label": "close lid",
+          "score": 0.017518
+        },
+        {
+          "label": "close container",
+          "score": 0.016235
+        }
+      ],
+      "modified": [
+        {
+          "label": "close container",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_046",
+      "video_file": "clips/clip_046.mp4",
+      "video_id": "P30_08",
+      "observed_window": "00:03:52.41 → 00:04:24.41",
+      "narration": "wash jug",
+      "ground_truth_action": "wash jug",
+      "baseline": [
+        {
+          "label": "wash container",
+          "score": 0.049333
+        },
+        {
+          "label": "adjust heat",
+          "score": 0.046641
+        },
+        {
+          "label": "mix food",
+          "score": 0.039612
+        },
+        {
+          "label": "wash jug",
+          "score": 0.023116
+        },
+        {
+          "label": "mix rice",
+          "score": 0.01879
+        }
+      ],
+      "modified": [
+        {
+          "label": "adjust heat",
+          "score": null
+        },
+        {
+          "label": "take spoon",
+          "score": null
+        },
+        {
+          "label": "mix meat",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "move pan",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_047",
+      "video_file": "clips/clip_047.mp4",
+      "video_id": "P18_05",
+      "observed_window": "00:02:53.71 → 00:03:25.71",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": [
+        {
+          "label": "put cloth",
+          "score": 0.044312
+        },
+        {
+          "label": "put towel",
+          "score": 0.031344
+        },
+        {
+          "label": "take mat",
+          "score": 0.02662
+        },
+        {
+          "label": "dry hob",
+          "score": 0.01862
+        },
+        {
+          "label": "take cloth",
+          "score": 0.016578
+        }
+      ],
+      "modified": [
+        {
+          "label": "put towel",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_048",
+      "video_file": "clips/clip_048.mp4",
+      "video_id": "P22_02",
+      "observed_window": "00:03:09.65 → 00:03:41.65",
+      "narration": "wash peeler",
+      "ground_truth_action": "wash peeler:potato",
+      "baseline": [
+        {
+          "label": "wash fork",
+          "score": 0.11884
+        },
+        {
+          "label": "wash maker:coffee",
+          "score": 0.019612
+        },
+        {
+          "label": "wash knife",
+          "score": 0.018494
+        },
+        {
+          "label": "wash filter",
+          "score": 0.016249
+        },
+        {
+          "label": "take maker:coffee",
+          "score": 0.016213
+        }
+      ],
+      "modified": [
+        {
+          "label": "wash fork",
+          "score": null
+        },
+        {
+          "label": "wash fork",
+          "score": null
+        },
+        {
+          "label": "close drawer",
+          "score": null
+        },
+        {
+          "label": "wash knife",
+          "score": null
+        },
+        {
+          "label": "take knife",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_049",
+      "video_file": "clips/clip_049.mp4",
+      "video_id": "P32_05",
+      "observed_window": "00:01:54.37 → 00:02:26.37",
+      "narration": "pick up mushrooms",
+      "ground_truth_action": "take mushroom",
+      "baseline": [
+        {
+          "label": "open pasta",
+          "score": 0.096901
+        },
+        {
+          "label": "put pasta",
+          "score": 0.045156
+        },
+        {
+          "label": "open cupboard",
+          "score": 0.039315
+        },
+        {
+          "label": "take pasta",
+          "score": 0.033872
+        },
+        {
+          "label": "close pasta",
+          "score": 0.01662
+        }
+      ],
+      "modified": [
+        {
+          "label": "take scissors",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    },
+    {
+      "clip_id": "clip_050",
+      "video_file": "clips/clip_050.mp4",
+      "video_id": "P08_17",
+      "observed_window": "00:02:05.11 → 00:02:37.11",
+      "narration": "get spoon",
+      "ground_truth_action": "take spoon",
+      "baseline": [
+        {
+          "label": "put vinegar",
+          "score": 0.026887
+        },
+        {
+          "label": "put chopstick",
+          "score": 0.025362
+        },
+        {
+          "label": "take chopstick",
+          "score": 0.023494
+        },
+        {
+          "label": "take vinegar",
+          "score": 0.02097
+        },
+        {
+          "label": "take brush",
+          "score": 0.020672
+        }
+      ],
+      "modified": [
+        {
+          "label": "take brush",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "turn-off tap",
+          "score": null
+        }
+      ]
+    }
+  ]
+}

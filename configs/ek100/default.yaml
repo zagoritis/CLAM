@@ -55,7 +55,7 @@ MODEL:
     DIVERSITY_WEIGHT: 1.0         # 0 = Step-7 WTA ablation; >0 = fixed-role coverage (8(5) used 1.0)
     DIVERSITY_TEMP: 1.0
     DIVERSITY_WARMUP_EPOCHS: 10
-    COVERAGE_SOURCE: self         # 'self' = Step 8(5) self-distillation; 'transition' = Step 9B
+    COVERAGE_SOURCE: transition   # 'transition' = Step 9B (headline/final model); 'self' = Step 8(5) self-distillation ablation
     HIT_WEIGHT: 1.
     HIT_EPSILON: 0.
     # --- Step 9A: inference-time transition fusion (eval-only; needs TEST.ENABLE True) ---

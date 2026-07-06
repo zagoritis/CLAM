@@ -119,7 +119,7 @@
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
   th:first-child, td:first-child { text-align: left; }
-  thead th { color: var(--muted); font-weight: 600; position: sticky; top: 56px; background: var(--bg); }
+  thead th { color: var(--muted); font-weight: 600; position: sticky; top: 0; background: var(--bg); }
   tr.cur td { background: rgba(91,141,239,.08); }
   .tablewrap { max-height: 60vh; overflow: auto; border: 1px solid var(--border); border-radius: 10px; }
   .yes { color: var(--green); } .no { color: var(--muted); }
@@ -136,8 +136,10 @@
   <button class="btn" id="prevBtn">◀ Prev</button>
   <button class="btn" id="nextBtn">Next ▶</button>
   <button class="btn" id="toggleResults">Results ▦</button>
-  <button class="btn" id="exportJson">Export JSON</button>
-  <button class="btn" id="exportCsv">Export CSV</button>
+  <button class="btn" id="exportJson">Save Results (JSON)</button>
+  <button class="btn" id="exportCsv">Save Table (CSV)</button>
+  <button class="btn" id="importBtn">Import Results</button>
+  <input type="file" id="importInput" accept="application/json,.json" style="display:none" />
 </header>
 
 <main>
@@ -246,14 +248,21 @@
 "use strict";
 
 // ---- constants ----
-const STORE_KEY = "qualStudyAnnotations.v1";
+// v2: each model's ratings are stored WITH the prediction labels they were made
+// against; ratings whose labels no longer match the loaded data.json are reset
+// instead of silently re-attached to different predictions by index. The key bump
+// also orphans v1 records, which carried no labels and could go stale undetected
+// (restore them by importing a saved qualitative_analysis.json - label-checked).
+const STORE_KEY = "qualStudyAnnotations.v2";
 const UNRATED = 0, PLAUSIBLE = 1, NOTPLAUSIBLE = 2;
 const STATE_TXT = { 0: "Unrated", 1: "Plausible", 2: "Not plausible" };
 const STATE_CLS = { 0: "", 1: "plausible", 2: "notplausible" };
+const TXT_STATE = { "Unrated": UNRATED, "Plausible": PLAUSIBLE, "Not plausible": NOTPLAUSIBLE };
 
 // ---- state ----
 let DATA = [];            // list of clip objects from data.json
-let annotations = {};     // clip_id -> { baseline:{preds:[],diversity}, modified:{preds:[],diversity} }
+let DATA_META = null;     // provenance block from data.json ({meta, clips} format), if present
+let annotations = {};     // clip_id -> { baseline:{preds:[],diversity,labels:[]}, modified:{...} }
 let idx = 0;              // current clip index
 
 // ---- persistence ----
@@ -266,18 +275,19 @@ function saveStore() {
 }
 function ensureClip(clip) {
   const id = clip.clip_id;
-  if (!annotations[id]) {
-    annotations[id] = {
-      baseline: { preds: (clip.baseline || []).map(() => UNRATED), diversity: null },
-      modified: { preds: (clip.modified || []).map(() => UNRATED), diversity: null },
-    };
-  }
-  // keep preds array length in sync with predictions count
+  if (!annotations[id]) annotations[id] = {};
+  // A rating is only valid for the exact predictions it was made against. If the
+  // stored labels differ from the loaded clip's labels (e.g. data.json was
+  // regenerated with a different prediction source for one model), that model's
+  // ratings are reset rather than silently re-attached to different predictions.
   for (const model of ["baseline", "modified"]) {
-    const n = (clip[model] || []).length;
+    const labels = (clip[model] || []).map(p => p.label);
     const a = annotations[id][model];
-    while (a.preds.length < n) a.preds.push(UNRATED);
-    if (a.preds.length > n) a.preds.length = n;
+    const stale = !a || !Array.isArray(a.labels) ||
+      a.labels.length !== labels.length || a.labels.some((l, i) => l !== labels[i]);
+    if (stale) {
+      annotations[id][model] = { preds: labels.map(() => UNRATED), diversity: null, labels };
+    }
   }
   return annotations[id];
 }
@@ -485,11 +495,19 @@ function renderResults() {
 function showResults() {
   document.getElementById("results").classList.add("show");
   document.getElementById("annotateView").classList.add("hide");
+  // On the Results page Prev/Next don't apply: hide them and turn the Results
+  // toggle into a Back button (it already returns to the annotate view).
+  document.getElementById("prevBtn").style.display = "none";
+  document.getElementById("nextBtn").style.display = "none";
+  document.getElementById("toggleResults").textContent = "◀ Back";
   renderResults();
 }
 function showAnnotate() {
   document.getElementById("results").classList.remove("show");
   document.getElementById("annotateView").classList.remove("hide");
+  document.getElementById("prevBtn").style.display = "";
+  document.getElementById("nextBtn").style.display = "";
+  document.getElementById("toggleResults").textContent = "Results ▦";
 }
 function toggleResults() {
   const showing = document.getElementById("results").classList.contains("show");
@@ -510,6 +528,7 @@ function exportJson() {
   const out = {
     generated_at: new Date().toISOString(),
     num_clips: DATA.length,
+    data_meta: DATA_META,  // provenance of the rated prediction sets (from data.json)
     metrics: {
       baseline: { plausibility: r.baseline.plausibility, plausible: r.baseline.plausible, rated: r.baseline.rated, diversity_mean: r.baseline.diversityMean, diversity_n: r.baseline.divN },
       modified: { plausibility: r.modified.plausibility, plausible: r.modified.plausible, rated: r.modified.rated, diversity_mean: r.modified.diversityMean, diversity_n: r.modified.divN },
@@ -530,7 +549,7 @@ function exportJson() {
       completed: clipDoneState(clip) === "done",
     })),
   };
-  download("qualitative_annotations.json", JSON.stringify(out, null, 2), "application/json");
+  download("qualitative_analysis.json", JSON.stringify(out, null, 2), "application/json");
 }
 function exportCsv() {
   const rows = [["clip_id","baseline_plausible","baseline_rated","baseline_plausibility","baseline_diversity","modified_plausible","modified_rated","modified_plausibility","modified_diversity","completed"]];
@@ -541,13 +560,67 @@ function exportCsv() {
     const [mpl,mra,mp] = counts("modified");
     rows.push([clip.clip_id, bpl, bra, bp, a.baseline.diversity ?? "", mpl, mra, mp, a.modified.diversity ?? "", clipDoneState(clip)==="done"?"yes":"no"]);
   }
-  download("qualitative_breakdown.csv", rows.map(r => r.join(",")).join("\n"), "text/csv");
+  download("qualitative_analysis.csv", rows.map(r => r.join(",")).join("\n"), "text/csv");
+}
+
+// ---- import previously saved results ----
+function importResults(parsed) {
+  // Accept the full exported object ({annotations:[...]}) or a bare annotations array.
+  const entries = Array.isArray(parsed) ? parsed : (parsed && parsed.annotations);
+  if (!Array.isArray(entries)) {
+    alert("Not a recognized results file. Pick a qualitative_analysis.json saved from this tool.");
+    return;
+  }
+  let applied = 0, skipped = 0;
+  for (const entry of entries) {
+    const id = entry && entry.clip_id;
+    if (!id) { skipped++; continue; }
+    const rec = {};
+    for (const model of ["baseline", "modified"]) {
+      const m = entry[model] || {};
+      rec[model] = {
+        preds: (m.predictions || []).map(p => TXT_STATE[p && p.rating] ?? UNRATED),
+        diversity: (m.diversity == null ? null : Number(m.diversity)),
+        // The labels these ratings were made against; ensureClip resets any model
+        // whose labels no longer match the loaded data.json (e.g. after the
+        // modified set was regenerated), so stale ratings never carry over.
+        labels: (m.predictions || []).map(p => (p && p.label) ?? null),
+      };
+    }
+    annotations[id] = rec;
+    applied++;
+  }
+  // Reconcile against the loaded clips: ratings whose prediction labels match are
+  // kept; the rest are reset for re-annotation.
+  let reset = 0;
+  if (DATA.length) {
+    for (const clip of DATA) {
+      const before = annotations[clip.clip_id];
+      const hadRatings = (model) => before && before[model] &&
+        (before[model].diversity != null || (before[model].preds || []).some(s => s !== UNRATED));
+      const had = { baseline: hadRatings("baseline"), modified: hadRatings("modified") };
+      const after = ensureClip(clip);
+      for (const model of ["baseline", "modified"]) {
+        const kept = after[model].diversity != null || after[model].preds.some(s => s !== UNRATED);
+        if (had[model] && !kept) reset++;
+      }
+    }
+  }
+  saveStore();
+  render();
+  if (document.getElementById("results").classList.contains("show")) renderResults();
+  alert(`Imported ratings for ${applied} clip(s)` +
+    (skipped ? `; skipped ${skipped} without a clip_id` : "") +
+    (reset ? `.\n${reset} model rating set(s) no longer match the loaded predictions and were reset for re-annotation.` : "."));
 }
 
 // ---- init / data loading ----
 function initData(data) {
+  // Accept both data.json shapes: {meta, clips} (current) and a bare clip list (legacy).
+  const clips = Array.isArray(data) ? data : ((data && data.clips) || []);
+  DATA_META = Array.isArray(data) ? null : ((data && data.meta) || null);
   // normalize: ensure clip_id exists
-  DATA = (data || []).map((c, i) => ({ clip_id: c.clip_id || `clip_${String(i + 1).padStart(3, "0")}`, ...c }));
+  DATA = clips.map((c, i) => ({ clip_id: c.clip_id || `clip_${String(i + 1).padStart(3, "0")}`, ...c }));
   loadStore();
   DATA.forEach(ensureClip);
   saveStore();
@@ -582,6 +655,16 @@ function wireEvents() {
   document.getElementById("toggleResults").onclick = toggleResults;
   document.getElementById("exportJson").onclick = exportJson;
   document.getElementById("exportCsv").onclick = exportCsv;
+  document.getElementById("importBtn").onclick = () => document.getElementById("importInput").click();
+  document.getElementById("importInput").onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!confirm("Import will overwrite your current ratings for any clips found in the file. Continue?")) { e.target.value = ""; return; }
+    const reader = new FileReader();
+    reader.onload = () => { try { importResults(JSON.parse(reader.result)); } catch (err) { alert("Invalid JSON: " + err.message); } };
+    reader.readAsText(file);
+    e.target.value = "";  // let the same file be re-selected later
+  };
   document.getElementById("fileInput").onchange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
