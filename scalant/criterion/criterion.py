@@ -85,6 +85,15 @@ class Criterion_LSTR:
         # (log-space bonus in top_modes). Fixes the marginal collapse where the
         # slots reuse the dataset's most popular successors for every input.
         self.object_weight = float(cfg.MODEL.DIVERSE_SET.OBJECT_WEIGHT)
+        # Step 10b object coverage: greedy noun-distinct target selection - the
+        # K-1 coverage targets prefer to involve K-1 DIFFERENT objects ("one
+        # hypothesis per visible object"). Targets grounding's noun concentration
+        # (noun_duplicate ~30 vs baseline ~22 in the Step-10 run).
+        self.noun_penalty = float(cfg.MODEL.DIVERSE_SET.COVERAGE_NOUN_PENALTY)
+        # Step 10b readout dedup: at eval, slot k's prediction is its best action
+        # NOT already picked by slots 0..k-1 (slot 0 keeps its argmax), removing
+        # residual exact duplicates from the diverse set at zero training cost.
+        self.readout_dedup = bool(cfg.MODEL.DIVERSE_SET.READOUT_DEDUP)
         self.transition_prior = None
         if self.transition_weight > 0.0 or self.coverage_source == "transition":
             try:
@@ -334,7 +343,8 @@ class Criterion_LSTR:
         # single-head ceiling), else slot 0's own detached top-(K-1) modes.
         use_transition = (self.coverage_source == "transition" and self.transition_prior is not None and prev_ids is not None)
         if use_transition:
-            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg, allowed_mask=allowed_mask, allowed_bonus=self.object_weight)  # [B, K-1]
+            cov_noun_map = self.action_to_noun_id if (self.noun_penalty > 0.0 and self.action_to_noun_id is not None) else None
+            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg, allowed_mask=allowed_mask, allowed_bonus=self.object_weight, action_to_noun=cov_noun_map, noun_penalty=self.noun_penalty)  # [B, K-1]
         else:
             ref0 = future_logits[:, 0].detach().float() / self.diversity_temp  # [B, A]
             if has_bg:
@@ -386,11 +396,31 @@ class Criterion_LSTR:
         return future_logits[:, -1]
 
     def _query_slot_action_ids(self, future_logits: Tensor) -> Tensor:
+        """
+        [B, K] action ids read out from the K slots. Plain per-slot argmax, or -
+        with READOUT_DEDUP - sequential dedup: slot 0 keeps its argmax (anchor
+        untouched), slot k takes its best action not already picked by slots
+        0..k-1. Removes residual exact duplicates from the diverse set at zero
+        training cost; slot order gives earlier slots priority.
+        """
+
         scores = future_logits.detach().float()
         if self.set_metric_background_id is not None and 0 <= self.set_metric_background_id < scores.size(-1):
             scores = scores.clone()
             scores[..., self.set_metric_background_id] = float("-inf")
-        return scores.argmax(dim=-1)
+        if not self.readout_dedup or scores.ndim != 3 or scores.size(1) < 2:
+            return scores.argmax(dim=-1)
+
+        B, K, A = scores.shape
+        batch = torch.arange(B, device=scores.device)
+        used = torch.zeros(B, A, dtype=torch.bool, device=scores.device)
+        picks = []
+        for k in range(K):
+            slot = scores[:, k].masked_fill(used, float("-inf"))
+            best = slot.argmax(dim=-1)
+            picks.append(best)
+            used[batch, best] = True
+        return torch.stack(picks, dim=1)
 
     def _observed_action_mask(self, target: Target, device) -> Tensor | None:
         """

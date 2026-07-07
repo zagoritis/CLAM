@@ -60,6 +60,10 @@ MODEL:
                                   # clip (fixes the popularity-marginal slot collapse: turn-on tap/open
                                   # drawer reused for ~2/3 of clips). >=30 = hard preference (exceeds the
                                   # prior's full log range); a few nats = soft preference; 0 = plain 9B
+    COVERAGE_NOUN_PENALTY: 100.0  # Step 10b object coverage: targets prefer K-1 DISTINCT observed
+                                  # objects (one hypothesis per visible object). >=100 = hard; 0 = Step 10
+    READOUT_DEDUP: True           # Step 10b: slot k reads out its best action not already picked by
+                                  # slots 0..k-1 (removes residual exact duplicates; slot 0 untouched)
     HIT_WEIGHT: 1.
     HIT_EPSILON: 0.
     # --- Step 9A: inference-time transition fusion (eval-only; needs TEST.ENABLE True) ---

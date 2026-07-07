@@ -77,6 +77,20 @@ class DiverseSetConfig:
     # log range (prob floor 1e-12 -> ~28 nats) = guaranteed hard preference.
     # 0 = off (plain 9B).
     OBJECT_WEIGHT: float = 0.
+    # Step 10b object coverage: greedy noun-distinct selection of the K-1
+    # coverage targets - after each pick, every action sharing the picked noun
+    # is penalized by this log-space amount, so the targets prefer to cover K-1
+    # DIFFERENT objects ("one hypothesis per visible object"). The penalty
+    # accumulates per reuse (graceful fallback when fewer distinct nouns than
+    # K-1 are available). Hard constraint needs >= ~100 (must dominate
+    # OBJECT_WEIGHT 30 + the prior's ~28-nat log range). 0 = off (plain Step 10).
+    COVERAGE_NOUN_PENALTY: float = 0.
+    # Step 10b readout dedup (eval-only): slot k's prediction = its best action
+    # not already picked by slots 0..k-1 (slot 0 keeps its argmax). Removes
+    # residual exact duplicates from the diverse set at zero training cost.
+    # Changes the diverse-set readout definition - disclose when comparing to
+    # runs evaluated with plain argmax.
+    READOUT_DEDUP: bool = False
     TEMPORAL_WEIGHT: float = 0.  # reserved/unused
 
     # First-order action-transition prior P(next action | previous action),
