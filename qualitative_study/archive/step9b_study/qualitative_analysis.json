@@ -1,0 +1,3372 @@
+{
+  "generated_at": "2026-07-05T21:10:49.948Z",
+  "num_clips": 50,
+  "metrics": {
+    "baseline": {
+      "plausibility": 0.42,
+      "plausible": 105,
+      "rated": 250,
+      "diversity_mean": 2.9,
+      "diversity_n": 50
+    },
+    "modified": {
+      "plausibility": 0.376,
+      "plausible": 94,
+      "rated": 250,
+      "diversity_mean": 3.06,
+      "diversity_n": 50
+    }
+  },
+  "annotations": [
+    {
+      "clip_id": "clip_001",
+      "video_id": "P04_29",
+      "narration": "close drawer",
+      "ground_truth_action": "close drawer",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take spice",
+            "score": 0.083924,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put spice",
+            "score": 0.033461,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour spice",
+            "score": 0.026805,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take chilli",
+            "score": 0.026398,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "search spice",
+            "score": 0.019678,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take spice",
+            "score": 0.044197,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open drawer",
+            "score": 0.037332,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take lighter",
+            "score": 0.022942,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put oil",
+            "score": 0.017193,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put spice",
+            "score": 0.014688,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_002",
+      "video_id": "P01_14",
+      "narration": "turn on tap",
+      "ground_truth_action": "turn-on tap",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash tomato",
+            "score": 0.135115,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-on tap",
+            "score": 0.039283,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take tomato",
+            "score": 0.039012,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash box",
+            "score": 0.022993,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash colander",
+            "score": 0.021243,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close container",
+            "score": 0.038466,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash container",
+            "score": 0.038069,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash tomato",
+            "score": 0.03614,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-on tap",
+            "score": 0.027762,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert tomato",
+            "score": 0.025638,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_003",
+      "video_id": "P17_02",
+      "narration": "clean the sink",
+      "ground_truth_action": "wash sink",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash pot",
+            "score": 0.051354,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-off tap",
+            "score": 0.035308,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "unfreeze corn",
+            "score": 0.026811,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "flip corn",
+            "score": 0.016361,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "add water",
+            "score": 0.015851,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash pot",
+            "score": 0.032341,
+            "rating": "Plausible"
+          },
+          {
+            "label": "throw water",
+            "score": 0.030985,
+            "rating": "Plausible"
+          },
+          {
+            "label": "add water",
+            "score": 0.025572,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move pot",
+            "score": 0.014235,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take brush",
+            "score": 0.009791,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_004",
+      "video_id": "P11_24",
+      "narration": "open bag",
+      "ground_truth_action": "open bag",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "hang clothes",
+            "score": 0.071985,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take clothes",
+            "score": 0.051682,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert clothes",
+            "score": 0.039472,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove clothes",
+            "score": 0.026223,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "check alarm",
+            "score": 0.020525,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "insert clothes",
+            "score": 0.061007,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take clothes",
+            "score": 0.045962,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put clothes",
+            "score": 0.022419,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "hang clothes",
+            "score": 0.022332,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take water",
+            "score": 0.020605,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_005",
+      "video_id": "P11_18",
+      "narration": "put down bowl",
+      "ground_truth_action": "put bowl",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put bowl",
+            "score": 0.507499,
+            "rating": "Plausible"
+          },
+          {
+            "label": "sort bowl",
+            "score": 0.015637,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "pour cereal",
+            "score": 0.015224,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move bowl",
+            "score": 0.012532,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put cereal",
+            "score": 0.008771,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "put bowl",
+            "score": 0.387348,
+            "rating": "Plausible"
+          },
+          {
+            "label": "sort bowl",
+            "score": 0.009054,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert bowl",
+            "score": 0.006441,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put cereal",
+            "score": 0.004585,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove clip",
+            "score": 0.003691,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_006",
+      "video_id": "P06_11",
+      "narration": "scrape carrots into pan",
+      "ground_truth_action": "scrape carrot",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "scrape pepper",
+            "score": 0.063266,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert carrot",
+            "score": 0.040659,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take carrot",
+            "score": 0.032824,
+            "rating": "Plausible"
+          },
+          {
+            "label": "cut carrot",
+            "score": 0.028871,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert pepper",
+            "score": 0.027168,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "cut carrot",
+            "score": 0.119138,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert carrot",
+            "score": 0.063689,
+            "rating": "Plausible"
+          },
+          {
+            "label": "scrape pepper",
+            "score": 0.057411,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take carrot",
+            "score": 0.03647,
+            "rating": "Plausible"
+          },
+          {
+            "label": "cut pepper",
+            "score": 0.025587,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_007",
+      "video_id": "P04_24",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "insert rice",
+            "score": 0.019707,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert flour",
+            "score": 0.017492,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert knife",
+            "score": 0.013048,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put yeast",
+            "score": 0.011172,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put rice",
+            "score": 0.010561,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "open sauce",
+            "score": 0.025139,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take juicer",
+            "score": 0.018896,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open paste",
+            "score": 0.009867,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put jug",
+            "score": 0.009254,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take kettle",
+            "score": 0.009185,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_008",
+      "video_id": "P30_08",
+      "narration": "pour pasta from colander into saucepan",
+      "ground_truth_action": "pour pasta",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "filter pasta",
+            "score": 0.121847,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour pasta",
+            "score": 0.02104,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert pasta",
+            "score": 0.020986,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move curry",
+            "score": 0.015772,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "peel potato",
+            "score": 0.011954,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "filter pasta",
+            "score": 0.080318,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour pasta",
+            "score": 0.026995,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put colander",
+            "score": 0.022361,
+            "rating": "Plausible"
+          },
+          {
+            "label": "break rice",
+            "score": 0.014215,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "cut lime",
+            "score": 0.014172,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_009",
+      "video_id": "P03_23",
+      "narration": "wash hands",
+      "ground_truth_action": "wash hand",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "insert bag",
+            "score": 0.056029,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take whetstone",
+            "score": 0.013391,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take chicken",
+            "score": 0.012198,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take towel:kitchen",
+            "score": 0.010151,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put bag",
+            "score": 0.008845,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take chicken",
+            "score": 0.013981,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open box",
+            "score": 0.008833,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "shake bag",
+            "score": 0.007219,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move plate",
+            "score": 0.006805,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "squeeze air",
+            "score": 0.005075,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 5
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_010",
+      "video_id": "P24_09",
+      "narration": "close tap",
+      "ground_truth_action": "turn-off tap",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "insert cup",
+            "score": 0.029326,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take tomato",
+            "score": 0.017717,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "pour salt",
+            "score": 0.016747,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.016487,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert salt",
+            "score": 0.016253,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "mix salad",
+            "score": 0.012624,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "mix meat",
+            "score": 0.012256,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take lettuce",
+            "score": 0.012126,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.010956,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take jar",
+            "score": 0.009659,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_011",
+      "video_id": "P01_14",
+      "narration": "put down plates",
+      "ground_truth_action": "put plate",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put plate",
+            "score": 0.016409,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour plate",
+            "score": 0.010013,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "scoop rice",
+            "score": 0.007573,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "squeeze lemon",
+            "score": 0.006391,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close microwave",
+            "score": 0.005232,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "put plate",
+            "score": 0.038439,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move plate",
+            "score": 0.011802,
+            "rating": "Plausible"
+          },
+          {
+            "label": "cut carrot",
+            "score": 0.009846,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert carrot",
+            "score": 0.005546,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "cut potato",
+            "score": 0.005339,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_012",
+      "video_id": "P01_14",
+      "narration": "put down plate",
+      "ground_truth_action": "put plate",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take bottle",
+            "score": 0.027301,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move cutlery",
+            "score": 0.026569,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move glass",
+            "score": 0.02455,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take mat",
+            "score": 0.022976,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take cutlery",
+            "score": 0.018267,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "fold bag",
+            "score": 0.017374,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take mat",
+            "score": 0.016057,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take bottle",
+            "score": 0.015884,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take glass",
+            "score": 0.013479,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take carrot",
+            "score": 0.011545,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_013",
+      "video_id": "P03_24",
+      "narration": "open drawer",
+      "ground_truth_action": "open drawer",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "remove tray",
+            "score": 0.023684,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert bag",
+            "score": 0.016142,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close oven",
+            "score": 0.014086,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take wrap",
+            "score": 0.012681,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close dishwasher",
+            "score": 0.012215,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "put glove",
+            "score": 0.012963,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open oven",
+            "score": 0.010649,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take glove",
+            "score": 0.009901,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "squeeze liquid:washing",
+            "score": 0.00701,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-on oven",
+            "score": 0.006108,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_014",
+      "video_id": "P11_17",
+      "narration": "wash hands",
+      "ground_truth_action": "take liquid:washing",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "dry hand",
+            "score": 0.042062,
+            "rating": "Plausible"
+          },
+          {
+            "label": "dry stand",
+            "score": 0.025782,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash slicer",
+            "score": 0.018474,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash guard:hand",
+            "score": 0.015993,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "apply liquid:washing",
+            "score": 0.011784,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash leek",
+            "score": 0.028139,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash tap",
+            "score": 0.019425,
+            "rating": "Plausible"
+          },
+          {
+            "label": "dry stand",
+            "score": 0.018474,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "shake leek",
+            "score": 0.016796,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-off tap",
+            "score": 0.013993,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_015",
+      "video_id": "P11_20",
+      "narration": "put kitchen foil on hob",
+      "ground_truth_action": "put foil",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "close box",
+            "score": 0.03762,
+            "rating": "Plausible"
+          },
+          {
+            "label": "remove bag",
+            "score": 0.01423,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert box",
+            "score": 0.012661,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open box",
+            "score": 0.012171,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert wrap",
+            "score": 0.010229,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close box",
+            "score": 0.236617,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert box",
+            "score": 0.037303,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open box",
+            "score": 0.031442,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put cereal",
+            "score": 0.011919,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert fridge",
+            "score": 0.01169,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_016",
+      "video_id": "P29_05",
+      "narration": "put salt into pan",
+      "ground_truth_action": "insert salt",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "insert lid",
+            "score": 0.117575,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert knife",
+            "score": 0.063786,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "soak lid",
+            "score": 0.026091,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert sponge",
+            "score": 0.009683,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "soak board:chopping",
+            "score": 0.0074,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take spoon",
+            "score": 0.052367,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert lid",
+            "score": 0.008336,
+            "rating": "Plausible"
+          },
+          {
+            "label": "increase heat",
+            "score": 0.008182,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix onion",
+            "score": 0.007961,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "mix sauce",
+            "score": 0.006762,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_017",
+      "video_id": "P01_14",
+      "narration": "put down bottle",
+      "ground_truth_action": "put bottle",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "close oil",
+            "score": 0.017777,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash rubbish",
+            "score": 0.01548,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close bottle",
+            "score": 0.013755,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move paper",
+            "score": 0.01362,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move control:remote",
+            "score": 0.010828,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close bottle",
+            "score": 0.03031,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open bottle",
+            "score": 0.021021,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "drink water",
+            "score": 0.019844,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put bottle",
+            "score": 0.019795,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake bottle",
+            "score": 0.016568,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_018",
+      "video_id": "P30_09",
+      "narration": "dry cafetiere jug",
+      "ground_truth_action": "dry jug",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put maker:coffee",
+            "score": 0.08013,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.03935,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put jug",
+            "score": 0.019498,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert cup",
+            "score": 0.018189,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "dry maker:coffee",
+            "score": 0.01757,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "dry cup",
+            "score": 0.055576,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put maker:coffee",
+            "score": 0.053711,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.03935,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "dry maker:coffee",
+            "score": 0.025234,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert cup",
+            "score": 0.014312,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_019",
+      "video_id": "P09_08",
+      "narration": "put honey in cabinet",
+      "ground_truth_action": "insert spreads",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "close cupboard",
+            "score": 0.159297,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert oatmeal",
+            "score": 0.063199,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take oatmeal",
+            "score": 0.037449,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert spreads",
+            "score": 0.020664,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert glass",
+            "score": 0.018685,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close cupboard",
+            "score": 0.114706,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take oatmeal",
+            "score": 0.018446,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert oatmeal",
+            "score": 0.016584,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert cereal",
+            "score": 0.016158,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert plate",
+            "score": 0.01572,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_020",
+      "video_id": "P30_08",
+      "narration": "put plate into microwave",
+      "ground_truth_action": "insert plate",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "open microwave",
+            "score": 0.094245,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash tap",
+            "score": 0.03427,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert lid",
+            "score": 0.02168,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash microwave",
+            "score": 0.020046,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close microwave",
+            "score": 0.019916,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close microwave",
+            "score": 0.03135,
+            "rating": "Plausible"
+          },
+          {
+            "label": "empty sink",
+            "score": 0.019137,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash tap",
+            "score": 0.014803,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "lift lid",
+            "score": 0.010978,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert lid",
+            "score": 0.010156,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_021",
+      "video_id": "P23_05",
+      "narration": "open the tap",
+      "ground_truth_action": "turn-on tap",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash hand",
+            "score": 0.090147,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-on tap",
+            "score": 0.045627,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash bowl",
+            "score": 0.030379,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash colander",
+            "score": 0.021591,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash rice",
+            "score": 0.014655,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash colander",
+            "score": 0.186124,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash bowl",
+            "score": 0.138841,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert bowl",
+            "score": 0.036914,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash hand",
+            "score": 0.015154,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash rice",
+            "score": 0.012897,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_022",
+      "video_id": "P11_17",
+      "narration": "turn on tap",
+      "ground_truth_action": "scrub colander",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash colander",
+            "score": 0.216088,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pan",
+            "score": 0.045363,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "scrub pan",
+            "score": 0.038627,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "scrub colander",
+            "score": 0.028414,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pot",
+            "score": 0.014848,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash colander",
+            "score": 0.279889,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pan",
+            "score": 0.160098,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "scrub pan",
+            "score": 0.069791,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash pot",
+            "score": 0.010701,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "scrub colander",
+            "score": 0.010483,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_023",
+      "video_id": "P26_31",
+      "narration": "turn on the stove",
+      "ground_truth_action": "turn-on hob",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "turn-on hob",
+            "score": 0.153001,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-on oven",
+            "score": 0.096147,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.046067,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "adjust heat",
+            "score": 0.014767,
+            "rating": "Plausible"
+          },
+          {
+            "label": "adjust hob",
+            "score": 0.013951,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "turn-on hob",
+            "score": 0.043324,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.040579,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put lighter",
+            "score": 0.026174,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move pot",
+            "score": 0.024885,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take lighter",
+            "score": 0.0222,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_024",
+      "video_id": "P18_02",
+      "narration": "still washing coffee pot",
+      "ground_truth_action": "wash maker:coffee",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put jug",
+            "score": 0.052611,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash maker:coffee",
+            "score": 0.035884,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash tray",
+            "score": 0.032807,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash jug",
+            "score": 0.023536,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open cupboard",
+            "score": 0.023454,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash maker:coffee",
+            "score": 0.039944,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put kettle",
+            "score": 0.0304,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open maker:coffee",
+            "score": 0.024797,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put jug",
+            "score": 0.022791,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put maker:coffee",
+            "score": 0.019894,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_025",
+      "video_id": "P01_11",
+      "narration": "wash tray",
+      "ground_truth_action": "take tray",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash ladle",
+            "score": 0.047458,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash spatula",
+            "score": 0.046269,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-on tap",
+            "score": 0.022592,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash tongs",
+            "score": 0.017942,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take pizza",
+            "score": 0.015901,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash ladle",
+            "score": 0.089475,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash spatula",
+            "score": 0.059007,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take ladle",
+            "score": 0.025214,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put ladle",
+            "score": 0.019734,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "empty cup",
+            "score": 0.011222,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_026",
+      "video_id": "P08_09",
+      "narration": "clean knife",
+      "ground_truth_action": "wash knife",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put tomato",
+            "score": 0.179132,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour tomato",
+            "score": 0.078813,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take tomato",
+            "score": 0.040654,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take skin",
+            "score": 0.037164,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove tomato",
+            "score": 0.034365,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "put tomato",
+            "score": 0.10825,
+            "rating": "Plausible"
+          },
+          {
+            "label": "pour tomato",
+            "score": 0.071487,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take tomato",
+            "score": 0.070264,
+            "rating": "Plausible"
+          },
+          {
+            "label": "throw tomato",
+            "score": 0.036659,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove tomato",
+            "score": 0.022908,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_027",
+      "video_id": "P24_09",
+      "narration": "take cheese",
+      "ground_truth_action": "take cheese",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "turn meat",
+            "score": 0.040122,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take salad",
+            "score": 0.029001,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "mix meat",
+            "score": 0.021043,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert meat",
+            "score": 0.019005,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.018989,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take salad",
+            "score": 0.050016,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put salad",
+            "score": 0.021122,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "mix salad",
+            "score": 0.019486,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take plate",
+            "score": 0.01786,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert meat",
+            "score": 0.016461,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_028",
+      "video_id": "P22_01",
+      "narration": "close tap",
+      "ground_truth_action": "wash peach",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "turn-off tap",
+            "score": 0.219201,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash peach",
+            "score": 0.08468,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake peach",
+            "score": 0.045411,
+            "rating": "Plausible"
+          },
+          {
+            "label": "remove skin",
+            "score": 0.012009,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put peach",
+            "score": 0.009654,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "turn-off tap",
+            "score": 0.186482,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash peach",
+            "score": 0.099859,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake peach",
+            "score": 0.039871,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake hand",
+            "score": 0.01448,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash tomato",
+            "score": 0.014316,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_029",
+      "video_id": "P18_02",
+      "narration": "take off coffee",
+      "ground_truth_action": "remove coffee",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take plate",
+            "score": 0.053021,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put plate",
+            "score": 0.047226,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "hang cup",
+            "score": 0.01009,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put package",
+            "score": 0.006474,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put cup",
+            "score": 0.005904,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take kettle",
+            "score": 0.027457,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take plate",
+            "score": 0.027146,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put plate",
+            "score": 0.026415,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert plate",
+            "score": 0.022273,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "dry plate",
+            "score": 0.01254,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_030",
+      "video_id": "P07_16",
+      "narration": "pick up cup",
+      "ground_truth_action": "take cup",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take milk",
+            "score": 0.028718,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.025361,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix oatmeal",
+            "score": 0.017957,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash maker:coffee",
+            "score": 0.016955,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash container",
+            "score": 0.016489,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash container",
+            "score": 0.037329,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open lid",
+            "score": 0.0204,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove coffee",
+            "score": 0.018946,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "throw coffee",
+            "score": 0.01718,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take container",
+            "score": 0.016499,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_031",
+      "video_id": "P11_17",
+      "narration": "peel salmon",
+      "ground_truth_action": "peel salmon",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "insert salmon",
+            "score": 0.049058,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take salmon",
+            "score": 0.038772,
+            "rating": "Plausible"
+          },
+          {
+            "label": "throw package",
+            "score": 0.027894,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "remove package",
+            "score": 0.026177,
+            "rating": "Plausible"
+          },
+          {
+            "label": "adjust salmon",
+            "score": 0.020855,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "remove skin",
+            "score": 0.095963,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put bread",
+            "score": 0.011906,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert oatmeal",
+            "score": 0.008885,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert skin",
+            "score": 0.008545,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert bread",
+            "score": 0.008495,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_032",
+      "video_id": "P21_02",
+      "narration": "bringing the olive oil",
+      "ground_truth_action": "carry oil",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "open oil",
+            "score": 0.121586,
+            "rating": "Plausible"
+          },
+          {
+            "label": "check microwave",
+            "score": 0.020758,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open jar",
+            "score": 0.020187,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take napkin",
+            "score": 0.012767,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open salt",
+            "score": 0.011847,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash spatula",
+            "score": 0.021572,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash tomato",
+            "score": 0.016823,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash container",
+            "score": 0.011054,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert tomato",
+            "score": 0.011011,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash peeler:potato",
+            "score": 0.010144,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_033",
+      "video_id": "P04_24",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "open drawer",
+            "score": 0.081243,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take food",
+            "score": 0.036979,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open dishwasher",
+            "score": 0.027206,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take spice",
+            "score": 0.023861,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert food",
+            "score": 0.01819,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take tofu",
+            "score": 0.010557,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take spice",
+            "score": 0.010508,
+            "rating": "Plausible"
+          },
+          {
+            "label": "crush spice",
+            "score": 0.010039,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert bin",
+            "score": 0.007818,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move tofu",
+            "score": 0.005667,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_034",
+      "video_id": "P03_24",
+      "narration": "put tray on side",
+      "ground_truth_action": "put tray",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take sandwich",
+            "score": 0.018819,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take tomato",
+            "score": 0.015433,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close oven",
+            "score": 0.012976,
+            "rating": "Plausible"
+          },
+          {
+            "label": "remove tray",
+            "score": 0.011888,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert food",
+            "score": 0.010436,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close oven",
+            "score": 0.06016,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move bag",
+            "score": 0.012077,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put wrap:plastic",
+            "score": 0.011896,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "move bread",
+            "score": 0.010351,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put glove",
+            "score": 0.009554,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_035",
+      "video_id": "P22_03",
+      "narration": "put down coffee cup",
+      "ground_truth_action": "put cup",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "remove coffee",
+            "score": 0.032497,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move container",
+            "score": 0.024671,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash filter",
+            "score": 0.021768,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "empty filter",
+            "score": 0.020191,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open basket",
+            "score": 0.018238,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash maker:coffee",
+            "score": 0.018459,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash filter",
+            "score": 0.016201,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take jug",
+            "score": 0.014775,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close container",
+            "score": 0.013402,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.011855,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_036",
+      "video_id": "P03_24",
+      "narration": "stir potatoes",
+      "ground_truth_action": "mix potato",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "turn-down hob",
+            "score": 0.279574,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.156228,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-down heat",
+            "score": 0.05662,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take spice",
+            "score": 0.010781,
+            "rating": "Plausible"
+          },
+          {
+            "label": "lift pan",
+            "score": 0.007712,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "turn-down hob",
+            "score": 0.334511,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-off hob",
+            "score": 0.06181,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-down heat",
+            "score": 0.013367,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix onion",
+            "score": 0.012677,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn pan",
+            "score": 0.012416,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_037",
+      "video_id": "P22_01",
+      "narration": "put soap on sponge",
+      "ground_truth_action": "take sponge",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash filter",
+            "score": 0.099408,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take rubbish",
+            "score": 0.081023,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take filter",
+            "score": 0.069794,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take cloth",
+            "score": 0.04119,
+            "rating": "Plausible"
+          },
+          {
+            "label": "dry hand",
+            "score": 0.019577,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash hand",
+            "score": 0.049845,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash filter",
+            "score": 0.041322,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put filter",
+            "score": 0.018747,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take cutlery",
+            "score": 0.01764,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash sponge",
+            "score": 0.014009,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_038",
+      "video_id": "P22_01",
+      "narration": "shake hands",
+      "ground_truth_action": "shake hand",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "turn-off tap",
+            "score": 0.17563,
+            "rating": "Plausible"
+          },
+          {
+            "label": "squeeze cloth",
+            "score": 0.088615,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "shake hand",
+            "score": 0.045018,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake peach",
+            "score": 0.037029,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash peach",
+            "score": 0.033778,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "turn-off tap",
+            "score": 0.231956,
+            "rating": "Plausible"
+          },
+          {
+            "label": "squeeze cloth",
+            "score": 0.069014,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash peach",
+            "score": 0.045136,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake peach",
+            "score": 0.034164,
+            "rating": "Plausible"
+          },
+          {
+            "label": "shake hand",
+            "score": 0.033913,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_039",
+      "video_id": "P15_04",
+      "narration": "pick up asparagus",
+      "ground_truth_action": "take asparagus",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "open dishwasher",
+            "score": 0.022389,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-off light",
+            "score": 0.020663,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash hand",
+            "score": 0.015972,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open tomato",
+            "score": 0.010304,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take yoghurt",
+            "score": 0.009152,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close dishwasher",
+            "score": 0.038368,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close bag",
+            "score": 0.03836,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash hand",
+            "score": 0.030575,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put board:chopping",
+            "score": 0.01613,
+            "rating": "Plausible"
+          },
+          {
+            "label": "turn-off light",
+            "score": 0.008099,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_040",
+      "video_id": "P01_15",
+      "narration": "wash colander",
+      "ground_truth_action": "wash colander",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "empty pan",
+            "score": 0.229619,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash colander",
+            "score": 0.19685,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pan",
+            "score": 0.034714,
+            "rating": "Plausible"
+          },
+          {
+            "label": "squeeze sponge",
+            "score": 0.021671,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pot",
+            "score": 0.021618,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash colander",
+            "score": 0.379371,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash pan",
+            "score": 0.058933,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash spatula",
+            "score": 0.030766,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash tongs",
+            "score": 0.021823,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash spoon",
+            "score": 0.021046,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_041",
+      "video_id": "P26_41",
+      "narration": "put lid",
+      "ground_truth_action": "put lid",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put pasta",
+            "score": 0.210455,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take pasta",
+            "score": 0.14142,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close lid",
+            "score": 0.065844,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix sauce",
+            "score": 0.061185,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix pasta",
+            "score": 0.048619,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "mix sauce",
+            "score": 0.306239,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close lid",
+            "score": 0.115999,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put sauce",
+            "score": 0.037958,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "mix pasta",
+            "score": 0.034743,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put ladle",
+            "score": 0.031595,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_042",
+      "video_id": "P30_08",
+      "narration": "empty cafetiere",
+      "ground_truth_action": "empty maker:coffee",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "close kettle",
+            "score": 0.241062,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put kettle",
+            "score": 0.094766,
+            "rating": "Plausible"
+          },
+          {
+            "label": "fill kettle",
+            "score": 0.086006,
+            "rating": "Plausible"
+          },
+          {
+            "label": "fill pan",
+            "score": 0.079779,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "turn-on kettle",
+            "score": 0.054699,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "fill kettle",
+            "score": 0.065752,
+            "rating": "Plausible"
+          },
+          {
+            "label": "fill pan",
+            "score": 0.061101,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash pan",
+            "score": 0.03061,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash jug",
+            "score": 0.028303,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put kettle",
+            "score": 0.020307,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_043",
+      "video_id": "P05_07",
+      "narration": "place bowl on table",
+      "ground_truth_action": "put bowl",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "pour pasta",
+            "score": 0.073189,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put pasta",
+            "score": 0.02102,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put container",
+            "score": 0.016078,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close pasta",
+            "score": 0.01355,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take pasta",
+            "score": 0.013191,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close container",
+            "score": 0.039702,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "pour pasta",
+            "score": 0.035766,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash pot",
+            "score": 0.012119,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "filter pasta",
+            "score": 0.010514,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "pour salt",
+            "score": 0.010337,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_044",
+      "video_id": "P22_03",
+      "narration": "open bin",
+      "ground_truth_action": "open bin",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put plate",
+            "score": 0.084138,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash plate",
+            "score": 0.040888,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash liquid:washing",
+            "score": 0.033897,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take plate",
+            "score": 0.032214,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "insert plate",
+            "score": 0.013808,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash plate",
+            "score": 0.160659,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take plate",
+            "score": 0.058881,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put plate",
+            "score": 0.037403,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash liquid:washing",
+            "score": 0.022641,
+            "rating": "Plausible"
+          },
+          {
+            "label": "move plate",
+            "score": 0.010963,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_045",
+      "video_id": "P02_15",
+      "narration": "close tupperware",
+      "ground_truth_action": "take lid",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "take lid",
+            "score": 0.038097,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take pie",
+            "score": 0.028894,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put pie",
+            "score": 0.022442,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close lid",
+            "score": 0.017518,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close container",
+            "score": 0.016235,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "close container",
+            "score": 0.125619,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take lid",
+            "score": 0.043958,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert container",
+            "score": 0.024231,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take pie",
+            "score": 0.018426,
+            "rating": "Plausible"
+          },
+          {
+            "label": "close lid",
+            "score": 0.015893,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_046",
+      "video_id": "P30_08",
+      "narration": "wash jug",
+      "ground_truth_action": "wash jug",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash container",
+            "score": 0.049333,
+            "rating": "Plausible"
+          },
+          {
+            "label": "adjust heat",
+            "score": 0.046641,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix food",
+            "score": 0.039612,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash jug",
+            "score": 0.023116,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix rice",
+            "score": 0.01879,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 4
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "adjust heat",
+            "score": 0.105648,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix rice",
+            "score": 0.045375,
+            "rating": "Plausible"
+          },
+          {
+            "label": "mix oatmeal",
+            "score": 0.020294,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "pour rice",
+            "score": 0.019415,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take rice",
+            "score": 0.018966,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_047",
+      "video_id": "P18_05",
+      "narration": "open cupboard",
+      "ground_truth_action": "open cupboard",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put cloth",
+            "score": 0.044312,
+            "rating": "Plausible"
+          },
+          {
+            "label": "put towel",
+            "score": 0.031344,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take mat",
+            "score": 0.02662,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "dry hob",
+            "score": 0.01862,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take cloth",
+            "score": 0.016578,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "put towel",
+            "score": 0.069584,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open freezer",
+            "score": 0.024087,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put cloth",
+            "score": 0.01956,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open drawer",
+            "score": 0.015073,
+            "rating": "Plausible"
+          },
+          {
+            "label": "open fridge",
+            "score": 0.009045,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_048",
+      "video_id": "P22_02",
+      "narration": "wash peeler",
+      "ground_truth_action": "wash peeler:potato",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "wash fork",
+            "score": 0.11884,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash maker:coffee",
+            "score": 0.019612,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash knife",
+            "score": 0.018494,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash filter",
+            "score": 0.016249,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.016213,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "wash fork",
+            "score": 0.167407,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take fork",
+            "score": 0.043238,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash knife",
+            "score": 0.042015,
+            "rating": "Plausible"
+          },
+          {
+            "label": "wash maker:coffee",
+            "score": 0.028455,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take maker:coffee",
+            "score": 0.026908,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_049",
+      "video_id": "P32_05",
+      "narration": "pick up mushrooms",
+      "ground_truth_action": "take mushroom",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "open pasta",
+            "score": 0.096901,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put pasta",
+            "score": 0.045156,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "open cupboard",
+            "score": 0.039315,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take pasta",
+            "score": 0.033872,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "close pasta",
+            "score": 0.01662,
+            "rating": "Plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take scissors",
+            "score": 0.040009,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put scissors",
+            "score": 0.012127,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take cup",
+            "score": 0.011479,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "throw paper",
+            "score": 0.011387,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "throw package",
+            "score": 0.009972,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    },
+    {
+      "clip_id": "clip_050",
+      "video_id": "P08_17",
+      "narration": "get spoon",
+      "ground_truth_action": "take spoon",
+      "baseline": {
+        "predictions": [
+          {
+            "label": "put vinegar",
+            "score": 0.026887,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put chopstick",
+            "score": 0.025362,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take chopstick",
+            "score": 0.023494,
+            "rating": "Plausible"
+          },
+          {
+            "label": "take vinegar",
+            "score": 0.02097,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take brush",
+            "score": 0.020672,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 2
+      },
+      "modified": {
+        "predictions": [
+          {
+            "label": "take brush",
+            "score": 0.03824,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "take chopstick",
+            "score": 0.036659,
+            "rating": "Plausible"
+          },
+          {
+            "label": "insert oil",
+            "score": 0.022418,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "put chopstick",
+            "score": 0.020039,
+            "rating": "Not plausible"
+          },
+          {
+            "label": "wash brush",
+            "score": 0.017665,
+            "rating": "Not plausible"
+          }
+        ],
+        "diversity": 3
+      },
+      "completed": true
+    }
+  ]
+}
