@@ -9,6 +9,7 @@ from scalant.utils import accuracy
 from scalant.utils.ouput_target_structure import Prediction, Target
 from scalant.criterion.build import Criterion_REGISTRY
 from scalant.datasets import (EpicKitchens, action2verbnoun, action_set_metrics, build_action_id_to_verb_noun_maps, build_action_similarity_matrix, diverse_action_rerank, topk_action_ids, verbnoun2action)
+from scalant.datasets.utils import _observed_class_mask
 from scalant.datasets.transition_prior import ActionTransitionPrior
 from scalant.criterion.loss import *
 
@@ -79,6 +80,20 @@ class Criterion_LSTR:
         self.transition_weight = float(cfg.MODEL.DIVERSE_SET.TRANSITION_WEIGHT)
         self.transition_fuse_source = str(cfg.MODEL.DIVERSE_SET.TRANSITION_FUSE_SOURCE)
         self.coverage_source = str(cfg.MODEL.DIVERSE_SET.COVERAGE_SOURCE)
+        # Object grounding of the transition coverage targets: successors whose
+        # noun was observed in the past window are preferred as slot targets
+        # (log-space bonus in top_modes). Fixes the marginal collapse where the
+        # slots reuse the dataset's most popular successors for every input.
+        self.object_weight = float(cfg.MODEL.DIVERSE_SET.OBJECT_WEIGHT)
+        # Step 10b object coverage: greedy noun-distinct target selection - the
+        # K-1 coverage targets prefer to involve K-1 DIFFERENT objects ("one
+        # hypothesis per visible object"). Targets grounding's noun concentration
+        # (noun_duplicate ~30 vs baseline ~22 in the Step-10 run).
+        self.noun_penalty = float(cfg.MODEL.DIVERSE_SET.COVERAGE_NOUN_PENALTY)
+        # Step 10b readout dedup: at eval, slot k's prediction is its best action
+        # NOT already picked by slots 0..k-1 (slot 0 keeps its argmax), removing
+        # residual exact duplicates from the diverse set at zero training cost.
+        self.readout_dedup = bool(cfg.MODEL.DIVERSE_SET.READOUT_DEDUP)
         self.transition_prior = None
         if self.transition_weight > 0.0 or self.coverage_source == "transition":
             try:
@@ -137,7 +152,8 @@ class Criterion_LSTR:
         future_coverage_value = None
         if fixed_role:
             cov_prev_ids = self._prev_action_ids(target) if (self.coverage_source == "transition" and self.transition_prior is not None) else None
-            future_coverage = self._diverse_coverage_loss(pred.future_actions, target.future_actions, prev_ids=cov_prev_ids)
+            cov_allowed = self._observed_action_mask(target, pred.future_actions.device) if (cov_prev_ids is not None and self.object_weight > 0.0) else None
+            future_coverage = self._diverse_coverage_loss(pred.future_actions, target.future_actions, prev_ids=cov_prev_ids, allowed_mask=cov_allowed)
             cov_weight = self.diversity_weight * (self._diversity_warmup() if is_training else 1.0)
             loss = loss + cov_weight * future_coverage
             future_coverage_value = float(future_coverage.item())
@@ -217,6 +233,7 @@ class Criterion_LSTR:
         metric_dict = {}
         topk_metrics = action_set_metrics(topk_sets, target.future_actions[:, -1], action_to_verb_id, action_to_noun_id, action_similarity=action_similarity, past_nouns=target.past_nouns, ignore_index=self.ignore_index if self.ignore_index >= 0 else None)
         metric_dict.update(self._format_set_metrics("topk", topk_metrics))
+        metric_dict[f"topk_crossclip_overlap@{self.set_metric_k}"] = [None, self._crossclip_overlap(topk_sets), topk_sets.size(0)]
 
         if self.cfg.MODEL.DIVERSE_SET.ENABLE or self.multi_query:
             if self.multi_query and slot_logits.size(1) > 1:
@@ -225,6 +242,9 @@ class Criterion_LSTR:
                 diverse_sets = torch.stack([diverse_action_rerank(logits, self.set_metric_k, action_similarity=action_similarity, diversity_weight=float(self.cfg.MODEL.DIVERSE_SET.DIVERSITY_WEIGHT), include_background=False, background_id=self.set_metric_background_id) for logits in future_logits])
             diverse_metrics = action_set_metrics(diverse_sets, target.future_actions[:, -1], action_to_verb_id, action_to_noun_id, action_similarity=action_similarity, past_nouns=target.past_nouns, ignore_index=self.ignore_index if self.ignore_index >= 0 else None)
             metric_dict.update(self._format_set_metrics("diverse", diverse_metrics))
+            # Guard against the marginal/popularity collapse: how much do the
+            # non-anchor predictions repeat ACROSS different clips in the batch?
+            metric_dict[f"diverse_crossclip_overlap@{self.set_metric_k}"] = [None, self._crossclip_overlap(diverse_sets), diverse_sets.size(0)]
 
         return metric_dict
 
@@ -265,7 +285,7 @@ class Criterion_LSTR:
             self._perm_cache = (n, perms)
         return self._perm_cache[1].to(device=device)
 
-    def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor, prev_ids: Tensor | None = None) -> Tensor:
+    def _diverse_coverage_loss(self, future_logits: Tensor, target_future: Tensor, prev_ids: Tensor | None = None, allowed_mask: Tensor | None = None) -> Tensor:
         """
         Coverage loss for the fixed-role scheme.
 
@@ -290,6 +310,13 @@ class Criterion_LSTR:
           slots can cover ground the single head's top-K misses and the diverse set
           can exceed the ceiling. Still collapse-safe: targets are fixed dataset
           statistics, not a GT-excluding self-referential signal.
+          With OBJECT_WEIGHT > 0 ('allowed_mask'), successors whose noun was
+          observed in the past window are preferred as targets. Without it the
+          targets condition only on the previous action, which the model cannot
+          reliably recognize (past_top1 ~18), so training collapses the slots onto
+          the targets' popularity marginal (the same turn-on-tap/open-drawer set
+          for most inputs); grounding conditions the targets on the visible
+          objects, a signal the decoder demonstrably has (object_match ~31).
 
         The CE toward concrete target actions keeps a non-vanishing gradient at
         collapse: a slot sitting elsewhere assigns low probability to its assigned
@@ -316,7 +343,8 @@ class Criterion_LSTR:
         # single-head ceiling), else slot 0's own detached top-(K-1) modes.
         use_transition = (self.coverage_source == "transition" and self.transition_prior is not None and prev_ids is not None)
         if use_transition:
-            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg)  # [B, K-1]
+            cov_noun_map = self.action_to_noun_id if (self.noun_penalty > 0.0 and self.action_to_noun_id is not None) else None
+            modes = self.transition_prior.to(device).top_modes(prev_ids.to(device), K - 1, exclude_ids=gt, exclude_background=has_bg, allowed_mask=allowed_mask, allowed_bonus=self.object_weight, action_to_noun=cov_noun_map, noun_penalty=self.noun_penalty)  # [B, K-1]
         else:
             ref0 = future_logits[:, 0].detach().float() / self.diversity_temp  # [B, A]
             if has_bg:
@@ -368,24 +396,100 @@ class Criterion_LSTR:
         return future_logits[:, -1]
 
     def _query_slot_action_ids(self, future_logits: Tensor) -> Tensor:
+        """
+        [B, K] action ids read out from the K slots. Plain per-slot argmax, or -
+        with READOUT_DEDUP - sequential dedup: slot 0 keeps its argmax (anchor
+        untouched), slot k takes its best action not already picked by slots
+        0..k-1. Removes residual exact duplicates from the diverse set at zero
+        training cost; slot order gives earlier slots priority.
+        """
+
         scores = future_logits.detach().float()
         if self.set_metric_background_id is not None and 0 <= self.set_metric_background_id < scores.size(-1):
             scores = scores.clone()
             scores[..., self.set_metric_background_id] = float("-inf")
-        return scores.argmax(dim=-1)
+        if not self.readout_dedup or scores.ndim != 3 or scores.size(1) < 2:
+            return scores.argmax(dim=-1)
+
+        B, K, A = scores.shape
+        batch = torch.arange(B, device=scores.device)
+        used = torch.zeros(B, A, dtype=torch.bool, device=scores.device)
+        picks = []
+        for k in range(K):
+            slot = scores[:, k].masked_fill(used, float("-inf"))
+            best = slot.argmax(dim=-1)
+            picks.append(best)
+            used[batch, best] = True
+        return torch.stack(picks, dim=1)
+
+    def _observed_action_mask(self, target: Target, device) -> Tensor | None:
+        """
+        [B, A] bool: True for actions whose noun was observed in the past window,
+        using the SAME 'observed' definition as the object_match metric, so the
+        grounding mechanism and its measurement agree. None when noun metadata or
+        past-noun targets are unavailable (grounding then silently stays off).
+        """
+
+        if self.action_to_noun_id is None or target.past_nouns is None:
+            return None
+        noun_ids = self.action_to_noun_id.to(device=device)
+        past_nouns = target.past_nouns.to(device=device)
+        # threshold=0.05: training targets are mixup-mixed AND label-smoothed
+        # (off-value = 0.1/num_nouns ~ 3e-4 > 0 everywhere), so '> 0' would mark
+        # every noun observed and silently disable the grounding. 0.05 sits far
+        # above the smoothing floor and counts a mixed-in clip's nouns as
+        # observed once its mix weight exceeds ~6%. Exact for clean eval one-hots.
+        observed = _observed_class_mask(past_nouns, past_nouns.shape[-1], ignore_index=self.ignore_index if self.ignore_index >= 0 else None, threshold=0.05)  # [B, C_noun]
+        allowed = torch.zeros(past_nouns.size(0), noun_ids.numel(), dtype=torch.bool, device=device)
+        valid = (noun_ids >= 0) & (noun_ids < observed.size(1))
+        allowed[:, valid] = observed[:, noun_ids[valid]]
+        return allowed
+
+    @staticmethod
+    def _crossclip_overlap(action_sets: Tensor) -> float:
+        """
+        Mean fraction of one sample's non-anchor predictions that also appear in
+        ANOTHER sample's set (off-diagonal average over the batch). ~0 = sets vary
+        with the input; ~1 = the same actions are reused for every clip (the
+        marginal/popularity collapse this metric guards against). Batch-size
+        independent in expectation; compare runs at the same VAL.BATCH_SIZE anyway.
+        """
+
+        sets = action_sets[:, 1:] if action_sets.size(1) > 1 else action_sets
+        B = sets.size(0)
+        if B < 2:
+            return 0.0
+        # present[i, j, k] = sets[i, k] appears anywhere in sets[j]
+        present = (sets.unsqueeze(1).unsqueeze(-1) == sets.unsqueeze(0).unsqueeze(-2)).any(dim=-1)  # [B, B, K']
+        frac = present.float().mean(dim=-1)  # [B, B]
+        return float((frac.sum() - frac.diagonal().sum()) / (B * (B - 1)))
 
     def _prev_action_ids(self, target: Target) -> Tensor:
         """
-        GT last-observed action id per sample (model index space), [B] long.
+        GT previous-action id per sample (model index space), [B] long: the most
+        recent FOREGROUND action in the observed window.
 
         target.past_actions is [B, T, A] (one-hot / mixup-mixed over the observed
-        window); the last step is the most recent observed action, i.e. the
-        'previous action' that conditions the transition prior.
+        window). The literal last step is background for ~31% of training samples
+        (the pause before the next action starts); background's prior row carries
+        no transition counts and falls back to pure popularity, which fed the
+        popularity-marginal collapse. So scan back to the last step whose argmax
+        is a real action; only windows containing no action at all keep the
+        background id (popularity fallback is then the honest choice).
         """
 
         pa = target.past_actions
-        last = pa[:, -1] if pa.ndim == 3 else pa
-        return last.argmax(dim=-1)
+        ids = pa.argmax(dim=-1)  # [B, T] (or [B] if a single step was given)
+        if ids.ndim == 1:
+            return ids
+        bg = self.ignore_index
+        if not 0 <= bg < pa.size(-1):
+            return ids[:, -1]
+        # Index of the last foreground step per row. Rows with no foreground get
+        # flip().argmax()==0 -> index T-1 -> the (background) last step.
+        offset = (ids != bg).flip(1).int().argmax(dim=1)  # steps back from the end
+        idx = ids.size(1) - 1 - offset  # [B]
+        return ids.gather(1, idx.unsqueeze(1)).squeeze(1)
 
     def _past_action_dist(self, pred: Prediction) -> Tensor:
         """

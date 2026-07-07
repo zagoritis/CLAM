@@ -63,8 +63,35 @@ class DiverseSetConfig:
     # eps = 0.0 = pure "hit-anywhere" (only the winning slot is supervised).
     # Raise to 0.05-0.2 if you observe slot starvation during training.
     HIT_EPSILON: float = 0.0
+    # Object grounding of the transition coverage targets (active when
+    # COVERAGE_SOURCE == 'transition' and DIVERSITY_WEIGHT > 0): log-space bonus
+    # added, inside top_modes, to successor actions whose noun was observed in the
+    # past window (same 'observed' definition as the object_match metric).
+    # Successors compatible with the visible objects are then preferred as slot
+    # targets, falling back to the unrestricted transition ranking when fewer than
+    # K-1 compatible successors exist. Without it the targets condition only on
+    # the previous action, which the model recognizes poorly (past_top1 ~18), so
+    # training collapses slots 1..K-1 onto the targets' popularity marginal (the
+    # same turn-on-tap/open-drawer set for most clips). The value is a log-odds
+    # boost: a few nats = soft preference; >= ~30 nats exceeds the prior's full
+    # log range (prob floor 1e-12 -> ~28 nats) = guaranteed hard preference.
+    # 0 = off (plain 9B).
     OBJECT_WEIGHT: float = 0.
-    TEMPORAL_WEIGHT: float = 0.
+    # Step 10b object coverage: greedy noun-distinct selection of the K-1
+    # coverage targets - after each pick, every action sharing the picked noun
+    # is penalized by this log-space amount, so the targets prefer to cover K-1
+    # DIFFERENT objects ("one hypothesis per visible object"). The penalty
+    # accumulates per reuse (graceful fallback when fewer distinct nouns than
+    # K-1 are available). Hard constraint needs >= ~100 (must dominate
+    # OBJECT_WEIGHT 30 + the prior's ~28-nat log range). 0 = off (plain Step 10).
+    COVERAGE_NOUN_PENALTY: float = 0.
+    # Step 10b readout dedup (eval-only): slot k's prediction = its best action
+    # not already picked by slots 0..k-1 (slot 0 keeps its argmax). Removes
+    # residual exact duplicates from the diverse set at zero training cost.
+    # Changes the diverse-set readout definition - disclose when comparing to
+    # runs evaluated with plain argmax.
+    READOUT_DEDUP: bool = False
+    TEMPORAL_WEIGHT: float = 0.  # reserved/unused
 
     # First-order action-transition prior P(next action | previous action),
     # built once from EK100 training sequences. Because it is external/data-driven

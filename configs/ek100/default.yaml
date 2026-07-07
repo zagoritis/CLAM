@@ -55,12 +55,22 @@ MODEL:
     DIVERSITY_WEIGHT: 1.0         # 0 = Step-7 WTA ablation; >0 = fixed-role coverage (8(5) used 1.0)
     DIVERSITY_TEMP: 1.0
     DIVERSITY_WARMUP_EPOCHS: 10
-    COVERAGE_SOURCE: transition   # 'transition' = Step 9B (headline/final model); 'self' = Step 8(5) self-distillation ablation
+    COVERAGE_SOURCE: transition   # 'transition' = Step 9B; 'self' = Step 8(5) self-distillation ablation
+    OBJECT_WEIGHT: 30.0           # object grounding: coverage targets must involve a noun observed in the
+                                  # clip (fixes the popularity-marginal slot collapse: turn-on tap/open
+                                  # drawer reused for ~2/3 of clips). >=30 = hard preference (exceeds the
+                                  # prior's full log range); a few nats = soft preference; 0 = plain 9B
+    COVERAGE_NOUN_PENALTY: 100.0  # Step 10b object coverage: targets prefer K-1 DISTINCT observed
+                                  # objects (one hypothesis per visible object). >=100 = hard; 0 = Step 10
+    READOUT_DEDUP: False          # Step 10b readout dedup: slot k reads out its best action not already
+                                  # picked by slots 0..k-1 (slot 0 untouched). KEEP False FOR TRAINING so
+                                  # logs stay comparable across runs (same argmax readout + same ckpt
+                                  # selection); set True only in eval-only runs (TEST.ENABLE True) to
+                                  # measure C on the saved step10/step10b ckpts (the 2x2 protocol)
     HIT_WEIGHT: 1.
     HIT_EPSILON: 0.
     # --- Step 9A: inference-time transition fusion (eval-only; needs TEST.ENABLE True) ---
     TRANSITION_WEIGHT: 0.         # 0 = off; >0 fuses logP(next|prev) into eval logits (λ≈2 best)
     TRANSITION_FUSE_SOURCE: past_head   # 'past_head' (realistic) or 'gt_prev' (oracle upper bound)
     TRANSITION_ANNO: annotations/ek100_rulstm/
-    OBJECT_WEIGHT: 0.             # reserved/unused
     TEMPORAL_WEIGHT: 0.           # reserved/unused

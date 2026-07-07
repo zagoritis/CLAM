@@ -87,6 +87,47 @@ def main():
     fused_soft = prior.fuse(torch.randn(B, A), past_dist=past, weight=0.5)
     assert fused_soft.shape == (B, A) and torch.isfinite(fused_soft).all()
 
+    # 3. object-grounded top_modes (OBJECT_WEIGHT): allowed successors must be
+    # preferred, exclusions must still win, and an empty mask must fall back to
+    # the plain ranking.
+    plain = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True)
+    allowed = torch.zeros(B, A, dtype=torch.bool)
+    allowed[torch.arange(B), plain[:, -1]] = True  # allow only each row's LAST plain mode
+    # 30 nats exceeds the prior's full log range -> guaranteed hard preference.
+    grounded = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, allowed_mask=allowed, allowed_bonus=30.0)
+    assert (grounded[:, 0] == plain[:, -1]).all(), "the allowed successor must be ranked first"
+    assert (grounded != 0).all() and (grounded != gt[:, None]).all(), "bg/GT exclusion must survive grounding"
+    # allowing the GT must NOT resurrect it (exclusions applied after the bonus)
+    gt_allowed = torch.zeros(B, A, dtype=torch.bool)
+    gt_allowed[torch.arange(B), gt] = True
+    still_excluded = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, allowed_mask=gt_allowed, allowed_bonus=50.0)
+    assert (still_excluded != gt[:, None]).all(), "GT must stay excluded even when allowed+bonused"
+    none_allowed = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, allowed_mask=torch.zeros(B, A, dtype=torch.bool), allowed_bonus=30.0)
+    assert (none_allowed == plain).all(), "all-false mask must fall back to the unrestricted ranking"
+    print("object-grounded top_modes OK (preference, exclusion precedence, empty-mask fallback)")
+
+    # 4. Step 10b noun-distinct top_modes: picked modes must cover distinct nouns
+    # when enough exist, fall back to prior order when they don't, and keep
+    # bg/GT exclusions.
+    a2n = torch.arange(A) % 7  # synthetic noun map: 7 noun groups
+    nd = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, action_to_noun=a2n, noun_penalty=100.0)
+    for b in range(B):
+        nouns = a2n[nd[b]]
+        assert nouns.unique().numel() == K - 1, f"nouns not distinct: {nouns.tolist()}"
+    assert (nd != 0).all() and (nd != gt[:, None]).all(), "bg/GT exclusion must survive noun dedup"
+    # single noun group everywhere -> dedup impossible -> must fall back to the
+    # plain ranking (compare picked SCORES, not indices: the smoothed prior has
+    # exact ties, and greedy argmax may break them differently than topk)
+    one_noun = torch.zeros(A, dtype=torch.long)
+    nd_one = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, action_to_noun=one_noun, noun_penalty=100.0)
+    vals_nd = prior.log_prob[prev_ids].gather(1, nd_one).sort(dim=-1, descending=True).values
+    vals_plain = prior.log_prob[prev_ids].gather(1, plain).sort(dim=-1, descending=True).values
+    assert torch.allclose(vals_nd, vals_plain), "single-noun fallback must reproduce the plain ranking (by score)"
+    # penalty 0 -> identical to plain top-k
+    nd_off = prior.top_modes(prev_ids, K - 1, exclude_ids=gt, exclude_background=True, action_to_noun=a2n, noun_penalty=0.0)
+    assert (nd_off == plain).all(), "noun_penalty=0 must be a no-op"
+    print("noun-distinct top_modes OK (distinct nouns, exclusions, single-noun + zero-penalty fallbacks)")
+
     print("model-space invariants OK (shape, bg column, normalization, fuse, top_modes, soft path)")
     print("ALL CHECKS PASSED")
 

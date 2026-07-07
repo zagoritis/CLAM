@@ -113,12 +113,29 @@ def primary_future_logits(future_logits, diverse_set_enabled):
     return future_logits[0, -1]
 
 
-def query_slot_action_ids(future_logits, include_background):
+def query_slot_action_ids(future_logits, include_background, readout_dedup=False):
+    """
+    [K] action ids from the K slot distributions ([K, A]). With readout_dedup
+    (MODEL.DIVERSE_SET.READOUT_DEDUP), slot k takes its best action not already
+    picked by slots 0..k-1 - the same readout the criterion's set metrics use,
+    so the emitted action_set matches the evaluated one.
+    """
+
     scores = future_logits.detach().float()
     if not include_background and scores.size(-1) > 0:
         scores = scores.clone()
         scores[..., 0] = float("-inf")
-    return scores.argmax(dim=-1)
+    if not readout_dedup or scores.ndim != 2 or scores.size(0) < 2:
+        return scores.argmax(dim=-1)
+
+    used = torch.zeros(scores.size(-1), dtype=torch.bool, device=scores.device)
+    picks = []
+    for k in range(scores.size(0)):
+        slot = scores[k].masked_fill(used, float("-inf"))
+        best = slot.argmax(dim=-1)
+        picks.append(best)
+        used[best] = True
+    return torch.stack(picks)
 
 
 def lookup_id(lookup, class_idx, unknown_id=-1):
@@ -294,7 +311,7 @@ def main():
             result["predictions"]["top_nouns"] = topk_predictions(primary_future_logits(pred.future_nouns, diverse_set_model), noun_names, args.topk, args.include_background, "noun")
         if diverse_enabled:
             if diverse_set_model and pred.future_actions.size(1) > 1:
-                diverse_action_ids = query_slot_action_ids(pred.future_actions[0], args.include_background)
+                diverse_action_ids = query_slot_action_ids(pred.future_actions[0], args.include_background, readout_dedup=bool(cfg.MODEL.DIVERSE_SET.READOUT_DEDUP))
                 action_set_logits = pred.future_actions[0]
             else:
                 diverse_action_ids = diverse_action_rerank(action_logits, diverse_set_size, action_similarity=action_similarity, diversity_weight=diversity_weight, include_background=args.include_background,)
