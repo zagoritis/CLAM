@@ -62,8 +62,11 @@ MODEL:
                                   # prior's full log range); a few nats = soft preference; 0 = plain 9B
     COVERAGE_NOUN_PENALTY: 100.0  # Step 10b object coverage: targets prefer K-1 DISTINCT observed
                                   # objects (one hypothesis per visible object). >=100 = hard; 0 = Step 10
-    READOUT_DEDUP: True           # Step 10b: slot k reads out its best action not already picked by
-                                  # slots 0..k-1 (removes residual exact duplicates; slot 0 untouched)
+    READOUT_DEDUP: False          # Step 10b readout dedup: slot k reads out its best action not already
+                                  # picked by slots 0..k-1 (slot 0 untouched). KEEP False FOR TRAINING so
+                                  # logs stay comparable across runs (same argmax readout + same ckpt
+                                  # selection); set True only in eval-only runs (TEST.ENABLE True) to
+                                  # measure C on the saved step10/step10b ckpts (the 2x2 protocol)
     HIT_WEIGHT: 1.
     HIT_EPSILON: 0.
     # --- Step 9A: inference-time transition fusion (eval-only; needs TEST.ENABLE True) ---
