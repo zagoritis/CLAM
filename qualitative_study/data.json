@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated_at": "2026-07-07T02:17:25+00:00",
+    "generated_at": "2026-07-08T03:00:30+00:00",
     "baseline": {
       "preds_file": "baseline_preds.json",
       "source": "top_actions",
@@ -9,7 +9,7 @@
     "modified": {
       "preds_file": "modified_preds.json",
       "source": "action_set",
-      "note": "diverse 5-slot set (slot argmaxes) from the Step 10 (2) object-compatible transition-coverage checkpoint"
+      "note": "diverse 5-slot set (dedup readout) from the Step 10b object-coverage checkpoint (READOUT_DEDUP on)"
     }
   },
   "clips": [
@@ -44,7 +44,15 @@
       ],
       "modified": [
         {
-          "label": "open drawer",
+          "label": "take spice",
+          "score": null
+        },
+        {
+          "label": "take spoon",
+          "score": null
+        },
+        {
+          "label": "take potato",
           "score": null
         },
         {
@@ -52,15 +60,7 @@
           "score": null
         },
         {
-          "label": "open drawer",
-          "score": null
-        },
-        {
-          "label": "open drawer",
-          "score": null
-        },
-        {
-          "label": "close drawer",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -100,19 +100,19 @@
           "score": null
         },
         {
+          "label": "take spoon",
+          "score": null
+        },
+        {
+          "label": "take container",
+          "score": null
+        },
+        {
           "label": "open cupboard",
           "score": null
         },
         {
-          "label": "close cupboard",
-          "score": null
-        },
-        {
-          "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
+          "label": "take sponge",
           "score": null
         }
       ]
@@ -148,23 +148,23 @@
       ],
       "modified": [
         {
-          "label": "add water",
-          "score": null
-        },
-        {
-          "label": "wash pot",
-          "score": null
-        },
-        {
           "label": "put pot",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "put lid",
           "score": null
         },
         {
           "label": "take pot",
+          "score": null
+        },
+        {
+          "label": "take board:chopping",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -200,7 +200,7 @@
       ],
       "modified": [
         {
-          "label": "put glass",
+          "label": "put kettle",
           "score": null
         },
         {
@@ -208,15 +208,15 @@
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "take napkin",
           "score": null
         },
         {
-          "label": "open cupboard",
+          "label": "close drawer",
           "score": null
         },
         {
-          "label": "throw napkin",
+          "label": "take bowl",
           "score": null
         }
       ]
@@ -256,7 +256,11 @@
           "score": null
         },
         {
-          "label": "take bowl",
+          "label": "take spoon",
+          "score": null
+        },
+        {
+          "label": "wash bowl",
           "score": null
         },
         {
@@ -264,11 +268,7 @@
           "score": null
         },
         {
-          "label": "take bowl",
-          "score": null
-        },
-        {
-          "label": "wash bowl",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -304,23 +304,23 @@
       ],
       "modified": [
         {
-          "label": "dry hand",
+          "label": "scrape pepper",
           "score": null
         },
         {
-          "label": "take spoon",
+          "label": "open drawer",
           "score": null
         },
         {
-          "label": "put board:chopping",
+          "label": "cut carrot",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "wash board:chopping",
+          "label": "put spoon",
           "score": null
         }
       ]
@@ -356,11 +356,7 @@
       ],
       "modified": [
         {
-          "label": "put cutlery",
-          "score": null
-        },
-        {
-          "label": "take spoon",
+          "label": "insert dishwasher",
           "score": null
         },
         {
@@ -368,11 +364,15 @@
           "score": null
         },
         {
-          "label": "insert spoon",
+          "label": "mix pasta",
           "score": null
         },
         {
-          "label": "close drawer",
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "open drawer",
           "score": null
         }
       ]
@@ -408,7 +408,7 @@
       ],
       "modified": [
         {
-          "label": "fold cloth",
+          "label": "pour pasta",
           "score": null
         },
         {
@@ -416,15 +416,15 @@
           "score": null
         },
         {
-          "label": "put plate",
+          "label": "put colander",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -460,23 +460,23 @@
       ],
       "modified": [
         {
-          "label": "close drawer",
+          "label": "insert bag",
           "score": null
         },
         {
-          "label": "wash hand",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "take bag",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "open fridge",
           "score": null
         }
       ]
@@ -512,7 +512,11 @@
       ],
       "modified": [
         {
-          "label": "turn-off tap",
+          "label": "put maker:coffee",
+          "score": null
+        },
+        {
+          "label": "take spoon",
           "score": null
         },
         {
@@ -520,15 +524,11 @@
           "score": null
         },
         {
-          "label": "put cup",
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "wash cup",
           "score": null
         }
       ]
@@ -568,11 +568,7 @@
           "score": null
         },
         {
-          "label": "take plate",
-          "score": null
-        },
-        {
-          "label": "put plate",
+          "label": "take spoon",
           "score": null
         },
         {
@@ -580,7 +576,11 @@
           "score": null
         },
         {
-          "label": "wash plate",
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -616,23 +616,23 @@
       ],
       "modified": [
         {
-          "label": "unroll cloth",
+          "label": "take pasta",
           "score": null
         },
         {
-          "label": "take knife",
+          "label": "put plate",
           "score": null
         },
         {
-          "label": "dry hand",
+          "label": "put bag",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "pour food",
           "score": null
         }
       ]
@@ -668,23 +668,23 @@
       ],
       "modified": [
         {
-          "label": "open box",
-          "score": null
-        },
-        {
           "label": "remove tray",
           "score": null
         },
         {
-          "label": "take glove",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "take tray",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "take cloth",
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "take knife",
           "score": null
         }
       ]
@@ -720,19 +720,19 @@
       ],
       "modified": [
         {
-          "label": "wash slicer",
+          "label": "dry stand",
           "score": null
         },
         {
-          "label": "shake hand",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "dry hand",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take fork",
           "score": null
         },
         {
@@ -772,23 +772,23 @@
       ],
       "modified": [
         {
-          "label": "take leaf",
+          "label": "put cereal",
           "score": null
         },
         {
-          "label": "take pasta",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "put bowl",
+          "label": "put box",
           "score": null
         },
         {
-          "label": "take bowl",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -824,15 +824,15 @@
       ],
       "modified": [
         {
-          "label": "wash lid",
+          "label": "take teapot",
           "score": null
         },
         {
-          "label": "insert lid",
+          "label": "take lid",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "take pan",
           "score": null
         },
         {
@@ -840,7 +840,7 @@
           "score": null
         },
         {
-          "label": "take knife",
+          "label": "open fridge",
           "score": null
         }
       ]
@@ -876,11 +876,11 @@
       ],
       "modified": [
         {
-          "label": "open bottle",
+          "label": "drink water",
           "score": null
         },
         {
-          "label": "put oil",
+          "label": "open drawer",
           "score": null
         },
         {
@@ -888,11 +888,11 @@
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "put glass",
           "score": null
         }
       ]
@@ -928,23 +928,23 @@
       ],
       "modified": [
         {
-          "label": "put maker:coffee",
+          "label": "take maker:coffee",
           "score": null
         },
         {
-          "label": "put cup",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "take cup",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "wash lid",
           "score": null
         }
       ]
@@ -980,23 +980,23 @@
       ],
       "modified": [
         {
-          "label": "take clothes",
+          "label": "take oatmeal",
           "score": null
         },
         {
-          "label": "take clothes",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "close drink",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take sponge",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -1032,7 +1032,15 @@
       ],
       "modified": [
         {
-          "label": "fill bowl",
+          "label": "wash top",
+          "score": null
+        },
+        {
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "take pan",
           "score": null
         },
         {
@@ -1040,15 +1048,7 @@
           "score": null
         },
         {
-          "label": "close cupboard",
-          "score": null
-        },
-        {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1088,15 +1088,15 @@
           "score": null
         },
         {
-          "label": "wash glass",
+          "label": "take pan",
           "score": null
         },
         {
-          "label": "move tap",
+          "label": "put knife",
           "score": null
         },
         {
-          "label": "wash bowl",
+          "label": "wash fork",
           "score": null
         },
         {
@@ -1136,23 +1136,23 @@
       ],
       "modified": [
         {
-          "label": "put pan",
+          "label": "wash colander",
           "score": null
         },
         {
-          "label": "scrub pan",
+          "label": "take colander",
           "score": null
         },
         {
-          "label": "insert pan",
+          "label": "put colander",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -1188,7 +1188,7 @@
       ],
       "modified": [
         {
-          "label": "put ladle",
+          "label": "turn-on hob",
           "score": null
         },
         {
@@ -1196,15 +1196,15 @@
           "score": null
         },
         {
-          "label": "put spoon",
+          "label": "take lid",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -1244,19 +1244,19 @@
           "score": null
         },
         {
-          "label": "take maker:coffee",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "put maker:coffee",
+          "label": "wash jug",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "take fork",
           "score": null
         }
       ]
@@ -1292,7 +1292,7 @@
       ],
       "modified": [
         {
-          "label": "put tongs",
+          "label": "wash ladle",
           "score": null
         },
         {
@@ -1300,15 +1300,15 @@
           "score": null
         },
         {
-          "label": "put plate",
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "open drawer",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1344,7 +1344,7 @@
       ],
       "modified": [
         {
-          "label": "pour tomato",
+          "label": "put tomato",
           "score": null
         },
         {
@@ -1352,15 +1352,15 @@
           "score": null
         },
         {
-          "label": "put spoon",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "put knife",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "cut tomato",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -1396,7 +1396,7 @@
       ],
       "modified": [
         {
-          "label": "put tray",
+          "label": "take salad",
           "score": null
         },
         {
@@ -1404,15 +1404,15 @@
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "take pan",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1448,6 +1448,14 @@
       ],
       "modified": [
         {
+          "label": "turn-off tap",
+          "score": null
+        },
+        {
+          "label": "take spoon",
+          "score": null
+        },
+        {
           "label": "wash peach",
           "score": null
         },
@@ -1456,15 +1464,7 @@
           "score": null
         },
         {
-          "label": "close cupboard",
-          "score": null
-        },
-        {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1500,7 +1500,7 @@
       ],
       "modified": [
         {
-          "label": "put scale",
+          "label": "put plate",
           "score": null
         },
         {
@@ -1508,15 +1508,15 @@
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "open kettle",
           "score": null
         },
         {
-          "label": "open cupboard",
+          "label": "open drawer",
           "score": null
         },
         {
-          "label": "flip scale",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -1552,23 +1552,23 @@
       ],
       "modified": [
         {
-          "label": "open lid",
+          "label": "close lid",
           "score": null
         },
         {
-          "label": "insert lid",
+          "label": "put plate",
           "score": null
         },
         {
-          "label": "take lid",
+          "label": "shake hand",
+          "score": null
+        },
+        {
+          "label": "take sponge",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1604,23 +1604,23 @@
       ],
       "modified": [
         {
-          "label": "insert salmon",
+          "label": "close bag",
           "score": null
         },
         {
-          "label": "take knife",
+          "label": "put pan",
           "score": null
         },
         {
-          "label": "take knife",
+          "label": "take bag",
           "score": null
         },
         {
-          "label": "take knife",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "wash spoon",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -1656,23 +1656,23 @@
       ],
       "modified": [
         {
-          "label": "check microwave",
+          "label": "open microwave",
           "score": null
         },
         {
-          "label": "take tomato",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "wash knife",
+          "label": "cut tomato",
           "score": null
         },
         {
-          "label": "put knife",
+          "label": "take sponge",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -1708,23 +1708,23 @@
       ],
       "modified": [
         {
-          "label": "pour cheese",
-          "score": null
-        },
-        {
-          "label": "take bowl",
-          "score": null
-        },
-        {
-          "label": "put plate",
-          "score": null
-        },
-        {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "put pan",
+          "score": null
+        },
+        {
+          "label": "take box",
+          "score": null
+        },
+        {
+          "label": "mix food",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -1768,7 +1768,7 @@
           "score": null
         },
         {
-          "label": "put tray",
+          "label": "take tray",
           "score": null
         },
         {
@@ -1776,7 +1776,7 @@
           "score": null
         },
         {
-          "label": "put tray",
+          "label": "take plate",
           "score": null
         }
       ]
@@ -1812,19 +1812,19 @@
       ],
       "modified": [
         {
-          "label": "put maker:coffee",
+          "label": "wash maker:coffee",
           "score": null
         },
         {
-          "label": "open maker:coffee",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "put maker:coffee",
+          "label": "wash cup",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "open cupboard",
           "score": null
         },
         {
@@ -1864,7 +1864,7 @@
       ],
       "modified": [
         {
-          "label": "turn-off hob",
+          "label": "mix egg",
           "score": null
         },
         {
@@ -1872,15 +1872,15 @@
           "score": null
         },
         {
-          "label": "put spoon",
-          "score": null
-        },
-        {
-          "label": "open cupboard",
+          "label": "put pan",
           "score": null
         },
         {
           "label": "mix food",
+          "score": null
+        },
+        {
+          "label": "open drawer",
           "score": null
         }
       ]
@@ -1916,23 +1916,23 @@
       ],
       "modified": [
         {
-          "label": "wash filter",
+          "label": "put cutlery",
           "score": null
         },
         {
-          "label": "shake hand",
+          "label": "take knife",
           "score": null
         },
         {
-          "label": "dry hand",
+          "label": "wash hand",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -1968,23 +1968,23 @@
       ],
       "modified": [
         {
-          "label": "close cupboard",
-          "score": null
-        },
-        {
-          "label": "take spoon",
-          "score": null
-        },
-        {
-          "label": "put spoon",
-          "score": null
-        },
-        {
-          "label": "turn-on tap",
-          "score": null
-        },
-        {
           "label": "turn-off tap",
+          "score": null
+        },
+        {
+          "label": "throw skin",
+          "score": null
+        },
+        {
+          "label": "put cloth",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
+          "score": null
+        },
+        {
+          "label": "open fridge",
           "score": null
         }
       ]
@@ -2020,23 +2020,23 @@
       ],
       "modified": [
         {
-          "label": "put board:chopping",
+          "label": "check hand",
           "score": null
         },
         {
-          "label": "take spoon",
+          "label": "open drawer",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "close dishwasher",
+          "score": null
+        },
+        {
+          "label": "open cupboard",
           "score": null
         },
         {
           "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -2076,19 +2076,19 @@
           "score": null
         },
         {
-          "label": "take colander",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "take colander",
+          "label": "put colander",
           "score": null
         },
         {
-          "label": "put sponge",
+          "label": "take sponge",
           "score": null
         },
         {
-          "label": "wash spoon",
+          "label": "turn-off tap",
           "score": null
         }
       ]
@@ -2124,23 +2124,23 @@
       ],
       "modified": [
         {
-          "label": "take pasta",
+          "label": "mix sauce",
           "score": null
         },
         {
-          "label": "put pasta",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "put plate",
+          "label": "put sauce",
           "score": null
         },
         {
-          "label": "pour pasta",
+          "label": "open cupboard",
           "score": null
         },
         {
-          "label": "insert pasta",
+          "label": "take knife",
           "score": null
         }
       ]
@@ -2176,11 +2176,11 @@
       ],
       "modified": [
         {
-          "label": "wash maker:coffee",
+          "label": "fill pan",
           "score": null
         },
         {
-          "label": "put kettle",
+          "label": "take spoon",
           "score": null
         },
         {
@@ -2188,7 +2188,7 @@
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take fork",
           "score": null
         },
         {
@@ -2228,7 +2228,7 @@
       ],
       "modified": [
         {
-          "label": "put pot",
+          "label": "pour pasta",
           "score": null
         },
         {
@@ -2240,11 +2240,11 @@
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "turn-off tap",
+          "label": "open drawer",
           "score": null
         }
       ]
@@ -2280,23 +2280,23 @@
       ],
       "modified": [
         {
+          "label": "take plate",
+          "score": null
+        },
+        {
+          "label": "take knife",
+          "score": null
+        },
+        {
           "label": "put plate",
           "score": null
         },
         {
-          "label": "insert plate",
+          "label": "open drawer",
           "score": null
         },
         {
-          "label": "put plate",
-          "score": null
-        },
-        {
-          "label": "turn-on tap",
-          "score": null
-        },
-        {
-          "label": "wash plate",
+          "label": "open fridge",
           "score": null
         }
       ]
@@ -2336,7 +2336,7 @@
           "score": null
         },
         {
-          "label": "open container",
+          "label": "wash top",
           "score": null
         },
         {
@@ -2344,11 +2344,11 @@
           "score": null
         },
         {
-          "label": "put lid",
+          "label": "take knife",
           "score": null
         },
         {
-          "label": "take container",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -2384,23 +2384,23 @@
       ],
       "modified": [
         {
-          "label": "put peach",
-          "score": null
-        },
-        {
-          "label": "open cupboard",
-          "score": null
-        },
-        {
           "label": "adjust heat",
           "score": null
         },
         {
-          "label": "open cupboard",
+          "label": "take spoon",
           "score": null
         },
         {
-          "label": "take lid",
+          "label": "turn-on hob",
+          "score": null
+        },
+        {
+          "label": "open drawer",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -2436,23 +2436,23 @@
       ],
       "modified": [
         {
-          "label": "take mat",
+          "label": "flip meat",
           "score": null
         },
         {
-          "label": "put towel",
+          "label": "put plate",
           "score": null
         },
         {
-          "label": "hang towel",
+          "label": "put cloth",
           "score": null
         },
         {
-          "label": "fold towel",
+          "label": "wash hand",
           "score": null
         },
         {
-          "label": "wash cloth",
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -2488,23 +2488,23 @@
       ],
       "modified": [
         {
-          "label": "take knife",
-          "score": null
-        },
-        {
-          "label": "insert fork",
-          "score": null
-        },
-        {
           "label": "wash knife",
           "score": null
         },
         {
-          "label": "turn-on tap",
+          "label": "take cup",
+          "score": null
+        },
+        {
+          "label": "put knife",
           "score": null
         },
         {
           "label": "take knife",
+          "score": null
+        },
+        {
+          "label": "turn-on tap",
           "score": null
         }
       ]
@@ -2540,15 +2540,15 @@
       ],
       "modified": [
         {
-          "label": "pour pasta",
+          "label": "take scissors",
           "score": null
         },
         {
-          "label": "open drawer",
+          "label": "take plate",
           "score": null
         },
         {
-          "label": "close cupboard",
+          "label": "mix pasta",
           "score": null
         },
         {
@@ -2556,7 +2556,7 @@
           "score": null
         },
         {
-          "label": "take package",
+          "label": "open fridge",
           "score": null
         }
       ]
@@ -2592,7 +2592,11 @@
       ],
       "modified": [
         {
-          "label": "take chopstick",
+          "label": "put chopstick",
+          "score": null
+        },
+        {
+          "label": "take lid",
           "score": null
         },
         {
@@ -2600,15 +2604,11 @@
           "score": null
         },
         {
-          "label": "close oil",
+          "label": "close cupboard",
           "score": null
         },
         {
-          "label": "open cupboard",
-          "score": null
-        },
-        {
-          "label": "close oil",
+          "label": "open drawer",
           "score": null
         }
       ]

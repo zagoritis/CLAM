@@ -147,7 +147,7 @@ def main():
                          "(the diverse set the thesis studies); 'top_actions' would rate slot-0's top-5 instead.")
     ap.add_argument("--baseline-note", default="single-head top-5 from the 1xA100-trained baseline checkpoint",
                     help="Provenance note stored in data.json meta.")
-    ap.add_argument("--modified-note", default="diverse 5-slot set (slot argmaxes) from the Step 9B transition-coverage checkpoint",
+    ap.add_argument("--modified-note", default="diverse 5-slot set (dedup readout) from the Step 10b object-coverage checkpoint (READOUT_DEDUP on)",
                     help="Provenance note stored in data.json meta.")
     ap.add_argument("--reencode", choices=["encode", "copy"], default="encode",
                     help="'encode' (robust, browser-safe) or 'copy' (faster, keyframe-aligned).")

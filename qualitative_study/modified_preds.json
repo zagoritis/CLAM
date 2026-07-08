@@ -30,31 +30,31 @@
           "rank": 1,
           "id": 251,
           "action": "take spice",
-          "probability": 0.05294090881943703
+          "probability": 0.05294085294008255
         },
         {
           "rank": 2,
           "id": 3328,
           "action": "measure spice",
-          "probability": 0.035707470029592514
+          "probability": 0.03570743650197983
         },
         {
           "rank": 3,
           "id": 1357,
           "action": "put spice",
-          "probability": 0.01489002164453268
+          "probability": 0.014890020713210106
         },
         {
           "rank": 4,
           "id": 215,
           "action": "take garlic",
-          "probability": 0.010418752208352089
+          "probability": 0.010418741963803768
         },
         {
           "rank": 5,
           "id": 2694,
           "action": "search spice",
-          "probability": 0.010209769010543823
+          "probability": 0.010209763422608376
         }
       ],
       "top_verbs": [
@@ -62,31 +62,31 @@
           "rank": 1,
           "id": 4,
           "verb": "open",
-          "probability": 0.3257249891757965
+          "probability": 0.32572489976882935
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.12105660885572433
+          "probability": 0.1210564598441124
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.10711649805307388
+          "probability": 0.10711666941642761
         },
         {
           "rank": 4,
           "id": 70,
           "verb": "measure",
-          "probability": 0.0562128983438015
+          "probability": 0.05621295049786568
         },
         {
           "rank": 5,
           "id": 49,
           "verb": "search",
-          "probability": 0.025274651125073433
+          "probability": 0.02527465671300888
         }
       ],
       "top_nouns": [
@@ -94,31 +94,31 @@
           "rank": 1,
           "id": 86,
           "noun": "spice",
-          "probability": 0.3007802963256836
+          "probability": 0.30078011751174927
         },
         {
           "rank": 2,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.06408031284809113
+          "probability": 0.06408032029867172
         },
         {
           "rank": 3,
           "id": 48,
           "noun": "sauce",
-          "probability": 0.062419962137937546
+          "probability": 0.06241996958851814
         },
         {
           "rank": 4,
           "id": 9,
           "noun": "drawer",
-          "probability": 0.05784889683127403
+          "probability": 0.05784890428185463
         },
         {
           "rank": 5,
           "id": 52,
           "noun": "garlic",
-          "probability": 0.04888807237148285
+          "probability": 0.04888809099793434
         }
       ],
       "action_set": [
@@ -126,7 +126,7 @@
           "rank": 1,
           "id": 251,
           "action": "take spice",
-          "probability": 0.05294090881943703,
+          "probability": 0.05294085294008255,
           "verb": {
             "id": 1,
             "name": "take"
@@ -154,7 +154,7 @@
           "rank": 3,
           "id": 192,
           "action": "take potato",
-          "probability": 0.5380988717079163,
+          "probability": 0.5380990505218506,
           "verb": {
             "id": 1,
             "name": "take"
@@ -168,7 +168,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.1929188072681427,
+          "probability": 0.1929188370704651,
           "verb": {
             "id": 4,
             "name": "open"
@@ -182,7 +182,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.23166760802268982,
+          "probability": 0.2316676527261734,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -232,31 +232,31 @@
           "rank": 1,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.15622299909591675
+          "probability": 0.15622295439243317
         },
         {
           "rank": 2,
           "id": 1920,
           "action": "wash tomato",
-          "probability": 0.06062911078333855
+          "probability": 0.06062912568449974
         },
         {
           "rank": 3,
           "id": 206,
           "action": "take tomato",
-          "probability": 0.03696204721927643
+          "probability": 0.036961983889341354
         },
         {
           "rank": 4,
           "id": 1312,
           "action": "put tomato",
-          "probability": 0.01993168517947197
+          "probability": 0.019931679591536522
         },
         {
           "rank": 5,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.016154596582055092
+          "probability": 0.016154594719409943
         }
       ],
       "top_verbs": [
@@ -264,31 +264,31 @@
           "rank": 1,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.5894947648048401
+          "probability": 0.5894945859909058
         },
         {
           "rank": 2,
           "id": 3,
           "verb": "wash",
-          "probability": 0.07646723091602325
+          "probability": 0.07646732032299042
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.06434288620948792
+          "probability": 0.06434287875890732
         },
         {
           "rank": 4,
           "id": 15,
           "verb": "dry",
-          "probability": 0.05280277505517006
+          "probability": 0.052802786231040955
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.04737520590424538
+          "probability": 0.04737523943185806
         }
       ],
       "top_nouns": [
@@ -296,31 +296,31 @@
           "rank": 1,
           "id": 1,
           "noun": "tap",
-          "probability": 0.6536988019943237
+          "probability": 0.6536988615989685
         },
         {
           "rank": 2,
           "id": 44,
           "noun": "tomato",
-          "probability": 0.05304462090134621
+          "probability": 0.05304459482431412
         },
         {
           "rank": 3,
           "id": 22,
           "noun": "container",
-          "probability": 0.0511888824403286
+          "probability": 0.051188886165618896
         },
         {
           "rank": 4,
           "id": 12,
           "noun": "hand",
-          "probability": 0.03454335033893585
+          "probability": 0.03454335406422615
         },
         {
           "rank": 5,
           "id": 7,
           "noun": "lid",
-          "probability": 0.03369903191924095
+          "probability": 0.03369903564453125
         }
       ],
       "action_set": [
@@ -328,7 +328,7 @@
           "rank": 1,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.15622299909591675,
+          "probability": 0.15622295439243317,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -342,7 +342,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.4344565272331238,
+          "probability": 0.434456467628479,
           "verb": {
             "id": 1,
             "name": "take"
@@ -356,7 +356,7 @@
           "rank": 3,
           "id": 119,
           "action": "take container",
-          "probability": 0.43375036120414734,
+          "probability": 0.43375062942504883,
           "verb": {
             "id": 1,
             "name": "take"
@@ -370,7 +370,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.268094539642334,
+          "probability": 0.26809409260749817,
           "verb": {
             "id": 4,
             "name": "open"
@@ -384,7 +384,7 @@
           "rank": 5,
           "id": 256,
           "action": "take sponge",
-          "probability": 0.09998156130313873,
+          "probability": 0.0999816283583641,
           "verb": {
             "id": 1,
             "name": "take"
@@ -440,25 +440,25 @@
           "rank": 2,
           "id": 1906,
           "action": "wash pot",
-          "probability": 0.06413228064775467
+          "probability": 0.06413231045007706
         },
         {
           "rank": 3,
           "id": 2620,
           "action": "add water",
-          "probability": 0.045321766287088394
+          "probability": 0.0453217439353466
         },
         {
           "rank": 4,
           "id": 312,
           "action": "mix water",
-          "probability": 0.01829453557729721
+          "probability": 0.018294544890522957
         },
         {
           "rank": 5,
           "id": 3350,
           "action": "turn-on heater",
-          "probability": 0.010346337221562862
+          "probability": 0.010346338152885437
         }
       ],
       "top_verbs": [
@@ -466,31 +466,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.5345989465713501
+          "probability": 0.5345986485481262
         },
         {
           "rank": 2,
           "id": 47,
           "verb": "add",
-          "probability": 0.08500458300113678
+          "probability": 0.08500465750694275
         },
         {
           "rank": 3,
           "id": 9,
           "verb": "turn-off",
-          "probability": 0.04006088152527809
+          "probability": 0.040060874074697495
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.03384535387158394
+          "probability": 0.033845383673906326
         },
         {
           "rank": 5,
           "id": 11,
           "verb": "mix",
-          "probability": 0.02191690169274807
+          "probability": 0.021916920319199562
         }
       ],
       "top_nouns": [
@@ -498,31 +498,31 @@
           "rank": 1,
           "id": 30,
           "noun": "pot",
-          "probability": 0.7590832114219666
+          "probability": 0.7590832710266113
         },
         {
           "rank": 2,
           "id": 28,
           "noun": "water",
-          "probability": 0.03644459322094917
+          "probability": 0.03644455969333649
         },
         {
           "rank": 3,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.021415187045931816
+          "probability": 0.021415216848254204
         },
         {
           "rank": 4,
           "id": 44,
           "noun": "tomato",
-          "probability": 0.01080460473895073
+          "probability": 0.010804594494402409
         },
         {
           "rank": 5,
           "id": 1,
           "noun": "tap",
-          "probability": 0.010754375718533993
+          "probability": 0.010754359886050224
         }
       ],
       "action_set": [
@@ -544,7 +544,7 @@
           "rank": 2,
           "id": 1330,
           "action": "put lid",
-          "probability": 0.3304358720779419,
+          "probability": 0.3304360508918762,
           "verb": {
             "id": 2,
             "name": "put"
@@ -558,7 +558,7 @@
           "rank": 3,
           "id": 188,
           "action": "take pot",
-          "probability": 0.7142223715782166,
+          "probability": 0.714222252368927,
           "verb": {
             "id": 1,
             "name": "take"
@@ -586,7 +586,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.48474016785621643,
+          "probability": 0.484740287065506,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -636,31 +636,31 @@
           "rank": 1,
           "id": 1313,
           "action": "put kettle",
-          "probability": 0.044033583253622055
+          "probability": 0.04403357952833176
         },
         {
           "rank": 2,
           "id": 207,
           "action": "take kettle",
-          "probability": 0.02518879808485508
+          "probability": 0.025188783183693886
         },
         {
           "rank": 3,
           "id": 3356,
           "action": "turn-on kettle",
-          "probability": 0.015555275604128838
+          "probability": 0.015555274672806263
         },
         {
           "rank": 4,
           "id": 1624,
           "action": "check oven",
-          "probability": 0.010990727692842484
+          "probability": 0.010990742594003677
         },
         {
           "rank": 5,
           "id": 258,
           "action": "take towel:kitchen",
-          "probability": 0.007231715600937605
+          "probability": 0.007231710944324732
         }
       ],
       "top_verbs": [
@@ -668,31 +668,31 @@
           "rank": 1,
           "id": 4,
           "verb": "open",
-          "probability": 0.16943398118019104
+          "probability": 0.16943389177322388
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.13977764546871185
+          "probability": 0.13977770507335663
         },
         {
           "rank": 3,
           "id": 25,
           "verb": "check",
-          "probability": 0.07856805622577667
+          "probability": 0.07856812328100204
         },
         {
           "rank": 4,
           "id": 5,
           "verb": "close",
-          "probability": 0.04631814733147621
+          "probability": 0.046318139880895615
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.04059336706995964
+          "probability": 0.04059335216879845
         }
       ],
       "top_nouns": [
@@ -700,13 +700,13 @@
           "rank": 1,
           "id": 45,
           "noun": "kettle",
-          "probability": 0.2811826765537262
+          "probability": 0.2811826169490814
         },
         {
           "rank": 2,
           "id": 9,
           "noun": "drawer",
-          "probability": 0.07200215011835098
+          "probability": 0.07200214266777039
         },
         {
           "rank": 3,
@@ -718,13 +718,13 @@
           "rank": 4,
           "id": 125,
           "noun": "machine:washing",
-          "probability": 0.056973375380039215
+          "probability": 0.056973379105329514
         },
         {
           "rank": 5,
           "id": 67,
           "noun": "jug",
-          "probability": 0.045063577592372894
+          "probability": 0.04506359249353409
         }
       ],
       "action_set": [
@@ -732,7 +732,7 @@
           "rank": 1,
           "id": 1313,
           "action": "put kettle",
-          "probability": 0.044033583253622055,
+          "probability": 0.04403357952833176,
           "verb": {
             "id": 2,
             "name": "put"
@@ -760,7 +760,7 @@
           "rank": 3,
           "id": 254,
           "action": "take napkin",
-          "probability": 0.27227649092674255,
+          "probability": 0.2722765803337097,
           "verb": {
             "id": 1,
             "name": "take"
@@ -774,7 +774,7 @@
           "rank": 4,
           "id": 2812,
           "action": "close drawer",
-          "probability": 0.2673966586589813,
+          "probability": 0.26739683747291565,
           "verb": {
             "id": 5,
             "name": "close"
@@ -788,7 +788,7 @@
           "rank": 5,
           "id": 234,
           "action": "take bowl",
-          "probability": 0.24865195155143738,
+          "probability": 0.24865172803401947,
           "verb": {
             "id": 1,
             "name": "take"
@@ -844,7 +844,7 @@
           "rank": 2,
           "id": 1370,
           "action": "put cereal",
-          "probability": 0.023379964753985405
+          "probability": 0.02337997779250145
         },
         {
           "rank": 3,
@@ -856,7 +856,7 @@
           "rank": 4,
           "id": 3806,
           "action": "pour cereal",
-          "probability": 0.009788000956177711
+          "probability": 0.009787991642951965
         },
         {
           "rank": 5,
@@ -870,31 +870,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.8518215417861938
+          "probability": 0.8518214225769043
         },
         {
           "rank": 2,
           "id": 10,
           "verb": "pour",
-          "probability": 0.03276515007019043
+          "probability": 0.032765116542577744
         },
         {
           "rank": 3,
           "id": 41,
           "verb": "sort",
-          "probability": 0.020632151514291763
+          "probability": 0.020632153376936913
         },
         {
           "rank": 4,
           "id": 1,
           "verb": "take",
-          "probability": 0.008736807852983475
+          "probability": 0.008736811578273773
         },
         {
           "rank": 5,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.007841460406780243
+          "probability": 0.007841462269425392
         }
       ],
       "top_nouns": [
@@ -902,31 +902,31 @@
           "rank": 1,
           "id": 8,
           "noun": "bowl",
-          "probability": 0.8125059604644775
+          "probability": 0.8125061988830566
         },
         {
           "rank": 2,
           "id": 100,
           "noun": "cereal",
-          "probability": 0.01881253719329834
+          "probability": 0.0188125167042017
         },
         {
           "rank": 3,
           "id": 3,
           "noun": "plate",
-          "probability": 0.012529228813946247
+          "probability": 0.012529232539236546
         },
         {
           "rank": 4,
           "id": 1,
           "noun": "tap",
-          "probability": 0.00711764395236969
+          "probability": 0.007117642555385828
         },
         {
           "rank": 5,
           "id": 72,
           "noun": "mixture",
-          "probability": 0.005292903631925583
+          "probability": 0.005292897578328848
         }
       ],
       "action_set": [
@@ -976,7 +976,7 @@
           "rank": 4,
           "id": 2779,
           "action": "close cupboard",
-          "probability": 0.8253150582313538,
+          "probability": 0.8253145813941956,
           "verb": {
             "id": 5,
             "name": "close"
@@ -990,7 +990,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.506157636642456,
+          "probability": 0.5061576962471008,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1046,7 +1046,7 @@
           "rank": 2,
           "id": 3531,
           "action": "cut carrot",
-          "probability": 0.058430273085832596
+          "probability": 0.058430299162864685
         },
         {
           "rank": 3,
@@ -1058,13 +1058,13 @@
           "rank": 4,
           "id": 3134,
           "action": "insert potato",
-          "probability": 0.03057647868990898
+          "probability": 0.0305764339864254
         },
         {
           "rank": 5,
           "id": 3141,
           "action": "insert pepper",
-          "probability": 0.02247476577758789
+          "probability": 0.022474786266684532
         }
       ],
       "top_verbs": [
@@ -1072,31 +1072,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.2848489284515381
+          "probability": 0.28484880924224854
         },
         {
           "rank": 2,
           "id": 8,
           "verb": "cut",
-          "probability": 0.11075733602046967
+          "probability": 0.11075737327337265
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.10044258087873459
+          "probability": 0.10044266283512115
         },
         {
           "rank": 4,
           "id": 5,
           "verb": "close",
-          "probability": 0.041028909385204315
+          "probability": 0.041028913110494614
         },
         {
           "rank": 5,
           "id": 3,
           "verb": "wash",
-          "probability": 0.039903100579977036
+          "probability": 0.039903122931718826
         }
       ],
       "top_nouns": [
@@ -1104,19 +1104,19 @@
           "rank": 1,
           "id": 19,
           "noun": "board:chopping",
-          "probability": 0.37578147649765015
+          "probability": 0.37578144669532776
         },
         {
           "rank": 2,
           "id": 38,
           "noun": "pepper",
-          "probability": 0.34278979897499084
+          "probability": 0.34278976917266846
         },
         {
           "rank": 3,
           "id": 42,
           "noun": "carrot",
-          "probability": 0.05683009326457977
+          "probability": 0.056830111891031265
         },
         {
           "rank": 4,
@@ -1128,7 +1128,7 @@
           "rank": 5,
           "id": 17,
           "noun": "onion",
-          "probability": 0.01510422769933939
+          "probability": 0.015104233287274837
         }
       ],
       "action_set": [
@@ -1150,7 +1150,7 @@
           "rank": 2,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.6917470097541809,
+          "probability": 0.6917467713356018,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1164,7 +1164,7 @@
           "rank": 3,
           "id": 3531,
           "action": "cut carrot",
-          "probability": 0.49732810258865356,
+          "probability": 0.4973280429840088,
           "verb": {
             "id": 8,
             "name": "cut"
@@ -1178,7 +1178,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.10869450867176056,
+          "probability": 0.10869455337524414,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1192,7 +1192,7 @@
           "rank": 5,
           "id": 1113,
           "action": "put spoon",
-          "probability": 0.07529500871896744,
+          "probability": 0.07529513537883759,
           "verb": {
             "id": 2,
             "name": "put"
@@ -1242,31 +1242,31 @@
           "rank": 1,
           "id": 3176,
           "action": "insert dishwasher",
-          "probability": 0.0234544537961483
+          "probability": 0.023454466834664345
         },
         {
           "rank": 2,
           "id": 3100,
           "action": "insert box",
-          "probability": 0.01724046841263771
+          "probability": 0.017240477725863457
         },
         {
           "rank": 3,
           "id": 3330,
           "action": "turn-on scale",
-          "probability": 0.011363562196493149
+          "probability": 0.011363563127815723
         },
         {
           "rank": 4,
           "id": 2399,
           "action": "open box",
-          "probability": 0.00916301179677248
+          "probability": 0.009163017384707928
         },
         {
           "rank": 5,
           "id": 1113,
           "action": "put spoon",
-          "probability": 0.009091118350625038
+          "probability": 0.009091119281947613
         }
       ],
       "top_verbs": [
@@ -1274,19 +1274,19 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.397533655166626
+          "probability": 0.3975335359573364
         },
         {
           "rank": 2,
           "id": 6,
           "verb": "insert",
-          "probability": 0.27504172921180725
+          "probability": 0.275041788816452
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.11791578680276871
+          "probability": 0.1179158091545105
         },
         {
           "rank": 4,
@@ -1298,7 +1298,7 @@
           "rank": 5,
           "id": 17,
           "verb": "scoop",
-          "probability": 0.009796703234314919
+          "probability": 0.009796705096960068
         }
       ],
       "top_nouns": [
@@ -1306,31 +1306,31 @@
           "rank": 1,
           "id": 24,
           "noun": "box",
-          "probability": 0.23551903665065765
+          "probability": 0.23551899194717407
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.21286240220069885
+          "probability": 0.21286235749721527
         },
         {
           "rank": 3,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.041049402207136154
+          "probability": 0.041049424558877945
         },
         {
           "rank": 4,
           "id": 15,
           "noun": "fork",
-          "probability": 0.025625066831707954
+          "probability": 0.0256250761449337
         },
         {
           "rank": 5,
           "id": 109,
           "noun": "scale",
-          "probability": 0.022700795903801918
+          "probability": 0.022700797766447067
         }
       ],
       "action_set": [
@@ -1338,7 +1338,7 @@
           "rank": 1,
           "id": 3176,
           "action": "insert dishwasher",
-          "probability": 0.0234544537961483,
+          "probability": 0.023454466834664345,
           "verb": {
             "id": 6,
             "name": "insert"
@@ -1366,7 +1366,7 @@
           "rank": 3,
           "id": 328,
           "action": "mix pasta",
-          "probability": 0.3838694989681244,
+          "probability": 0.38386914134025574,
           "verb": {
             "id": 11,
             "name": "mix"
@@ -1394,7 +1394,7 @@
           "rank": 5,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.10786350071430206,
+          "probability": 0.10786347836256027,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1444,31 +1444,31 @@
           "rank": 1,
           "id": 3776,
           "action": "pour pasta",
-          "probability": 0.045489802956581116
+          "probability": 0.04548981413245201
         },
         {
           "rank": 2,
           "id": 3149,
           "action": "insert pasta",
-          "probability": 0.023020925000309944
+          "probability": 0.023020941764116287
         },
         {
           "rank": 3,
           "id": 2264,
           "action": "filter pasta",
-          "probability": 0.018185997381806374
+          "probability": 0.018186012282967567
         },
         {
           "rank": 4,
           "id": 811,
           "action": "dry pan",
-          "probability": 0.011430630460381508
+          "probability": 0.011430629529058933
         },
         {
           "rank": 5,
           "id": 959,
           "action": "scoop rice",
-          "probability": 0.010133032687008381
+          "probability": 0.010133031755685806
         }
       ],
       "top_verbs": [
@@ -1476,31 +1476,31 @@
           "rank": 1,
           "id": 15,
           "verb": "dry",
-          "probability": 0.39219775795936584
+          "probability": 0.3921976387500763
         },
         {
           "rank": 2,
           "id": 6,
           "verb": "insert",
-          "probability": 0.1073370948433876
+          "probability": 0.10733714699745178
         },
         {
           "rank": 3,
           "id": 10,
           "verb": "pour",
-          "probability": 0.06639600545167923
+          "probability": 0.06639605015516281
         },
         {
           "rank": 4,
           "id": 38,
           "verb": "filter",
-          "probability": 0.04837394133210182
+          "probability": 0.04837397485971451
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.04617121070623398
+          "probability": 0.046171195805072784
         }
       ],
       "top_nouns": [
@@ -1508,31 +1508,31 @@
           "rank": 1,
           "id": 56,
           "noun": "rice",
-          "probability": 0.15850107371807098
+          "probability": 0.15850098431110382
         },
         {
           "rank": 2,
           "id": 46,
           "noun": "pasta",
-          "probability": 0.14384762942790985
+          "probability": 0.1438477486371994
         },
         {
           "rank": 3,
           "id": 40,
           "noun": "colander",
-          "probability": 0.1151704341173172
+          "probability": 0.11517047882080078
         },
         {
           "rank": 4,
           "id": 30,
           "noun": "pot",
-          "probability": 0.03214932233095169
+          "probability": 0.03214934095740318
         },
         {
           "rank": 5,
           "id": 6,
           "noun": "pan",
-          "probability": 0.024176476523280144
+          "probability": 0.02417648211121559
         }
       ],
       "action_set": [
@@ -1540,7 +1540,7 @@
           "rank": 1,
           "id": 3776,
           "action": "pour pasta",
-          "probability": 0.045489802956581116,
+          "probability": 0.04548981413245201,
           "verb": {
             "id": 10,
             "name": "pour"
@@ -1554,7 +1554,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.6063692569732666,
+          "probability": 0.6063693761825562,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1568,7 +1568,7 @@
           "rank": 3,
           "id": 1307,
           "action": "put colander",
-          "probability": 0.7921355962753296,
+          "probability": 0.7921357750892639,
           "verb": {
             "id": 2,
             "name": "put"
@@ -1582,7 +1582,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.721081554889679,
+          "probability": 0.7210817337036133,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1596,7 +1596,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.2955515682697296,
+          "probability": 0.29555177688598633,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1646,31 +1646,31 @@
           "rank": 1,
           "id": 3069,
           "action": "insert bag",
-          "probability": 0.015710409730672836
+          "probability": 0.01571040228009224
         },
         {
           "rank": 2,
           "id": 1247,
           "action": "put crisp",
-          "probability": 0.009279968217015266
+          "probability": 0.009279969148337841
         },
         {
           "rank": 3,
           "id": 138,
           "action": "take crisp",
-          "probability": 0.008849621750414371
+          "probability": 0.00884962361305952
         },
         {
           "rank": 4,
           "id": 2937,
           "action": "brush rubbish",
-          "probability": 0.0068758330307900906
+          "probability": 0.006875830702483654
         },
         {
           "rank": 5,
           "id": 2940,
           "action": "brush flour",
-          "probability": 0.005856262985616922
+          "probability": 0.005856264382600784
         }
       ],
       "top_verbs": [
@@ -1678,31 +1678,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.23681065440177917
+          "probability": 0.2368105947971344
         },
         {
           "rank": 2,
           "id": 4,
           "verb": "open",
-          "probability": 0.20283736288547516
+          "probability": 0.20283721387386322
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.09278859943151474
+          "probability": 0.09278864413499832
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.07514059543609619
+          "probability": 0.07514061033725739
         },
         {
           "rank": 5,
           "id": 27,
           "verb": "fill",
-          "probability": 0.0496017262339592
+          "probability": 0.049601707607507706
         }
       ],
       "top_nouns": [
@@ -1710,19 +1710,19 @@
           "rank": 1,
           "id": 20,
           "noun": "bag",
-          "probability": 0.2218448519706726
+          "probability": 0.2218445986509323
         },
         {
           "rank": 2,
           "id": 14,
           "noun": "cup",
-          "probability": 0.04948672279715538
+          "probability": 0.049486733973026276
         },
         {
           "rank": 3,
           "id": 76,
           "noun": "flour",
-          "probability": 0.043815385550260544
+          "probability": 0.04381542652845383
         },
         {
           "rank": 4,
@@ -1734,7 +1734,7 @@
           "rank": 5,
           "id": 8,
           "noun": "bowl",
-          "probability": 0.03398945927619934
+          "probability": 0.03398950770497322
         }
       ],
       "action_set": [
@@ -1742,7 +1742,7 @@
           "rank": 1,
           "id": 3069,
           "action": "insert bag",
-          "probability": 0.015710409730672836,
+          "probability": 0.01571040228009224,
           "verb": {
             "id": 6,
             "name": "insert"
@@ -1756,7 +1756,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.25220978260040283,
+          "probability": 0.2522098422050476,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1770,7 +1770,7 @@
           "rank": 3,
           "id": 99,
           "action": "take bag",
-          "probability": 0.3479732871055603,
+          "probability": 0.3479733467102051,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1784,7 +1784,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.4004885256290436,
+          "probability": 0.4004884958267212,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1798,7 +1798,7 @@
           "rank": 5,
           "id": 2346,
           "action": "open fridge",
-          "probability": 0.032251447439193726,
+          "probability": 0.03225143626332283,
           "verb": {
             "id": 4,
             "name": "open"
@@ -1848,19 +1848,19 @@
           "rank": 1,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.021646900102496147
+          "probability": 0.0216468945145607
         },
         {
           "rank": 2,
           "id": 1146,
           "action": "put cup",
-          "probability": 0.019185755401849747
+          "probability": 0.019185753539204597
         },
         {
           "rank": 3,
           "id": 6,
           "action": "take sugar",
-          "probability": 0.011850954964756966
+          "probability": 0.01185095775872469
         },
         {
           "rank": 4,
@@ -1872,7 +1872,7 @@
           "rank": 5,
           "id": 342,
           "action": "mix salad",
-          "probability": 0.00980902649462223
+          "probability": 0.009809033945202827
         }
       ],
       "top_verbs": [
@@ -1886,25 +1886,25 @@
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.25889384746551514
+          "probability": 0.2588936984539032
         },
         {
           "rank": 3,
           "id": 11,
           "verb": "mix",
-          "probability": 0.030819276347756386
+          "probability": 0.03081931173801422
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.026410624384880066
+          "probability": 0.026410667225718498
         },
         {
           "rank": 5,
           "id": 17,
           "verb": "scoop",
-          "probability": 0.019546104595065117
+          "probability": 0.019546108320355415
         }
       ],
       "top_nouns": [
@@ -1912,13 +1912,13 @@
           "rank": 1,
           "id": 14,
           "noun": "cup",
-          "probability": 0.24800334870815277
+          "probability": 0.24800340831279755
         },
         {
           "rank": 2,
           "id": 51,
           "noun": "maker:coffee",
-          "probability": 0.07719890028238297
+          "probability": 0.07719886302947998
         },
         {
           "rank": 3,
@@ -1930,13 +1930,13 @@
           "rank": 4,
           "id": 39,
           "noun": "salt",
-          "probability": 0.04925137758255005
+          "probability": 0.049251407384872437
         },
         {
           "rank": 5,
           "id": 1,
           "noun": "tap",
-          "probability": 0.025767536833882332
+          "probability": 0.02576754242181778
         }
       ],
       "action_set": [
@@ -1944,7 +1944,7 @@
           "rank": 1,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.021646900102496147,
+          "probability": 0.0216468945145607,
           "verb": {
             "id": 2,
             "name": "put"
@@ -1958,7 +1958,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.5602671504020691,
+          "probability": 0.5602676272392273,
           "verb": {
             "id": 1,
             "name": "take"
@@ -1972,7 +1972,7 @@
           "rank": 3,
           "id": 34,
           "action": "take cup",
-          "probability": 0.43722447752952576,
+          "probability": 0.4372241199016571,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2050,31 +2050,31 @@
           "rank": 1,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.029807673767209053
+          "probability": 0.02980765886604786
         },
         {
           "rank": 2,
           "id": 419,
           "action": "move plate",
-          "probability": 0.012305710464715958
+          "probability": 0.012305711396038532
         },
         {
           "rank": 3,
           "id": 1310,
           "action": "put carrot",
-          "probability": 0.011190319433808327
+          "probability": 0.011190314777195454
         },
         {
           "rank": 4,
           "id": 1358,
           "action": "put sausage",
-          "probability": 0.010052171535789967
+          "probability": 0.010052178986370564
         },
         {
           "rank": 5,
           "id": 1300,
           "action": "put cheese",
-          "probability": 0.00930715724825859
+          "probability": 0.009307165630161762
         }
       ],
       "top_verbs": [
@@ -2082,31 +2082,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.30218395590782166
+          "probability": 0.30218401551246643
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.1491451859474182
+          "probability": 0.14914514124393463
         },
         {
           "rank": 3,
           "id": 12,
           "verb": "move",
-          "probability": 0.04594850540161133
+          "probability": 0.045948486775159836
         },
         {
           "rank": 4,
           "id": 6,
           "verb": "insert",
-          "probability": 0.03463773801922798
+          "probability": 0.03463773429393768
         },
         {
           "rank": 5,
           "id": 4,
           "verb": "open",
-          "probability": 0.03426186740398407
+          "probability": 0.03426187112927437
         }
       ],
       "top_nouns": [
@@ -2120,25 +2120,25 @@
           "rank": 2,
           "id": 37,
           "noun": "bin",
-          "probability": 0.044110674411058426
+          "probability": 0.04411071538925171
         },
         {
           "rank": 3,
           "id": 42,
           "noun": "carrot",
-          "probability": 0.023559490218758583
+          "probability": 0.02355947345495224
         },
         {
           "rank": 4,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.019812442362308502
+          "probability": 0.0198124460875988
         },
         {
           "rank": 5,
           "id": 87,
           "noun": "sausage",
-          "probability": 0.01642027497291565
+          "probability": 0.016420280560851097
         }
       ],
       "action_set": [
@@ -2146,7 +2146,7 @@
           "rank": 1,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.029807673767209053,
+          "probability": 0.02980765886604786,
           "verb": {
             "id": 2,
             "name": "put"
@@ -2160,7 +2160,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.1929682195186615,
+          "probability": 0.19296826422214508,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2174,7 +2174,7 @@
           "rank": 3,
           "id": 107,
           "action": "take plate",
-          "probability": 0.006347636692225933,
+          "probability": 0.006347618997097015,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2188,7 +2188,7 @@
           "rank": 4,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.4775471091270447,
+          "probability": 0.4775468409061432,
           "verb": {
             "id": 4,
             "name": "open"
@@ -2202,7 +2202,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.7360124588012695,
+          "probability": 0.7360123991966248,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -2252,19 +2252,19 @@
           "rank": 1,
           "id": 208,
           "action": "take pasta",
-          "probability": 0.017166439443826675
+          "probability": 0.01716642826795578
         },
         {
           "rank": 2,
           "id": 56,
           "action": "take bottle",
-          "probability": 0.014032200910151005
+          "probability": 0.014032207429409027
         },
         {
           "rank": 3,
           "id": 2363,
           "action": "open bottle",
-          "probability": 0.01209670677781105
+          "probability": 0.012096709571778774
         },
         {
           "rank": 4,
@@ -2276,7 +2276,7 @@
           "rank": 5,
           "id": 479,
           "action": "move cutlery",
-          "probability": 0.009581261314451694
+          "probability": 0.009581265039741993
         }
       ],
       "top_verbs": [
@@ -2284,31 +2284,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.7628567814826965
+          "probability": 0.7628566026687622
         },
         {
           "rank": 2,
           "id": 10,
           "verb": "pour",
-          "probability": 0.04918644577264786
+          "probability": 0.04918641597032547
         },
         {
           "rank": 3,
           "id": 3,
           "verb": "wash",
-          "probability": 0.026926185935735703
+          "probability": 0.026926208287477493
         },
         {
           "rank": 4,
           "id": 2,
           "verb": "put",
-          "probability": 0.026690438389778137
+          "probability": 0.02669045329093933
         },
         {
           "rank": 5,
           "id": 12,
           "verb": "move",
-          "probability": 0.026204362511634827
+          "probability": 0.026204397901892662
         }
       ],
       "top_nouns": [
@@ -2316,31 +2316,31 @@
           "rank": 1,
           "id": 16,
           "noun": "bottle",
-          "probability": 0.1240200325846672
+          "probability": 0.12402013689279556
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.08434572070837021
+          "probability": 0.0843457505106926
         },
         {
           "rank": 3,
           "id": 3,
           "noun": "plate",
-          "probability": 0.08401326090097427
+          "probability": 0.08401323109865189
         },
         {
           "rank": 4,
           "id": 20,
           "noun": "bag",
-          "probability": 0.06651613861322403
+          "probability": 0.06651614606380463
         },
         {
           "rank": 5,
           "id": 19,
           "noun": "board:chopping",
-          "probability": 0.058900944888591766
+          "probability": 0.0589008666574955
         }
       ],
       "action_set": [
@@ -2348,7 +2348,7 @@
           "rank": 1,
           "id": 208,
           "action": "take pasta",
-          "probability": 0.017166439443826675,
+          "probability": 0.01716642826795578,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2362,7 +2362,7 @@
           "rank": 2,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.49998700618743896,
+          "probability": 0.4999871253967285,
           "verb": {
             "id": 2,
             "name": "put"
@@ -2376,7 +2376,7 @@
           "rank": 3,
           "id": 1209,
           "action": "put bag",
-          "probability": 0.6281023025512695,
+          "probability": 0.6281029582023621,
           "verb": {
             "id": 2,
             "name": "put"
@@ -2390,7 +2390,7 @@
           "rank": 4,
           "id": 107,
           "action": "take plate",
-          "probability": 0.2604672610759735,
+          "probability": 0.2604674696922302,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2404,7 +2404,7 @@
           "rank": 5,
           "id": 3767,
           "action": "pour food",
-          "probability": 0.1529613584280014,
+          "probability": 0.1529613882303238,
           "verb": {
             "id": 10,
             "name": "pour"
@@ -2454,31 +2454,31 @@
           "rank": 1,
           "id": 622,
           "action": "remove tray",
-          "probability": 0.012131127528846264
+          "probability": 0.012131077237427235
         },
         {
           "rank": 2,
           "id": 2762,
           "action": "close bag",
-          "probability": 0.01080490741878748
+          "probability": 0.01080489531159401
         },
         {
           "rank": 3,
           "id": 68,
           "action": "take tuna",
-          "probability": 0.010177765972912312
+          "probability": 0.010177776217460632
         },
         {
           "rank": 4,
           "id": 225,
           "action": "take glove",
-          "probability": 0.005858609452843666
+          "probability": 0.005858598276972771
         },
         {
           "rank": 5,
           "id": 2399,
           "action": "open box",
-          "probability": 0.005077422130852938
+          "probability": 0.00507742166519165
         }
       ],
       "top_verbs": [
@@ -2486,31 +2486,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.1505376696586609
+          "probability": 0.15053781867027283
         },
         {
           "rank": 2,
           "id": 4,
           "verb": "open",
-          "probability": 0.05185164883732796
+          "probability": 0.05185164511203766
         },
         {
           "rank": 3,
           "id": 8,
           "verb": "cut",
-          "probability": 0.049107469618320465
+          "probability": 0.04910752922296524
         },
         {
           "rank": 4,
           "id": 5,
           "verb": "close",
-          "probability": 0.03875928372144699
+          "probability": 0.038759324699640274
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.03349149599671364
+          "probability": 0.03349147364497185
         }
       ],
       "top_nouns": [
@@ -2518,31 +2518,31 @@
           "rank": 1,
           "id": 20,
           "noun": "bag",
-          "probability": 0.09875834733247757
+          "probability": 0.09875829517841339
         },
         {
           "rank": 2,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.07756011188030243
+          "probability": 0.07756021618843079
         },
         {
           "rank": 3,
           "id": 24,
           "noun": "box",
-          "probability": 0.058476194739341736
+          "probability": 0.05847619101405144
         },
         {
           "rank": 4,
           "id": 161,
           "noun": "tuna",
-          "probability": 0.04755574092268944
+          "probability": 0.047555796802043915
         },
         {
           "rank": 5,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.02937719225883484
+          "probability": 0.029377155005931854
         }
       ],
       "action_set": [
@@ -2550,7 +2550,7 @@
           "rank": 1,
           "id": 622,
           "action": "remove tray",
-          "probability": 0.012131127528846264,
+          "probability": 0.012131077237427235,
           "verb": {
             "id": 13,
             "name": "remove"
@@ -2564,7 +2564,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.7147037386894226,
+          "probability": 0.7147036194801331,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2578,7 +2578,7 @@
           "rank": 3,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.24095360934734344,
+          "probability": 0.24095302820205688,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -2592,7 +2592,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.41626662015914917,
+          "probability": 0.4162670075893402,
           "verb": {
             "id": 4,
             "name": "open"
@@ -2606,7 +2606,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.3509243428707123,
+          "probability": 0.35092422366142273,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2660,31 +2660,31 @@
           "rank": 1,
           "id": 801,
           "action": "dry stand",
-          "probability": 0.0394047275185585
+          "probability": 0.039404720067977905
         },
         {
           "rank": 2,
           "id": 1265,
           "action": "put stand",
-          "probability": 0.032409317791461945
+          "probability": 0.03240931034088135
         },
         {
           "rank": 3,
           "id": 974,
           "action": "adjust tap",
-          "probability": 0.0257940161973238
+          "probability": 0.025794025510549545
         },
         {
           "rank": 4,
           "id": 122,
           "action": "take whetstone",
-          "probability": 0.024683210998773575
+          "probability": 0.024683207273483276
         },
         {
           "rank": 5,
           "id": 1894,
           "action": "wash stand",
-          "probability": 0.020579839125275612
+          "probability": 0.020579848438501358
         }
       ],
       "top_verbs": [
@@ -2692,25 +2692,25 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.5001106262207031
+          "probability": 0.5001107454299927
         },
         {
           "rank": 2,
           "id": 15,
           "verb": "dry",
-          "probability": 0.21870096027851105
+          "probability": 0.21870088577270508
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.07242844998836517
+          "probability": 0.07242842763662338
         },
         {
           "rank": 4,
           "id": 16,
           "verb": "shake",
-          "probability": 0.050269436091184616
+          "probability": 0.05026944354176521
         },
         {
           "rank": 5,
@@ -2756,7 +2756,7 @@
           "rank": 1,
           "id": 801,
           "action": "dry stand",
-          "probability": 0.0394047275185585,
+          "probability": 0.039404720067977905,
           "verb": {
             "id": 15,
             "name": "dry"
@@ -2770,7 +2770,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.21524421870708466,
+          "probability": 0.21524417400360107,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2798,7 +2798,7 @@
           "rank": 4,
           "id": 45,
           "action": "take fork",
-          "probability": 0.13397307693958282,
+          "probability": 0.13397319614887238,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2812,7 +2812,7 @@
           "rank": 5,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.2260124683380127,
+          "probability": 0.22601231932640076,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -2866,31 +2866,31 @@
           "rank": 1,
           "id": 1370,
           "action": "put cereal",
-          "probability": 0.02101348154246807
+          "probability": 0.021013488993048668
         },
         {
           "rank": 2,
           "id": 2399,
           "action": "open box",
-          "probability": 0.02099291980266571
+          "probability": 0.020992910489439964
         },
         {
           "rank": 3,
           "id": 3806,
           "action": "pour cereal",
-          "probability": 0.01767810620367527
+          "probability": 0.017678113654255867
         },
         {
           "rank": 4,
           "id": 682,
           "action": "remove cereal",
-          "probability": 0.01672196388244629
+          "probability": 0.016721969470381737
         },
         {
           "rank": 5,
           "id": 2472,
           "action": "open cereal",
-          "probability": 0.01617465354502201
+          "probability": 0.016174668446183205
         }
       ],
       "top_verbs": [
@@ -2898,31 +2898,31 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.13081109523773193
+          "probability": 0.13081113994121552
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.08646620810031891
+          "probability": 0.08646629005670547
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.057063281536102295
+          "probability": 0.05706316977739334
         },
         {
           "rank": 4,
           "id": 4,
           "verb": "open",
-          "probability": 0.056849852204322815
+          "probability": 0.05684981122612953
         },
         {
           "rank": 5,
           "id": 1,
           "verb": "take",
-          "probability": 0.051996953785419464
+          "probability": 0.051996976137161255
         }
       ],
       "top_nouns": [
@@ -2930,31 +2930,31 @@
           "rank": 1,
           "id": 100,
           "noun": "cereal",
-          "probability": 0.2353152334690094
+          "probability": 0.23531529307365417
         },
         {
           "rank": 2,
           "id": 8,
           "noun": "bowl",
-          "probability": 0.048237040638923645
+          "probability": 0.048237018287181854
         },
         {
           "rank": 3,
           "id": 156,
           "noun": "noodle",
-          "probability": 0.03600282594561577
+          "probability": 0.03600279986858368
         },
         {
           "rank": 4,
           "id": 24,
           "noun": "box",
-          "probability": 0.029474152252078056
+          "probability": 0.029474129900336266
         },
         {
           "rank": 5,
           "id": 130,
           "noun": "clip",
-          "probability": 0.026639627292752266
+          "probability": 0.026639634743332863
         }
       ],
       "action_set": [
@@ -2962,7 +2962,7 @@
           "rank": 1,
           "id": 1370,
           "action": "put cereal",
-          "probability": 0.02101348154246807,
+          "probability": 0.021013488993048668,
           "verb": {
             "id": 2,
             "name": "put"
@@ -2976,7 +2976,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.24849987030029297,
+          "probability": 0.24849995970726013,
           "verb": {
             "id": 1,
             "name": "take"
@@ -2990,7 +2990,7 @@
           "rank": 3,
           "id": 1248,
           "action": "put box",
-          "probability": 0.5640466809272766,
+          "probability": 0.5640460848808289,
           "verb": {
             "id": 2,
             "name": "put"
@@ -3018,7 +3018,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.06996065378189087,
+          "probability": 0.06996061652898788,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -3080,19 +3080,19 @@
           "rank": 3,
           "id": 262,
           "action": "take ladle",
-          "probability": 0.012487394735217094
+          "probability": 0.012487385421991348
         },
         {
           "rank": 4,
           "id": 3165,
           "action": "insert lid",
-          "probability": 0.009327683597803116
+          "probability": 0.009327680803835392
         },
         {
           "rank": 5,
           "id": 3171,
           "action": "insert jug",
-          "probability": 0.006689763627946377
+          "probability": 0.006689766421914101
         }
       ],
       "top_verbs": [
@@ -3100,31 +3100,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.7535660266876221
+          "probability": 0.7535659670829773
         },
         {
           "rank": 2,
           "id": 6,
           "verb": "insert",
-          "probability": 0.09120779484510422
+          "probability": 0.09120786190032959
         },
         {
           "rank": 3,
           "id": 4,
           "verb": "open",
-          "probability": 0.039226651191711426
+          "probability": 0.03922663629055023
         },
         {
           "rank": 4,
           "id": 2,
           "verb": "put",
-          "probability": 0.011113768443465233
+          "probability": 0.01111376192420721
         },
         {
           "rank": 5,
           "id": 57,
           "verb": "soak",
-          "probability": 0.008035979233682156
+          "probability": 0.008035970851778984
         }
       ],
       "top_nouns": [
@@ -3132,31 +3132,31 @@
           "rank": 1,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.28467774391174316
+          "probability": 0.28467777371406555
         },
         {
           "rank": 2,
           "id": 7,
           "noun": "lid",
-          "probability": 0.06354936957359314
+          "probability": 0.06354933232069016
         },
         {
           "rank": 3,
           "id": 5,
           "noun": "knife",
-          "probability": 0.034985292702913284
+          "probability": 0.0349852554500103
         },
         {
           "rank": 4,
           "id": 159,
           "noun": "teapot",
-          "probability": 0.025761349126696587
+          "probability": 0.025761352851986885
         },
         {
           "rank": 5,
           "id": 156,
           "noun": "noodle",
-          "probability": 0.023916926234960556
+          "probability": 0.023916935548186302
         }
       ],
       "action_set": [
@@ -3178,7 +3178,7 @@
           "rank": 2,
           "id": 224,
           "action": "take lid",
-          "probability": 0.7554088830947876,
+          "probability": 0.7554089426994324,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3192,7 +3192,7 @@
           "rank": 3,
           "id": 213,
           "action": "take pan",
-          "probability": 0.8047513961791992,
+          "probability": 0.8047515153884888,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3220,7 +3220,7 @@
           "rank": 5,
           "id": 2346,
           "action": "open fridge",
-          "probability": 0.1465221345424652,
+          "probability": 0.14652206003665924,
           "verb": {
             "id": 4,
             "name": "open"
@@ -3270,31 +3270,31 @@
           "rank": 1,
           "id": 3210,
           "action": "drink water",
-          "probability": 0.039403803646564484
+          "probability": 0.039403799921274185
         },
         {
           "rank": 2,
           "id": 2746,
           "action": "close bottle",
-          "probability": 0.03364655002951622
+          "probability": 0.033646561205387115
         },
         {
           "rank": 3,
           "id": 2363,
           "action": "open bottle",
-          "probability": 0.02006244659423828
+          "probability": 0.020062444731593132
         },
         {
           "rank": 4,
           "id": 1299,
           "action": "put oil",
-          "probability": 0.01558119896799326
+          "probability": 0.015581198036670685
         },
         {
           "rank": 5,
           "id": 218,
           "action": "take rubbish",
-          "probability": 0.014389262534677982
+          "probability": 0.014389261603355408
         }
       ],
       "top_verbs": [
@@ -3302,31 +3302,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.206370010972023
+          "probability": 0.20636998116970062
         },
         {
           "rank": 2,
           "id": 5,
           "verb": "close",
-          "probability": 0.15253940224647522
+          "probability": 0.15253946185112
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.11563153564929962
+          "probability": 0.1156315729022026
         },
         {
           "rank": 4,
           "id": 61,
           "verb": "drink",
-          "probability": 0.08108463883399963
+          "probability": 0.08108463138341904
         },
         {
           "rank": 5,
           "id": 10,
           "verb": "pour",
-          "probability": 0.04620296508073807
+          "probability": 0.046202972531318665
         }
       ],
       "top_nouns": [
@@ -3334,31 +3334,31 @@
           "rank": 1,
           "id": 16,
           "noun": "bottle",
-          "probability": 0.3909062445163727
+          "probability": 0.3909062147140503
         },
         {
           "rank": 2,
           "id": 28,
           "noun": "water",
-          "probability": 0.11926322430372238
+          "probability": 0.11926326900720596
         },
         {
           "rank": 3,
           "id": 55,
           "noun": "rubbish",
-          "probability": 0.05902962386608124
+          "probability": 0.05902964994311333
         },
         {
           "rank": 4,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.05707765370607376
+          "probability": 0.05707769840955734
         },
         {
           "rank": 5,
           "id": 232,
           "noun": "beer",
-          "probability": 0.024636119604110718
+          "probability": 0.02463611215353012
         }
       ],
       "action_set": [
@@ -3366,7 +3366,7 @@
           "rank": 1,
           "id": 3210,
           "action": "drink water",
-          "probability": 0.039403803646564484,
+          "probability": 0.039403799921274185,
           "verb": {
             "id": 61,
             "name": "drink"
@@ -3380,7 +3380,7 @@
           "rank": 2,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.2545605003833771,
+          "probability": 0.25456076860427856,
           "verb": {
             "id": 4,
             "name": "open"
@@ -3394,7 +3394,7 @@
           "rank": 3,
           "id": 1168,
           "action": "put bottle",
-          "probability": 0.27180323004722595,
+          "probability": 0.2718032896518707,
           "verb": {
             "id": 2,
             "name": "put"
@@ -3422,7 +3422,7 @@
           "rank": 5,
           "id": 1114,
           "action": "put glass",
-          "probability": 0.16213016211986542,
+          "probability": 0.1621297150850296,
           "verb": {
             "id": 2,
             "name": "put"
@@ -3472,31 +3472,31 @@
           "rank": 1,
           "id": 214,
           "action": "take maker:coffee",
-          "probability": 0.1076376736164093
+          "probability": 0.10763771831989288
         },
         {
           "rank": 2,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.04556132107973099
+          "probability": 0.04556133970618248
         },
         {
           "rank": 3,
           "id": 780,
           "action": "dry cup",
-          "probability": 0.026813343167304993
+          "probability": 0.026813341304659843
         },
         {
           "rank": 4,
           "id": 812,
           "action": "dry maker:coffee",
-          "probability": 0.023906951770186424
+          "probability": 0.023906949907541275
         },
         {
           "rank": 5,
           "id": 3155,
           "action": "insert maker:coffee",
-          "probability": 0.01531914435327053
+          "probability": 0.015319129452109337
         }
       ],
       "top_verbs": [
@@ -3504,31 +3504,31 @@
           "rank": 1,
           "id": 15,
           "verb": "dry",
-          "probability": 0.2839207947254181
+          "probability": 0.28392088413238525
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.19897110760211945
+          "probability": 0.1989709734916687
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.1639428436756134
+          "probability": 0.16394278407096863
         },
         {
           "rank": 4,
           "id": 2,
           "verb": "put",
-          "probability": 0.036242078989744186
+          "probability": 0.03624212369322777
         },
         {
           "rank": 5,
           "id": 5,
           "verb": "close",
-          "probability": 0.029322030022740364
+          "probability": 0.029322056099772453
         }
       ],
       "top_nouns": [
@@ -3536,31 +3536,31 @@
           "rank": 1,
           "id": 51,
           "noun": "maker:coffee",
-          "probability": 0.5081484913825989
+          "probability": 0.5081484317779541
         },
         {
           "rank": 2,
           "id": 14,
           "noun": "cup",
-          "probability": 0.08055280148983002
+          "probability": 0.08055279403924942
         },
         {
           "rank": 3,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.016019586473703384
+          "probability": 0.016019606962800026
         },
         {
           "rank": 4,
           "id": 67,
           "noun": "jug",
-          "probability": 0.015335804782807827
+          "probability": 0.01533580757677555
         },
         {
           "rank": 5,
           "id": 78,
           "noun": "filter",
-          "probability": 0.012867306359112263
+          "probability": 0.012867308221757412
         }
       ],
       "action_set": [
@@ -3568,7 +3568,7 @@
           "rank": 1,
           "id": 214,
           "action": "take maker:coffee",
-          "probability": 0.1076376736164093,
+          "probability": 0.10763771831989288,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3582,7 +3582,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.8346264958381653,
+          "probability": 0.8346263766288757,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3596,7 +3596,7 @@
           "rank": 3,
           "id": 34,
           "action": "take cup",
-          "probability": 0.5309139490127563,
+          "probability": 0.5309140086174011,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3610,7 +3610,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.7823814749717712,
+          "probability": 0.7823814153671265,
           "verb": {
             "id": 4,
             "name": "open"
@@ -3624,7 +3624,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.3390547037124634,
+          "probability": 0.33905482292175293,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -3674,31 +3674,31 @@
           "rank": 1,
           "id": 31,
           "action": "take oatmeal",
-          "probability": 0.0164790116250515
+          "probability": 0.016479013487696648
         },
         {
           "rank": 2,
           "id": 3011,
           "action": "insert oatmeal",
-          "probability": 0.014920243993401527
+          "probability": 0.014920245856046677
         },
         {
           "rank": 3,
           "id": 3000,
           "action": "insert spreads",
-          "probability": 0.014068501070141792
+          "probability": 0.01406849641352892
         },
         {
           "rank": 4,
           "id": 3155,
           "action": "insert maker:coffee",
-          "probability": 0.012827499769628048
+          "probability": 0.012827501632273197
         },
         {
           "rank": 5,
           "id": 2779,
           "action": "close cupboard",
-          "probability": 0.010217322036623955
+          "probability": 0.010217328555881977
         }
       ],
       "top_verbs": [
@@ -3706,31 +3706,31 @@
           "rank": 1,
           "id": 6,
           "verb": "insert",
-          "probability": 0.38072529435157776
+          "probability": 0.3807254135608673
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.26321980357170105
+          "probability": 0.2632198631763458
         },
         {
           "rank": 3,
           "id": 5,
           "verb": "close",
-          "probability": 0.09747444838285446
+          "probability": 0.09747438877820969
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.0557747483253479
+          "probability": 0.05577472597360611
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.016892585903406143
+          "probability": 0.0168925728648901
         }
       ],
       "top_nouns": [
@@ -3738,31 +3738,31 @@
           "rank": 1,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.10876985639333725
+          "probability": 0.10876991599798203
         },
         {
           "rank": 2,
           "id": 128,
           "noun": "oatmeal",
-          "probability": 0.10434532165527344
+          "probability": 0.10434526950120926
         },
         {
           "rank": 3,
           "id": 74,
           "noun": "clothes",
-          "probability": 0.051583029329776764
+          "probability": 0.05158305540680885
         },
         {
           "rank": 4,
           "id": 14,
           "noun": "cup",
-          "probability": 0.039754245430231094
+          "probability": 0.03975421190261841
         },
         {
           "rank": 5,
           "id": 116,
           "noun": "spreads",
-          "probability": 0.026984376832842827
+          "probability": 0.026984363794326782
         }
       ],
       "action_set": [
@@ -3770,7 +3770,7 @@
           "rank": 1,
           "id": 31,
           "action": "take oatmeal",
-          "probability": 0.0164790116250515,
+          "probability": 0.016479013487696648,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3784,7 +3784,7 @@
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.7173000574111938,
+          "probability": 0.7172996401786804,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3798,7 +3798,7 @@
           "rank": 3,
           "id": 2766,
           "action": "close drink",
-          "probability": 0.07065562158823013,
+          "probability": 0.07065560668706894,
           "verb": {
             "id": 5,
             "name": "close"
@@ -3812,7 +3812,7 @@
           "rank": 4,
           "id": 256,
           "action": "take sponge",
-          "probability": 0.14951422810554504,
+          "probability": 0.14951424300670624,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3826,7 +3826,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.11607933044433594,
+          "probability": 0.11607930064201355,
           "verb": {
             "id": 1,
             "name": "take"
@@ -3876,31 +3876,31 @@
           "rank": 1,
           "id": 1919,
           "action": "wash top",
-          "probability": 0.03584318608045578
+          "probability": 0.03584318235516548
         },
         {
           "rank": 2,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.022396927699446678
+          "probability": 0.022396937012672424
         },
         {
           "rank": 3,
           "id": 1906,
           "action": "wash pot",
-          "probability": 0.016690127551555634
+          "probability": 0.016690125688910484
         },
         {
           "rank": 4,
           "id": 2620,
           "action": "add water",
-          "probability": 0.014581835828721523
+          "probability": 0.014581847935914993
         },
         {
           "rank": 5,
           "id": 1710,
           "action": "fill cup",
-          "probability": 0.012481188401579857
+          "probability": 0.01248118281364441
         }
       ],
       "top_verbs": [
@@ -3908,31 +3908,31 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.67757248878479
+          "probability": 0.6775726079940796
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.05732819437980652
+          "probability": 0.05732820928096771
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.03400469943881035
+          "probability": 0.03400471806526184
         },
         {
           "rank": 4,
           "id": 5,
           "verb": "close",
-          "probability": 0.022108541801571846
+          "probability": 0.022108523175120354
         },
         {
           "rank": 5,
           "id": 27,
           "verb": "fill",
-          "probability": 0.015388759784400463
+          "probability": 0.015388747677206993
         }
       ],
       "top_nouns": [
@@ -3946,25 +3946,25 @@
           "rank": 2,
           "id": 1,
           "noun": "tap",
-          "probability": 0.05191429704427719
+          "probability": 0.0519142672419548
         },
         {
           "rank": 3,
           "id": 64,
           "noun": "sink",
-          "probability": 0.04458361864089966
+          "probability": 0.04458355903625488
         },
         {
           "rank": 4,
           "id": 28,
           "noun": "water",
-          "probability": 0.04078398644924164
+          "probability": 0.040783993899822235
         },
         {
           "rank": 5,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.0347936786711216
+          "probability": 0.034793671220541
         }
       ],
       "action_set": [
@@ -3972,7 +3972,7 @@
           "rank": 1,
           "id": 1919,
           "action": "wash top",
-          "probability": 0.03584318608045578,
+          "probability": 0.03584318235516548,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -3986,7 +3986,7 @@
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.36176541447639465,
+          "probability": 0.3617652654647827,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4000,7 +4000,7 @@
           "rank": 3,
           "id": 213,
           "action": "take pan",
-          "probability": 0.22461406886577606,
+          "probability": 0.22461412847042084,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4014,7 +4014,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.7237296104431152,
+          "probability": 0.7237293720245361,
           "verb": {
             "id": 4,
             "name": "open"
@@ -4028,7 +4028,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.19759242236614227,
+          "probability": 0.1975923478603363,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -4078,31 +4078,31 @@
           "rank": 1,
           "id": 1946,
           "action": "wash bowl",
-          "probability": 0.08408458530902863
+          "probability": 0.08408457785844803
         },
         {
           "rank": 2,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.0478486567735672
+          "probability": 0.04784862697124481
         },
         {
           "rank": 3,
           "id": 3175,
           "action": "insert bowl",
-          "probability": 0.024456627666950226
+          "probability": 0.024456636980175972
         },
         {
           "rank": 4,
           "id": 3159,
           "action": "insert rubbish",
-          "probability": 0.015912942588329315
+          "probability": 0.01591295190155506
         },
         {
           "rank": 5,
           "id": 1931,
           "action": "wash rice",
-          "probability": 0.01178575586527586
+          "probability": 0.011785754933953285
         }
       ],
       "top_verbs": [
@@ -4116,13 +4116,13 @@
           "rank": 2,
           "id": 6,
           "verb": "insert",
-          "probability": 0.04465067386627197
+          "probability": 0.04465068504214287
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.03510570526123047
+          "probability": 0.03510569408535957
         },
         {
           "rank": 4,
@@ -4154,7 +4154,7 @@
           "rank": 3,
           "id": 12,
           "noun": "hand",
-          "probability": 0.035246893763542175
+          "probability": 0.03524690493941307
         },
         {
           "rank": 4,
@@ -4166,7 +4166,7 @@
           "rank": 5,
           "id": 1,
           "noun": "tap",
-          "probability": 0.023689042776823044
+          "probability": 0.02368904836475849
         }
       ],
       "action_set": [
@@ -4174,7 +4174,7 @@
           "rank": 1,
           "id": 1946,
           "action": "wash bowl",
-          "probability": 0.08408458530902863,
+          "probability": 0.08408457785844803,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4188,7 +4188,7 @@
           "rank": 2,
           "id": 213,
           "action": "take pan",
-          "probability": 0.15402325987815857,
+          "probability": 0.15402337908744812,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4202,7 +4202,7 @@
           "rank": 3,
           "id": 1308,
           "action": "put knife",
-          "probability": 0.13726365566253662,
+          "probability": 0.13726375997066498,
           "verb": {
             "id": 2,
             "name": "put"
@@ -4216,7 +4216,7 @@
           "rank": 4,
           "id": 1838,
           "action": "wash fork",
-          "probability": 0.1365748941898346,
+          "probability": 0.13657493889331818,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4230,7 +4230,7 @@
           "rank": 5,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.4302428662776947,
+          "probability": 0.4302431344985962,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -4284,31 +4284,31 @@
           "rank": 1,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.15456043183803558
+          "probability": 0.15456047654151917
         },
         {
           "rank": 2,
           "id": 1925,
           "action": "wash pan",
-          "probability": 0.0780157595872879
+          "probability": 0.0780157521367073
         },
         {
           "rank": 3,
           "id": 1906,
           "action": "wash pot",
-          "probability": 0.024459920823574066
+          "probability": 0.024459917098283768
         },
         {
           "rank": 4,
           "id": 1805,
           "action": "scrub pan",
-          "probability": 0.023759346455335617
+          "probability": 0.02375936508178711
         },
         {
           "rank": 5,
           "id": 1793,
           "action": "scrub board:chopping",
-          "probability": 0.011607828550040722
+          "probability": 0.01160783227533102
         }
       ],
       "top_verbs": [
@@ -4334,13 +4334,13 @@
           "rank": 4,
           "id": 1,
           "verb": "take",
-          "probability": 0.017299458384513855
+          "probability": 0.017299463972449303
         },
         {
           "rank": 5,
           "id": 12,
           "verb": "move",
-          "probability": 0.012939363718032837
+          "probability": 0.012939369305968285
         }
       ],
       "top_nouns": [
@@ -4348,31 +4348,31 @@
           "rank": 1,
           "id": 6,
           "noun": "pan",
-          "probability": 0.4855571687221527
+          "probability": 0.48555728793144226
         },
         {
           "rank": 2,
           "id": 40,
           "noun": "colander",
-          "probability": 0.22509124875068665
+          "probability": 0.22509130835533142
         },
         {
           "rank": 3,
           "id": 1,
           "noun": "tap",
-          "probability": 0.0241880901157856
+          "probability": 0.024188073351979256
         },
         {
           "rank": 4,
           "id": 19,
           "noun": "board:chopping",
-          "probability": 0.020025217905640602
+          "probability": 0.020025208592414856
         },
         {
           "rank": 5,
           "id": 10,
           "noun": "sponge",
-          "probability": 0.01450240146368742
+          "probability": 0.014502398669719696
         }
       ],
       "action_set": [
@@ -4380,7 +4380,7 @@
           "rank": 1,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.15456043183803558,
+          "probability": 0.15456047654151917,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4394,7 +4394,7 @@
           "rank": 2,
           "id": 201,
           "action": "take colander",
-          "probability": 0.3328414857387543,
+          "probability": 0.33284124732017517,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4408,7 +4408,7 @@
           "rank": 3,
           "id": 1307,
           "action": "put colander",
-          "probability": 0.645910918712616,
+          "probability": 0.6459108591079712,
           "verb": {
             "id": 2,
             "name": "put"
@@ -4422,7 +4422,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.21094514429569244,
+          "probability": 0.21094484627246857,
           "verb": {
             "id": 4,
             "name": "open"
@@ -4436,7 +4436,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.36882665753364563,
+          "probability": 0.36882683634757996,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4486,25 +4486,25 @@
           "rank": 1,
           "id": 3347,
           "action": "turn-on hob",
-          "probability": 0.02625931426882744
+          "probability": 0.026259277015924454
         },
         {
           "rank": 2,
           "id": 1147,
           "action": "put lighter",
-          "probability": 0.024475472047924995
+          "probability": 0.024475475773215294
         },
         {
           "rank": 3,
           "id": 3655,
           "action": "turn-off hob",
-          "probability": 0.01982744038105011
+          "probability": 0.019827431067824364
         },
         {
           "rank": 4,
           "id": 1003,
           "action": "adjust hob",
-          "probability": 0.014135231263935566
+          "probability": 0.014135224744677544
         },
         {
           "rank": 5,
@@ -4518,31 +4518,31 @@
           "rank": 1,
           "id": 12,
           "verb": "move",
-          "probability": 0.15892232954502106
+          "probability": 0.15892226994037628
         },
         {
           "rank": 2,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.15812386572360992
+          "probability": 0.15812382102012634
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.13725556433200836
+          "probability": 0.13725557923316956
         },
         {
           "rank": 4,
           "id": 4,
           "verb": "open",
-          "probability": 0.0780864730477333
+          "probability": 0.0780865028500557
         },
         {
           "rank": 5,
           "id": 1,
           "verb": "take",
-          "probability": 0.03986883535981178
+          "probability": 0.039868857711553574
         }
       ],
       "top_nouns": [
@@ -4550,31 +4550,31 @@
           "rank": 1,
           "id": 25,
           "noun": "hob",
-          "probability": 0.45998427271842957
+          "probability": 0.4599840044975281
         },
         {
           "rank": 2,
           "id": 131,
           "noun": "lighter",
-          "probability": 0.057921480387449265
+          "probability": 0.05792149528861046
         },
         {
           "rank": 3,
           "id": 39,
           "noun": "salt",
-          "probability": 0.0319061242043972
+          "probability": 0.031906161457300186
         },
         {
           "rank": 4,
           "id": 7,
           "noun": "lid",
-          "probability": 0.01751910150051117
+          "probability": 0.017519108951091766
         },
         {
           "rank": 5,
           "id": 17,
           "noun": "onion",
-          "probability": 0.017301641404628754
+          "probability": 0.017301633954048157
         }
       ],
       "action_set": [
@@ -4582,7 +4582,7 @@
           "rank": 1,
           "id": 3347,
           "action": "turn-on hob",
-          "probability": 0.02625931426882744,
+          "probability": 0.026259277015924454,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -4596,7 +4596,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.5529501438140869,
+          "probability": 0.5529500246047974,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4610,7 +4610,7 @@
           "rank": 3,
           "id": 224,
           "action": "take lid",
-          "probability": 0.15403006970882416,
+          "probability": 0.1540302187204361,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4638,7 +4638,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.3141894042491913,
+          "probability": 0.3141893148422241,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4688,31 +4688,31 @@
           "rank": 1,
           "id": 1926,
           "action": "wash maker:coffee",
-          "probability": 0.05934904143214226
+          "probability": 0.05934900790452957
         },
         {
           "rank": 2,
           "id": 207,
           "action": "take kettle",
-          "probability": 0.02085413597524166
+          "probability": 0.0208541639149189
         },
         {
           "rank": 3,
           "id": 1313,
           "action": "put kettle",
-          "probability": 0.012587212026119232
+          "probability": 0.012587214820086956
         },
         {
           "rank": 4,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.01235911063849926
+          "probability": 0.01235911250114441
         },
         {
           "rank": 5,
           "id": 1942,
           "action": "wash jug",
-          "probability": 0.011081797070801258
+          "probability": 0.01108179334551096
         }
       ],
       "top_verbs": [
@@ -4732,19 +4732,19 @@
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.06374143809080124
+          "probability": 0.06374144554138184
         },
         {
           "rank": 4,
           "id": 4,
           "verb": "open",
-          "probability": 0.030804911628365517
+          "probability": 0.03080490231513977
         },
         {
           "rank": 5,
           "id": 1,
           "verb": "take",
-          "probability": 0.02166305109858513
+          "probability": 0.021663064137101173
         }
       ],
       "top_nouns": [
@@ -4752,31 +4752,31 @@
           "rank": 1,
           "id": 51,
           "noun": "maker:coffee",
-          "probability": 0.11953571438789368
+          "probability": 0.11953579634428024
         },
         {
           "rank": 2,
           "id": 6,
           "noun": "pan",
-          "probability": 0.07556632906198502
+          "probability": 0.07556633651256561
         },
         {
           "rank": 3,
           "id": 28,
           "noun": "water",
-          "probability": 0.074773870408535
+          "probability": 0.0747738853096962
         },
         {
           "rank": 4,
           "id": 8,
           "noun": "bowl",
-          "probability": 0.07183513045310974
+          "probability": 0.07183520495891571
         },
         {
           "rank": 5,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.05353695899248123
+          "probability": 0.053536947816610336
         }
       ],
       "action_set": [
@@ -4784,7 +4784,7 @@
           "rank": 1,
           "id": 1926,
           "action": "wash maker:coffee",
-          "probability": 0.05934904143214226,
+          "probability": 0.05934900790452957,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4798,7 +4798,7 @@
           "rank": 2,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.2998897433280945,
+          "probability": 0.29988953471183777,
           "verb": {
             "id": 4,
             "name": "open"
@@ -4812,7 +4812,7 @@
           "rank": 3,
           "id": 1942,
           "action": "wash jug",
-          "probability": 0.24342553317546844,
+          "probability": 0.24342551827430725,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4826,7 +4826,7 @@
           "rank": 4,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.15131960809230804,
+          "probability": 0.15131951868534088,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -4840,7 +4840,7 @@
           "rank": 5,
           "id": 45,
           "action": "take fork",
-          "probability": 0.13438770174980164,
+          "probability": 0.1343875676393509,
           "verb": {
             "id": 1,
             "name": "take"
@@ -4894,13 +4894,13 @@
           "rank": 1,
           "id": 1968,
           "action": "wash ladle",
-          "probability": 0.0511912927031517
+          "probability": 0.051191311329603195
         },
         {
           "rank": 2,
           "id": 1870,
           "action": "wash spatula",
-          "probability": 0.03542172536253929
+          "probability": 0.03542175143957138
         },
         {
           "rank": 3,
@@ -4912,13 +4912,13 @@
           "rank": 4,
           "id": 1081,
           "action": "squeeze sponge",
-          "probability": 0.015265846624970436
+          "probability": 0.015265852212905884
         },
         {
           "rank": 5,
           "id": 1816,
           "action": "wash spoon",
-          "probability": 0.01526056881994009
+          "probability": 0.015260575339198112
         }
       ],
       "top_verbs": [
@@ -4926,13 +4926,13 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.5974137187004089
+          "probability": 0.5974140167236328
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.25760936737060547
+          "probability": 0.25760912895202637
         },
         {
           "rank": 3,
@@ -4944,13 +4944,13 @@
           "rank": 4,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.006885189563035965
+          "probability": 0.006885192822664976
         },
         {
           "rank": 5,
           "id": 12,
           "verb": "move",
-          "probability": 0.00596776744350791
+          "probability": 0.005967768374830484
         }
       ],
       "top_nouns": [
@@ -4958,31 +4958,31 @@
           "rank": 1,
           "id": 3,
           "noun": "plate",
-          "probability": 0.1396944671869278
+          "probability": 0.13969457149505615
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.07114623486995697
+          "probability": 0.07114624232053757
         },
         {
           "rank": 3,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.053774524480104446
+          "probability": 0.05377454683184624
         },
         {
           "rank": 4,
           "id": 143,
           "noun": "tongs",
-          "probability": 0.03732446953654289
+          "probability": 0.037324458360672
         },
         {
           "rank": 5,
           "id": 10,
           "noun": "sponge",
-          "probability": 0.03705891966819763
+          "probability": 0.03705887869000435
         }
       ],
       "action_set": [
@@ -4990,7 +4990,7 @@
           "rank": 1,
           "id": 1968,
           "action": "wash ladle",
-          "probability": 0.0511912927031517,
+          "probability": 0.051191311329603195,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -5004,7 +5004,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.9297885298728943,
+          "probability": 0.9297884106636047,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5018,7 +5018,7 @@
           "rank": 3,
           "id": 107,
           "action": "take plate",
-          "probability": 0.4551052749156952,
+          "probability": 0.4551048278808594,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5032,7 +5032,7 @@
           "rank": 4,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.10403125733137131,
+          "probability": 0.1040312796831131,
           "verb": {
             "id": 4,
             "name": "open"
@@ -5046,7 +5046,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.5852324366569519,
+          "probability": 0.5852321982383728,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -5096,31 +5096,31 @@
           "rank": 1,
           "id": 1312,
           "action": "put tomato",
-          "probability": 0.06532575190067291
+          "probability": 0.06532583385705948
         },
         {
           "rank": 2,
           "id": 2724,
           "action": "close wrap",
-          "probability": 0.025880299508571625
+          "probability": 0.02588030882179737
         },
         {
           "rank": 3,
           "id": 1339,
           "action": "put chilli",
-          "probability": 0.024787791073322296
+          "probability": 0.0247877836227417
         },
         {
           "rank": 4,
           "id": 1321,
           "action": "put garlic",
-          "probability": 0.022389758378267288
+          "probability": 0.02238977514207363
         },
         {
           "rank": 5,
           "id": 206,
           "action": "take tomato",
-          "probability": 0.013243025168776512
+          "probability": 0.013243029825389385
         }
       ],
       "top_verbs": [
@@ -5128,31 +5128,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.6565839648246765
+          "probability": 0.6565840840339661
         },
         {
           "rank": 2,
           "id": 10,
           "verb": "pour",
-          "probability": 0.05014737322926521
+          "probability": 0.05014735832810402
         },
         {
           "rank": 3,
           "id": 5,
           "verb": "close",
-          "probability": 0.024269236251711845
+          "probability": 0.0242692269384861
         },
         {
           "rank": 4,
           "id": 1,
           "verb": "take",
-          "probability": 0.0176493301987648
+          "probability": 0.017649328336119652
         },
         {
           "rank": 5,
           "id": 11,
           "verb": "mix",
-          "probability": 0.01692057214677334
+          "probability": 0.01692056655883789
         }
       ],
       "top_nouns": [
@@ -5160,13 +5160,13 @@
           "rank": 1,
           "id": 44,
           "noun": "tomato",
-          "probability": 0.32879382371902466
+          "probability": 0.328794002532959
         },
         {
           "rank": 2,
           "id": 108,
           "noun": "wrap",
-          "probability": 0.14526362717151642
+          "probability": 0.14526355266571045
         },
         {
           "rank": 3,
@@ -5178,13 +5178,13 @@
           "rank": 4,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.049934908747673035
+          "probability": 0.04993489012122154
         },
         {
           "rank": 5,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.021819114685058594
+          "probability": 0.0218190997838974
         }
       ],
       "action_set": [
@@ -5192,7 +5192,7 @@
           "rank": 1,
           "id": 1312,
           "action": "put tomato",
-          "probability": 0.06532575190067291,
+          "probability": 0.06532583385705948,
           "verb": {
             "id": 2,
             "name": "put"
@@ -5206,7 +5206,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.7280489802360535,
+          "probability": 0.7280486822128296,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5220,7 +5220,7 @@
           "rank": 3,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.1548386663198471,
+          "probability": 0.15483880043029785,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -5234,7 +5234,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.3020324110984802,
+          "probability": 0.3020325005054474,
           "verb": {
             "id": 4,
             "name": "open"
@@ -5248,7 +5248,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.3346967399120331,
+          "probability": 0.33469685912132263,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5298,31 +5298,31 @@
           "rank": 1,
           "id": 232,
           "action": "take salad",
-          "probability": 0.035209719091653824
+          "probability": 0.03520975261926651
         },
         {
           "rank": 2,
           "id": 227,
           "action": "take leaf",
-          "probability": 0.020118050277233124
+          "probability": 0.02011803723871708
         },
         {
           "rank": 3,
           "id": 1338,
           "action": "put salad",
-          "probability": 0.017620375379920006
+          "probability": 0.01762039214372635
         },
         {
           "rank": 4,
           "id": 333,
           "action": "mix egg",
-          "probability": 0.013531271368265152
+          "probability": 0.013531261123716831
         },
         {
           "rank": 5,
           "id": 3131,
           "action": "insert meat",
-          "probability": 0.01279756985604763
+          "probability": 0.0127975819632411
         }
       ],
       "top_verbs": [
@@ -5330,31 +5330,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.37981274724006653
+          "probability": 0.3798125982284546
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.24006283283233643
+          "probability": 0.24006296694278717
         },
         {
           "rank": 3,
           "id": 11,
           "verb": "mix",
-          "probability": 0.039664868265390396
+          "probability": 0.0396648608148098
         },
         {
           "rank": 4,
           "id": 8,
           "verb": "cut",
-          "probability": 0.034266646951436996
+          "probability": 0.03426665812730789
         },
         {
           "rank": 5,
           "id": 6,
           "verb": "insert",
-          "probability": 0.032301343977451324
+          "probability": 0.03230135515332222
         }
       ],
       "top_nouns": [
@@ -5362,31 +5362,31 @@
           "rank": 1,
           "id": 15,
           "noun": "fork",
-          "probability": 0.10897164791822433
+          "probability": 0.10897178947925568
         },
         {
           "rank": 2,
           "id": 69,
           "noun": "salad",
-          "probability": 0.08899044990539551
+          "probability": 0.08899051696062088
         },
         {
           "rank": 3,
           "id": 6,
           "noun": "pan",
-          "probability": 0.07288148254156113
+          "probability": 0.07288152724504471
         },
         {
           "rank": 4,
           "id": 54,
           "noun": "egg",
-          "probability": 0.061046238988637924
+          "probability": 0.06104619801044464
         },
         {
           "rank": 5,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.0518258661031723
+          "probability": 0.051825832575559616
         }
       ],
       "action_set": [
@@ -5394,7 +5394,7 @@
           "rank": 1,
           "id": 232,
           "action": "take salad",
-          "probability": 0.035209719091653824,
+          "probability": 0.03520975261926651,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5408,7 +5408,7 @@
           "rank": 2,
           "id": 202,
           "action": "take knife",
-          "probability": 0.37537238001823425,
+          "probability": 0.37537285685539246,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5422,7 +5422,7 @@
           "rank": 3,
           "id": 213,
           "action": "take pan",
-          "probability": 0.44244691729545593,
+          "probability": 0.44244617223739624,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5450,7 +5450,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.14611339569091797,
+          "probability": 0.14611366391181946,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -5504,31 +5504,31 @@
           "rank": 1,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.17541973292827606
+          "probability": 0.1754196435213089
         },
         {
           "rank": 2,
           "id": 1950,
           "action": "wash peach",
-          "probability": 0.0876825675368309
+          "probability": 0.08768259733915329
         },
         {
           "rank": 3,
           "id": 900,
           "action": "shake peach",
-          "probability": 0.0682525485754013
+          "probability": 0.06825254112482071
         },
         {
           "rank": 4,
           "id": 1345,
           "action": "put peach",
-          "probability": 0.013136832043528557
+          "probability": 0.013136838562786579
         },
         {
           "rank": 5,
           "id": 660,
           "action": "remove peach",
-          "probability": 0.012829001061618328
+          "probability": 0.012829013168811798
         }
       ],
       "top_verbs": [
@@ -5536,31 +5536,31 @@
           "rank": 1,
           "id": 9,
           "verb": "turn-off",
-          "probability": 0.6475800275802612
+          "probability": 0.6475799679756165
         },
         {
           "rank": 2,
           "id": 3,
           "verb": "wash",
-          "probability": 0.09862717241048813
+          "probability": 0.09862719476222992
         },
         {
           "rank": 3,
           "id": 13,
           "verb": "remove",
-          "probability": 0.07154173403978348
+          "probability": 0.07154175639152527
         },
         {
           "rank": 4,
           "id": 16,
           "verb": "shake",
-          "probability": 0.05299828201532364
+          "probability": 0.052998319268226624
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.028049582615494728
+          "probability": 0.028049593791365623
         }
       ],
       "top_nouns": [
@@ -5568,31 +5568,31 @@
           "rank": 1,
           "id": 1,
           "noun": "tap",
-          "probability": 0.7106658220291138
+          "probability": 0.710665762424469
         },
         {
           "rank": 2,
           "id": 75,
           "noun": "peach",
-          "probability": 0.15016277134418488
+          "probability": 0.15016290545463562
         },
         {
           "rank": 3,
           "id": 44,
           "noun": "tomato",
-          "probability": 0.011619338765740395
+          "probability": 0.011619330383837223
         },
         {
           "rank": 4,
           "id": 123,
           "noun": "seed",
-          "probability": 0.006656017620116472
+          "probability": 0.006656023673713207
         },
         {
           "rank": 5,
           "id": 49,
           "noun": "skin",
-          "probability": 0.004331355448812246
+          "probability": 0.0043313573114573956
         }
       ],
       "action_set": [
@@ -5600,7 +5600,7 @@
           "rank": 1,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.17541973292827606,
+          "probability": 0.1754196435213089,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -5614,7 +5614,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.5596017837524414,
+          "probability": 0.5596014261245728,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5628,7 +5628,7 @@
           "rank": 3,
           "id": 1950,
           "action": "wash peach",
-          "probability": 0.21435114741325378,
+          "probability": 0.21435119211673737,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -5656,7 +5656,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.5646817088127136,
+          "probability": 0.5646828413009644,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -5706,19 +5706,19 @@
           "rank": 1,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.02283867821097374
+          "probability": 0.022838689386844635
         },
         {
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.019362838938832283
+          "probability": 0.01936281844973564
         },
         {
           "rank": 3,
           "id": 2399,
           "action": "open box",
-          "probability": 0.017154794186353683
+          "probability": 0.017154796048998833
         },
         {
           "rank": 4,
@@ -5730,7 +5730,7 @@
           "rank": 5,
           "id": 1313,
           "action": "put kettle",
-          "probability": 0.012025110423564911
+          "probability": 0.012025111354887486
         }
       ],
       "top_verbs": [
@@ -5738,31 +5738,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.359282910823822
+          "probability": 0.3592830300331116
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.19408360123634338
+          "probability": 0.19408339262008667
         },
         {
           "rank": 3,
           "id": 4,
           "verb": "open",
-          "probability": 0.0717553049325943
+          "probability": 0.0717552900314331
         },
         {
           "rank": 4,
           "id": 13,
           "verb": "remove",
-          "probability": 0.044438932090997696
+          "probability": 0.04443890601396561
         },
         {
           "rank": 5,
           "id": 5,
           "verb": "close",
-          "probability": 0.043597012758255005
+          "probability": 0.0435970276594162
         }
       ],
       "top_nouns": [
@@ -5776,7 +5776,7 @@
           "rank": 2,
           "id": 45,
           "noun": "kettle",
-          "probability": 0.04927502200007439
+          "probability": 0.04927500709891319
         },
         {
           "rank": 3,
@@ -5788,13 +5788,13 @@
           "rank": 4,
           "id": 21,
           "noun": "spatula",
-          "probability": 0.02065265364944935
+          "probability": 0.02065267413854599
         },
         {
           "rank": 5,
           "id": 24,
           "noun": "box",
-          "probability": 0.018356632441282272
+          "probability": 0.018356628715991974
         }
       ],
       "action_set": [
@@ -5802,7 +5802,7 @@
           "rank": 1,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.02283867821097374,
+          "probability": 0.022838689386844635,
           "verb": {
             "id": 2,
             "name": "put"
@@ -5816,7 +5816,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.5364639163017273,
+          "probability": 0.5364636182785034,
           "verb": {
             "id": 1,
             "name": "take"
@@ -5830,7 +5830,7 @@
           "rank": 3,
           "id": 2428,
           "action": "open kettle",
-          "probability": 0.06013038381934166,
+          "probability": 0.06013032793998718,
           "verb": {
             "id": 4,
             "name": "open"
@@ -5844,7 +5844,7 @@
           "rank": 4,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.20957395434379578,
+          "probability": 0.20957377552986145,
           "verb": {
             "id": 4,
             "name": "open"
@@ -5858,7 +5858,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.1885140836238861,
+          "probability": 0.18851399421691895,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -5908,31 +5908,31 @@
           "rank": 1,
           "id": 2799,
           "action": "close lid",
-          "probability": 0.05377751216292381
+          "probability": 0.053777534514665604
         },
         {
           "rank": 2,
           "id": 1875,
           "action": "wash container",
-          "probability": 0.03393952548503876
+          "probability": 0.033939510583877563
         },
         {
           "rank": 3,
           "id": 2442,
           "action": "open lid",
-          "probability": 0.03312582150101662
+          "probability": 0.033125802874565125
         },
         {
           "rank": 4,
           "id": 749,
           "action": "throw coffee",
-          "probability": 0.014965638518333435
+          "probability": 0.014965634793043137
         },
         {
           "rank": 5,
           "id": 3727,
           "action": "pour blueberry",
-          "probability": 0.009931572712957859
+          "probability": 0.009931568056344986
         }
       ],
       "top_verbs": [
@@ -5940,7 +5940,7 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.26743122935295105
+          "probability": 0.2674311399459839
         },
         {
           "rank": 2,
@@ -5952,19 +5952,19 @@
           "rank": 3,
           "id": 14,
           "verb": "throw",
-          "probability": 0.13763244450092316
+          "probability": 0.13763245940208435
         },
         {
           "rank": 4,
           "id": 4,
           "verb": "open",
-          "probability": 0.11538318544626236
+          "probability": 0.11538317054510117
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.03488793224096298
+          "probability": 0.034887947142124176
         }
       ],
       "top_nouns": [
@@ -5978,25 +5978,25 @@
           "rank": 2,
           "id": 1,
           "noun": "tap",
-          "probability": 0.07542537152767181
+          "probability": 0.0754253938794136
         },
         {
           "rank": 3,
           "id": 10,
           "noun": "sponge",
-          "probability": 0.03051280975341797
+          "probability": 0.030512826517224312
         },
         {
           "rank": 4,
           "id": 22,
           "noun": "container",
-          "probability": 0.02915709652006626
+          "probability": 0.02915705367922783
         },
         {
           "rank": 5,
           "id": 179,
           "noun": "blueberry",
-          "probability": 0.023149942979216576
+          "probability": 0.02314993180334568
         }
       ],
       "action_set": [
@@ -6004,7 +6004,7 @@
           "rank": 1,
           "id": 2799,
           "action": "close lid",
-          "probability": 0.05377751216292381,
+          "probability": 0.053777534514665604,
           "verb": {
             "id": 5,
             "name": "close"
@@ -6032,7 +6032,7 @@
           "rank": 3,
           "id": 831,
           "action": "shake hand",
-          "probability": 0.5154429078102112,
+          "probability": 0.5154430866241455,
           "verb": {
             "id": 16,
             "name": "shake"
@@ -6122,19 +6122,19 @@
           "rank": 3,
           "id": 2204,
           "action": "wrap bag",
-          "probability": 0.0175765547901392
+          "probability": 0.0175765473395586
         },
         {
           "rank": 4,
           "id": 608,
           "action": "remove package",
-          "probability": 0.010470602661371231
+          "probability": 0.010470607317984104
         },
         {
           "rank": 5,
           "id": 978,
           "action": "adjust salmon",
-          "probability": 0.010308570228517056
+          "probability": 0.010308565571904182
         }
       ],
       "top_verbs": [
@@ -6142,31 +6142,31 @@
           "rank": 1,
           "id": 13,
           "verb": "remove",
-          "probability": 0.20598672330379486
+          "probability": 0.2059869021177292
         },
         {
           "rank": 2,
           "id": 8,
           "verb": "cut",
-          "probability": 0.09659650921821594
+          "probability": 0.09659649431705475
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.09320027381181717
+          "probability": 0.09320022165775299
         },
         {
           "rank": 4,
           "id": 10,
           "verb": "pour",
-          "probability": 0.08814816921949387
+          "probability": 0.08814820647239685
         },
         {
           "rank": 5,
           "id": 4,
           "verb": "open",
-          "probability": 0.08398818969726562
+          "probability": 0.08398820459842682
         }
       ],
       "top_nouns": [
@@ -6174,31 +6174,31 @@
           "rank": 1,
           "id": 20,
           "noun": "bag",
-          "probability": 0.37994271516799927
+          "probability": 0.3799426853656769
         },
         {
           "rank": 2,
           "id": 27,
           "noun": "package",
-          "probability": 0.06331809610128403
+          "probability": 0.06331808865070343
         },
         {
           "rank": 3,
           "id": 113,
           "noun": "salmon",
-          "probability": 0.05171086639165878
+          "probability": 0.05171088129281998
         },
         {
           "rank": 4,
           "id": 63,
           "noun": "leaf",
-          "probability": 0.03469279780983925
+          "probability": 0.03469279408454895
         },
         {
           "rank": 5,
           "id": 42,
           "noun": "carrot",
-          "probability": 0.014531224966049194
+          "probability": 0.014531226828694344
         }
       ],
       "action_set": [
@@ -6220,7 +6220,7 @@
           "rank": 2,
           "id": 1319,
           "action": "put pan",
-          "probability": 0.18562552332878113,
+          "probability": 0.18562546372413635,
           "verb": {
             "id": 2,
             "name": "put"
@@ -6234,7 +6234,7 @@
           "rank": 3,
           "id": 99,
           "action": "take bag",
-          "probability": 0.23909644782543182,
+          "probability": 0.23909631371498108,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6248,7 +6248,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.3092937469482422,
+          "probability": 0.3092938959598541,
           "verb": {
             "id": 4,
             "name": "open"
@@ -6312,31 +6312,31 @@
           "rank": 1,
           "id": 2468,
           "action": "open microwave",
-          "probability": 0.054766424000263214
+          "probability": 0.0547664500772953
         },
         {
           "rank": 2,
           "id": 2416,
           "action": "open oil",
-          "probability": 0.046123143285512924
+          "probability": 0.04612312093377113
         },
         {
           "rank": 3,
           "id": 1651,
           "action": "check microwave",
-          "probability": 0.020020319148898125
+          "probability": 0.02002032846212387
         },
         {
           "rank": 4,
           "id": 3131,
           "action": "insert meat",
-          "probability": 0.008952263742685318
+          "probability": 0.008952264674007893
         },
         {
           "rank": 5,
           "id": 1494,
           "action": "flip meat",
-          "probability": 0.006044986192137003
+          "probability": 0.006044988986104727
         }
       ],
       "top_verbs": [
@@ -6344,31 +6344,31 @@
           "rank": 1,
           "id": 4,
           "verb": "open",
-          "probability": 0.3322256803512573
+          "probability": 0.332225501537323
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.11621832102537155
+          "probability": 0.11621847748756409
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.0720854178071022
+          "probability": 0.07208540290594101
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.051964450627565384
+          "probability": 0.051964472979307175
         },
         {
           "rank": 5,
           "id": 23,
           "verb": "flip",
-          "probability": 0.029681505635380745
+          "probability": 0.02968151867389679
         }
       ],
       "top_nouns": [
@@ -6376,31 +6376,31 @@
           "rank": 1,
           "id": 32,
           "noun": "oil",
-          "probability": 0.22887811064720154
+          "probability": 0.22887808084487915
         },
         {
           "rank": 2,
           "id": 91,
           "noun": "microwave",
-          "probability": 0.1551237255334854
+          "probability": 0.15512371063232422
         },
         {
           "rank": 3,
           "id": 8,
           "noun": "bowl",
-          "probability": 0.06047557294368744
+          "probability": 0.060475513339042664
         },
         {
           "rank": 4,
           "id": 44,
           "noun": "tomato",
-          "probability": 0.04987158626317978
+          "probability": 0.049871575087308884
         },
         {
           "rank": 5,
           "id": 27,
           "noun": "package",
-          "probability": 0.028554022312164307
+          "probability": 0.028554031625390053
         }
       ],
       "action_set": [
@@ -6408,7 +6408,7 @@
           "rank": 1,
           "id": 2468,
           "action": "open microwave",
-          "probability": 0.054766424000263214,
+          "probability": 0.0547664500772953,
           "verb": {
             "id": 4,
             "name": "open"
@@ -6422,7 +6422,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.35394373536109924,
+          "probability": 0.35394367575645447,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6436,7 +6436,7 @@
           "rank": 3,
           "id": 3533,
           "action": "cut tomato",
-          "probability": 0.44408270716667175,
+          "probability": 0.4440825879573822,
           "verb": {
             "id": 8,
             "name": "cut"
@@ -6450,7 +6450,7 @@
           "rank": 4,
           "id": 256,
           "action": "take sponge",
-          "probability": 0.35395410656929016,
+          "probability": 0.3539543151855469,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6464,7 +6464,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.32745498418807983,
+          "probability": 0.3274551331996918,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -6514,7 +6514,7 @@
           "rank": 1,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.17573115229606628
+          "probability": 0.17573106288909912
         },
         {
           "rank": 2,
@@ -6526,13 +6526,13 @@
           "rank": 3,
           "id": 2452,
           "action": "open dishwasher",
-          "probability": 0.009059055708348751
+          "probability": 0.009059051051735878
         },
         {
           "rank": 4,
           "id": 251,
           "action": "take spice",
-          "probability": 0.005067993886768818
+          "probability": 0.005067993421107531
         },
         {
           "rank": 5,
@@ -6546,31 +6546,31 @@
           "rank": 1,
           "id": 4,
           "verb": "open",
-          "probability": 0.6836869716644287
+          "probability": 0.6836866736412048
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.06612075865268707
+          "probability": 0.06612081080675125
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.05891299620270729
+          "probability": 0.058913085609674454
         },
         {
           "rank": 4,
           "id": 22,
           "verb": "press",
-          "probability": 0.01635618694126606
+          "probability": 0.016356203705072403
         },
         {
           "rank": 5,
           "id": 3,
           "verb": "wash",
-          "probability": 0.012334739789366722
+          "probability": 0.012334754690527916
         }
       ],
       "top_nouns": [
@@ -6578,13 +6578,13 @@
           "rank": 1,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.7515997886657715
+          "probability": 0.7515996098518372
         },
         {
           "rank": 2,
           "id": 94,
           "noun": "towel:kitchen",
-          "probability": 0.017603034153580666
+          "probability": 0.017603041604161263
         },
         {
           "rank": 3,
@@ -6596,13 +6596,13 @@
           "rank": 4,
           "id": 12,
           "noun": "hand",
-          "probability": 0.00978100672364235
+          "probability": 0.009781017899513245
         },
         {
           "rank": 5,
           "id": 21,
           "noun": "spatula",
-          "probability": 0.008152828551828861
+          "probability": 0.008152835071086884
         }
       ],
       "action_set": [
@@ -6610,7 +6610,7 @@
           "rank": 1,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.17573115229606628,
+          "probability": 0.17573106288909912,
           "verb": {
             "id": 4,
             "name": "open"
@@ -6624,7 +6624,7 @@
           "rank": 2,
           "id": 1319,
           "action": "put pan",
-          "probability": 0.2315741628408432,
+          "probability": 0.23157407343387604,
           "verb": {
             "id": 2,
             "name": "put"
@@ -6638,7 +6638,7 @@
           "rank": 3,
           "id": 139,
           "action": "take box",
-          "probability": 0.3660391867160797,
+          "probability": 0.3660394251346588,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6652,7 +6652,7 @@
           "rank": 4,
           "id": 322,
           "action": "mix food",
-          "probability": 0.16061653196811676,
+          "probability": 0.16061654686927795,
           "verb": {
             "id": 11,
             "name": "mix"
@@ -6666,7 +6666,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.2315792441368103,
+          "probability": 0.23157928884029388,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -6716,31 +6716,31 @@
           "rank": 1,
           "id": 2789,
           "action": "close oven",
-          "probability": 0.13499963283538818
+          "probability": 0.13499955832958221
         },
         {
           "rank": 2,
           "id": 1303,
           "action": "put tray",
-          "probability": 0.059953730553388596
+          "probability": 0.059953756630420685
         },
         {
           "rank": 3,
           "id": 622,
           "action": "remove tray",
-          "probability": 0.04353083297610283
+          "probability": 0.04353085532784462
         },
         {
           "rank": 4,
           "id": 3139,
           "action": "insert tray",
-          "probability": 0.037148717790842056
+          "probability": 0.03714872896671295
         },
         {
           "rank": 5,
           "id": 1363,
           "action": "put pizza",
-          "probability": 0.0198677945882082
+          "probability": 0.019867803901433945
         }
       ],
       "top_verbs": [
@@ -6748,31 +6748,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.42483752965927124
+          "probability": 0.4248376786708832
         },
         {
           "rank": 2,
           "id": 5,
           "verb": "close",
-          "probability": 0.08471396565437317
+          "probability": 0.08471393585205078
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.0790693461894989
+          "probability": 0.07906933128833771
         },
         {
           "rank": 4,
           "id": 6,
           "verb": "insert",
-          "probability": 0.061136793345212936
+          "probability": 0.061136819422245026
         },
         {
           "rank": 5,
           "id": 13,
           "verb": "remove",
-          "probability": 0.04749369993805885
+          "probability": 0.04749368876218796
         }
       ],
       "top_nouns": [
@@ -6786,25 +6786,25 @@
           "rank": 2,
           "id": 6,
           "noun": "pan",
-          "probability": 0.023829014971852303
+          "probability": 0.023829057812690735
         },
         {
           "rank": 3,
           "id": 92,
           "noun": "pizza",
-          "probability": 0.0218596663326025
+          "probability": 0.021859683096408844
         },
         {
           "rank": 4,
           "id": 47,
           "noun": "oven",
-          "probability": 0.02102561853826046
+          "probability": 0.021025624126195908
         },
         {
           "rank": 5,
           "id": 61,
           "noun": "glove",
-          "probability": 0.00784383062273264
+          "probability": 0.007843834348022938
         }
       ],
       "action_set": [
@@ -6812,7 +6812,7 @@
           "rank": 1,
           "id": 2789,
           "action": "close oven",
-          "probability": 0.13499963283538818,
+          "probability": 0.13499955832958221,
           "verb": {
             "id": 5,
             "name": "close"
@@ -6826,7 +6826,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.8270912170410156,
+          "probability": 0.8270912766456604,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6840,7 +6840,7 @@
           "rank": 3,
           "id": 197,
           "action": "take tray",
-          "probability": 0.40862029790878296,
+          "probability": 0.40861964225769043,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6854,7 +6854,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.4614962339401245,
+          "probability": 0.46149593591690063,
           "verb": {
             "id": 4,
             "name": "open"
@@ -6868,7 +6868,7 @@
           "rank": 5,
           "id": 107,
           "action": "take plate",
-          "probability": 0.3114646077156067,
+          "probability": 0.3114648461341858,
           "verb": {
             "id": 1,
             "name": "take"
@@ -6918,31 +6918,31 @@
           "rank": 1,
           "id": 1926,
           "action": "wash maker:coffee",
-          "probability": 0.12183725088834763
+          "probability": 0.12183728069067001
         },
         {
           "rank": 2,
           "id": 2793,
           "action": "close maker:coffee",
-          "probability": 0.07561599463224411
+          "probability": 0.07561594247817993
         },
         {
           "rank": 3,
           "id": 2434,
           "action": "open maker:coffee",
-          "probability": 0.06831365078687668
+          "probability": 0.0683136060833931
         },
         {
           "rank": 4,
           "id": 1953,
           "action": "wash filter",
-          "probability": 0.05146157741546631
+          "probability": 0.051461562514305115
         },
         {
           "rank": 5,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.0358210913836956
+          "probability": 0.03582112118601799
         }
       ],
       "top_verbs": [
@@ -6950,31 +6950,31 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.46012651920318604
+          "probability": 0.46012645959854126
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.08989466726779938
+          "probability": 0.08989480882883072
         },
         {
           "rank": 3,
           "id": 4,
           "verb": "open",
-          "probability": 0.061398282647132874
+          "probability": 0.0613982155919075
         },
         {
           "rank": 4,
           "id": 14,
           "verb": "throw",
-          "probability": 0.055549297481775284
+          "probability": 0.05554930493235588
         },
         {
           "rank": 5,
           "id": 15,
           "verb": "dry",
-          "probability": 0.03135000914335251
+          "probability": 0.031350016593933105
         }
       ],
       "top_nouns": [
@@ -6982,31 +6982,31 @@
           "rank": 1,
           "id": 51,
           "noun": "maker:coffee",
-          "probability": 0.46783217787742615
+          "probability": 0.4678323268890381
         },
         {
           "rank": 2,
           "id": 14,
           "noun": "cup",
-          "probability": 0.16483663022518158
+          "probability": 0.16483668982982635
         },
         {
           "rank": 3,
           "id": 78,
           "noun": "filter",
-          "probability": 0.12682031095027924
+          "probability": 0.12682025134563446
         },
         {
           "rank": 4,
           "id": 37,
           "noun": "bin",
-          "probability": 0.028276141732931137
+          "probability": 0.028276128694415092
         },
         {
           "rank": 5,
           "id": 60,
           "noun": "coffee",
-          "probability": 0.023264948278665543
+          "probability": 0.0232649315148592
         }
       ],
       "action_set": [
@@ -7014,7 +7014,7 @@
           "rank": 1,
           "id": 1926,
           "action": "wash maker:coffee",
-          "probability": 0.12183725088834763,
+          "probability": 0.12183728069067001,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -7028,7 +7028,7 @@
           "rank": 2,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.5660157799720764,
+          "probability": 0.5660161375999451,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -7042,7 +7042,7 @@
           "rank": 3,
           "id": 1833,
           "action": "wash cup",
-          "probability": 0.32624131441116333,
+          "probability": 0.32624125480651855,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -7056,7 +7056,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.14394241571426392,
+          "probability": 0.14394259452819824,
           "verb": {
             "id": 4,
             "name": "open"
@@ -7070,7 +7070,7 @@
           "rank": 5,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.4087957441806793,
+          "probability": 0.4087943732738495,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -7120,31 +7120,31 @@
           "rank": 1,
           "id": 333,
           "action": "mix egg",
-          "probability": 0.09117530286312103
+          "probability": 0.09117526561021805
         },
         {
           "rank": 2,
           "id": 3282,
           "action": "turn-down hob",
-          "probability": 0.03564799204468727
+          "probability": 0.035648029297590256
         },
         {
           "rank": 3,
           "id": 3655,
           "action": "turn-off hob",
-          "probability": 0.03295695036649704
+          "probability": 0.032956983894109726
         },
         {
           "rank": 4,
           "id": 318,
           "action": "mix potato",
-          "probability": 0.01874488964676857
+          "probability": 0.018744871020317078
         },
         {
           "rank": 5,
           "id": 322,
           "action": "mix food",
-          "probability": 0.01725207455456257
+          "probability": 0.017252059653401375
         }
       ],
       "top_verbs": [
@@ -7152,31 +7152,31 @@
           "rank": 1,
           "id": 11,
           "verb": "mix",
-          "probability": 0.39636385440826416
+          "probability": 0.39636388421058655
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.15802441537380219
+          "probability": 0.15802446007728577
         },
         {
           "rank": 3,
           "id": 24,
           "verb": "turn",
-          "probability": 0.07764136046171188
+          "probability": 0.0776413083076477
         },
         {
           "rank": 4,
           "id": 2,
           "verb": "put",
-          "probability": 0.048421792685985565
+          "probability": 0.04842178523540497
         },
         {
           "rank": 5,
           "id": 23,
           "verb": "flip",
-          "probability": 0.041345734149217606
+          "probability": 0.04134572669863701
         }
       ],
       "top_nouns": [
@@ -7184,31 +7184,31 @@
           "rank": 1,
           "id": 35,
           "noun": "food",
-          "probability": 0.37822088599205017
+          "probability": 0.37822067737579346
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.09701059758663177
+          "probability": 0.09701067954301834
         },
         {
           "rank": 3,
           "id": 21,
           "noun": "spatula",
-          "probability": 0.07666449248790741
+          "probability": 0.0766645148396492
         },
         {
           "rank": 4,
           "id": 54,
           "noun": "egg",
-          "probability": 0.061687394976615906
+          "probability": 0.0616874024271965
         },
         {
           "rank": 5,
           "id": 6,
           "noun": "pan",
-          "probability": 0.03370434418320656
+          "probability": 0.03370433300733566
         }
       ],
       "action_set": [
@@ -7216,7 +7216,7 @@
           "rank": 1,
           "id": 333,
           "action": "mix egg",
-          "probability": 0.09117530286312103,
+          "probability": 0.09117526561021805,
           "verb": {
             "id": 11,
             "name": "mix"
@@ -7230,7 +7230,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.17224135994911194,
+          "probability": 0.17224128544330597,
           "verb": {
             "id": 1,
             "name": "take"
@@ -7244,7 +7244,7 @@
           "rank": 3,
           "id": 1319,
           "action": "put pan",
-          "probability": 0.3784661591053009,
+          "probability": 0.37846633791923523,
           "verb": {
             "id": 2,
             "name": "put"
@@ -7272,7 +7272,7 @@
           "rank": 5,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.3367007076740265,
+          "probability": 0.3367006778717041,
           "verb": {
             "id": 4,
             "name": "open"
@@ -7330,31 +7330,31 @@
           "rank": 1,
           "id": 1328,
           "action": "put cutlery",
-          "probability": 0.019387835636734962
+          "probability": 0.019387831911444664
         },
         {
           "rank": 2,
           "id": 218,
           "action": "take rubbish",
-          "probability": 0.018792185932397842
+          "probability": 0.018792208284139633
         },
         {
           "rank": 3,
           "id": 222,
           "action": "take cutlery",
-          "probability": 0.018257291987538338
+          "probability": 0.018257293850183487
         },
         {
           "rank": 4,
           "id": 1953,
           "action": "wash filter",
-          "probability": 0.01419640053063631
+          "probability": 0.014196397736668587
         },
         {
           "rank": 5,
           "id": 642,
           "action": "remove rubbish",
-          "probability": 0.011855090036988258
+          "probability": 0.011855085380375385
         }
       ],
       "top_verbs": [
@@ -7362,31 +7362,31 @@
           "rank": 1,
           "id": 15,
           "verb": "dry",
-          "probability": 0.22588148713111877
+          "probability": 0.2258813977241516
         },
         {
           "rank": 2,
           "id": 3,
           "verb": "wash",
-          "probability": 0.19242113828659058
+          "probability": 0.19242100417613983
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.15747743844985962
+          "probability": 0.15747763216495514
         },
         {
           "rank": 4,
           "id": 1,
           "verb": "take",
-          "probability": 0.06940541416406631
+          "probability": 0.06940542161464691
         },
         {
           "rank": 5,
           "id": 16,
           "verb": "shake",
-          "probability": 0.050991449505090714
+          "probability": 0.050991490483284
         }
       ],
       "top_nouns": [
@@ -7394,31 +7394,31 @@
           "rank": 1,
           "id": 12,
           "noun": "hand",
-          "probability": 0.4011608958244324
+          "probability": 0.40116092562675476
         },
         {
           "rank": 2,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.0847732201218605
+          "probability": 0.0847732275724411
         },
         {
           "rank": 3,
           "id": 59,
           "noun": "cutlery",
-          "probability": 0.07612249255180359
+          "probability": 0.0761224627494812
         },
         {
           "rank": 4,
           "id": 55,
           "noun": "rubbish",
-          "probability": 0.04504753649234772
+          "probability": 0.045047540217638016
         },
         {
           "rank": 5,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.030263563618063927
+          "probability": 0.030263543128967285
         }
       ],
       "action_set": [
@@ -7426,7 +7426,7 @@
           "rank": 1,
           "id": 1328,
           "action": "put cutlery",
-          "probability": 0.019387835636734962,
+          "probability": 0.019387831911444664,
           "verb": {
             "id": 2,
             "name": "put"
@@ -7440,7 +7440,7 @@
           "rank": 2,
           "id": 202,
           "action": "take knife",
-          "probability": 0.7574663162231445,
+          "probability": 0.7574657797813416,
           "verb": {
             "id": 1,
             "name": "take"
@@ -7454,7 +7454,7 @@
           "rank": 3,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.8827462792396545,
+          "probability": 0.8827459812164307,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -7482,7 +7482,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.4986458718776703,
+          "probability": 0.4986461102962494,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -7536,7 +7536,7 @@
           "rank": 1,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.20396891236305237
+          "probability": 0.2039688229560852
         },
         {
           "rank": 2,
@@ -7548,19 +7548,19 @@
           "rank": 3,
           "id": 900,
           "action": "shake peach",
-          "probability": 0.03808482736349106
+          "probability": 0.03808483108878136
         },
         {
           "rank": 4,
           "id": 660,
           "action": "remove peach",
-          "probability": 0.025171466171741486
+          "probability": 0.02517147921025753
         },
         {
           "rank": 5,
           "id": 3549,
           "action": "cut peach",
-          "probability": 0.01729997806251049
+          "probability": 0.01729997992515564
         }
       ],
       "top_verbs": [
@@ -7568,31 +7568,31 @@
           "rank": 1,
           "id": 9,
           "verb": "turn-off",
-          "probability": 0.7308990359306335
+          "probability": 0.7308990955352783
         },
         {
           "rank": 2,
           "id": 3,
           "verb": "wash",
-          "probability": 0.08891656249761581
+          "probability": 0.08891656994819641
         },
         {
           "rank": 3,
           "id": 16,
           "verb": "shake",
-          "probability": 0.033358603715896606
+          "probability": 0.033358585089445114
         },
         {
           "rank": 4,
           "id": 13,
           "verb": "remove",
-          "probability": 0.02623724192380905
+          "probability": 0.026237238198518753
         },
         {
           "rank": 5,
           "id": 8,
           "verb": "cut",
-          "probability": 0.01021180022507906
+          "probability": 0.010211801156401634
         }
       ],
       "top_nouns": [
@@ -7600,31 +7600,31 @@
           "rank": 1,
           "id": 1,
           "noun": "tap",
-          "probability": 0.7421542406082153
+          "probability": 0.7421541810035706
         },
         {
           "rank": 2,
           "id": 75,
           "noun": "peach",
-          "probability": 0.09119206666946411
+          "probability": 0.09119211137294769
         },
         {
           "rank": 3,
           "id": 12,
           "noun": "hand",
-          "probability": 0.01633383333683014
+          "probability": 0.016333820298314095
         },
         {
           "rank": 4,
           "id": 64,
           "noun": "sink",
-          "probability": 0.015216853469610214
+          "probability": 0.015216856263577938
         },
         {
           "rank": 5,
           "id": 28,
           "noun": "water",
-          "probability": 0.011722808703780174
+          "probability": 0.011722813360393047
         }
       ],
       "action_set": [
@@ -7632,7 +7632,7 @@
           "rank": 1,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.20396891236305237,
+          "probability": 0.2039688229560852,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -7646,7 +7646,7 @@
           "rank": 2,
           "id": 740,
           "action": "throw skin",
-          "probability": 0.43618983030319214,
+          "probability": 0.4361898601055145,
           "verb": {
             "id": 14,
             "name": "throw"
@@ -7660,7 +7660,7 @@
           "rank": 3,
           "id": 1189,
           "action": "put cloth",
-          "probability": 0.35842403769493103,
+          "probability": 0.3584241569042206,
           "verb": {
             "id": 2,
             "name": "put"
@@ -7674,7 +7674,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.3329930603504181,
+          "probability": 0.3329932391643524,
           "verb": {
             "id": 4,
             "name": "open"
@@ -7738,31 +7738,31 @@
           "rank": 1,
           "id": 1574,
           "action": "check hand",
-          "probability": 0.014345048926770687
+          "probability": 0.014345044270157814
         },
         {
           "rank": 2,
           "id": 254,
           "action": "take napkin",
-          "probability": 0.013883475214242935
+          "probability": 0.013883479870855808
         },
         {
           "rank": 3,
           "id": 232,
           "action": "take salad",
-          "probability": 0.012935245409607887
+          "probability": 0.012935246340930462
         },
         {
           "rank": 4,
           "id": 258,
           "action": "take towel:kitchen",
-          "probability": 0.011127461679279804
+          "probability": 0.011127463541924953
         },
         {
           "rank": 5,
           "id": 1321,
           "action": "put garlic",
-          "probability": 0.010390998795628548
+          "probability": 0.01039101555943489
         }
       ],
       "top_verbs": [
@@ -7770,31 +7770,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.27823901176452637
+          "probability": 0.2782389223575592
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.22471971809864044
+          "probability": 0.22471964359283447
         },
         {
           "rank": 3,
           "id": 14,
           "verb": "throw",
-          "probability": 0.07132921367883682
+          "probability": 0.07132918387651443
         },
         {
           "rank": 4,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.055263739079236984
+          "probability": 0.055263735353946686
         },
         {
           "rank": 5,
           "id": 8,
           "verb": "cut",
-          "probability": 0.03945217281579971
+          "probability": 0.03945225477218628
         }
       ],
       "top_nouns": [
@@ -7802,31 +7802,31 @@
           "rank": 1,
           "id": 12,
           "noun": "hand",
-          "probability": 0.08526601642370224
+          "probability": 0.0852658674120903
         },
         {
           "rank": 2,
           "id": 89,
           "noun": "napkin",
-          "probability": 0.08121972531080246
+          "probability": 0.08121982961893082
         },
         {
           "rank": 3,
           "id": 17,
           "noun": "onion",
-          "probability": 0.05741945654153824
+          "probability": 0.05741957202553749
         },
         {
           "rank": 4,
           "id": 13,
           "noun": "fridge",
-          "probability": 0.029019875451922417
+          "probability": 0.029019871726632118
         },
         {
           "rank": 5,
           "id": 52,
           "noun": "garlic",
-          "probability": 0.028355209156870842
+          "probability": 0.02835526503622532
         }
       ],
       "action_set": [
@@ -7834,7 +7834,7 @@
           "rank": 1,
           "id": 1574,
           "action": "check hand",
-          "probability": 0.014345048926770687,
+          "probability": 0.014345044270157814,
           "verb": {
             "id": 25,
             "name": "check"
@@ -7848,7 +7848,7 @@
           "rank": 2,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.29230761528015137,
+          "probability": 0.29230767488479614,
           "verb": {
             "id": 4,
             "name": "open"
@@ -7876,7 +7876,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.2827857732772827,
+          "probability": 0.28278589248657227,
           "verb": {
             "id": 4,
             "name": "open"
@@ -7890,7 +7890,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.43970805406570435,
+          "probability": 0.4397079646587372,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -7940,31 +7940,31 @@
           "rank": 1,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.2671900987625122
+          "probability": 0.2671900689601898
         },
         {
           "rank": 2,
           "id": 1402,
           "action": "empty pan",
-          "probability": 0.06662781536579132
+          "probability": 0.06662780791521072
         },
         {
           "rank": 3,
           "id": 1925,
           "action": "wash pan",
-          "probability": 0.03296755999326706
+          "probability": 0.03296758979558945
         },
         {
           "rank": 4,
           "id": 1362,
           "action": "put sponge",
-          "probability": 0.023283161222934723
+          "probability": 0.023283138871192932
         },
         {
           "rank": 5,
           "id": 1081,
           "action": "squeeze sponge",
-          "probability": 0.0200804453343153
+          "probability": 0.02008044347167015
         }
       ],
       "top_verbs": [
@@ -7972,31 +7972,31 @@
           "rank": 1,
           "id": 3,
           "verb": "wash",
-          "probability": 0.6539011001586914
+          "probability": 0.6539011597633362
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.17348554730415344
+          "probability": 0.1734854131937027
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.023142630234360695
+          "probability": 0.023142626509070396
         },
         {
           "rank": 4,
           "id": 21,
           "verb": "empty",
-          "probability": 0.016600608825683594
+          "probability": 0.016600605100393295
         },
         {
           "rank": 5,
           "id": 7,
           "verb": "turn-on",
-          "probability": 0.010446219705045223
+          "probability": 0.010446221567690372
         }
       ],
       "top_nouns": [
@@ -8010,7 +8010,7 @@
           "rank": 2,
           "id": 10,
           "noun": "sponge",
-          "probability": 0.14135049283504486
+          "probability": 0.14135043323040009
         },
         {
           "rank": 3,
@@ -8022,13 +8022,13 @@
           "rank": 4,
           "id": 143,
           "noun": "tongs",
-          "probability": 0.017620867118239403
+          "probability": 0.017620854079723358
         },
         {
           "rank": 5,
           "id": 1,
           "noun": "tap",
-          "probability": 0.014584112912416458
+          "probability": 0.014584123156964779
         }
       ],
       "action_set": [
@@ -8036,7 +8036,7 @@
           "rank": 1,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.2671900987625122,
+          "probability": 0.2671900689601898,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -8050,7 +8050,7 @@
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.359296590089798,
+          "probability": 0.3592965602874756,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8064,7 +8064,7 @@
           "rank": 3,
           "id": 1307,
           "action": "put colander",
-          "probability": 0.6919006109237671,
+          "probability": 0.6919005513191223,
           "verb": {
             "id": 2,
             "name": "put"
@@ -8078,7 +8078,7 @@
           "rank": 4,
           "id": 256,
           "action": "take sponge",
-          "probability": 0.25937142968177795,
+          "probability": 0.259370893239975,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8092,7 +8092,7 @@
           "rank": 5,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.48298171162605286,
+          "probability": 0.4829818904399872,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -8142,31 +8142,31 @@
           "rank": 1,
           "id": 329,
           "action": "mix sauce",
-          "probability": 0.5061288475990295
+          "probability": 0.5061287879943848
         },
         {
           "rank": 2,
           "id": 2799,
           "action": "close lid",
-          "probability": 0.07126490771770477
+          "probability": 0.07126490026712418
         },
         {
           "rank": 3,
           "id": 328,
           "action": "mix pasta",
-          "probability": 0.03602833300828934
+          "probability": 0.03602834790945053
         },
         {
           "rank": 4,
           "id": 1316,
           "action": "put sauce",
-          "probability": 0.016947736963629723
+          "probability": 0.016947735100984573
         },
         {
           "rank": 5,
           "id": 3151,
           "action": "insert sauce",
-          "probability": 0.01487965602427721
+          "probability": 0.014879647642374039
         }
       ],
       "top_verbs": [
@@ -8174,31 +8174,31 @@
           "rank": 1,
           "id": 11,
           "verb": "mix",
-          "probability": 0.5483092069625854
+          "probability": 0.5483090877532959
         },
         {
           "rank": 2,
           "id": 5,
           "verb": "close",
-          "probability": 0.20999476313591003
+          "probability": 0.20999491214752197
         },
         {
           "rank": 3,
           "id": 1,
           "verb": "take",
-          "probability": 0.07600056380033493
+          "probability": 0.07600055634975433
         },
         {
           "rank": 4,
           "id": 2,
           "verb": "put",
-          "probability": 0.04381382092833519
+          "probability": 0.0438137948513031
         },
         {
           "rank": 5,
           "id": 10,
           "verb": "pour",
-          "probability": 0.0052160099148750305
+          "probability": 0.005216009449213743
         }
       ],
       "top_nouns": [
@@ -8206,31 +8206,31 @@
           "rank": 1,
           "id": 48,
           "noun": "sauce",
-          "probability": 0.4311828017234802
+          "probability": 0.43118277192115784
         },
         {
           "rank": 2,
           "id": 46,
           "noun": "pasta",
-          "probability": 0.30738213658332825
+          "probability": 0.3073822557926178
         },
         {
           "rank": 3,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.08358027040958405
+          "probability": 0.08358021825551987
         },
         {
           "rank": 4,
           "id": 7,
           "noun": "lid",
-          "probability": 0.03652387857437134
+          "probability": 0.03652388975024223
         },
         {
           "rank": 5,
           "id": 98,
           "noun": "ladle",
-          "probability": 0.015127449296414852
+          "probability": 0.015127444639801979
         }
       ],
       "action_set": [
@@ -8238,7 +8238,7 @@
           "rank": 1,
           "id": 329,
           "action": "mix sauce",
-          "probability": 0.5061288475990295,
+          "probability": 0.5061287879943848,
           "verb": {
             "id": 11,
             "name": "mix"
@@ -8252,7 +8252,7 @@
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.6376010775566101,
+          "probability": 0.6376010179519653,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8266,7 +8266,7 @@
           "rank": 3,
           "id": 1316,
           "action": "put sauce",
-          "probability": 0.6084516048431396,
+          "probability": 0.608451783657074,
           "verb": {
             "id": 2,
             "name": "put"
@@ -8280,7 +8280,7 @@
           "rank": 4,
           "id": 2414,
           "action": "open cupboard",
-          "probability": 0.3754693865776062,
+          "probability": 0.3754690885543823,
           "verb": {
             "id": 4,
             "name": "open"
@@ -8294,7 +8294,7 @@
           "rank": 5,
           "id": 202,
           "action": "take knife",
-          "probability": 0.08935465663671494,
+          "probability": 0.08935471624135971,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8354,25 +8354,25 @@
           "rank": 2,
           "id": 1723,
           "action": "fill kettle",
-          "probability": 0.10428313165903091
+          "probability": 0.10428308695554733
         },
         {
           "rank": 3,
           "id": 1313,
           "action": "put kettle",
-          "probability": 0.0459035262465477
+          "probability": 0.045903529971838
         },
         {
           "rank": 4,
           "id": 2787,
           "action": "close kettle",
-          "probability": 0.03751381114125252
+          "probability": 0.037513796240091324
         },
         {
           "rank": 5,
           "id": 3356,
           "action": "turn-on kettle",
-          "probability": 0.030501190572977066
+          "probability": 0.03050120547413826
         }
       ],
       "top_verbs": [
@@ -8386,25 +8386,25 @@
           "rank": 2,
           "id": 9,
           "verb": "turn-off",
-          "probability": 0.1669587641954422
+          "probability": 0.1669587343931198
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.10498161613941193
+          "probability": 0.10498151183128357
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.07858848571777344
+          "probability": 0.07858844846487045
         },
         {
           "rank": 5,
           "id": 2,
           "verb": "put",
-          "probability": 0.0617525577545166
+          "probability": 0.06175259128212929
         }
       ],
       "top_nouns": [
@@ -8412,31 +8412,31 @@
           "rank": 1,
           "id": 6,
           "noun": "pan",
-          "probability": 0.45937469601631165
+          "probability": 0.4593745768070221
         },
         {
           "rank": 2,
           "id": 1,
           "noun": "tap",
-          "probability": 0.12739358842372894
+          "probability": 0.12739357352256775
         },
         {
           "rank": 3,
           "id": 45,
           "noun": "kettle",
-          "probability": 0.11870279908180237
+          "probability": 0.11870288103818893
         },
         {
           "rank": 4,
           "id": 67,
           "noun": "jug",
-          "probability": 0.04606018587946892
+          "probability": 0.04606017470359802
         },
         {
           "rank": 5,
           "id": 14,
           "noun": "cup",
-          "probability": 0.03114158846437931
+          "probability": 0.03114156424999237
         }
       ],
       "action_set": [
@@ -8472,7 +8472,7 @@
           "rank": 3,
           "id": 1319,
           "action": "put pan",
-          "probability": 0.7994973063468933,
+          "probability": 0.7994971871376038,
           "verb": {
             "id": 2,
             "name": "put"
@@ -8486,7 +8486,7 @@
           "rank": 4,
           "id": 45,
           "action": "take fork",
-          "probability": 0.35505959391593933,
+          "probability": 0.35505953431129456,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8500,7 +8500,7 @@
           "rank": 5,
           "id": 3642,
           "action": "turn-off tap",
-          "probability": 0.23704244196414948,
+          "probability": 0.23704279959201813,
           "verb": {
             "id": 9,
             "name": "turn-off"
@@ -8550,31 +8550,31 @@
           "rank": 1,
           "id": 3776,
           "action": "pour pasta",
-          "probability": 0.02513987384736538
+          "probability": 0.02513987012207508
         },
         {
           "rank": 2,
           "id": 2767,
           "action": "close container",
-          "probability": 0.01846827007830143
+          "probability": 0.018468275666236877
         },
         {
           "rank": 3,
           "id": 1915,
           "action": "wash colander",
-          "probability": 0.01814107969403267
+          "probability": 0.01814107596874237
         },
         {
           "rank": 4,
           "id": 2393,
           "action": "open container",
-          "probability": 0.014763010665774345
+          "probability": 0.01476301345974207
         },
         {
           "rank": 5,
           "id": 345,
           "action": "mix mixture",
-          "probability": 0.012110819108784199
+          "probability": 0.012110832147300243
         }
       ],
       "top_verbs": [
@@ -8582,31 +8582,31 @@
           "rank": 1,
           "id": 4,
           "verb": "open",
-          "probability": 0.17273643612861633
+          "probability": 0.17273639142513275
         },
         {
           "rank": 2,
           "id": 11,
           "verb": "mix",
-          "probability": 0.17164012789726257
+          "probability": 0.1716403216123581
         },
         {
           "rank": 3,
           "id": 10,
           "verb": "pour",
-          "probability": 0.11643887311220169
+          "probability": 0.11643894761800766
         },
         {
           "rank": 4,
           "id": 3,
           "verb": "wash",
-          "probability": 0.11404601484537125
+          "probability": 0.11404598504304886
         },
         {
           "rank": 5,
           "id": 5,
           "verb": "close",
-          "probability": 0.06502862274646759
+          "probability": 0.06502857804298401
         }
       ],
       "top_nouns": [
@@ -8614,19 +8614,19 @@
           "rank": 1,
           "id": 22,
           "noun": "container",
-          "probability": 0.27002957463264465
+          "probability": 0.27002984285354614
         },
         {
           "rank": 2,
           "id": 40,
           "noun": "colander",
-          "probability": 0.2674414813518524
+          "probability": 0.26744139194488525
         },
         {
           "rank": 3,
           "id": 46,
           "noun": "pasta",
-          "probability": 0.0530385747551918
+          "probability": 0.053038589656353
         },
         {
           "rank": 4,
@@ -8638,7 +8638,7 @@
           "rank": 5,
           "id": 4,
           "noun": "cupboard",
-          "probability": 0.01774168200790882
+          "probability": 0.01774166338145733
         }
       ],
       "action_set": [
@@ -8646,7 +8646,7 @@
           "rank": 1,
           "id": 3776,
           "action": "pour pasta",
-          "probability": 0.02513987384736538,
+          "probability": 0.02513987012207508,
           "verb": {
             "id": 10,
             "name": "pour"
@@ -8674,7 +8674,7 @@
           "rank": 3,
           "id": 1227,
           "action": "put container",
-          "probability": 0.28508466482162476,
+          "probability": 0.28508493304252625,
           "verb": {
             "id": 2,
             "name": "put"
@@ -8688,7 +8688,7 @@
           "rank": 4,
           "id": 107,
           "action": "take plate",
-          "probability": 0.273600697517395,
+          "probability": 0.27360060811042786,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8702,7 +8702,7 @@
           "rank": 5,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.1323283612728119,
+          "probability": 0.13232828676700592,
           "verb": {
             "id": 4,
             "name": "open"
@@ -8752,31 +8752,31 @@
           "rank": 1,
           "id": 107,
           "action": "take plate",
-          "probability": 0.1292819231748581
+          "probability": 0.12928183376789093
         },
         {
           "rank": 2,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.09149913489818573
+          "probability": 0.09149915724992752
         },
         {
           "rank": 3,
           "id": 3075,
           "action": "insert plate",
-          "probability": 0.02748982235789299
+          "probability": 0.027489829808473587
         },
         {
           "rank": 4,
           "id": 1869,
           "action": "wash plate",
-          "probability": 0.011088051833212376
+          "probability": 0.011088047176599503
         },
         {
           "rank": 5,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.009643913246691227
+          "probability": 0.009643916971981525
         }
       ],
       "top_verbs": [
@@ -8784,31 +8784,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.5487574934959412
+          "probability": 0.5487573146820068
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.2752166986465454
+          "probability": 0.27521687746047974
         },
         {
           "rank": 3,
           "id": 3,
           "verb": "wash",
-          "probability": 0.04646822810173035
+          "probability": 0.04646819084882736
         },
         {
           "rank": 4,
           "id": 9,
           "verb": "turn-off",
-          "probability": 0.012979637831449509
+          "probability": 0.012979629449546337
         },
         {
           "rank": 5,
           "id": 5,
           "verb": "close",
-          "probability": 0.011236478574573994
+          "probability": 0.011236484162509441
         }
       ],
       "top_nouns": [
@@ -8816,31 +8816,31 @@
           "rank": 1,
           "id": 3,
           "noun": "plate",
-          "probability": 0.8462752103805542
+          "probability": 0.8462749123573303
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.03733097016811371
+          "probability": 0.037330977618694305
         },
         {
           "rank": 3,
           "id": 15,
           "noun": "fork",
-          "probability": 0.023726897314190865
+          "probability": 0.02372691035270691
         },
         {
           "rank": 4,
           "id": 1,
           "noun": "tap",
-          "probability": 0.0117449089884758
+          "probability": 0.011744905263185501
         },
         {
           "rank": 5,
           "id": 5,
           "noun": "knife",
-          "probability": 0.005589972250163555
+          "probability": 0.005589975509792566
         }
       ],
       "action_set": [
@@ -8848,7 +8848,7 @@
           "rank": 1,
           "id": 107,
           "action": "take plate",
-          "probability": 0.1292819231748581,
+          "probability": 0.12928183376789093,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8862,7 +8862,7 @@
           "rank": 2,
           "id": 202,
           "action": "take knife",
-          "probability": 0.5064382553100586,
+          "probability": 0.5064384937286377,
           "verb": {
             "id": 1,
             "name": "take"
@@ -8890,7 +8890,7 @@
           "rank": 4,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.12481670826673508,
+          "probability": 0.12481676042079926,
           "verb": {
             "id": 4,
             "name": "open"
@@ -8958,31 +8958,31 @@
           "rank": 1,
           "id": 2767,
           "action": "close container",
-          "probability": 0.0953904241323471
+          "probability": 0.09539041668176651
         },
         {
           "rank": 2,
           "id": 2393,
           "action": "open container",
-          "probability": 0.038825519382953644
+          "probability": 0.038825515657663345
         },
         {
           "rank": 3,
           "id": 3086,
           "action": "insert container",
-          "probability": 0.02268638089299202
+          "probability": 0.02268637903034687
         },
         {
           "rank": 4,
           "id": 1227,
           "action": "put container",
-          "probability": 0.014461690559983253
+          "probability": 0.01446168590337038
         },
         {
           "rank": 5,
           "id": 423,
           "action": "move container",
-          "probability": 0.012844202108681202
+          "probability": 0.012844201177358627
         }
       ],
       "top_verbs": [
@@ -8990,31 +8990,31 @@
           "rank": 1,
           "id": 2,
           "verb": "put",
-          "probability": 0.3551677465438843
+          "probability": 0.35516777634620667
         },
         {
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.30087941884994507
+          "probability": 0.30087926983833313
         },
         {
           "rank": 3,
           "id": 12,
           "verb": "move",
-          "probability": 0.0488886833190918
+          "probability": 0.04888871684670448
         },
         {
           "rank": 4,
           "id": 5,
           "verb": "close",
-          "probability": 0.03303148224949837
+          "probability": 0.03303147107362747
         },
         {
           "rank": 5,
           "id": 6,
           "verb": "insert",
-          "probability": 0.023388873785734177
+          "probability": 0.02338886260986328
         }
       ],
       "top_nouns": [
@@ -9022,31 +9022,31 @@
           "rank": 1,
           "id": 22,
           "noun": "container",
-          "probability": 0.675969123840332
+          "probability": 0.6759690642356873
         },
         {
           "rank": 2,
           "id": 7,
           "noun": "lid",
-          "probability": 0.026848334819078445
+          "probability": 0.026848314329981804
         },
         {
           "rank": 3,
           "id": 43,
           "noun": "top",
-          "probability": 0.017674455419182777
+          "probability": 0.017674459144473076
         },
         {
           "rank": 4,
           "id": 29,
           "noun": "meat",
-          "probability": 0.014436503872275352
+          "probability": 0.014436506666243076
         },
         {
           "rank": 5,
           "id": 19,
           "noun": "board:chopping",
-          "probability": 0.013280240818858147
+          "probability": 0.013280248269438744
         }
       ],
       "action_set": [
@@ -9054,7 +9054,7 @@
           "rank": 1,
           "id": 2767,
           "action": "close container",
-          "probability": 0.0953904241323471,
+          "probability": 0.09539041668176651,
           "verb": {
             "id": 5,
             "name": "close"
@@ -9068,7 +9068,7 @@
           "rank": 2,
           "id": 1919,
           "action": "wash top",
-          "probability": 0.15619990229606628,
+          "probability": 0.15620006620883942,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -9082,7 +9082,7 @@
           "rank": 3,
           "id": 1227,
           "action": "put container",
-          "probability": 0.19827215373516083,
+          "probability": 0.1982719600200653,
           "verb": {
             "id": 2,
             "name": "put"
@@ -9110,7 +9110,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.3204701840877533,
+          "probability": 0.3204699754714966,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -9164,31 +9164,31 @@
           "rank": 1,
           "id": 1027,
           "action": "adjust heat",
-          "probability": 0.016662882640957832
+          "probability": 0.016662897542119026
         },
         {
           "rank": 2,
           "id": 322,
           "action": "mix food",
-          "probability": 0.01569259539246559
+          "probability": 0.015692593529820442
         },
         {
           "rank": 3,
           "id": 345,
           "action": "mix mixture",
-          "probability": 0.012335224077105522
+          "probability": 0.012335225939750671
         },
         {
           "rank": 4,
           "id": 334,
           "action": "mix rice",
-          "probability": 0.011515258811414242
+          "probability": 0.011515263468027115
         },
         {
           "rank": 5,
           "id": 1631,
           "action": "check rice",
-          "probability": 0.007371670100837946
+          "probability": 0.007371674757450819
         }
       ],
       "top_verbs": [
@@ -9196,31 +9196,31 @@
           "rank": 1,
           "id": 11,
           "verb": "mix",
-          "probability": 0.44842153787612915
+          "probability": 0.4484216272830963
         },
         {
           "rank": 2,
           "id": 3,
           "verb": "wash",
-          "probability": 0.1356651484966278
+          "probability": 0.13566510379314423
         },
         {
           "rank": 3,
           "id": 2,
           "verb": "put",
-          "probability": 0.0473136231303215
+          "probability": 0.047313619405031204
         },
         {
           "rank": 4,
           "id": 12,
           "verb": "move",
-          "probability": 0.04137622192502022
+          "probability": 0.04137624055147171
         },
         {
           "rank": 5,
           "id": 18,
           "verb": "adjust",
-          "probability": 0.0366588830947876
+          "probability": 0.036658890545368195
         }
       ],
       "top_nouns": [
@@ -9228,13 +9228,13 @@
           "rank": 1,
           "id": 56,
           "noun": "rice",
-          "probability": 0.20399710536003113
+          "probability": 0.20399723947048187
         },
         {
           "rank": 2,
           "id": 35,
           "noun": "food",
-          "probability": 0.1512901484966278
+          "probability": 0.1512901782989502
         },
         {
           "rank": 3,
@@ -9246,13 +9246,13 @@
           "rank": 4,
           "id": 66,
           "noun": "heat",
-          "probability": 0.0372479185461998
+          "probability": 0.037247925996780396
         },
         {
           "rank": 5,
           "id": 81,
           "noun": "chopstick",
-          "probability": 0.028501806780695915
+          "probability": 0.02850179374217987
         }
       ],
       "action_set": [
@@ -9260,7 +9260,7 @@
           "rank": 1,
           "id": 1027,
           "action": "adjust heat",
-          "probability": 0.016662882640957832,
+          "probability": 0.016662897542119026,
           "verb": {
             "id": 18,
             "name": "adjust"
@@ -9274,7 +9274,7 @@
           "rank": 2,
           "id": 2,
           "action": "take spoon",
-          "probability": 0.30916455388069153,
+          "probability": 0.3091645836830139,
           "verb": {
             "id": 1,
             "name": "take"
@@ -9288,7 +9288,7 @@
           "rank": 3,
           "id": 3347,
           "action": "turn-on hob",
-          "probability": 0.017478764057159424,
+          "probability": 0.017478713765740395,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -9302,7 +9302,7 @@
           "rank": 4,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.2488914281129837,
+          "probability": 0.24889154732227325,
           "verb": {
             "id": 4,
             "name": "open"
@@ -9316,7 +9316,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.2479156255722046,
+          "probability": 0.24791568517684937,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -9366,7 +9366,7 @@
           "rank": 1,
           "id": 1494,
           "action": "flip meat",
-          "probability": 0.06785020977258682
+          "probability": 0.06785017997026443
         },
         {
           "rank": 2,
@@ -9378,19 +9378,19 @@
           "rank": 3,
           "id": 181,
           "action": "take meat",
-          "probability": 0.02581218257546425
+          "probability": 0.025812184438109398
         },
         {
           "rank": 4,
           "id": 1450,
           "action": "press meat",
-          "probability": 0.018186254426836967
+          "probability": 0.018186256289482117
         },
         {
           "rank": 5,
           "id": 3131,
           "action": "insert meat",
-          "probability": 0.01756836287677288
+          "probability": 0.017568357288837433
         }
       ],
       "top_verbs": [
@@ -9398,13 +9398,13 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.42706653475761414
+          "probability": 0.4270663857460022
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.1860678493976593
+          "probability": 0.18606792390346527
         },
         {
           "rank": 3,
@@ -9416,13 +9416,13 @@
           "rank": 4,
           "id": 11,
           "verb": "mix",
-          "probability": 0.029654817655682564
+          "probability": 0.029654821380972862
         },
         {
           "rank": 5,
           "id": 13,
           "verb": "remove",
-          "probability": 0.028356436640024185
+          "probability": 0.028356457129120827
         }
       ],
       "top_nouns": [
@@ -9430,31 +9430,31 @@
           "rank": 1,
           "id": 29,
           "noun": "meat",
-          "probability": 0.5321884155273438
+          "probability": 0.532188355922699
         },
         {
           "rank": 2,
           "id": 18,
           "noun": "cloth",
-          "probability": 0.04726990684866905
+          "probability": 0.04726989567279816
         },
         {
           "rank": 3,
           "id": 13,
           "noun": "fridge",
-          "probability": 0.027488671243190765
+          "probability": 0.027488667517900467
         },
         {
           "rank": 4,
           "id": 11,
           "noun": "glass",
-          "probability": 0.015252220444381237
+          "probability": 0.015252236276865005
         },
         {
           "rank": 5,
           "id": 34,
           "noun": "bread",
-          "probability": 0.012309235520660877
+          "probability": 0.012309236451983452
         }
       ],
       "action_set": [
@@ -9462,7 +9462,7 @@
           "rank": 1,
           "id": 1494,
           "action": "flip meat",
-          "probability": 0.06785020977258682,
+          "probability": 0.06785017997026443,
           "verb": {
             "id": 23,
             "name": "flip"
@@ -9476,7 +9476,7 @@
           "rank": 2,
           "id": 1217,
           "action": "put plate",
-          "probability": 0.22107945382595062,
+          "probability": 0.22107940912246704,
           "verb": {
             "id": 2,
             "name": "put"
@@ -9490,7 +9490,7 @@
           "rank": 3,
           "id": 1189,
           "action": "put cloth",
-          "probability": 0.3305334746837616,
+          "probability": 0.33053359389305115,
           "verb": {
             "id": 2,
             "name": "put"
@@ -9504,7 +9504,7 @@
           "rank": 4,
           "id": 1822,
           "action": "wash hand",
-          "probability": 0.5985654592514038,
+          "probability": 0.5985653400421143,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -9518,7 +9518,7 @@
           "rank": 5,
           "id": 3329,
           "action": "turn-on tap",
-          "probability": 0.9634476900100708,
+          "probability": 0.9634475708007812,
           "verb": {
             "id": 7,
             "name": "turn-on"
@@ -9568,31 +9568,31 @@
           "rank": 1,
           "id": 1916,
           "action": "wash knife",
-          "probability": 0.07195175439119339
+          "probability": 0.07195170223712921
         },
         {
           "rank": 2,
           "id": 1926,
           "action": "wash maker:coffee",
-          "probability": 0.03778280317783356
+          "probability": 0.03778281435370445
         },
         {
           "rank": 3,
           "id": 214,
           "action": "take maker:coffee",
-          "probability": 0.03258282318711281
+          "probability": 0.0325828455388546
         },
         {
           "rank": 4,
           "id": 1953,
           "action": "wash filter",
-          "probability": 0.026017941534519196
+          "probability": 0.02601793222129345
         },
         {
           "rank": 5,
           "id": 1320,
           "action": "put maker:coffee",
-          "probability": 0.0217595137655735
+          "probability": 0.02175951562821865
         }
       ],
       "top_verbs": [
@@ -9606,7 +9606,7 @@
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.112789586186409
+          "probability": 0.11278963088989258
         },
         {
           "rank": 3,
@@ -9618,7 +9618,7 @@
           "rank": 4,
           "id": 6,
           "verb": "insert",
-          "probability": 0.005723760463297367
+          "probability": 0.005723763257265091
         },
         {
           "rank": 5,
@@ -9638,7 +9638,7 @@
           "rank": 2,
           "id": 15,
           "noun": "fork",
-          "probability": 0.11724267154932022
+          "probability": 0.11724261194467545
         },
         {
           "rank": 3,
@@ -9650,13 +9650,13 @@
           "rank": 4,
           "id": 110,
           "noun": "rest",
-          "probability": 0.03193141892552376
+          "probability": 0.03193143010139465
         },
         {
           "rank": 5,
           "id": 25,
           "noun": "hob",
-          "probability": 0.021709954366087914
+          "probability": 0.02170993760228157
         }
       ],
       "action_set": [
@@ -9664,7 +9664,7 @@
           "rank": 1,
           "id": 1916,
           "action": "wash knife",
-          "probability": 0.07195175439119339,
+          "probability": 0.07195170223712921,
           "verb": {
             "id": 3,
             "name": "wash"
@@ -9678,7 +9678,7 @@
           "rank": 2,
           "id": 34,
           "action": "take cup",
-          "probability": 0.4862431287765503,
+          "probability": 0.4862428903579712,
           "verb": {
             "id": 1,
             "name": "take"
@@ -9692,7 +9692,7 @@
           "rank": 3,
           "id": 1308,
           "action": "put knife",
-          "probability": 0.24304965138435364,
+          "probability": 0.24304959177970886,
           "verb": {
             "id": 2,
             "name": "put"
@@ -9706,7 +9706,7 @@
           "rank": 4,
           "id": 202,
           "action": "take knife",
-          "probability": 0.06798221915960312,
+          "probability": 0.06798212230205536,
           "verb": {
             "id": 1,
             "name": "take"
@@ -9770,25 +9770,25 @@
           "rank": 1,
           "id": 244,
           "action": "take scissors",
-          "probability": 0.030444880947470665
+          "probability": 0.03044486604630947
         },
         {
           "rank": 2,
           "id": 1314,
           "action": "put pasta",
-          "probability": 0.027132639661431313
+          "probability": 0.027132652699947357
         },
         {
           "rank": 3,
           "id": 208,
           "action": "take pasta",
-          "probability": 0.021916024386882782
+          "probability": 0.02191602997481823
         },
         {
           "rank": 4,
           "id": 222,
           "action": "take cutlery",
-          "probability": 0.016770517453551292
+          "probability": 0.01677052676677704
         },
         {
           "rank": 5,
@@ -9802,31 +9802,31 @@
           "rank": 1,
           "id": 1,
           "verb": "take",
-          "probability": 0.8434473872184753
+          "probability": 0.8434474468231201
         },
         {
           "rank": 2,
           "id": 2,
           "verb": "put",
-          "probability": 0.03848309814929962
+          "probability": 0.03848307579755783
         },
         {
           "rank": 3,
           "id": 6,
           "verb": "insert",
-          "probability": 0.02217036671936512
+          "probability": 0.02217036858201027
         },
         {
           "rank": 4,
           "id": 4,
           "verb": "open",
-          "probability": 0.014090964570641518
+          "probability": 0.014090959914028645
         },
         {
           "rank": 5,
           "id": 15,
           "verb": "dry",
-          "probability": 0.009096301160752773
+          "probability": 0.009096288122236729
         }
       ],
       "top_nouns": [
@@ -9834,31 +9834,31 @@
           "rank": 1,
           "id": 80,
           "noun": "scissors",
-          "probability": 0.07963452488183975
+          "probability": 0.07963456213474274
         },
         {
           "rank": 2,
           "id": 2,
           "noun": "spoon",
-          "probability": 0.06826825439929962
+          "probability": 0.06826828420162201
         },
         {
           "rank": 3,
           "id": 59,
           "noun": "cutlery",
-          "probability": 0.06034006178379059
+          "probability": 0.06034008786082268
         },
         {
           "rank": 4,
           "id": 46,
           "noun": "pasta",
-          "probability": 0.05714668333530426
+          "probability": 0.05714665353298187
         },
         {
           "rank": 5,
           "id": 32,
           "noun": "oil",
-          "probability": 0.04803889989852905
+          "probability": 0.048038922250270844
         }
       ],
       "action_set": [
@@ -9866,7 +9866,7 @@
           "rank": 1,
           "id": 244,
           "action": "take scissors",
-          "probability": 0.030444880947470665,
+          "probability": 0.03044486604630947,
           "verb": {
             "id": 1,
             "name": "take"
@@ -9880,7 +9880,7 @@
           "rank": 2,
           "id": 107,
           "action": "take plate",
-          "probability": 0.610586404800415,
+          "probability": 0.6105865240097046,
           "verb": {
             "id": 1,
             "name": "take"
@@ -9894,7 +9894,7 @@
           "rank": 3,
           "id": 328,
           "action": "mix pasta",
-          "probability": 0.21929891407489777,
+          "probability": 0.2192990779876709,
           "verb": {
             "id": 11,
             "name": "mix"
@@ -9922,7 +9922,7 @@
           "rank": 5,
           "id": 2346,
           "action": "open fridge",
-          "probability": 0.14224886894226074,
+          "probability": 0.14224907755851746,
           "verb": {
             "id": 4,
             "name": "open"
@@ -9972,31 +9972,31 @@
           "rank": 1,
           "id": 1352,
           "action": "put chopstick",
-          "probability": 0.11856791377067566
+          "probability": 0.11856795847415924
         },
         {
           "rank": 2,
           "id": 246,
           "action": "take chopstick",
-          "probability": 0.047642748802900314
+          "probability": 0.0476427860558033
         },
         {
           "rank": 3,
           "id": 1774,
           "action": "fold dough",
-          "probability": 0.0325603261590004
+          "probability": 0.0325603224337101
         },
         {
           "rank": 4,
           "id": 3516,
           "action": "cut dough",
-          "probability": 0.022140251472592354
+          "probability": 0.02214025892317295
         },
         {
           "rank": 5,
           "id": 2896,
           "action": "rub oil",
-          "probability": 0.018929967656731606
+          "probability": 0.018929963931441307
         }
       ],
       "top_verbs": [
@@ -10010,25 +10010,25 @@
           "rank": 2,
           "id": 1,
           "verb": "take",
-          "probability": 0.0729411244392395
+          "probability": 0.0729411393404007
         },
         {
           "rank": 3,
           "id": 3,
           "verb": "wash",
-          "probability": 0.059146225452423096
+          "probability": 0.05914619565010071
         },
         {
           "rank": 4,
           "id": 8,
           "verb": "cut",
-          "probability": 0.05865699425339699
+          "probability": 0.05865699052810669
         },
         {
           "rank": 5,
           "id": 22,
           "verb": "press",
-          "probability": 0.03526178002357483
+          "probability": 0.035261768847703934
         }
       ],
       "top_nouns": [
@@ -10036,31 +10036,31 @@
           "rank": 1,
           "id": 81,
           "noun": "chopstick",
-          "probability": 0.486568808555603
+          "probability": 0.4865689277648926
         },
         {
           "rank": 2,
           "id": 26,
           "noun": "dough",
-          "probability": 0.0883273258805275
+          "probability": 0.08832734078168869
         },
         {
           "rank": 3,
           "id": 52,
           "noun": "garlic",
-          "probability": 0.05633850395679474
+          "probability": 0.056338436901569366
         },
         {
           "rank": 4,
           "id": 71,
           "noun": "dishwasher",
-          "probability": 0.02790778875350952
+          "probability": 0.02790779434144497
         },
         {
           "rank": 5,
           "id": 32,
           "noun": "oil",
-          "probability": 0.020434405654668808
+          "probability": 0.02043440006673336
         }
       ],
       "action_set": [
@@ -10068,7 +10068,7 @@
           "rank": 1,
           "id": 1352,
           "action": "put chopstick",
-          "probability": 0.11856791377067566,
+          "probability": 0.11856795847415924,
           "verb": {
             "id": 2,
             "name": "put"
@@ -10082,7 +10082,7 @@
           "rank": 2,
           "id": 224,
           "action": "take lid",
-          "probability": 0.22679349780082703,
+          "probability": 0.22679364681243896,
           "verb": {
             "id": 1,
             "name": "take"
@@ -10124,7 +10124,7 @@
           "rank": 5,
           "id": 2460,
           "action": "open drawer",
-          "probability": 0.17696256935596466,
+          "probability": 0.17696242034435272,
           "verb": {
             "id": 4,
             "name": "open"
