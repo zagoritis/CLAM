@@ -9,7 +9,8 @@ TRAIN:
   EPOCHS: 50
   OPTIMIZER: adamw
   BATCH_SIZE: 128
-  LR: 0.0005
+  LR: 0.0003                      # final Step 10/10b lr (fixes the epoch-6 LR-peak slot collapse)
+                                  # the baseline's published lr is 0.0005 (its own best setting)
   WEIGHT_DECAY: 0.
   GRADIENT_CLIPPING: 1.0
 VAL:

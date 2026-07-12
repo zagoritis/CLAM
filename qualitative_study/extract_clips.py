@@ -21,8 +21,8 @@ Which prediction set is rated (per model, see --baseline-source/--modified-sourc
     softmaxes, so they are not a comparable ranking and are not shown to the rater.
 
 Provenance (recorded in data.json meta): baseline_preds.json comes from the 1xA100
-baseline checkpoint; modified_preds.json from the Step 9B (transition-grounded
-coverage) checkpoint. Override the notes if the preds files are regenerated.
+baseline checkpoint; modified_preds.json from the Step 10b (object-coverage,
+READOUT_DEDUP on) checkpoint. Override the notes if the preds files are regenerated.
 
 Robustness: a missing video URL, an ffmpeg failure, or a timeout is logged and the
 clip is skipped -- the run never crashes. Already-extracted clips are reused (ffmpeg
